@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Country - Nexus Enterprise ERP & HRM</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome 6 -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- Apex CSS & Web Component CDN Libraries -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/apexcharts@3.45.1/dist/apexcharts.css"
+    />
+    <script type="module" src="https://esm.run/apex-grid@3/define"></script>
+  </head>
+  <body>
+    <div class="app-wrapper">
+      <!-- Sidebar -->
+      <aside class="app-sidebar">
+        <div class="sidebar-header">
+          <div class="brand-logo-icon">
+            <i class="fa-solid fa-users-viewfinder"></i>
+          </div>
+          <div>
+            <h1 class="brand-title">Nexus</h1>
+            <div class="brand-subtitle">Human Resource & Sales</div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="nav-link">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="employees.html" class="nav-link">
+            <i class="fa-solid fa-user-group"></i>
+            <span>Employees</span>
+          </a>
+          <a href="attendance.html" class="nav-link">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Attendance</span>
+          </a>
+          <a href="payroll.html" class="nav-link">
+            <i class="fa-solid fa-sack-dollar"></i>
+            <span>Payroll</span>
+          </a>
+          <a href="recruitment.html" class="nav-link">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Recruitment</span>
+          </a>
+          <a href="leave-management.html" class="nav-link">
+            <i class="fa-solid fa-calendar-minus"></i>
+            <span>Leave Management</span>
+          </a>
+          <a href="performance.html" class="nav-link">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Performance</span>
+          </a>
+          <a href="reports.html" class="nav-link">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            <span>Reports</span>
+          </a>
+          <div class="nav-item-collapsible">
+            <a
+              class="nav-link collapse-toggle collapsed"
+              data-bs-toggle="collapse"
+              href="#collapseCategories"
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseCategories"
+            >
+              <i class="fa-solid fa-layer-group"></i>
+              <span>Categories</span>
+              <i class="fa-solid fa-plus toggle-chevron ms-auto"></i>
+            </a>
+            <div class="collapse show" id="collapseCategories">
+              <div class="submenu-list">
+                <div class="submenu-header">Geography</div>
+                <a
+                  href="country.html"
+                  class="submenu-link active"
+                  title="Country"
+                >
+                  <i class="fa-solid fa-globe"></i>
+                  <span>Country</span>
+                </a>
+                <a href="province.html" class="submenu-link" title="Province">
+                  <i class="fa-solid fa-map"></i>
+                  <span>Province</span>
+                </a>
+                <a href="ward.html" class="submenu-link" title="Ward">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <span>Ward</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <a href="settings.html" class="nav-link">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer-graphic">
+          <div class="security-badge-box">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+              <p>
+                <strong>Your data is secure</strong> We keep your enterprise
+                data safe and compliant.
+              </p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="app-main">
+        <!-- Top Navbar -->
+        <header class="app-topbar">
+          <div class="d-flex align-items-center gap-3">
+            <button
+              class="btn btn-sm btn-light"
+              id="sidebarToggleBtn"
+              title="Toggle Sidebar"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="topbar-search-box d-none d-sm-block">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input
+                type="text"
+                id="topbarSearchInput"
+                placeholder="Search employees, sales deals, reports..."
+              />
+            </div>
+          </div>
+
+          <div class="topbar-actions">
+            <div class="topbar-action-group">
+              <button
+                class="btn-icon-action"
+                id="langTranslateBtn"
+                title="Language / Ngôn ngữ"
+              >
+                <i class="fa-solid fa-language"></i>
+              </button>
+
+              <button
+                class="btn-icon-action"
+                id="themeToggleBtn"
+                title="Switch to Dark Mode"
+              >
+                <i class="fa-regular fa-moon"></i>
+              </button>
+
+              <button
+                class="btn-icon-action"
+                id="notifBellBtn"
+                title="Notifications"
+              >
+                <i class="fa-regular fa-bell"></i>
+                <span class="badge-dot">3</span>
+              </button>
+            </div>
+
+            <div class="dropdown">
+              <div
+                class="user-profile-menu dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div class="avatar-wrapper">
+                  <img
+                    src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
+                    alt="Tristan Nguyen Avatar"
+                    class="user-avatar-img"
+                  />
+                  <span class="avatar-status-online" title="Online"></span>
+                </div>
+                <div class="user-info-text d-none d-md-block">
+                  <p class="user-name">Tristan Nguyen</p>
+                  <p class="user-role">Administrator</p>
+                </div>
+                <i
+                  class="fa-solid fa-chevron-down dropdown-chevron ms-1 text-muted"
+                ></i>
+              </div>
+              <ul class="dropdown-menu dropdown-menu-end user-dropdown-menu">
+                <li class="dropdown-header-info">
+                  <img
+                    src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
+                    alt="Tristan Nguyen"
+                    class="header-avatar"
+                  />
+                  <div class="header-details">
+                    <div class="header-name">Tristan Nguyen</div>
+                    <div class="header-email">tristan.nguyen@nexusost.com</div>
+                  </div>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="settings.html">
+                    <span class="dropdown-icon-box"
+                      ><i class="fa-regular fa-user"></i
+                    ></span>
+                    <span class="flex-grow-1">Profile</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="settings.html">
+                    <span class="dropdown-icon-box"
+                      ><i class="fa-solid fa-sliders"></i
+                    ></span>
+                    <span class="flex-grow-1">Preferences</span>
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a
+                    class="dropdown-item dropdown-item-danger text-danger"
+                    href="dashboard.html"
+                  >
+                    <span class="dropdown-icon-box danger"
+                      ><i class="fa-solid fa-right-from-bracket"></i
+                    ></span>
+                    <span class="flex-grow-1">Log out</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <!-- Page Content Container -->
+        <div class="page-container p-4">
+          <!-- Page Header -->
+          <div class="mb-4">
+            <h2 class="h3 fw-bold text-dark mb-1">Country Management</h2>
+            <p class="text-muted mb-0">
+              Manage and look up the country list with an interactive data grid
+              (supports sorting, filtering, and column resizing).
+            </p>
+          </div>
+
+          <!-- Quick Stat Summary Cards Row (5 Cards Layout - Sleek 2-Line Format) -->
+          <div
+            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 mb-4"
+          >
+            <!-- Card 1: Tổng Số Quốc Gia -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-blue py-3 px-3">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
+                  <div
+                    class="d-flex align-items-center justify-content-between gap-2 mb-1"
+                  >
+                    <span class="metric-pastel-title mb-0">TỔNG QUỐC GIA</span>
+                    <span class="metric-tag-pill ms-auto">100% Global</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                    <h3 class="metric-pastel-val mb-0" id="statTotalCountries">
+                      120
+                    </h3>
+                    <span class="metric-pastel-sub mb-0">
+                      <i class="fa-solid fa-layer-group me-1 text-primary"></i
+                      >Đồng bộ dữ liệu
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-earth-americas"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Quốc Gia Hoạt Động -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-mint py-3 px-3">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
+                  <div
+                    class="d-flex align-items-center justify-content-between gap-2 mb-1"
+                  >
+                    <span class="metric-pastel-title mb-0">HOẠT ĐỘNG</span>
+                    <span class="metric-tag-pill ms-auto">85.8% Active</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                    <h3 class="metric-pastel-val mb-0" id="statActiveMarkets">
+                      103
+                    </h3>
+                    <span class="metric-pastel-sub mb-0">
+                      <i class="fa-solid fa-shield-halved me-1 text-success"></i
+                      >Tuân thủ vận hành
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Tổng Dân Số -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-purple py-3 px-3">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
+                  <div
+                    class="d-flex align-items-center justify-content-between gap-2 mb-1"
+                  >
+                    <span class="metric-pastel-title mb-0">TỔNG DÂN SỐ</span>
+                    <span class="metric-tag-pill ms-auto">+3.2% YoY</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                    <h3 class="metric-pastel-val mb-0" id="statTotalPopulation">
+                      5.42B
+                    </h3>
+                    <span class="metric-pastel-sub mb-0">
+                      <i class="fa-solid fa-chart-line me-1 text-purple"></i>Phủ
+                      sóng 5.42B người
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-users"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Thị Trường Trọng Điểm -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-rose py-3 px-3">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
+                  <div
+                    class="d-flex align-items-center justify-content-between gap-2 mb-1"
+                  >
+                    <span class="metric-pastel-title mb-0">TRỌNG ĐIỂM</span>
+                    <span class="metric-tag-pill ms-auto">40.0% Priority</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                    <h3 class="metric-pastel-val mb-0" id="statHighPriority">
+                      48
+                    </h3>
+                    <span class="metric-pastel-sub mb-0">
+                      <i class="fa-solid fa-fire me-1 text-danger"></i>Ưu tiên
+                      mở rộng
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Vùng & Châu Lục -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-amber py-3 px-3">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
+                  <div
+                    class="d-flex align-items-center justify-content-between gap-2 mb-1"
+                  >
+                    <span class="metric-pastel-title mb-0"
+                      >VÙNG & CHÂU LỤC</span
+                    >
+                    <span class="metric-tag-pill ms-auto">4 Regions</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                    <h3 class="metric-pastel-val mb-0" id="statTotalRegions">
+                      4
+                    </h3>
+                    <span class="metric-pastel-sub mb-0">
+                      <i class="fa-solid fa-compass me-1 text-warning"></i>Phân
+                      bổ địa lý
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons Bar (Add, Edit, Delete) -->
+          <div class="d-flex align-items-center justify-content-end gap-2 mb-3">
+            <button
+              class="btn btn-sm btn-pastel-success d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+              id="addCountryBtn"
+            >
+              <i class="fa-solid fa-plus"></i> Add Country
+            </button>
+            <button
+              class="btn btn-sm btn-pastel-warning d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+              id="editCountryBtn"
+            >
+              <i class="fa-solid fa-pen-to-square"></i> Edit
+            </button>
+            <button
+              class="btn btn-sm btn-pastel-danger d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+              id="deleteCountryBtn"
+            >
+              <i class="fa-solid fa-trash-can"></i> Delete
+            </button>
+          </div>
+
+          <!-- ApexGrid Card Wrapper -->
+          <div class="erp-card p-4 shadow-sm rounded-4">
+            <!-- Filter Toolbar UI (Visual UI Only) -->
+            <div
+              class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3 pb-3 filter-toolbar-border"
+            >
+              <!-- Left Controls: Search Box & Dropdown Filters -->
+              <div class="d-flex flex-wrap align-items-center gap-2">
+                <!-- Search Input Box -->
+                <div class="position-relative" style="min-width: 220px">
+                  <i
+                    class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 filter-search-icon"
+                  ></i>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm ps-5 pe-3 rounded-3 filter-input"
+                    placeholder="Search country, code..."
+                  />
+                </div>
+
+                <!-- Region Filter Select -->
+                <select
+                  class="form-select form-select-sm rounded-3 px-3 filter-select"
+                  style="width: auto; min-width: 140px"
+                >
+                  <option selected value="">Region</option>
+                  <option value="Asia">Asia</option>
+                  <option value="Americas">Americas</option>
+                  <option value="Europe">Europe</option>
+                  <option value="Oceania">Oceania</option>
+                </select>
+
+                <!-- Priority Filter Select -->
+                <select
+                  class="form-select form-select-sm rounded-3 px-3 filter-select"
+                  style="width: auto; min-width: 140px"
+                >
+                  <option selected value="">Priority</option>
+                  <option value="High">High</option>
+                  <option value="Standard">Standard</option>
+                  <option value="Low">Low</option>
+                </select>
+
+                <!-- Status Filter Select -->
+                <select
+                  class="form-select form-select-sm rounded-3 px-3 filter-select"
+                  style="width: auto; min-width: 130px"
+                >
+                  <option selected value="">Status</option>
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+              </div>
+
+              <!-- Right Actions: Reset & Search Buttons Side-by-Side -->
+              <div class="d-flex align-items-center gap-2">
+                <button
+                  class="btn btn-sm btn-filter-reset d-inline-flex align-items-center gap-2 px-3 rounded-3"
+                >
+                  <i class="fa-solid fa-rotate-left"></i> Reset
+                </button>
+                <button
+                  class="btn btn-sm btn-filter-search d-inline-flex align-items-center gap-2 px-3 rounded-3"
+                >
+                  <i class="fa-solid fa-magnifying-glass"></i> Search
+                </button>
+              </div>
+            </div>
+
+            <!-- ApexGrid Component -->
+            <apex-grid id="grid"></apex-grid>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Apex CDN Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.45.1/dist/apexcharts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apextree@1.14.0/apextree.min.js"></script>
+    <!-- Apex Custom Modules -->
+    <script src="../js/apex-chart.js"></script>
+    <script src="../js/apex-tree.js"></script>
+    <script src="../js/apex-grid.js"></script>
+    <!-- Main Application JS -->
+    <script src="../js/app.js"></script>
+  </body>
+</html>

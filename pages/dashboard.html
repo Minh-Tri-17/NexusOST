@@ -1,0 +1,1147 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Nexus Enterprise ERP & HRM</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome 6 -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- ApexCharts CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/apexcharts@3.45.1/dist/apexcharts.css"
+      rel="stylesheet"
+    />
+    <!-- ApexGrid Web Component -->
+    <script type="module" src="https://esm.run/apex-grid@3/define"></script>
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="app-wrapper">
+      <!-- Sidebar -->
+      <aside class="app-sidebar">
+        <div class="sidebar-header">
+          <div class="brand-logo-icon">
+            <i class="fa-solid fa-users-viewfinder"></i>
+          </div>
+          <div>
+            <h1 class="brand-title">Nexus</h1>
+            <div class="brand-subtitle">Human Resource & Sales</div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="nav-link active">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="employees.html" class="nav-link">
+            <i class="fa-solid fa-user-group"></i>
+            <span>Employees</span>
+          </a>
+          <a href="attendance.html" class="nav-link">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Attendance</span>
+          </a>
+          <a href="payroll.html" class="nav-link">
+            <i class="fa-solid fa-sack-dollar"></i>
+            <span>Payroll</span>
+          </a>
+          <a href="recruitment.html" class="nav-link">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Recruitment</span>
+          </a>
+          <a href="leave-management.html" class="nav-link">
+            <i class="fa-solid fa-calendar-minus"></i>
+            <span>Leave Management</span>
+          </a>
+          <a href="performance.html" class="nav-link">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Performance</span>
+          </a>
+          <a href="reports.html" class="nav-link">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            <span>Reports</span>
+          </a>
+          <div class="nav-item-collapsible">
+            <a
+              class="nav-link collapse-toggle collapsed"
+              data-bs-toggle="collapse"
+              href="#collapseCategories"
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseCategories"
+            >
+              <i class="fa-solid fa-layer-group"></i>
+              <span>Categories</span>
+              <i class="fa-solid fa-plus toggle-chevron ms-auto"></i>
+            </a>
+            <div class="collapse" id="collapseCategories">
+              <div class="submenu-list">
+                <div class="submenu-header">Geography</div>
+                <a href="country.html" class="submenu-link" title="Country">
+                  <i class="fa-solid fa-globe"></i>
+                  <span>Country</span>
+                </a>
+                <a href="province.html" class="submenu-link" title="Province">
+                  <i class="fa-solid fa-map"></i>
+                  <span>Province</span>
+                </a>
+                <a href="ward.html" class="submenu-link" title="Ward">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <span>Ward</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <a href="settings.html" class="nav-link">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+          </a>
+        </nav>
+
+        <!-- Sidebar Bottom Vector Graphic Container (Image 2 style) -->
+        <div class="sidebar-footer-graphic">
+          <div class="security-badge-box">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+              <p>
+                <strong>Your data is secure</strong> We keep your enterprise
+                data safe and compliant.
+              </p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="app-main">
+        <!-- Top Navbar -->
+        <header class="app-topbar">
+          <div class="d-flex align-items-center gap-3">
+            <button
+              class="btn btn-sm btn-light"
+              id="sidebarToggleBtn"
+              title="Toggle Sidebar"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="topbar-search-box d-none d-sm-block">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input
+                type="text"
+                id="topbarSearchInput"
+                placeholder="Search stores, baristas, recipes, sales reports, inventory..."
+              />
+            </div>
+          </div>
+
+          <div class="topbar-actions">
+            <div class="topbar-action-group">
+              <button
+                class="btn-icon-action"
+                id="langTranslateBtn"
+                title="Language / Ngôn ngữ"
+              >
+                <i class="fa-solid fa-language"></i>
+              </button>
+
+              <button
+                class="btn-icon-action"
+                id="themeToggleBtn"
+                title="Switch to Dark Mode"
+              >
+                <i class="fa-regular fa-moon"></i>
+              </button>
+
+              <button
+                class="btn-icon-action"
+                id="notifBellBtn"
+                title="Notifications"
+              >
+                <i class="fa-regular fa-bell"></i>
+                <span class="badge-dot">3</span>
+              </button>
+            </div>
+
+            <div class="dropdown">
+              <div
+                class="user-profile-menu dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div class="avatar-wrapper">
+                  <img
+                    src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
+                    alt="Tristan Nguyen Avatar"
+                    class="user-avatar-img"
+                  />
+                  <span class="avatar-status-online" title="Online"></span>
+                </div>
+                <div class="user-info-text d-none d-md-block">
+                  <p class="user-name">Tristan Nguyen</p>
+                  <p class="user-role">F&B Operations Director</p>
+                </div>
+                <i
+                  class="fa-solid fa-chevron-down dropdown-chevron ms-1 text-muted"
+                ></i>
+              </div>
+              <ul class="dropdown-menu dropdown-menu-end user-dropdown-menu">
+                <li class="dropdown-header-info">
+                  <img
+                    src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
+                    alt="Tristan Nguyen"
+                    class="header-avatar"
+                  />
+                  <div class="header-details">
+                    <div class="header-name">Tristan Nguyen</div>
+                    <div class="header-email">tristan.nguyen@nexusost.com</div>
+                  </div>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="settings.html">
+                    <span class="dropdown-icon-box"
+                      ><i class="fa-regular fa-user"></i
+                    ></span>
+                    <span class="flex-grow-1">Profile</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="settings.html">
+                    <span class="dropdown-icon-box"
+                      ><i class="fa-solid fa-sliders"></i
+                    ></span>
+                    <span class="flex-grow-1">Preferences</span>
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a
+                    class="dropdown-item dropdown-item-danger text-danger"
+                    href="dashboard.html"
+                  >
+                    <span class="dropdown-icon-box danger"
+                      ><i class="fa-solid fa-right-from-bracket"></i
+                    ></span>
+                    <span class="flex-grow-1">Log out</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <!-- Page Content Container -->
+        <div class="page-container">
+          <!-- Page Title Header with Animated Icons & Live Operations Badge -->
+          <div class="page-header-block">
+            <div>
+              <div class="d-flex align-items-center flex-wrap gap-2 mb-1.5">
+                <span class="header-tag-pill"
+                  ><i class="fa-solid fa-mug-hot"></i> F&B Enterprise</span
+                >
+                <span class="live-status-pill">
+                  <span class="live-pulse-dot"></span>
+                  <span>18 Stores Live</span>
+                </span>
+              </div>
+              <h2 class="page-header-title d-flex align-items-center gap-2">
+                <span>Coffee & Restaurant Chain Dashboard</span>
+                <span class="header-sparkle-icon"
+                  ><i class="fa-solid fa-wand-magic-sparkles"></i
+                ></span>
+              </h2>
+              <p
+                class="page-header-subtitle d-flex align-items-center gap-1 flex-wrap"
+              >
+                <span>Welcome back, <strong>Tristan</strong>!</span>
+                <span class="wave-hand-emoji">👋</span>
+                <span class="text-muted ms-1"
+                  >Here's your F&B chain revenue, staffing, & store performance
+                  overview.</span
+                >
+              </p>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <div class="date-range-pill">
+                <i class="fa-regular fa-calendar-check text-primary"></i>
+                <span>May 12 - Jun 12, 2025</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metric Cards Row (4 Cards matching Image 2) -->
+          <div class="row g-3 mb-4">
+            <!-- Card 1: Light Blue Pastel -->
+            <div class="col-12 col-sm-6 col-xl-3">
+              <div class="metric-card-pastel card-pastel-blue">
+                <div>
+                  <div class="metric-pastel-title">TOTAL STAFF & BARISTAS</div>
+                  <div class="metric-pastel-val">1,248</div>
+                  <div class="metric-pastel-sub">
+                    <span class="up-green"
+                      ><i class="fa-solid fa-arrow-up"></i> 8.5%</span
+                    >
+                    vs Apr 12 - May 11, 2025
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-users-gear"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Soft Purple Pastel -->
+            <div class="col-12 col-sm-6 col-xl-3">
+              <div class="metric-card-pastel card-pastel-purple">
+                <div>
+                  <div class="metric-pastel-title">CHAIN SALES REVENUE</div>
+                  <div class="metric-pastel-val">$485,200</div>
+                  <div class="metric-pastel-sub">
+                    <span class="up-green"
+                      ><i class="fa-solid fa-arrow-up"></i> 14.2%</span
+                    >
+                    vs Apr 12 - May 11, 2025
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-chart-pie"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Soft Mint Green Pastel -->
+            <div class="col-12 col-sm-6 col-xl-3">
+              <div class="metric-card-pastel card-pastel-mint">
+                <div>
+                  <div class="metric-pastel-title">TOTAL PAYROLL PAID</div>
+                  <div class="metric-pastel-val">$312,800</div>
+                  <div class="metric-pastel-sub">
+                    <span class="up-green"
+                      ><i class="fa-solid fa-arrow-up"></i> 5.4%</span
+                    >
+                    vs Apr 12 - May 11, 2025
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Soft Warm Yellow/Cream Pastel -->
+            <div class="col-12 col-sm-6 col-xl-3">
+              <div class="metric-card-pastel card-pastel-cream">
+                <div>
+                  <div class="metric-pastel-title">STORES & BRANCHES</div>
+                  <div class="metric-pastel-val">18 Outlets</div>
+                  <div class="metric-pastel-sub">
+                    <span class="up-green"
+                      ><i class="fa-solid fa-arrow-up"></i> +2 Outlets</span
+                    >
+                    active this quarter
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-store"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle Charts Row -->
+          <div class="row g-3 mb-4">
+            <!-- Monthly Chain Sales & Revenue Chart (Col 7) -->
+            <div class="col-12 col-xl-7">
+              <div class="erp-card">
+                <div class="card-header-flex">
+                  <div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                      <span
+                        class="badge badge-purple fw-semibold px-2.5 py-1 rounded-pill"
+                        style="font-size: 0.75rem"
+                      >
+                        <i class="fa-solid fa-chart-column me-1"></i> Financial
+                        Growth
+                      </span>
+                      <span
+                        class="badge badge-emerald fw-semibold px-2.5 py-1 rounded-pill"
+                        style="font-size: 0.75rem"
+                      >
+                        <i class="fa-solid fa-arrow-trend-up me-1"></i> +14.2%
+                        YoY
+                      </span>
+                    </div>
+                    <h3 class="card-title-main mb-0">
+                      Monthly Chain Sales & Revenue
+                    </h3>
+                  </div>
+                </div>
+                <div id="chartMonthlyOverview"></div>
+              </div>
+            </div>
+
+            <!-- Staff Distribution Donut Chart (Col 5) -->
+            <div class="col-12 col-xl-5">
+              <div class="erp-card">
+                <div class="card-header-flex">
+                  <div>
+                    <div class="d-flex align-items-center flex-wrap gap-2 mb-1">
+                      <span
+                        class="badge badge-cyan fw-semibold px-2.5 py-1 rounded-pill"
+                        style="font-size: 0.75rem"
+                      >
+                        <i class="fa-solid fa-chart-pie me-1"></i> Workforce
+                        Breakdown
+                      </span>
+                      <span
+                        class="badge badge-amber fw-semibold px-2.5 py-1 rounded-pill"
+                        style="font-size: 0.75rem"
+                      >
+                        <i class="fa-solid fa-layer-group me-1"></i> 7
+                        Functional Units
+                      </span>
+                    </div>
+                    <h3 class="card-title-main mb-0">
+                      Staff Distribution by Function
+                    </h3>
+                  </div>
+                </div>
+                <div class="row align-items-center g-3">
+                  <div class="col-12 col-sm-5 col-md-5">
+                    <div
+                      id="chartDepartmentCategories"
+                      class="d-flex justify-content-center"
+                    ></div>
+                  </div>
+                  <div class="col-12 col-sm-7 col-md-7">
+                    <div class="donut-legend-list">
+                      <div class="donut-legend-item">
+                        <div class="donut-legend-label">
+                          <span
+                            class="donut-dot"
+                            style="background-color: #60a5fa"
+                          ></span>
+                          <span>Baristas & Service</span>
+                        </div>
+                        <span class="donut-legend-val"
+                          >32% <small class="text-muted">(399)</small></span
+                        >
+                      </div>
+                      <div class="donut-legend-item">
+                        <div class="donut-legend-label">
+                          <span
+                            class="donut-dot"
+                            style="background-color: #c084fc"
+                          ></span>
+                          <span>Kitchen & Culinary</span>
+                        </div>
+                        <span class="donut-legend-val"
+                          >22% <small class="text-muted">(275)</small></span
+                        >
+                      </div>
+                      <div class="donut-legend-item">
+                        <div class="donut-legend-label">
+                          <span
+                            class="donut-dot"
+                            style="background-color: #34d399"
+                          ></span>
+                          <span>Store Managers</span>
+                        </div>
+                        <span class="donut-legend-val"
+                          >16% <small class="text-muted">(200)</small></span
+                        >
+                      </div>
+                      <div class="donut-legend-item">
+                        <div class="donut-legend-label">
+                          <span
+                            class="donut-dot"
+                            style="background-color: #fbbf24"
+                          ></span>
+                          <span>Delivery & Dispatch</span>
+                        </div>
+                        <span class="donut-legend-val"
+                          >10% <small class="text-muted">(125)</small></span
+                        >
+                      </div>
+                      <div class="donut-legend-item">
+                        <div class="donut-legend-label">
+                          <span
+                            class="donut-dot"
+                            style="background-color: #f472b6"
+                          ></span>
+                          <span>Warehouse & Supply</span>
+                        </div>
+                        <span class="donut-legend-val"
+                          >8% <small class="text-muted">(100)</small></span
+                        >
+                      </div>
+                      <div class="donut-legend-item">
+                        <div class="donut-legend-label">
+                          <span
+                            class="donut-dot"
+                            style="background-color: #38bdf8"
+                          ></span>
+                          <span>Marketing & Care</span>
+                        </div>
+                        <span class="donut-legend-val"
+                          >7% <small class="text-muted">(87)</small></span
+                        >
+                      </div>
+                      <div class="donut-legend-item">
+                        <div class="donut-legend-label">
+                          <span
+                            class="donut-dot"
+                            style="background-color: #a78bfa"
+                          ></span>
+                          <span>HQ & Operations</span>
+                        </div>
+                        <span class="donut-legend-val"
+                          >5% <small class="text-muted">(62)</small></span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle-Bottom Row: Swapped F&B Activity Log (Col 4) & Store Service Requests (Col 8) -->
+          <div class="row g-3 mb-4">
+            <!-- F&B Activity Log (Col 4 - Reduced Width) -->
+            <div class="col-12 col-xl-4">
+              <div class="erp-card d-flex flex-column justify-content-between">
+                <div>
+                  <div class="card-header-flex">
+                    <div>
+                      <div class="d-flex align-items-center gap-2 mb-1">
+                        <span
+                          class="badge badge-rose fw-bold px-2.5 py-1 rounded-pill"
+                          style="font-size: 0.75rem"
+                        >
+                          <i class="fa-solid fa-clock-rotate-left me-1"></i>
+                          Live Activity Feed
+                        </span>
+                      </div>
+                      <h3 class="card-title-main mb-0">
+                        F&B Chain Operations Log
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div class="timeline-activity-list">
+                    <!-- Activity 1 -->
+                    <div class="timeline-activity-item">
+                      <div class="timeline-icon-box timeline-icon-blue">
+                        <i class="fa-solid fa-calendar-check"></i>
+                      </div>
+                      <div class="timeline-content">
+                        <h4 class="timeline-title">
+                          Weekly Roster & Shift Schedule Approved
+                        </h4>
+                        <p class="timeline-actor">
+                          Approved shift schedule for 18 Coffee & Bistro stores
+                          (Week 25)
+                        </p>
+                      </div>
+                      <div class="timeline-time">10 min ago</div>
+                    </div>
+
+                    <!-- Activity 2 -->
+                    <div class="timeline-activity-item">
+                      <div class="timeline-icon-box timeline-icon-green">
+                        <i class="fa-solid fa-mug-hot"></i>
+                      </div>
+                      <div class="timeline-content">
+                        <h4 class="timeline-title">
+                          Senior Barista Certification Passed
+                        </h4>
+                        <p class="timeline-actor">
+                          Nguyen Van An completed Master Barista training at
+                          Outlet #01
+                        </p>
+                      </div>
+                      <div class="timeline-time">25 min ago</div>
+                    </div>
+
+                    <!-- Activity 3 -->
+                    <div class="timeline-activity-item">
+                      <div class="timeline-icon-box timeline-icon-purple">
+                        <i class="fa-solid fa-boxes-packing"></i>
+                      </div>
+                      <div class="timeline-content">
+                        <h4 class="timeline-title">
+                          Coffee Beans & Fresh Produce Inbound
+                        </h4>
+                        <p class="timeline-actor">
+                          500kg Arabica Beans & supplies delivered to Central
+                          Warehouse
+                        </p>
+                      </div>
+                      <div class="timeline-time">1 hr ago</div>
+                    </div>
+
+                    <!-- Activity 4 -->
+                    <div class="timeline-activity-item">
+                      <div class="timeline-icon-box timeline-icon-orange">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                      </div>
+                      <div class="timeline-content">
+                        <h4 class="timeline-title">
+                          Monthly F&B Payroll Processed
+                        </h4>
+                        <p class="timeline-actor">
+                          Disbursed June payroll for 1,248 chain staff & chefs
+                        </p>
+                      </div>
+                      <div class="timeline-time">2 hr ago</div>
+                    </div>
+
+                    <!-- Activity 5 -->
+                    <div class="timeline-activity-item">
+                      <div class="timeline-icon-box timeline-icon-pink">
+                        <i class="fa-solid fa-shield-cat"></i>
+                      </div>
+                      <div class="timeline-content">
+                        <h4 class="timeline-title">
+                          Food Safety Inspection Passed
+                        </h4>
+                        <p class="timeline-actor">
+                          Outlet #04 passed ISO 22000 Food Safety Audit
+                        </p>
+                      </div>
+                      <div class="timeline-time">3 hr ago</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-3 border-top text-center mt-2">
+                  <a
+                    href="reports.html"
+                    class="text-primary font-semibold text-decoration-none"
+                    style="font-size: 0.85rem"
+                  >
+                    View All Operations Logs
+                    <i
+                      class="fa-solid fa-chevron-right ms-1"
+                      style="font-size: 0.75rem"
+                    ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Store Service Requests Card (Col 8 - Expanded Width) -->
+            <div class="col-12 col-xl-8">
+              <div class="erp-card d-flex flex-column justify-content-between">
+                <div>
+                  <div class="card-header-flex">
+                    <div>
+                      <div class="d-flex align-items-center gap-2 mb-1">
+                        <span
+                          class="badge badge-orange fw-bold px-2.5 py-1 rounded-pill"
+                          style="font-size: 0.75rem"
+                        >
+                          <i class="fa-solid fa-clipboard-list me-1"></i> 6
+                          Active Requests
+                        </span>
+                      </div>
+                      <h3 class="card-title-main mb-0">
+                        Store Service Requests & Requisitions
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div class="table-responsive">
+                    <table class="table table-erp align-middle">
+                      <thead>
+                        <tr>
+                          <th>STORE / OUTLET</th>
+                          <th>REQUEST TYPE</th>
+                          <th>DETAILS / SPECIFICATION</th>
+                          <th>PRIORITY</th>
+                          <th>STATUS</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="fw-bold text-dark">
+                            Outlet #01 (Central)
+                          </td>
+                          <td>
+                            <span class="badge-soft badge-purple"
+                              ><i class="fa-solid fa-boxes-stacked"></i>
+                              Inventory</span
+                            >
+                          </td>
+                          <td class="text-muted fw-semibold">
+                            200kg Arabica Beans & Premium Syrups
+                          </td>
+                          <td>
+                            <span class="priority-badge badge-rose">High</span>
+                          </td>
+                          <td>
+                            <span class="badge-soft badge-amber"
+                              >Pending Review</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="fw-bold text-dark">
+                            Outlet #04 (Skyline)
+                          </td>
+                          <td>
+                            <span class="badge-soft badge-orange"
+                              ><i class="fa-solid fa-user-plus"></i> Staff
+                              Hiring</span
+                            >
+                          </td>
+                          <td class="text-muted fw-semibold">
+                            2 Senior Baristas & 3 Kitchen Assistants
+                          </td>
+                          <td>
+                            <span class="priority-badge badge-purple"
+                              >Medium</span
+                            >
+                          </td>
+                          <td>
+                            <span class="badge-soft badge-green">Approved</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="fw-bold text-dark">
+                            Outlet #07 (Express)
+                          </td>
+                          <td>
+                            <span class="badge-soft badge-amber"
+                              ><i class="fa-solid fa-screwdriver-wrench"></i>
+                              Equipment</span
+                            >
+                          </td>
+                          <td class="text-muted fw-semibold">
+                            Espresso Machine #02 Maintenance
+                          </td>
+                          <td>
+                            <span class="priority-badge badge-red">Urgent</span>
+                          </td>
+                          <td>
+                            <span class="badge-soft badge-red">In Repair</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="fw-bold text-dark">Outlet #02 (Garden)</td>
+                          <td>
+                            <span class="badge-soft badge-cyan"
+                              ><i class="fa-solid fa-box-open"></i>
+                              Supplies</span
+                            >
+                          </td>
+                          <td class="text-muted fw-semibold">
+                            1,000 Eco Takeaway Cups & Straws
+                          </td>
+                          <td>
+                            <span class="priority-badge badge-blue"
+                              >Normal</span
+                            >
+                          </td>
+                          <td>
+                            <span class="badge-soft badge-cyan"
+                              >Dispatched</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="fw-bold text-dark">
+                            Outlet #12 (Gourmet)
+                          </td>
+                          <td>
+                            <span class="badge-soft badge-rose"
+                              ><i class="fa-solid fa-tablet-screen-button"></i>
+                              POS Hardware</span
+                            >
+                          </td>
+                          <td class="text-muted fw-semibold">
+                            2 Wireless Mobile Ordering Tablets
+                          </td>
+                          <td>
+                            <span class="priority-badge badge-purple"
+                              >Medium</span
+                            >
+                          </td>
+                          <td>
+                            <span class="badge-soft badge-amber"
+                              >Pending Review</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="fw-bold text-dark">Outlet #09 (Harbor)</td>
+                          <td>
+                            <span class="badge-soft badge-purple"
+                              ><i class="fa-solid fa-boxes-stacked"></i>
+                              Inventory</span
+                            >
+                          </td>
+                          <td class="text-muted fw-semibold">
+                            150 Cartons Organic Fresh Milk
+                          </td>
+                          <td>
+                            <span class="priority-badge badge-rose">High</span>
+                          </td>
+                          <td>
+                            <span class="badge-soft badge-amber"
+                              >Pending Review</span
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="pt-3 border-top text-center mt-2">
+                  <a
+                    href="reports.html"
+                    class="text-primary font-semibold text-decoration-none"
+                    style="font-size: 0.85rem"
+                  >
+                    View All Store Requests
+                    <i
+                      class="fa-solid fa-chevron-right ms-1"
+                      style="font-size: 0.75rem"
+                    ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Employee Org Chart Section (ApexTree Rich Node Card) -->
+          <div class="row g-3 mb-4">
+            <div class="col-12">
+              <div class="erp-card">
+                <div
+                  class="card-header-flex align-items-center justify-content-between flex-wrap gap-3 pb-3"
+                >
+                  <div>
+                    <div class="d-flex align-items-center flex-wrap gap-2 mb-1">
+                      <span
+                        class="badge badge-indigo fw-semibold px-2.5 py-1 rounded-pill"
+                        style="font-size: 0.75rem"
+                      >
+                        <i class="fa-solid fa-sitemap me-1"></i> ApexTree Org
+                        Engine
+                      </span>
+                      <span
+                        class="badge badge-teal fw-semibold px-2.5 py-1 rounded-pill"
+                        style="font-size: 0.75rem"
+                      >
+                        <i class="fa-solid fa-users-viewfinder me-1"></i> 1,248
+                        Active Personnel
+                      </span>
+                    </div>
+                    <h3
+                      class="card-title-main mb-0 d-flex align-items-center gap-2"
+                    >
+                      <span>Employee Organizational Structure Hierarchy</span>
+                    </h3>
+                  </div>
+                </div>
+
+                <!-- ApexTree Org Canvas Wrapper -->
+                <div class="apextree-container-wrapper position-relative mt-3">
+                  <div
+                    id="chartEmployeeOrgTree"
+                    class="apextree-canvas-area"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Full Width Bottom Row: Top Performing Outlets & Stores Table (Col 12) -->
+          <div class="row g-3">
+            <div class="col-12">
+              <div class="erp-card">
+                <div
+                  class="card-header-flex align-items-center justify-content-between flex-wrap gap-2"
+                >
+                  <div>
+                    <div class="d-flex align-items-center flex-wrap gap-2 mb-1">
+                      <span
+                        class="badge badge-gold fw-bold px-2.5 py-1 rounded-pill"
+                        style="font-size: 0.75rem"
+                      >
+                        <i class="fa-solid fa-trophy me-1"></i> Performance
+                        Leaderboard
+                      </span>
+                      <span
+                        class="badge badge-violet fw-bold px-2.5 py-1 rounded-pill"
+                        style="font-size: 0.75rem"
+                      >
+                        <i class="fa-solid fa-store me-1"></i> 18 Outlets Ranked
+                      </span>
+                    </div>
+                    <h3 class="card-title-main mb-0">
+                      Top Performing Outlets & Stores Ranking
+                    </h3>
+                  </div>
+                  <a
+                    href="reports.html"
+                    class="btn btn-sm btn-light font-semibold border"
+                    style="font-size: 0.8rem"
+                  >
+                    <i class="fa-solid fa-download me-1"></i> Export Outlets
+                    Report
+                  </a>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="table table-erp align-middle">
+                    <thead>
+                      <tr>
+                        <th>RANK</th>
+                        <th>STORE ID</th>
+                        <th>OUTLET / BRANCH NAME</th>
+                        <th>F&B CONCEPT</th>
+                        <th>MONTHLY REVENUE</th>
+                        <th>MoM GROWTH</th>
+                        <th>STORE MANAGER</th>
+                        <th>STAFF COUNT</th>
+                        <th>STATUS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span class="rank-badge-gold">#1</span></td>
+                        <td class="fw-bold text-muted">STR-101</td>
+                        <td>
+                          <div class="table-user-cell">
+                            <img
+                              src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=80&auto=format&fit=crop&q=80"
+                              alt="Outlet 01"
+                              class="table-user-avatar"
+                            />
+                            <div>
+                              <span class="table-user-name"
+                                >Nexus Coffee Central - Outlet #01</span
+                              >
+                              <div
+                                class="text-muted"
+                                style="font-size: 0.75rem"
+                              >
+                                District 1, Flagship Roastery
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="fw-semibold">Coffee & Roastery</td>
+                        <td class="text-dark fw-bold">$98,500</td>
+                        <td>
+                          <span class="up-green fw-bold"
+                            ><i class="fa-solid fa-arrow-up me-1"></i
+                            >+14.2%</span
+                          >
+                        </td>
+                        <td class="text-muted">Tristan Nguyen</td>
+                        <td class="text-muted fw-semibold">142 Staff</td>
+                        <td>
+                          <span class="badge-soft badge-gold"
+                            ><i class="fa-solid fa-crown"></i> Top Revenue</span
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><span class="rank-badge-silver">#2</span></td>
+                        <td class="fw-bold text-muted">STR-104</td>
+                        <td>
+                          <div class="table-user-cell">
+                            <img
+                              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=80&auto=format&fit=crop&q=80"
+                              alt="Outlet 04"
+                              class="table-user-avatar"
+                            />
+                            <div>
+                              <span class="table-user-name"
+                                >Nexus Bistro Skyline - Outlet #04</span
+                              >
+                              <div
+                                class="text-muted"
+                                style="font-size: 0.75rem"
+                              >
+                                Skyline Tower, Floor 45
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="fw-semibold">Fine Dining & Lounge</td>
+                        <td class="text-dark fw-bold">$85,200</td>
+                        <td>
+                          <span class="up-green fw-bold"
+                            ><i class="fa-solid fa-arrow-up me-1"></i
+                            >+11.8%</span
+                          >
+                        </td>
+                        <td class="text-muted">Elena Rostova</td>
+                        <td class="text-muted fw-semibold">118 Staff</td>
+                        <td>
+                          <span class="badge-soft badge-orange"
+                            ><i class="fa-solid fa-star"></i> Top
+                            Performer</span
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><span class="rank-badge-bronze">#3</span></td>
+                        <td class="fw-bold text-muted">STR-107</td>
+                        <td>
+                          <div class="table-user-cell">
+                            <img
+                              src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=80&auto=format&fit=crop&q=80"
+                              alt="Outlet 07"
+                              class="table-user-avatar"
+                            />
+                            <div>
+                              <span class="table-user-name"
+                                >Nexus Roast & Brew - Outlet #07</span
+                              >
+                              <div
+                                class="text-muted"
+                                style="font-size: 0.75rem"
+                              >
+                                Metro Station Hub
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="fw-semibold">Express Coffee Bar</td>
+                        <td class="text-dark fw-bold">$74,600</td>
+                        <td>
+                          <span class="down-red fw-bold"
+                            ><i class="fa-solid fa-arrow-down me-1"></i
+                            >-2.4%</span
+                          >
+                        </td>
+                        <td class="text-muted">Marco Rossi</td>
+                        <td class="text-muted fw-semibold">96 Staff</td>
+                        <td>
+                          <span class="badge-soft badge-green"
+                            ><i class="fa-solid fa-circle-check"></i>
+                            Active</span
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><span class="rank-badge-normal">#4</span></td>
+                        <td class="fw-bold text-muted">STR-102</td>
+                        <td>
+                          <div class="table-user-cell">
+                            <img
+                              src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=80&auto=format&fit=crop&q=80"
+                              alt="Outlet 02"
+                              class="table-user-avatar"
+                            />
+                            <div>
+                              <span class="table-user-name"
+                                >Nexus Garden Cafe - Outlet #02</span
+                              >
+                              <div
+                                class="text-muted"
+                                style="font-size: 0.75rem"
+                              >
+                                Riverside Promenade
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="fw-semibold">Garden Cafe & Bakery</td>
+                        <td class="text-dark fw-bold">$68,400</td>
+                        <td>
+                          <span class="up-green fw-bold"
+                            ><i class="fa-solid fa-arrow-up me-1"></i
+                            >+7.1%</span
+                          >
+                        </td>
+                        <td class="text-muted">Sophia Chen</td>
+                        <td class="text-muted fw-semibold">85 Staff</td>
+                        <td>
+                          <span class="badge-soft badge-green"
+                            ><i class="fa-solid fa-circle-check"></i>
+                            Active</span
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><span class="rank-badge-normal">#5</span></td>
+                        <td class="fw-bold text-muted">STR-112</td>
+                        <td>
+                          <div class="table-user-cell">
+                            <img
+                              src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=80&auto=format&fit=crop&q=80"
+                              alt="Outlet 12"
+                              class="table-user-avatar"
+                            />
+                            <div>
+                              <span class="table-user-name"
+                                >Nexus Gourmet Lounge - Outlet #12</span
+                              >
+                              <div
+                                class="text-muted"
+                                style="font-size: 0.75rem"
+                              >
+                                Marina Bay Walk
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="fw-semibold">Restaurant & Bar</td>
+                        <td class="text-dark fw-bold">$59,100</td>
+                        <td>
+                          <span class="down-red fw-bold"
+                            ><i class="fa-solid fa-arrow-down me-1"></i
+                            >-1.8%</span
+                          >
+                        </td>
+                        <td class="text-muted">David Kim</td>
+                        <td class="text-muted fw-semibold">72 Staff</td>
+                        <td>
+                          <span class="badge-soft badge-indigo"
+                            ><i class="fa-solid fa-shield-halved"></i> Audit
+                            Passed</span
+                          >
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Apex CDN Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.45.1/dist/apexcharts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apextree@1.14.0/apextree.min.js"></script>
+    <!-- Apex Custom Modules -->
+    <script src="../js/apex-chart.js"></script>
+    <script src="../js/apex-tree.js"></script>
+    <script src="../js/apex-grid.js"></script>
+    <!-- Main Application JS -->
+    <script src="../js/app.js"></script>
+  </body>
+</html>
