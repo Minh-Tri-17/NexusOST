@@ -249,6 +249,32 @@ function applyNexusCustomPagination(rootNode, isDark) {
 }
 
 /* 3. ApexGrid Theme Handler (Pure Native Theme Presets) */
+/* ─── Badge CSS Vars set on :root — pierce shadow DOM automatically ────── */
+function applyNexusBadgeCSSVars(isDark) {
+  const r = document.documentElement;
+  if (isDark) {
+    r.style.setProperty("--npill-high-bg", "rgba(225,29,72,0.3)");
+    r.style.setProperty("--npill-high-txt", "#fb7185");
+    r.style.setProperty("--npill-high-bd", "rgba(244,63,94,0.5)");
+    r.style.setProperty("--npill-std-bg", "rgba(2,132,199,0.25)");
+    r.style.setProperty("--npill-std-txt", "#38bdf8");
+    r.style.setProperty("--npill-std-bd", "rgba(56,189,248,0.4)");
+    r.style.setProperty("--npill-low-bg", "rgba(71,85,105,0.3)");
+    r.style.setProperty("--npill-low-txt", "#cbd5e1");
+    r.style.setProperty("--npill-low-bd", "rgba(148,163,184,0.3)");
+  } else {
+    r.style.setProperty("--npill-high-bg", "#ffe4e6");
+    r.style.setProperty("--npill-high-txt", "#be123c");
+    r.style.setProperty("--npill-high-bd", "#fecdd3");
+    r.style.setProperty("--npill-std-bg", "#e0f2fe");
+    r.style.setProperty("--npill-std-txt", "#0284c7");
+    r.style.setProperty("--npill-std-bd", "#bae6fd");
+    r.style.setProperty("--npill-low-bg", "#f1f5f9");
+    r.style.setProperty("--npill-low-txt", "#475569");
+    r.style.setProperty("--npill-low-bd", "#e2e8f0");
+  }
+}
+
 function initApexGridDarkModeHandler() {
   const updateGridStyles = () => {
     // Remove external theme tags if present
@@ -291,6 +317,9 @@ function initApexGridDarkModeHandler() {
         applyNexusUnifiedScrollbar(grid.shadowRoot, isDark);
         applyNexusCustomPagination(grid.shadowRoot, isDark);
       }
+
+      // Update badge CSS vars on :root (pierce shadow DOM automatically)
+      applyNexusBadgeCSSVars(isDark);
     });
   };
 
@@ -529,13 +558,16 @@ async function initCountryGrid() {
     Standard: "Standard",
     Low: "Low",
   };
-  const STATUS_STYLE = {
-    High: "background:#ffe4e6;color:#9f1239;",
-    Standard: "background:#e0f2fe;color:#0369a1;",
-    Low: "background:#f1f5f9;color:#475569;",
+  // Badge colors via CSS vars on :root (pierce shadow DOM).
+  // Vars are updated by applyNexusBadgeCSSVars() on every theme toggle.
+  const PILL_KEY = { High: "high", Standard: "std", Low: "low" };
+  const pillStyle = (v) => {
+    const k = PILL_KEY[v] || "low";
+    return (
+      `display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;` +
+      `background:var(--npill-${k}-bg);color:var(--npill-${k}-txt);border:1px solid var(--npill-${k}-bd);`
+    );
   };
-  const pillStyle = (v) =>
-    `display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;${STATUS_STYLE[v] || "background:#f1f5f9;color:#475569;"}`;
 
   const countryColumns = [
     {
