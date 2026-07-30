@@ -1,0 +1,317 @@
+/* ==========================================================================
+   UI COMPONENTS LIBRARY - NexusOST
+   Single source of truth for badges, status labels, pastel metric cards,
+   timeline icons, and reusable UI component elements.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BASE BADGE & LABEL SHAPES
+   -------------------------------------------------------------------------- */
+.badge-soft {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  padding: 0.25rem 0.65rem !important;
+  border-radius: 9999px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+}
+
+.priority-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.25rem 0.65rem !important;
+  border-radius: 9999px !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: capitalize !important;
+  line-height: 1 !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. REUSABLE COLOR THEME BADGES (POWERED BY THEME VARIABLES)
+   -------------------------------------------------------------------------- */
+.badge-purple {
+  background-color: var(--badge-purple-bg) !important;
+  color: var(--badge-purple-text) !important;
+  border: 1px solid var(--badge-purple-border) !important;
+}
+
+.badge-orange {
+  background-color: var(--badge-orange-bg) !important;
+  color: var(--badge-orange-text) !important;
+  border: 1px solid var(--badge-orange-border) !important;
+}
+
+.badge-amber {
+  background-color: var(--badge-amber-bg) !important;
+  color: var(--badge-amber-text) !important;
+  border: 1px solid var(--badge-amber-border) !important;
+}
+
+.badge-cyan {
+  background-color: var(--badge-cyan-bg) !important;
+  color: var(--badge-cyan-text) !important;
+  border: 1px solid var(--badge-cyan-border) !important;
+}
+
+.badge-rose {
+  background-color: var(--badge-rose-bg) !important;
+  color: var(--badge-rose-text) !important;
+  border: 1px solid var(--badge-rose-border) !important;
+}
+
+.badge-red {
+  background-color: var(--badge-red-bg) !important;
+  color: var(--badge-red-text) !important;
+  border: 1px solid var(--badge-red-border) !important;
+}
+
+.badge-green {
+  background-color: var(--badge-green-bg) !important;
+  color: var(--badge-green-text) !important;
+  border: 1px solid var(--badge-green-border) !important;
+}
+
+.badge-blue {
+  background-color: var(--badge-blue-bg) !important;
+  color: var(--badge-blue-text) !important;
+  border: 1px solid var(--badge-blue-border) !important;
+}
+
+.badge-slate {
+  background-color: var(--badge-slate-bg) !important;
+  color: var(--badge-slate-text) !important;
+  border: 1px solid var(--badge-slate-border) !important;
+}
+
+.badge-indigo {
+  background-color: var(--badge-indigo-bg) !important;
+  color: var(--badge-indigo-text) !important;
+  border: 1px solid var(--badge-indigo-border) !important;
+}
+
+.badge-teal {
+  background-color: var(--badge-teal-bg) !important;
+  color: var(--badge-teal-text) !important;
+  border: 1px solid var(--badge-teal-border) !important;
+}
+
+.badge-emerald {
+  background-color: var(--badge-emerald-bg) !important;
+  color: var(--badge-emerald-text) !important;
+  border: 1px solid var(--badge-emerald-border) !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. SOFT PASTEL CARDS & METRIC COMPONENTS
+   -------------------------------------------------------------------------- */
+.metric-card-pastel {
+  border-radius: var(--radius-xl);
+  padding: 1.25rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.metric-card-pastel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* Card Pastel Color Fills */
+.card-pastel-blue {
+  background: var(--grad-card-blue);
+  border: 1px solid var(--badge-blue-border);
+}
+.card-pastel-purple {
+  background: var(--grad-card-purple);
+  border: 1px solid var(--badge-purple-border);
+}
+.card-pastel-mint {
+  background: var(--grad-card-mint);
+  border: 1px solid var(--badge-green-border);
+}
+.card-pastel-rose {
+  background: var(--grad-card-rose);
+  border: 1px solid var(--badge-rose-border);
+}
+.card-pastel-amber {
+  background: var(--grad-card-amber);
+  border: 1px solid var(--badge-amber-border);
+}
+.card-pastel-orange {
+  background: var(--grad-card-orange);
+  border: 1px solid var(--badge-orange-border);
+}
+.card-pastel-slate {
+  background: var(--grad-card-slate);
+  border: 1px solid var(--badge-slate-border);
+}
+.card-pastel-teal {
+  background: var(--grad-card-teal);
+  border: 1px solid var(--badge-teal-border);
+}
+
+/* Card Pastel Typography & Elements */
+.metric-pastel-title {
+  font-size: 0.725rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.metric-pastel-val {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.65rem;
+}
+
+.metric-pastel-sub {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.metric-pastel-icon-floating {
+  width: 48px;
+  height: 48px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  flex-shrink: 0;
+}
+
+/* Card Floating Icons & Badge Accents */
+.card-pastel-blue .metric-pastel-icon-floating,
+.card-pastel-blue .metric-icon-badge {
+  color: var(--badge-blue-text);
+}
+.card-pastel-purple .metric-pastel-icon-floating,
+.card-pastel-purple .metric-icon-badge {
+  color: var(--badge-purple-text);
+}
+.card-pastel-mint .metric-pastel-icon-floating,
+.card-pastel-mint .metric-icon-badge {
+  color: var(--badge-green-text);
+}
+.card-pastel-amber .metric-pastel-icon-floating,
+.card-pastel-amber .metric-icon-badge {
+  color: var(--badge-amber-text);
+}
+.card-pastel-rose .metric-pastel-icon-floating,
+.card-pastel-rose .metric-icon-badge {
+  color: var(--badge-rose-text);
+}
+.card-pastel-orange .metric-pastel-icon-floating,
+.card-pastel-orange .metric-icon-badge {
+  color: var(--badge-orange-text);
+}
+.card-pastel-teal .metric-pastel-icon-floating,
+.card-pastel-teal .metric-icon-badge {
+  color: var(--badge-teal-text);
+}
+
+/* Card Tag Pills */
+.card-pastel-blue .metric-tag-pill {
+  background: var(--badge-blue-bg);
+  color: var(--badge-blue-text);
+  border: 1px solid var(--badge-blue-border);
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.1);
+}
+.card-pastel-mint .metric-tag-pill {
+  background: var(--badge-green-bg);
+  color: var(--badge-green-text);
+  border: 1px solid var(--badge-green-border);
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.1);
+}
+.card-pastel-purple .metric-tag-pill {
+  background: var(--badge-purple-bg);
+  color: var(--badge-purple-text);
+  border: 1px solid var(--badge-purple-border);
+  box-shadow: 0 1px 3px rgba(139, 92, 246, 0.1);
+}
+.card-pastel-rose .metric-tag-pill {
+  background: var(--badge-rose-bg);
+  color: var(--badge-rose-text);
+  border: 1px solid var(--badge-rose-border);
+  box-shadow: 0 1px 3px rgba(225, 29, 72, 0.1);
+}
+.card-pastel-amber .metric-tag-pill {
+  background: var(--badge-amber-bg);
+  color: var(--badge-amber-text);
+  border: 1px solid var(--badge-amber-border);
+  box-shadow: 0 1px 3px rgba(217, 119, 6, 0.1);
+}
+.card-pastel-teal .metric-tag-pill {
+  background: var(--badge-teal-bg);
+  color: var(--badge-teal-text);
+  border: 1px solid var(--badge-teal-border);
+  box-shadow: 0 1px 3px rgba(45, 212, 191, 0.1);
+}
+.card-pastel-orange .metric-tag-pill {
+  background: var(--badge-orange-bg);
+  color: var(--badge-orange-text);
+  border: 1px solid var(--badge-orange-border);
+  box-shadow: 0 1px 3px rgba(249, 115, 22, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   4. TIMELINE ICON BOX & COLOR VARIANTS
+   -------------------------------------------------------------------------- */
+.timeline-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.timeline-icon-blue {
+  background-color: var(--badge-blue-bg);
+  color: var(--badge-blue-text);
+  border: 1px solid var(--badge-blue-border);
+}
+.timeline-icon-green {
+  background-color: var(--badge-green-bg);
+  color: var(--badge-green-text);
+  border: 1px solid var(--badge-green-border);
+}
+.timeline-icon-purple {
+  background-color: var(--badge-purple-bg);
+  color: var(--badge-purple-text);
+  border: 1px solid var(--badge-purple-border);
+}
+.timeline-icon-orange {
+  background-color: var(--badge-orange-bg);
+  color: var(--badge-orange-text);
+  border: 1px solid var(--badge-orange-border);
+}
+.timeline-icon-pink {
+  background-color: var(--badge-rose-bg);
+  color: var(--badge-rose-text);
+  border: 1px solid var(--badge-rose-border);
+}

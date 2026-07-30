@@ -156,7 +156,7 @@ function renderDepartmentCategoriesDonutChart() {
     ],
     legend: { show: false },
     dataLabels: { enabled: false },
-    stroke: { width: 3, colors: ["#FFFFFF"] },
+    stroke: { width: 2 },
     plotOptions: {
       pie: {
         donut: {
