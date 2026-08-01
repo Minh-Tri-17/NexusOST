@@ -56,8 +56,16 @@
   --shadow-focus: 0 0 0 4px rgba(59, 130, 246, 0.12);
 
   /* Soft Pastel Gradient Tokens (Light Mode) */
-  --grad-primary-soft: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-  --grad-primary-soft-hover: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  --grad-primary-soft: linear-gradient(135deg, #f5eeff 0%, #ece0ff 100%);
+  --grad-primary-soft-hover: linear-gradient(135deg, #ece0ff 0%, #e9d5ff 100%);
+  --grad-secondary-soft: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  --grad-secondary-soft-hover: linear-gradient(
+    135deg,
+    #e2e8f0 0%,
+    #cbd5e1 100%
+  );
+  --grad-info-soft: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  --grad-info-soft-hover: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 100%);
   --grad-success-soft: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
   --grad-success-soft-hover: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
   --grad-warning-soft: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
@@ -65,7 +73,10 @@
   --grad-orange-soft-hover: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
   --grad-danger-soft: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
   --grad-danger-soft-hover: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
-  --grad-brand-primary: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  --grad-indigo-soft: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  --grad-indigo-soft-hover: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 100%);
+  --grad-brand-primary: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  --grad-brand-primary-hover: linear-gradient(135deg, #1d4ed8 0%, #4338ca 100%);
 
   /* Metric Card Pastel Fill Tokens (Light Mode) */
   --grad-card-blue: linear-gradient(135deg, #eef4ff 0%, #e0ecff 100%);
@@ -168,9 +179,9 @@
   --btn-pastel-danger-shadow: rgba(244, 63, 94, 0.12);
   --btn-pastel-danger-shadow-hover: rgba(244, 63, 94, 0.22);
 
-  /* 4. Reset (Slate) */
-  --btn-pastel-reset-bg: var(--bg-hover);
-  --btn-pastel-reset-bg-hover: var(--bg-surface);
+  /* 4. Reset (Slate / Secondary Soft Pastel) */
+  --btn-pastel-reset-bg: var(--grad-secondary-soft);
+  --btn-pastel-reset-bg-hover: var(--grad-secondary-soft-hover);
   --btn-pastel-reset-text: var(--text-muted);
   --btn-pastel-reset-text-hover: var(--text-main);
   --btn-pastel-reset-border: var(--border-color);
@@ -178,15 +189,35 @@
   --btn-pastel-reset-shadow: rgba(15, 23, 42, 0.04);
   --btn-pastel-reset-shadow-hover: rgba(15, 23, 42, 0.08);
 
-  /* 5. Search (Blue) */
-  --btn-pastel-search-bg: var(--grad-primary-soft);
-  --btn-pastel-search-bg-hover: var(--grad-primary-soft-hover);
-  --btn-pastel-search-text: #2563eb;
-  --btn-pastel-search-text-hover: #1e3a8a;
-  --btn-pastel-search-border: var(--badge-blue-border);
-  --btn-pastel-search-border-hover: #93c5fd;
-  --btn-pastel-search-shadow: rgba(37, 99, 235, 0.12);
-  --btn-pastel-search-shadow-hover: rgba(37, 99, 235, 0.22);
+  /* 5. Search (Cyan / Sky Blue Soft Pastel) */
+  --btn-pastel-search-bg: var(--grad-info-soft);
+  --btn-pastel-search-bg-hover: var(--grad-info-soft-hover);
+  --btn-pastel-search-text: #0284c7;
+  --btn-pastel-search-text-hover: #0369a1;
+  --btn-pastel-search-border: #7dd3fc;
+  --btn-pastel-search-border-hover: #38bdf8;
+  --btn-pastel-search-shadow: rgba(2, 132, 199, 0.12);
+  --btn-pastel-search-shadow-hover: rgba(2, 132, 199, 0.22);
+
+  /* 6. Primary (Purple Soft Pastel / Save Changes) */
+  --btn-pastel-primary-bg: var(--grad-primary-soft);
+  --btn-pastel-primary-bg-hover: var(--grad-primary-soft-hover);
+  --btn-pastel-primary-text: #7e22ce;
+  --btn-pastel-primary-text-hover: #581c87;
+  --btn-pastel-primary-border: #e9d5ff;
+  --btn-pastel-primary-border-hover: #c084fc;
+  --btn-pastel-primary-shadow: rgba(126, 34, 206, 0.12);
+  --btn-pastel-primary-shadow-hover: rgba(126, 34, 206, 0.22);
+
+  /* 7. IO Pastel Theme (Royal Indigo Soft Pastel - Unique color for Import & Export) */
+  --btn-pastel-io-bg: var(--grad-indigo-soft);
+  --btn-pastel-io-bg-hover: var(--grad-indigo-soft-hover);
+  --btn-pastel-io-text: #3730a3;
+  --btn-pastel-io-text-hover: #1e1b4b;
+  --btn-pastel-io-border: #c7d2fe;
+  --btn-pastel-io-border-hover: #818cf8;
+  --btn-pastel-io-shadow: rgba(55, 48, 163, 0.12);
+  --btn-pastel-io-shadow-hover: rgba(55, 48, 163, 0.22);
 }
 
 /* Dark Mode Theme Variables */
@@ -283,16 +314,33 @@
   --btn-pastel-danger-text-hover: #ffffff;
   --btn-pastel-danger-border-hover: rgba(253, 164, 175, 0.45);
 
-  /* 4. Reset (Slate) */
+  /* 4. Reset (Slate / Secondary Soft Pastel) */
+  --btn-pastel-reset-bg: var(--grad-secondary-soft);
+  --btn-pastel-reset-bg-hover: var(--grad-secondary-soft-hover);
   --btn-pastel-reset-border: rgba(148, 163, 184, 0.35);
   --btn-pastel-reset-border-hover: rgba(203, 213, 225, 0.65);
   --btn-pastel-reset-shadow: rgba(0, 0, 0, 0.25);
   --btn-pastel-reset-shadow-hover: rgba(0, 0, 0, 0.35);
 
-  /* 5. Search (Blue) */
-  --btn-pastel-search-text: #93c5fd;
+  /* 5. Search (Cyan / Sky Blue Soft Pastel) */
+  --btn-pastel-search-bg: var(--grad-info-soft);
+  --btn-pastel-search-bg-hover: var(--grad-info-soft-hover);
+  --btn-pastel-search-text: #38bdf8;
   --btn-pastel-search-text-hover: #ffffff;
-  --btn-pastel-search-border-hover: rgba(147, 197, 253, 0.45);
+  --btn-pastel-search-border: rgba(56, 189, 248, 0.4);
+  --btn-pastel-search-border-hover: rgba(125, 211, 252, 0.6);
+  --btn-pastel-search-shadow: rgba(56, 189, 248, 0.25);
+  --btn-pastel-search-shadow-hover: rgba(56, 189, 248, 0.4);
+
+  /* 6. Primary (Purple Soft Pastel / Save Changes - Dark Mode) */
+  --btn-pastel-primary-bg: var(--grad-primary-soft);
+  --btn-pastel-primary-bg-hover: var(--grad-primary-soft-hover);
+  --btn-pastel-primary-text: #c084fc;
+  --btn-pastel-primary-text-hover: #ffffff;
+  --btn-pastel-primary-border: rgba(168, 85, 247, 0.4);
+  --btn-pastel-primary-border-hover: rgba(192, 132, 252, 0.65);
+  --btn-pastel-primary-shadow: rgba(168, 85, 247, 0.25);
+  --btn-pastel-primary-shadow-hover: rgba(168, 85, 247, 0.45);
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
@@ -302,13 +350,33 @@
   /* Soft Pastel Gradient Tokens (Dark Mode) */
   --grad-primary-soft: linear-gradient(
     135deg,
-    rgba(37, 99, 235, 0.2) 0%,
-    rgba(29, 78, 216, 0.3) 100%
+    rgba(139, 92, 246, 0.2) 0%,
+    rgba(124, 58, 237, 0.3) 100%
   );
   --grad-primary-soft-hover: linear-gradient(
     135deg,
-    rgba(37, 99, 235, 0.35) 0%,
-    rgba(29, 78, 216, 0.5) 100%
+    rgba(139, 92, 246, 0.35) 0%,
+    rgba(124, 58, 237, 0.5) 100%
+  );
+  --grad-secondary-soft: linear-gradient(
+    135deg,
+    rgba(148, 163, 184, 0.15) 0%,
+    rgba(100, 116, 139, 0.25) 100%
+  );
+  --grad-secondary-soft-hover: linear-gradient(
+    135deg,
+    rgba(148, 163, 184, 0.28) 0%,
+    rgba(100, 116, 139, 0.4) 100%
+  );
+  --grad-info-soft: linear-gradient(
+    135deg,
+    rgba(2, 132, 199, 0.25) 0%,
+    rgba(3, 105, 161, 0.35) 100%
+  );
+  --grad-info-soft-hover: linear-gradient(
+    135deg,
+    rgba(2, 132, 199, 0.4) 0%,
+    rgba(3, 105, 161, 0.55) 100%
   );
   --grad-success-soft: linear-gradient(
     135deg,
@@ -340,7 +408,8 @@
     rgba(225, 29, 72, 0.35) 0%,
     rgba(190, 18, 60, 0.5) 100%
   );
-  --grad-brand-primary: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  --grad-brand-primary: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  --grad-brand-primary-hover: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
 
   /* Metric Card Pastel Fill Tokens (Dark Mode) */
   --grad-card-blue: linear-gradient(
@@ -2423,7 +2492,8 @@ svg g.apextree-selected .apextree-sleek-card {
 .btn-pastel-orange,
 .btn-pastel-danger,
 .btn-pastel-reset,
-.btn-pastel-search {
+.btn-pastel-search,
+.btn-pastel-primary {
   height: 38px !important;
   font-weight: 600 !important;
   border-radius: var(--radius-md) !important;
@@ -2443,7 +2513,8 @@ svg g.apextree-selected .apextree-sleek-card {
 .btn-pastel-orange i,
 .btn-pastel-danger i,
 .btn-pastel-reset i,
-.btn-pastel-search i {
+.btn-pastel-search i,
+.btn-pastel-primary i {
   transition:
     color 0.2s ease,
     transform 0.2s ease !important;
@@ -2456,12 +2527,14 @@ svg g.apextree-selected .apextree-sleek-card {
 .btn-pastel-danger:hover,
 .btn-pastel-reset:hover,
 .btn-pastel-search:hover,
+.btn-pastel-primary:hover,
 .btn-pastel-success:focus,
 .btn-pastel-warning:focus,
 .btn-pastel-orange:focus,
 .btn-pastel-danger:focus,
 .btn-pastel-reset:focus,
-.btn-pastel-search:focus {
+.btn-pastel-search:focus,
+.btn-pastel-primary:focus {
   transform: translateY(-1.5px) !important;
 }
 
@@ -2470,7 +2543,8 @@ svg g.apextree-selected .apextree-sleek-card {
 .btn-pastel-orange:hover i,
 .btn-pastel-danger:hover i,
 .btn-pastel-reset:hover i,
-.btn-pastel-search:hover i {
+.btn-pastel-search:hover i,
+.btn-pastel-primary:hover i {
   transform: scale(1.08) !important;
 }
 
@@ -2479,7 +2553,8 @@ svg g.apextree-selected .apextree-sleek-card {
 .btn-pastel-orange:active,
 .btn-pastel-danger:active,
 .btn-pastel-reset:active,
-.btn-pastel-search:active {
+.btn-pastel-search:active,
+.btn-pastel-primary:active {
   transform: translateY(0) scale(0.97) !important;
   box-shadow: none !important;
 }
@@ -2630,9 +2705,134 @@ svg g.apextree-selected .apextree-sleek-card {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
 }
 
+.card-header-icon-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--grad-primary-soft, linear-gradient(135deg, #f5eeff 0%, #ece0ff 100%));
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.12);
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .card-header-icon-badge {
+  background: rgba(37, 99, 235, 0.15) !important;
+  color: #60a5fa !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Action Bar & Filter Dividers */
+.action-bar-divider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--border-color, #cbd5e1);
+  opacity: 0.7;
+}
+
+.filter-toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--border-color, #cbd5e1);
+  margin: 0 0.35rem;
+  opacity: 0.7;
+}
+
+[data-theme="dark"] .action-bar-divider,
+[data-theme="dark"] .filter-toolbar-divider {
+  background-color: var(--border-color, #27272a);
+}
+
+/* Active Filter Chips Styling (Linear / Stripe Tier) */
+.active-filter-chips-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-top: 0.6rem;
+  margin-top: 0.6rem;
+  border-top: 1px dashed var(--border-color, #e2e8f0);
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 20px;
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #cbd5e1);
+  color: var(--text-main, #334155);
+  font-size: 0.78rem;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  transition: all 0.2s ease;
+}
+
+.filter-chip:hover {
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.filter-chip i.chip-icon {
+  color: #2563eb;
+  font-size: 0.75rem;
+}
+
+.filter-chip .chip-remove-btn {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  cursor: pointer;
+  margin-left: 0.15rem;
+  transition: color 0.15s ease;
+}
+
+.filter-chip .chip-remove-btn:hover {
+  color: #ef4444;
+}
+
+[data-theme="dark"] .filter-chip {
+  background: var(--bg-surface, #1e1e24);
+  border-color: var(--border-color, #27272a);
+  color: var(--text-main, #f4f4f5);
+}
+
+[data-theme="dark"] .filter-chip i.chip-icon {
+  color: #60a5fa;
+}
+
+.btn-clear-all-chips {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted, #64748b) !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease;
+}
+
+.btn-clear-all-chips:hover {
+  color: #ef4444 !important;
+}
+
+.smart-filter-matrix {
+  background: var(--bg-app, #f8fafc);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 14px;
+  padding: 1rem;
+  margin-top: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .smart-filter-matrix {
+  background: rgba(18, 18, 20, 0.6);
+  border-color: var(--border-color, #27272a);
+}
+
 /* Filter Controls & Inputs Styling (Light & Dark Mode) */
 .filter-toolbar-border {
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-color, #e2e8f0);
 }
 
 .filter-input,
@@ -2640,18 +2840,25 @@ svg g.apextree-selected .apextree-sleek-card {
   height: 38px;
   font-size: 0.875rem;
   font-weight: 500;
-  background-color: #ffffff;
-  color: #334155;
-  border: 1px solid #cbd5e1;
+  background-color: var(--bg-surface, #ffffff);
+  color: var(--text-main, #334155);
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 10px !important;
   transition: all 0.2s ease;
+}
+
+.filter-input:hover,
+.filter-select:hover {
+  border-color: #94a3b8;
 }
 
 .filter-input::placeholder {
   color: #94a3b8;
 }
+
 .filter-select option {
-  background-color: #ffffff;
-  color: #334155;
+  background-color: var(--bg-surface, #ffffff);
+  color: var(--text-main, #334155);
 }
 
 .topbar-search-box input:focus,
@@ -2714,4 +2921,429 @@ svg g.apextree-selected .apextree-sleek-card {
 .btn-pastel-search:hover i,
 .btn-pastel-search:focus i {
   color: var(--btn-pastel-search-text-hover) !important;
+}
+
+/* 7. Primary Action Button (Brand Blue Solid Gradient / Save Changes) */
+.btn-pastel-primary {
+  background: var(--btn-pastel-primary-bg) !important;
+  border: 1px solid var(--btn-pastel-primary-border) !important;
+  color: var(--btn-pastel-primary-text) !important;
+  box-shadow: 0 2px 6px var(--btn-pastel-primary-shadow) !important;
+}
+.btn-pastel-primary i {
+  color: var(--btn-pastel-primary-text) !important;
+}
+.btn-pastel-primary:hover,
+.btn-pastel-primary:focus {
+  background: var(--btn-pastel-primary-bg-hover) !important;
+  border-color: var(--btn-pastel-primary-border-hover) !important;
+  color: var(--btn-pastel-primary-text-hover) !important;
+  box-shadow: 0 4px 12px var(--btn-pastel-primary-shadow-hover) !important;
+}
+.btn-pastel-primary:hover i,
+.btn-pastel-primary:focus i {
+  color: var(--btn-pastel-primary-text-hover) !important;
+}
+
+/* 7. IO Pastel Buttons (Import & Export - Unique Royal Indigo Theme) */
+.btn-pastel-pink,
+.btn-pastel-io,
+.btn-pastel-import,
+.btn-pastel-export {
+  background: var(--btn-pastel-io-bg) !important;
+  border: 1px solid var(--btn-pastel-io-border) !important;
+  color: var(--btn-pastel-io-text) !important;
+  box-shadow: 0 2px 6px var(--btn-pastel-io-shadow) !important;
+}
+.btn-pastel-pink i,
+.btn-pastel-io i,
+.btn-pastel-import i,
+.btn-pastel-export i {
+  color: var(--btn-pastel-io-text) !important;
+}
+.btn-pastel-pink:hover,
+.btn-pastel-pink:focus,
+.btn-pastel-io:hover,
+.btn-pastel-io:focus,
+.btn-pastel-import:hover,
+.btn-pastel-import:focus,
+.btn-pastel-export:hover,
+.btn-pastel-export:focus {
+  background: var(--btn-pastel-io-bg-hover) !important;
+  border-color: var(--btn-pastel-io-border-hover) !important;
+  color: var(--btn-pastel-io-text-hover) !important;
+  box-shadow: 0 4px 12px var(--btn-pastel-io-shadow-hover) !important;
+}
+.btn-pastel-pink:hover i,
+.btn-pastel-pink:focus i,
+.btn-pastel-io:hover i,
+.btn-pastel-io:focus i,
+.btn-pastel-import:hover i,
+.btn-pastel-import:focus i,
+.btn-pastel-export:hover i,
+.btn-pastel-export:focus i {
+  color: var(--btn-pastel-io-text-hover) !important;
+}
+
+/* Custom Bootstrap Modal Enhancements (Light & Dark Theme) */
+.modal-content {
+  background-color: var(--bg-surface) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.modal-footer {
+  border-top: 1px solid var(--border-color) !important;
+}
+
+[data-theme="dark"] .modal-content .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+[data-theme="dark"] .modal-content .input-group-text {
+  background-color: var(--bg-hover) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-muted) !important;
+}
+
+/* ==========================================================================
+   MASTER BENCHMARK SPECIFICATION: NEXUS MODAL SYSTEM
+   Reference template for all modal dialogs across NexusOST (Country, Employee, etc.)
+   ========================================================================== */
+.modal-backdrop.show {
+  opacity: 0.55;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.custom-nexus-modal .modal-dialog {
+  max-width: 760px;
+}
+
+.custom-nexus-modal.show .modal-dialog {
+  animation: nexusModalSpring 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.custom-nexus-modal .modal-content {
+  background: var(--bg-surface, #ffffff) !important;
+  border: 1px solid var(--border-color, #e2e8f0) !important;
+  border-radius: 24px !important;
+  box-shadow:
+    0 25px 60px -15px rgba(15, 23, 42, 0.14),
+    0 0 0 1px rgba(255, 255, 255, 0.7) inset !important;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease;
+}
+
+/* Ambient Radial Glow Effect */
+.modal-bg-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  top: -80px;
+  right: -80px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(37, 99, 235, 0.08) 0%,
+    rgba(124, 58, 237, 0.04) 50%,
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Top Gradient Accent Bar */
+.modal-top-accent-bar {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #2563eb 0%, #7c3aed 50%, #06b6d4 100%);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header Styling */
+.modal-icon-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.1) 0%,
+    rgba(124, 58, 237, 0.1) 100%
+  );
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.14);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.custom-nexus-modal:hover .modal-icon-badge {
+  transform: scale(1.06) rotate(6deg);
+}
+
+.modal-eyebrow-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2563eb;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10b981;
+  display: inline-block;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  animation: pulse-dot-live 2s infinite ease-in-out;
+}
+
+@keyframes pulse-dot-live {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+.custom-btn-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color, #e2e8f0) !important;
+  background-color: var(--bg-app, #f8fafc) !important;
+  color: var(--text-muted, #64748b) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  padding: 0 !important;
+  cursor: pointer;
+  opacity: 0.85;
+  outline: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: none !important;
+}
+
+.custom-btn-close:hover {
+  opacity: 1;
+  transform: rotate(90deg) scale(1.08);
+  background-color: #fee2e2 !important;
+  border-color: #fca5a5 !important;
+  color: #ef4444 !important;
+}
+
+/* Form Section Cards (Nested Doppelrand Architecture) */
+.form-section-card {
+  background: var(--bg-app, #f5f7fc);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 18px;
+  padding: 1.3rem;
+  position: relative;
+  transition: all 0.25s ease;
+  z-index: 1;
+}
+
+.form-section-card:hover {
+  border-color: rgba(37, 99, 235, 0.35);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+}
+
+.form-section-header {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  color: var(--text-muted, #64748b);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Form Label & Input Groups */
+.custom-form-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-main, #1e293b);
+  margin-bottom: 0.4rem;
+}
+
+.custom-input-group {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background-color: var(--bg-surface, #ffffff);
+  transition: all 0.2s ease;
+}
+
+.custom-input-group:hover {
+  border-color: #94a3b8;
+}
+
+.custom-input-group:focus-within {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14) !important;
+}
+
+.custom-input-group .input-group-text {
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-muted, #64748b) !important;
+  font-size: 0.9rem;
+  padding-left: 0.85rem;
+  padding-right: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.custom-input-group:focus-within .input-group-text {
+  color: #2563eb !important;
+  transform: scale(1.1);
+}
+
+.custom-form-control,
+.custom-form-select {
+  border: none !important;
+  background: transparent !important;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-main, #0f172a);
+  padding: 0.6rem 0.85rem 0.6rem 0.25rem;
+  box-shadow: none !important;
+}
+
+.custom-form-select {
+  padding-right: 2.25rem;
+}
+
+.form-text-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted, #64748b);
+  margin-top: 0.4rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  line-height: 1.2;
+}
+
+.form-text-hint i {
+  font-size: 0.7rem;
+  color: #2563eb;
+  opacity: 0.85;
+}
+
+/* Keyboard Shortcut Badge */
+.nexus-kbd {
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 6px;
+  padding: 0.15rem 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+  color: var(--text-muted, #64748b);
+}
+
+/* Modal Footer Custom Bar & Separator */
+.modal-footer-custom {
+  background: var(--bg-app, #f5f7fc) !important;
+  border-top: 1px solid var(--border-color, #e2e8f0) !important;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.modal-footer-divider {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background-color: var(--border-color, #cbd5e1);
+  margin: 0 0.4rem;
+  vertical-align: middle;
+}
+
+/* Dark Theme Adaptations - Perfect System Harmony */
+[data-theme="dark"] .custom-nexus-modal .modal-content {
+  background: var(--bg-surface, #1e1e24) !important;
+  border-color: var(--border-color, #27272a) !important;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85) !important;
+}
+
+[data-theme="dark"] .modal-bg-glow {
+  background: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.12) 0%,
+    rgba(139, 92, 246, 0.06) 50%,
+    transparent 75%
+  );
+}
+
+[data-theme="dark"] .form-section-card {
+  background: var(--bg-app, #121214) !important;
+  border-color: var(--border-color, #27272a) !important;
+}
+
+[data-theme="dark"] .custom-input-group {
+  background-color: var(--bg-surface, #1e1e24) !important;
+  border-color: var(--border-color, #27272a) !important;
+}
+
+[data-theme="dark"] .custom-form-label {
+  color: var(--text-main, #f4f4f5) !important;
+}
+
+[data-theme="dark"] .custom-form-control,
+[data-theme="dark"] .custom-form-select {
+  color: var(--text-main, #f4f4f5) !important;
+}
+
+[data-theme="dark"] .custom-btn-close {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: var(--text-main, #f4f4f5) !important;
+  filter: none !important;
+}
+
+[data-theme="dark"] .custom-btn-close:hover {
+  background-color: rgba(239, 68, 68, 0.22) !important;
+  border-color: rgba(239, 68, 68, 0.45) !important;
+  color: #f87171 !important;
+}
+
+[data-theme="dark"] .nexus-kbd {
+  background: var(--bg-hover, #2d2d34);
+  border-color: var(--border-color, #27272a);
+  color: var(--text-muted, #a1a1aa);
+}
+
+[data-theme="dark"] .modal-footer-custom {
+  background: var(--bg-app, #121214) !important;
+  border-top-color: var(--border-color, #27272a) !important;
 }

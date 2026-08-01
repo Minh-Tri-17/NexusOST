@@ -403,38 +403,16 @@
             </div>
           </div>
 
-          <!-- Quick Action Buttons Bar (Add, Edit, Delete) -->
-          <div class="d-flex align-items-center justify-content-end gap-2 mb-3">
-            <button
-              class="btn btn-sm btn-pastel-success d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
-              id="addCountryBtn"
-            >
-              <i class="fa-solid fa-plus"></i> Create
-            </button>
-            <button
-              class="btn btn-sm btn-pastel-warning d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
-              id="editCountryBtn"
-            >
-              <i class="fa-solid fa-pen-to-square"></i> Edit
-            </button>
-            <button
-              class="btn btn-sm btn-pastel-danger d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
-              id="deleteCountryBtn"
-            >
-              <i class="fa-solid fa-trash-can"></i> Delete
-            </button>
-          </div>
-
           <!-- ApexGrid Card Wrapper -->
           <div class="erp-card p-4 shadow-sm rounded-4">
-            <!-- Filter Toolbar UI (Visual UI Only) -->
+            <!-- Linear-Tier Unified Command Dock: Search, Smart Filter Toggle & Action Buttons -->
             <div
               class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3 pb-3 filter-toolbar-border"
             >
-              <!-- Left Controls: Search Box & Dropdown Filters -->
+              <!-- Left Controls: Global Search, Filter Matrix Toggle & Reset -->
               <div class="d-flex flex-wrap align-items-center gap-2">
                 <!-- Search Input Box -->
-                <div class="position-relative" style="min-width: 220px">
+                <div class="position-relative" style="min-width: 240px">
                   <i
                     class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 filter-search-icon"
                   ></i>
@@ -445,52 +423,174 @@
                   />
                 </div>
 
-                <!-- Region Filter Select -->
-                <select
-                  class="form-select form-select-sm rounded-3 px-3 filter-select"
-                  style="width: auto; min-width: 140px"
-                >
-                  <option selected value="">Region</option>
-                  <option value="Asia">Asia</option>
-                  <option value="Americas">Americas</option>
-                  <option value="Europe">Europe</option>
-                  <option value="Oceania">Oceania</option>
-                </select>
-
-                <!-- Priority Filter Select -->
-                <select
-                  class="form-select form-select-sm rounded-3 px-3 filter-select"
-                  style="width: auto; min-width: 140px"
-                >
-                  <option selected value="">Priority</option>
-                  <option value="High">High</option>
-                  <option value="Standard">Standard</option>
-                  <option value="Low">Low</option>
-                </select>
-
-                <!-- Status Filter Select -->
-                <select
-                  class="form-select form-select-sm rounded-3 px-3 filter-select"
-                  style="width: auto; min-width: 130px"
-                >
-                  <option selected value="">Status</option>
-                  <option value="Active">Active</option>
-                  <option value="Inactive">Inactive</option>
-                </select>
-              </div>
-
-              <!-- Right Actions: Reset & Search Buttons Side-by-Side -->
-              <div class="d-flex align-items-center gap-2">
+                <!-- Filter Matrix Toggle Button -->
                 <button
                   class="btn btn-sm btn-pastel-reset d-inline-flex align-items-center gap-2 px-3 rounded-3"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#smartFilterMatrixCollapse"
+                  aria-expanded="false"
+                  aria-controls="smartFilterMatrixCollapse"
+                  id="toggleFilterBarBtn"
                 >
-                  <i class="fa-solid fa-rotate-left"></i> Reset
+                  <i class="fa-solid fa-sliders text-primary"></i> Filter
+                  <span
+                    class="badge-soft badge-blue ms-1"
+                    id="activeFilterCountBadge"
+                    >3</span
+                  >
                 </button>
-                <button
-                  class="btn btn-sm btn-pastel-search d-inline-flex align-items-center gap-2 px-3 rounded-3"
+              </div>
+
+              <!-- Right: Quick Action Buttons (CRUD & Data IO) -->
+              <div class="d-flex align-items-center gap-2 flex-wrap ms-auto">
+                <!-- Record CRUD Group -->
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    class="btn btn-sm btn-pastel-success d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="addCountryBtn"
+                  >
+                    <i class="fa-solid fa-plus"></i> Create
+                  </button>
+                  <button
+                    class="btn btn-sm btn-pastel-warning d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="editCountryBtn"
+                  >
+                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                  </button>
+                  <button
+                    class="btn btn-sm btn-pastel-danger d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="deleteCountryBtn"
+                  >
+                    <i class="fa-solid fa-trash-can"></i> Delete
+                  </button>
+                </div>
+
+                <!-- Group Divider -->
+                <div class="action-bar-divider mx-1"></div>
+
+                <!-- Data IO Group -->
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    class="btn btn-sm btn-pastel-import d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="importCountryBtn"
+                  >
+                    <i class="fa-solid fa-file-import"></i> Import
+                  </button>
+                  <button
+                    class="btn btn-sm btn-pastel-export d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="exportCountryBtn"
+                  >
+                    <i class="fa-solid fa-file-export"></i> Export
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Active Filter Chips Bar (Linear Tag Chips) -->
+            <div class="active-filter-chips-bar mb-3">
+              <span class="text-muted small fw-semibold me-1"
+                >Active Filters:</span
+              >
+
+              <span class="filter-chip">
+                <i class="fa-solid fa-compass chip-icon"></i> Region:
+                <strong>Asia</strong>
+                <i class="fa-solid fa-xmark chip-remove-btn"></i>
+              </span>
+
+              <span class="filter-chip">
+                <i class="fa-solid fa-star chip-icon"></i> Priority:
+                <strong>High</strong>
+                <i class="fa-solid fa-xmark chip-remove-btn"></i>
+              </span>
+
+              <span class="filter-chip">
+                <i class="fa-solid fa-circle-check chip-icon"></i> Status:
+                <strong>Active</strong>
+                <i class="fa-solid fa-xmark chip-remove-btn"></i>
+              </span>
+
+              <button
+                class="btn btn-link text-muted p-0 border-0 btn-clear-all-chips ms-auto"
+              >
+                <i class="fa-solid fa-trash-can me-1"></i> Clear All
+              </button>
+            </div>
+
+            <!-- Expandable Smart Filter Matrix (Scalable Dropdowns Panel) -->
+            <div class="collapse mb-3" id="smartFilterMatrixCollapse">
+              <div class="smart-filter-matrix">
+                <div
+                  class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom"
                 >
-                  <i class="fa-solid fa-magnifying-glass"></i> Search
-                </button>
+                  <span
+                    class="fw-bold small text-muted text-uppercase tracking-wider"
+                  >
+                    <i class="fa-solid fa-sliders text-primary me-2"></i>Filter
+                    Criteria Matrix
+                  </span>
+                  <span class="text-muted small"
+                    >Select criteria to refine results</span
+                  >
+                </div>
+                <div class="row g-3">
+                  <!-- Region Filter Select -->
+                  <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted"
+                      >Region / Continent</label
+                    >
+                    <select
+                      class="form-select form-select-sm rounded-3 filter-select w-100"
+                    >
+                      <option selected value="">All Regions</option>
+                      <option value="Asia">Asia</option>
+                      <option value="Americas">Americas</option>
+                      <option value="Europe">Europe</option>
+                      <option value="Oceania">Oceania</option>
+                    </select>
+                  </div>
+
+                  <!-- Priority Filter Select -->
+                  <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted"
+                      >Priority Level</label
+                    >
+                    <select
+                      class="form-select form-select-sm rounded-3 filter-select w-100"
+                    >
+                      <option selected value="">All Priorities</option>
+                      <option value="High">High</option>
+                      <option value="Standard">Standard</option>
+                      <option value="Low">Low</option>
+                    </select>
+                  </div>
+
+                  <!-- Status Filter Select -->
+                  <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted"
+                      >Operational Status</label
+                    >
+                    <select
+                      class="form-select form-select-sm rounded-3 filter-select w-100"
+                    >
+                      <option selected value="">All Statuses</option>
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div
+                  class="d-flex align-items-center justify-content-end gap-2 mt-3 pt-2 border-top"
+                >
+                  <button
+                    class="btn btn-sm btn-pastel-search px-4 rounded-3"
+                    type="button"
+                  >
+                    <i class="fa-solid fa-check me-1"></i> Apply
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -499,6 +599,290 @@
           </div>
         </div>
       </main>
+    </div>
+
+    <!-- Bootstrap Modal for Country Create & Update (Nexus OST Master Benchmark Specification) -->
+    <div
+      class="modal fade custom-nexus-modal"
+      id="countryFormModal"
+      tabindex="-1"
+      aria-labelledby="countryModalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div
+          class="modal-content border-0 shadow-2xl rounded-5 overflow-hidden"
+        >
+          <!-- Ambient Radial Glow Backdrop & Top Accent Line -->
+          <div class="modal-bg-glow"></div>
+          <div class="modal-top-accent-bar"></div>
+
+          <!-- Modal Header -->
+          <div
+            class="modal-header border-0 px-4 pt-4 pb-3 position-relative d-flex align-items-start justify-content-between z-1"
+          >
+            <div class="d-flex align-items-center gap-3">
+              <div class="modal-icon-badge" id="modalHeaderBadge">
+                <i class="fa-solid fa-earth-americas"></i>
+              </div>
+              <div>
+                <div class="modal-eyebrow-tag mb-1" id="modalHeaderEyebrow">
+                  <span class="eyebrow-dot"></span> GLOBAL GEOGRAPHY MODULE
+                </div>
+                <h5
+                  class="modal-title fw-bold text-dark mb-0 d-flex align-items-center gap-2"
+                  id="countryModalTitle"
+                >
+                  <i class="fa-solid fa-earth-americas text-primary"></i>
+                  <span>Create New Country</span>
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge-soft badge-teal d-none d-sm-inline-flex">
+                <i class="fa-solid fa-bolt"></i> Live Sync
+              </span>
+              <button
+                type="button"
+                class="custom-btn-close ms-1"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Modal Form & Body -->
+          <form id="countryModalForm">
+            <div class="modal-body px-4 py-3 position-relative z-1">
+              <!-- Form Section 1: Basic & Geography Information -->
+              <div class="form-section-card mb-4">
+                <div class="form-section-header">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-globe text-primary"></i>
+                    <span class="fw-bold">GEOGRAPHIC IDENTIFICATION</span>
+                  </div>
+                  <span class="badge-soft badge-indigo">
+                    <i class="fa-solid fa-list-check"></i> 4 fields
+                  </span>
+                </div>
+                <div class="row g-3">
+                  <!-- Country Code -->
+                  <div class="col-md-6">
+                    <label
+                      for="modalCountryCode"
+                      class="form-label custom-form-label"
+                    >
+                      Country Code (ISO)
+                      <span class="text-danger fw-bold">*</span>
+                    </label>
+                    <div class="input-group custom-input-group">
+                      <span class="input-group-text"
+                        ><i class="fa-solid fa-passport"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control custom-form-control"
+                        id="modalCountryCode"
+                        placeholder="e.g. VN, US, JP"
+                        required
+                      />
+                    </div>
+                    <div class="form-text-hint">
+                      <i class="fa-solid fa-circle-info"></i> Standard ISO
+                      3166-1 alpha-2 code
+                    </div>
+                  </div>
+
+                  <!-- Country Name -->
+                  <div class="col-md-6">
+                    <label
+                      for="modalCountryName"
+                      class="form-label custom-form-label"
+                    >
+                      Country Name <span class="text-danger fw-bold">*</span>
+                    </label>
+                    <div class="input-group custom-input-group">
+                      <span class="input-group-text"
+                        ><i class="fa-solid fa-flag"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control custom-form-control"
+                        id="modalCountryName"
+                        placeholder="e.g. Vietnam, Japan"
+                        required
+                      />
+                    </div>
+                    <div class="form-text-hint">
+                      <i class="fa-solid fa-circle-info"></i> Official country
+                      display name
+                    </div>
+                  </div>
+
+                  <!-- Region / Continent -->
+                  <div class="col-md-6">
+                    <label
+                      for="modalCountryRegion"
+                      class="form-label custom-form-label"
+                    >
+                      Region / Continent
+                      <span class="text-danger fw-bold">*</span>
+                    </label>
+                    <div class="input-group custom-input-group">
+                      <span class="input-group-text"
+                        ><i class="fa-solid fa-compass"></i
+                      ></span>
+                      <select
+                        class="form-select custom-form-select"
+                        id="modalCountryRegion"
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Select Region...
+                        </option>
+                        <option value="Asia">Asia (Châu Á)</option>
+                        <option value="Europe">Europe (Châu Âu)</option>
+                        <option value="North America">
+                          North America (Bắc Mỹ)
+                        </option>
+                        <option value="South America">
+                          South America (Nam Mỹ)
+                        </option>
+                        <option value="Oceania">
+                          Oceania (Châu Đại Dương)
+                        </option>
+                        <option value="Africa">Africa (Châu Phi)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Dialing Code -->
+                  <div class="col-md-6">
+                    <label
+                      for="modalDialCode"
+                      class="form-label custom-form-label"
+                    >
+                      Phone Dialing Code
+                    </label>
+                    <div class="input-group custom-input-group">
+                      <span class="input-group-text"
+                        ><i class="fa-solid fa-phone"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control custom-form-control"
+                        id="modalDialCode"
+                        placeholder="e.g. +84, +1, +81"
+                      />
+                    </div>
+                    <div class="form-text-hint">
+                      <i class="fa-solid fa-circle-info"></i> International
+                      phone prefix (E.164)
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Form Section 2: Operations & Priority Settings -->
+              <div class="form-section-card">
+                <div class="form-section-header">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-sliders text-primary"></i>
+                    <span class="fw-bold">OPERATIONS & CLASSIFICATION</span>
+                  </div>
+                  <span class="badge-soft badge-amber">
+                    <i class="fa-solid fa-sliders"></i> 2 fields
+                  </span>
+                </div>
+                <div class="row g-3">
+                  <!-- Priority Level -->
+                  <div class="col-md-6">
+                    <label
+                      for="modalCountryPriority"
+                      class="form-label custom-form-label"
+                      >Priority Level</label
+                    >
+                    <div class="input-group custom-input-group">
+                      <span class="input-group-text"
+                        ><i class="fa-solid fa-star text-warning"></i
+                      ></span>
+                      <select
+                        class="form-select custom-form-select"
+                        id="modalCountryPriority"
+                      >
+                        <option value="High">High (Cao)</option>
+                        <option value="Standard" selected>
+                          Standard (Tiêu chuẩn)
+                        </option>
+                        <option value="Low">Low (Thấp)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Operational Status -->
+                  <div class="col-md-6">
+                    <label
+                      for="modalCountryStatus"
+                      class="form-label custom-form-label"
+                      >Operational Status</label
+                    >
+                    <div class="input-group custom-input-group">
+                      <span class="input-group-text"
+                        ><i class="fa-solid fa-circle-check text-success"></i
+                      ></span>
+                      <select
+                        class="form-select custom-form-select"
+                        id="modalCountryStatus"
+                      >
+                        <option value="Active" selected>
+                          Active (Đang hoạt động)
+                        </option>
+                        <option value="Inactive">Inactive (Tạm ngừng)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal Footer (Exact Buttons Preserved & Keyboard Shortcuts Added) -->
+            <div
+              class="modal-footer px-4 py-3 border-top-0 d-flex align-items-center justify-content-between modal-footer-custom z-1"
+            >
+              <div
+                class="d-none d-md-flex align-items-center gap-2 text-muted small"
+              >
+                <i
+                  class="fa-solid fa-shield-halved text-primary opacity-75"
+                ></i>
+                <span>Enterprise encrypted</span>
+                <span class="modal-footer-divider"></span>
+                <span class="d-inline-flex align-items-center gap-1"
+                  ><kbd class="nexus-kbd">ESC</kbd> Close</span
+                >
+              </div>
+              <div class="d-flex align-items-center gap-2 ms-auto">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-pastel-reset px-3 py-2 rounded-3"
+                  data-bs-dismiss="modal"
+                >
+                  <i class="fa-solid fa-xmark me-1"></i> Cancel
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-sm btn-pastel-primary px-4 py-2 rounded-3"
+                  id="saveCountryBtn"
+                >
+                  <i class="fa-solid fa-floppy-disk me-1"></i> Save Changes
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
     <!-- Bootstrap 5 JS Bundle -->
@@ -512,5 +896,69 @@
     <script src="../js/apex-grid.js"></script>
     <!-- Main Application JS -->
     <script src="../js/app.js"></script>
+
+    <!-- Country Page Modal Trigger Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const countryModalEl = document.getElementById("countryFormModal");
+        if (!countryModalEl) return;
+
+        const countryModal = new bootstrap.Modal(countryModalEl);
+        const modalTitle = document.getElementById("countryModalTitle");
+        const modalForm = document.getElementById("countryModalForm");
+        const modalBadge = document.getElementById("modalHeaderBadge");
+        const modalEyebrow = document.getElementById("modalHeaderEyebrow");
+
+        const addBtn = document.getElementById("addCountryBtn");
+        const editBtn = document.getElementById("editCountryBtn");
+
+        if (addBtn) {
+          addBtn.addEventListener("click", () => {
+            if (modalEyebrow) {
+              modalEyebrow.innerHTML = `<span class="eyebrow-dot"></span> CREATE ENTRY`;
+            }
+            if (modalBadge) {
+              modalBadge.innerHTML = `<i class="fa-solid fa-plus text-success"></i>`;
+            }
+            modalTitle.innerHTML = `
+              <i class="fa-solid fa-plus text-success me-2"></i>
+              <span>Create New Country</span>
+            `;
+            if (modalForm) modalForm.reset();
+            countryModal.show();
+          });
+        }
+
+        if (editBtn) {
+          editBtn.addEventListener("click", () => {
+            if (modalEyebrow) {
+              modalEyebrow.innerHTML = `<span class="eyebrow-dot"></span> EDIT CONFIGURATION`;
+            }
+            if (modalBadge) {
+              modalBadge.innerHTML = `<i class="fa-solid fa-pen-to-square text-warning"></i>`;
+            }
+            modalTitle.innerHTML = `
+              <i class="fa-solid fa-pen-to-square text-warning me-2"></i>
+              <span>Update Country Information</span>
+            `;
+            // Populate sample country data for editing mode
+            document.getElementById("modalCountryCode").value = "VN";
+            document.getElementById("modalCountryName").value = "Vietnam";
+            document.getElementById("modalCountryRegion").value = "Asia";
+            document.getElementById("modalDialCode").value = "+84";
+            document.getElementById("modalCountryPriority").value = "High";
+            document.getElementById("modalCountryStatus").value = "Active";
+            countryModal.show();
+          });
+        }
+
+        if (modalForm) {
+          modalForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            countryModal.hide();
+          });
+        }
+      });
+    </script>
   </body>
 </html>
