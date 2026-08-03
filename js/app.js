@@ -411,8 +411,326 @@ function initCountryPageModal() {
       });
     });
   }
+
+  // Initialize Import Modal handler
+  initCountryImportModal();
+  // Initialize Export Modal handler
+  initCountryExportModal();
+}
+
+/* 8. Country Import Modal Handler & Dropzone Logic */
+function initCountryImportModal() {
+  const importModalEl = document.getElementById("countryImportModal");
+  const importBtn = document.getElementById("importCountryBtn");
+  if (!importModalEl) return;
+
+  const importModal =
+    typeof bootstrap !== "undefined"
+      ? bootstrap.Modal.getInstance(importModalEl) || new bootstrap.Modal(importModalEl)
+      : null;
+
+  if (importBtn && importModal) {
+    importBtn.addEventListener("click", () => {
+      importModal.show();
+    });
+  }
+
+  const dropzone = document.getElementById("importDropzone");
+  const fileInput = document.getElementById("importFileInput");
+  const browseBtn = document.getElementById("browseFileBtn");
+  const previewCard = document.getElementById("importFilePreview");
+  const fileNameText = document.getElementById("fileNameText");
+  const fileSizeText = document.getElementById("fileSizeText");
+  const removeFileBtn = document.getElementById("removeFileBtn");
+  const importForm = document.getElementById("countryImportForm");
+  const processBtn = document.getElementById("processImportBtn");
+
+  const progressContainer = document.getElementById("importProgressContainer");
+  const progressStatusText = document.getElementById("importProgressStatusText");
+  const progressPercentText = document.getElementById("importProgressPercentText");
+  const progressBar = document.getElementById("importProgressBar");
+
+  let selectedFile = null;
+  let progressInterval = null;
+
+  function formatBytes(bytes) {
+    if (bytes === 0) return "0 Bytes";
+    const k = 1024;
+    const sizes = ["Bytes", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+  }
+
+  function resetProgressBar() {
+    if (progressInterval) clearInterval(progressInterval);
+    if (progressContainer) progressContainer.classList.add("d-none");
+    if (progressBar) {
+      progressBar.style.width = "0%";
+      progressBar.setAttribute("aria-valuenow", "0");
+    }
+    if (progressPercentText) progressPercentText.textContent = "0%";
+    if (progressStatusText) progressStatusText.textContent = "Parsing spreadsheet data...";
+  }
+
+  function handleFileSelect(file) {
+    if (!file) return;
+    selectedFile = file;
+
+    if (fileNameText) fileNameText.textContent = file.name;
+    if (fileSizeText) fileSizeText.textContent = formatBytes(file.size);
+
+    if (previewCard) previewCard.classList.remove("d-none");
+    resetProgressBar();
+  }
+
+  function clearSelectedFile() {
+    selectedFile = null;
+    if (fileInput) fileInput.value = "";
+    if (previewCard) previewCard.classList.add("d-none");
+    if (fileNameText) fileNameText.textContent = "";
+    if (fileSizeText) fileSizeText.textContent = "";
+    resetProgressBar();
+  }
+
+  if (browseBtn && fileInput) {
+    browseBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      fileInput.click();
+    });
+  }
+
+  if (dropzone && fileInput) {
+    dropzone.addEventListener("click", (e) => {
+      if (e.target !== browseBtn && !browseBtn.contains(e.target)) {
+        fileInput.click();
+      }
+    });
+
+    ["dragenter", "dragover"].forEach((eventName) => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.add("dragover");
+      });
+    });
+
+    ["dragleave", "drop"].forEach((eventName) => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.remove("dragover");
+      });
+    });
+
+    dropzone.addEventListener("drop", (e) => {
+      const files = e.dataTransfer.files;
+      if (files && files.length > 0) {
+        handleFileSelect(files[0]);
+      }
+    });
+
+    fileInput.addEventListener("change", (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        handleFileSelect(e.target.files[0]);
+      }
+    });
+  }
+
+  if (removeFileBtn) {
+    removeFileBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      clearSelectedFile();
+    });
+  }
+
+  if (importForm) {
+    importForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      if (!selectedFile && fileInput && (!fileInput.files || fileInput.files.length === 0)) {
+        showToast({
+          title: "File Required",
+          message: "Please choose an Excel (.xlsx) or CSV file to import.",
+          type: "warning",
+          duration: 4000,
+        });
+        return;
+      }
+
+      if (processBtn) {
+        processBtn.disabled = true;
+        processBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin me-1"></i> Processing...`;
+      }
+
+      // Show Progress Bar and start animation
+      if (progressContainer) progressContainer.classList.remove("d-none");
+      let currentProgress = 0;
+
+      if (progressInterval) clearInterval(progressInterval);
+
+      progressInterval = setInterval(() => {
+        currentProgress += Math.floor(Math.random() * 15) + 10;
+        if (currentProgress > 100) currentProgress = 100;
+
+        if (progressBar) {
+          progressBar.style.width = currentProgress + "%";
+          progressBar.setAttribute("aria-valuenow", currentProgress);
+        }
+        if (progressPercentText) {
+          progressPercentText.textContent = currentProgress + "%";
+        }
+
+        if (progressStatusText) {
+          if (currentProgress < 30) {
+            progressStatusText.textContent = "Reading & parsing file data...";
+          } else if (currentProgress < 70) {
+            progressStatusText.textContent = "Validating country ISO records...";
+          } else if (currentProgress < 100) {
+            progressStatusText.textContent = "Saving country records to database...";
+          } else {
+            progressStatusText.textContent = "Import completed successfully!";
+          }
+        }
+
+        if (currentProgress >= 100) {
+          clearInterval(progressInterval);
+
+          setTimeout(() => {
+            if (importModal) importModal.hide();
+
+            showToast({
+              title: "Import Successful",
+              message: `Successfully processed "${selectedFile ? selectedFile.name : "data file"}" and updated country records.`,
+              type: "success",
+              duration: 4500,
+            });
+
+            clearSelectedFile();
+            if (processBtn) {
+              processBtn.disabled = false;
+              processBtn.innerHTML = `<i class="fa-solid fa-file-import me-1"></i> Start Import`;
+            }
+          }, 400);
+        }
+      }, 150);
+    });
+  }
+}
+
+/* 9. Country Export Modal Handler & Scope Selection Logic */
+function initCountryExportModal() {
+  const exportModalEl = document.getElementById("countryExportModal");
+  const exportBtn = document.getElementById("exportCountryBtn");
+  if (!exportModalEl) return;
+
+  const exportModal =
+    typeof bootstrap !== "undefined"
+      ? bootstrap.Modal.getInstance(exportModalEl) || new bootstrap.Modal(exportModalEl)
+      : null;
+
+  if (exportBtn && exportModal) {
+    exportBtn.addEventListener("click", () => {
+      exportModal.show();
+    });
+  }
+
+  const exportForm = document.getElementById("countryExportForm");
+  const processExportBtn = document.getElementById("processExportBtn");
+  const exportProgressContainer = document.getElementById("exportProgressContainer");
+  const exportProgressStatusText = document.getElementById("exportProgressStatusText");
+  const exportProgressPercentText = document.getElementById("exportProgressPercentText");
+  const exportProgressBar = document.getElementById("exportProgressBar");
+
+  let exportInterval = null;
+
+  function resetExportProgress() {
+    if (exportInterval) clearInterval(exportInterval);
+    if (exportProgressContainer) exportProgressContainer.classList.add("d-none");
+    if (exportProgressBar) {
+      exportProgressBar.style.width = "0%";
+      exportProgressBar.setAttribute("aria-valuenow", "0");
+    }
+    if (exportProgressPercentText) exportProgressPercentText.textContent = "0%";
+    if (exportProgressStatusText) exportProgressStatusText.textContent = "Generating export file...";
+  }
+
+  if (exportForm) {
+    exportForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const selectedScopeInput = document.querySelector('input[name="exportScope"]:checked');
+      const scopeValue = selectedScopeInput ? selectedScopeInput.value : "all";
+
+      let scopeLabel = "all country data (120 items)";
+      if (scopeValue === "current") {
+        scopeLabel = "current page (10 items)";
+      } else if (scopeValue === "selected") {
+        scopeLabel = "selected items (3 items)";
+      }
+
+      if (processExportBtn) {
+        processExportBtn.disabled = true;
+        processExportBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin me-1"></i> Exporting...`;
+      }
+
+      if (exportProgressContainer) exportProgressContainer.classList.remove("d-none");
+      let currentProgress = 0;
+
+      if (exportInterval) clearInterval(exportInterval);
+
+      exportInterval = setInterval(() => {
+        currentProgress += Math.floor(Math.random() * 18) + 12;
+        if (currentProgress > 100) currentProgress = 100;
+
+        if (exportProgressBar) {
+          exportProgressBar.style.width = currentProgress + "%";
+          exportProgressBar.setAttribute("aria-valuenow", currentProgress);
+        }
+        if (exportProgressPercentText) {
+          exportProgressPercentText.textContent = currentProgress + "%";
+        }
+
+        if (exportProgressStatusText) {
+          if (currentProgress < 30) {
+            exportProgressStatusText.textContent = "Preparing export dataset...";
+          } else if (currentProgress < 75) {
+            exportProgressStatusText.textContent = "Generating Excel spreadsheet...";
+          } else if (currentProgress < 100) {
+            exportProgressStatusText.textContent = "Finalizing file download...";
+          } else {
+            exportProgressStatusText.textContent = "Export completed successfully!";
+          }
+        }
+
+        if (currentProgress >= 100) {
+          clearInterval(exportInterval);
+
+          setTimeout(() => {
+            if (exportModal) exportModal.hide();
+
+            showToast({
+              title: "Export Completed",
+              message: `Successfully exported ${scopeLabel} into Excel file.`,
+              type: "success",
+              duration: 4500,
+            });
+
+            resetExportProgress();
+            if (processExportBtn) {
+              processExportBtn.disabled = false;
+              processExportBtn.innerHTML = `<i class="fa-solid fa-file-export me-1"></i> Start Export`;
+            }
+          }, 400);
+        }
+      }, 140);
+    });
+  }
 }
 
 // Expose globally
 window.showToast = showToast;
 window.initCountryPageModal = initCountryPageModal;
+window.initCountryImportModal = initCountryImportModal;
+window.initCountryExportModal = initCountryExportModal;
+
+
