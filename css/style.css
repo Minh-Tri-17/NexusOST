@@ -9,8 +9,7 @@
 
 :root {
   --font-primary:
-    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
+    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Color Palette & Theme Surfaces */
   --bg-app: #f5f7fc;
@@ -45,47 +44,10 @@
   --radius-lg: 14px;
   --radius-md: 10px;
 
-  --shadow-sm:
-    0 1px 3px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.02);
-  --shadow-card:
-    0 4px 20px -2px rgba(15, 23, 42, 0.04),
-    0 2px 6px -1px rgba(15, 23, 42, 0.02);
-  --shadow-hover:
-    0 10px 25px -5px rgba(15, 23, 42, 0.08),
-    0 8px 10px -6px rgba(15, 23, 42, 0.03);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.02);
+  --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+  --shadow-hover: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
   --shadow-focus: 0 0 0 4px rgba(59, 130, 246, 0.12);
-
-  /* Soft Pastel Gradient Tokens (Light Mode) */
-  --grad-primary-soft: linear-gradient(135deg, #f5eeff 0%, #ece0ff 100%);
-  --grad-primary-soft-hover: linear-gradient(135deg, #ece0ff 0%, #e9d5ff 100%);
-  --grad-secondary-soft: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-  --grad-secondary-soft-hover: linear-gradient(
-    135deg,
-    #e2e8f0 0%,
-    #cbd5e1 100%
-  );
-  --grad-info-soft: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
-  --grad-info-soft-hover: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 100%);
-  --grad-success-soft: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-  --grad-success-soft-hover: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-  --grad-warning-soft: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-  --grad-warning-soft-hover: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
-  --grad-orange-soft-hover: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
-  --grad-danger-soft: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
-  --grad-danger-soft-hover: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
-  --grad-indigo-soft: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-  --grad-indigo-soft-hover: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 100%);
-  --grad-brand-primary: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
-  --grad-brand-primary-hover: linear-gradient(135deg, #1d4ed8 0%, #4338ca 100%);
-
-  /* Metric Card Pastel Fill Tokens (Light Mode) */
-  --grad-card-blue: linear-gradient(135deg, #eef4ff 0%, #e0ecff 100%);
-  --grad-card-purple: linear-gradient(135deg, #f5eeff 0%, #ece0ff 100%);
-  --grad-card-mint: linear-gradient(135deg, #e6f8f3 0%, #d3f3ea 100%);
-  --grad-card-rose: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
-  --grad-card-amber: linear-gradient(135deg, #fffbe0 0%, #fef3c7 100%);
-  --grad-card-orange: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
-  --grad-card-teal: linear-gradient(135deg, #e6f8f3 0%, #ccfbf1 100%);
 
   /* Dropdown & Elevated Surface Tokens (Light Mode) */
   --bg-dropdown: #ffffff;
@@ -98,6 +60,32 @@
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
+
+  /* Soft Pastel Gradient Tokens (Light Mode) */
+  --grad-primary-soft: linear-gradient(135deg, #f5eeff 0%, #ece0ff 100%);
+  --grad-primary-soft-hover: linear-gradient(135deg, #ece0ff 0%, #e9d5ff 100%);
+  --grad-secondary-soft: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  --grad-secondary-soft-hover: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  --grad-info-soft: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  --grad-info-soft-hover: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 100%);
+  --grad-success-soft: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  --grad-success-soft-hover: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  --grad-warning-soft: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  --grad-warning-soft-hover: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
+  --grad-orange-soft-hover: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+  --grad-danger-soft: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+  --grad-danger-soft-hover: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
+  --grad-indigo-soft: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  --grad-indigo-soft-hover: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 100%);
+
+  /* Metric Card Pastel Fill Tokens (Light Mode) */
+  --grad-card-blue: linear-gradient(135deg, #eef4ff 0%, #e0ecff 100%);
+  --grad-card-purple: linear-gradient(135deg, #f5eeff 0%, #ece0ff 100%);
+  --grad-card-mint: linear-gradient(135deg, #e6f8f3 0%, #d3f3ea 100%);
+  --grad-card-rose: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+  --grad-card-amber: linear-gradient(135deg, #fffbe0 0%, #fef3c7 100%);
+  --grad-card-orange: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  --grad-card-teal: linear-gradient(135deg, #e6f8f3 0%, #ccfbf1 100%);
 
   /* Reusable Soft Badge Color Variables (Named by Color) */
   --badge-purple-bg: #f3e8ff;
@@ -342,6 +330,16 @@
   --btn-pastel-primary-shadow: rgba(168, 85, 247, 0.25);
   --btn-pastel-primary-shadow-hover: rgba(168, 85, 247, 0.45);
 
+  /* 7. Indigo (Import & Export - Dark Mode) */
+  --btn-pastel-io-bg: var(--grad-indigo-soft);
+  --btn-pastel-io-bg-hover: var(--grad-indigo-soft-hover);
+  --btn-pastel-io-text: #818cf8;
+  --btn-pastel-io-text-hover: #ffffff;
+  --btn-pastel-io-border: rgba(129, 140, 248, 0.4);
+  --btn-pastel-io-border-hover: rgba(165, 180, 252, 0.65);
+  --btn-pastel-io-shadow: rgba(99, 102, 241, 0.25);
+  --btn-pastel-io-shadow-hover: rgba(99, 102, 241, 0.45);
+
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
   --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
@@ -408,15 +406,19 @@
     rgba(225, 29, 72, 0.35) 0%,
     rgba(190, 18, 60, 0.5) 100%
   );
-  --grad-brand-primary: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-  --grad-brand-primary-hover: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  --grad-indigo-soft: linear-gradient(
+    135deg,
+    rgba(67, 56, 202, 0.25) 0%,
+    rgba(49, 46, 129, 0.35) 100%
+  );
+  --grad-indigo-soft-hover: linear-gradient(
+    135deg,
+    rgba(67, 56, 202, 0.4) 0%,
+    rgba(49, 46, 129, 0.55) 100%
+  );
 
   /* Metric Card Pastel Fill Tokens (Dark Mode) */
-  --grad-card-blue: linear-gradient(
-    135deg,
-    rgba(37, 99, 235, 0.2) 0%,
-    rgba(29, 78, 216, 0.3) 100%
-  );
+  --grad-card-blue: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(29, 78, 216, 0.3) 100%);
   --grad-card-purple: linear-gradient(
     135deg,
     rgba(139, 92, 246, 0.2) 0%,
@@ -427,16 +429,8 @@
     rgba(16, 185, 129, 0.2) 0%,
     rgba(5, 150, 105, 0.3) 100%
   );
-  --grad-card-rose: linear-gradient(
-    135deg,
-    rgba(225, 29, 72, 0.2) 0%,
-    rgba(190, 18, 60, 0.3) 100%
-  );
-  --grad-card-amber: linear-gradient(
-    135deg,
-    rgba(217, 119, 6, 0.2) 0%,
-    rgba(180, 83, 9, 0.3) 100%
-  );
+  --grad-card-rose: linear-gradient(135deg, rgba(225, 29, 72, 0.2) 0%, rgba(190, 18, 60, 0.3) 100%);
+  --grad-card-amber: linear-gradient(135deg, rgba(217, 119, 6, 0.2) 0%, rgba(180, 83, 9, 0.3) 100%);
   --grad-card-orange: linear-gradient(
     135deg,
     rgba(249, 115, 22, 0.2) 0%,
@@ -711,10 +705,7 @@ a {
 }
 
 /* Dark Mode Specific Overrides for Collapsed Submenu Icons */
-[data-theme="dark"]
-  .app-wrapper.sidebar-collapsed
-  .sidebar-nav
-  .submenu-list::before {
+[data-theme="dark"] .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-list::before {
   background: #334155;
 }
 
@@ -725,46 +716,28 @@ a {
   color: #94a3b8;
 }
 
-[data-theme="dark"]
-  .app-wrapper.sidebar-collapsed
-  .sidebar-nav
-  .submenu-link
-  i {
+[data-theme="dark"] .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link i {
   color: #94a3b8;
 }
 
-[data-theme="dark"]
-  .app-wrapper.sidebar-collapsed
-  .sidebar-nav
-  .submenu-link:hover {
+[data-theme="dark"] .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link:hover {
   background-color: #334155;
   border-color: #60a5fa;
   box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
 }
 
-[data-theme="dark"]
-  .app-wrapper.sidebar-collapsed
-  .sidebar-nav
-  .submenu-link:hover
-  i {
+[data-theme="dark"] .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link:hover i {
   color: #60a5fa !important;
 }
 
-[data-theme="dark"]
-  .app-wrapper.sidebar-collapsed
-  .sidebar-nav
-  .submenu-link.active {
+[data-theme="dark"] .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link.active {
   background-color: #2563eb !important;
   border-color: #3b82f6 !important;
   color: #ffffff !important;
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.5);
 }
 
-[data-theme="dark"]
-  .app-wrapper.sidebar-collapsed
-  .sidebar-nav
-  .submenu-link.active
-  i {
+[data-theme="dark"] .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link.active i {
   color: #ffffff !important;
 }
 
@@ -781,17 +754,13 @@ a {
   border-bottom: 1px solid transparent;
 }
 
-.brand-logo-icon {
+.brand-logo-img {
   width: 42px;
   height: 42px;
-  background: var(--grad-brand-primary);
-  color: white;
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22);
 }
 
 .brand-title {
@@ -1358,11 +1327,7 @@ a {
   align-items: center;
   gap: 0.75rem;
   padding: 0.65rem 0.75rem;
-  background: linear-gradient(
-    135deg,
-    rgba(241, 245, 249, 0.8),
-    rgba(248, 250, 252, 0.95)
-  );
+  background: linear-gradient(135deg, rgba(241, 245, 249, 0.8), rgba(248, 250, 252, 0.95));
   border: 1px solid rgba(226, 232, 240, 0.7);
   border-radius: 12px;
   margin-bottom: 0.35rem;
@@ -2165,11 +2130,7 @@ a {
 }
 
 [data-theme="dark"] .sidebar-footer-graphic {
-  background: linear-gradient(
-    180deg,
-    rgba(14, 14, 16, 0) 0%,
-    var(--bg-sidebar) 100%
-  );
+  background: linear-gradient(180deg, rgba(14, 14, 16, 0) 0%, var(--bg-sidebar) 100%);
   border-top-color: var(--border-color);
 }
 
@@ -2235,11 +2196,7 @@ a {
 }
 
 [data-theme="dark"] .dropdown-header-info {
-  background: linear-gradient(
-    135deg,
-    rgba(14, 14, 16, 0.95),
-    rgba(30, 30, 36, 0.98)
-  ) !important;
+  background: linear-gradient(135deg, rgba(14, 14, 16, 0.95), rgba(30, 30, 36, 0.98)) !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -2483,17 +2440,18 @@ svg g.apextree-selected .apextree-sleek-card {
 }
 
 /* ==========================================================================
-   Master Synchronized Action Buttons (Add, Edit, Delete, Reset, Search)
+   Master Synchronized Action Buttons — Color-Based Naming Convention
+   green | orange | red | slate | cyan | purple | indigo
    ========================================================================== */
 
 /* 1. Unified Base Specifications & Micro-Interactions */
-.btn-pastel-success,
-.btn-pastel-warning,
+.btn-pastel-green,
 .btn-pastel-orange,
-.btn-pastel-danger,
-.btn-pastel-reset,
-.btn-pastel-search,
-.btn-pastel-primary {
+.btn-pastel-red,
+.btn-pastel-slate,
+.btn-pastel-cyan,
+.btn-pastel-purple,
+.btn-pastel-indigo {
   height: 38px !important;
   font-weight: 600 !important;
   border-radius: var(--radius-md) !important;
@@ -2508,93 +2466,89 @@ svg g.apextree-selected .apextree-sleek-card {
     box-shadow 0.25s ease !important;
 }
 
-.btn-pastel-success i,
-.btn-pastel-warning i,
+.btn-pastel-green i,
 .btn-pastel-orange i,
-.btn-pastel-danger i,
-.btn-pastel-reset i,
-.btn-pastel-search i,
-.btn-pastel-primary i {
+.btn-pastel-red i,
+.btn-pastel-slate i,
+.btn-pastel-cyan i,
+.btn-pastel-purple i,
+.btn-pastel-indigo i {
   transition:
     color 0.2s ease,
     transform 0.2s ease !important;
 }
 
 /* Master Hover & Active Effects */
-.btn-pastel-success:hover,
-.btn-pastel-warning:hover,
+.btn-pastel-green:hover,
+.btn-pastel-green:focus,
 .btn-pastel-orange:hover,
-.btn-pastel-danger:hover,
-.btn-pastel-reset:hover,
-.btn-pastel-search:hover,
-.btn-pastel-primary:hover,
-.btn-pastel-success:focus,
-.btn-pastel-warning:focus,
 .btn-pastel-orange:focus,
-.btn-pastel-danger:focus,
-.btn-pastel-reset:focus,
-.btn-pastel-search:focus,
-.btn-pastel-primary:focus {
+.btn-pastel-red:hover,
+.btn-pastel-red:focus,
+.btn-pastel-slate:hover,
+.btn-pastel-slate:focus,
+.btn-pastel-cyan:hover,
+.btn-pastel-cyan:focus,
+.btn-pastel-purple:hover,
+.btn-pastel-purple:focus,
+.btn-pastel-indigo:hover,
+.btn-pastel-indigo:focus {
   transform: translateY(-1.5px) !important;
 }
 
-.btn-pastel-success:hover i,
-.btn-pastel-warning:hover i,
+.btn-pastel-green:hover i,
 .btn-pastel-orange:hover i,
-.btn-pastel-danger:hover i,
-.btn-pastel-reset:hover i,
-.btn-pastel-search:hover i,
-.btn-pastel-primary:hover i {
+.btn-pastel-red:hover i,
+.btn-pastel-slate:hover i,
+.btn-pastel-cyan:hover i,
+.btn-pastel-purple:hover i,
+.btn-pastel-indigo:hover i {
   transform: scale(1.08) !important;
 }
 
-.btn-pastel-success:active,
-.btn-pastel-warning:active,
+.btn-pastel-green:active,
 .btn-pastel-orange:active,
-.btn-pastel-danger:active,
-.btn-pastel-reset:active,
-.btn-pastel-search:active,
-.btn-pastel-primary:active {
+.btn-pastel-red:active,
+.btn-pastel-slate:active,
+.btn-pastel-cyan:active,
+.btn-pastel-purple:active,
+.btn-pastel-indigo:active {
   transform: translateY(0) scale(0.97) !important;
   box-shadow: none !important;
 }
 
-/* 2. Add/Create Button (Green Soft Pastel) */
-.btn-pastel-success {
+/* 2. Green Button (Add / Create) */
+.btn-pastel-green {
   background: var(--btn-pastel-success-bg) !important;
   color: var(--btn-pastel-success-text) !important;
   border: 1px solid var(--btn-pastel-success-border) !important;
   box-shadow: 0 2px 6px var(--btn-pastel-success-shadow) !important;
 }
-.btn-pastel-success i {
+.btn-pastel-green i {
   color: var(--btn-pastel-success-text) !important;
 }
-.btn-pastel-success:hover,
-.btn-pastel-success:focus {
+.btn-pastel-green:hover,
+.btn-pastel-green:focus {
   background: var(--btn-pastel-success-bg-hover) !important;
   color: var(--btn-pastel-success-text-hover) !important;
   border-color: var(--btn-pastel-success-border-hover) !important;
   box-shadow: 0 4px 12px var(--btn-pastel-success-shadow-hover) !important;
 }
-.btn-pastel-success:hover i,
-.btn-pastel-success:focus i {
+.btn-pastel-green:hover i,
+.btn-pastel-green:focus i {
   color: var(--btn-pastel-success-text-hover) !important;
 }
 
-/* 3. Edit/Update Button (Orange Soft Pastel) */
-.btn-pastel-warning,
+/* 3. Orange Button (Edit / Update) */
 .btn-pastel-orange {
   background: var(--btn-pastel-warning-bg) !important;
   color: var(--btn-pastel-warning-text) !important;
   border: 1px solid var(--btn-pastel-warning-border) !important;
   box-shadow: 0 2px 6px var(--btn-pastel-warning-shadow) !important;
 }
-.btn-pastel-warning i,
 .btn-pastel-orange i {
   color: var(--btn-pastel-warning-text) !important;
 }
-.btn-pastel-warning:hover,
-.btn-pastel-warning:focus,
 .btn-pastel-orange:hover,
 .btn-pastel-orange:focus {
   background: var(--btn-pastel-warning-bg-hover) !important;
@@ -2602,84 +2556,33 @@ svg g.apextree-selected .apextree-sleek-card {
   border-color: var(--btn-pastel-warning-border-hover) !important;
   box-shadow: 0 4px 12px var(--btn-pastel-warning-shadow-hover) !important;
 }
-.btn-pastel-warning:hover i,
-.btn-pastel-warning:focus i,
 .btn-pastel-orange:hover i,
 .btn-pastel-orange:focus i {
   color: var(--btn-pastel-warning-text-hover) !important;
 }
 
-/* 4. Delete Button (Red Soft Pastel) */
-.btn-pastel-danger {
+/* 4. Red Button (Delete) */
+.btn-pastel-red {
   background: var(--btn-pastel-danger-bg) !important;
   color: var(--btn-pastel-danger-text) !important;
   border: 1px solid var(--btn-pastel-danger-border) !important;
   box-shadow: 0 2px 6px var(--btn-pastel-danger-shadow) !important;
 }
-.btn-pastel-danger i {
+.btn-pastel-red i {
   color: var(--btn-pastel-danger-text) !important;
 }
-.btn-pastel-danger:hover,
-.btn-pastel-danger:focus {
+.btn-pastel-red:hover,
+.btn-pastel-red:focus {
   background: var(--btn-pastel-danger-bg-hover) !important;
   color: var(--btn-pastel-danger-text-hover) !important;
   border-color: var(--btn-pastel-danger-border-hover) !important;
   box-shadow: 0 4px 12px var(--btn-pastel-danger-shadow-hover) !important;
 }
-.btn-pastel-danger:hover i,
-.btn-pastel-danger:focus i {
+.btn-pastel-red:hover i,
+.btn-pastel-red:focus i {
   color: var(--btn-pastel-danger-text-hover) !important;
 }
 
-/* Enhanced Inner Layout for Quick Stat Cards */
-.metric-card-compact {
-  padding: 1rem 1.15rem !important;
-  border-radius: 16px !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.metric-card-compact .metric-header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-.metric-card-compact .metric-pastel-title {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #475569;
-  margin: 0;
-}
-.metric-card-compact .metric-icon-badge {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
-}
-.metric-card-compact .metric-main-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin-bottom: 0.4rem;
-}
-.metric-card-compact .metric-pastel-val {
-  font-size: 1.55rem;
-  font-weight: 800;
-  color: #0f172a;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  margin: 0;
-}
 .metric-tag-pill {
   font-size: 0.68rem;
   font-weight: 700;
@@ -2690,17 +2593,8 @@ svg g.apextree-selected .apextree-sleek-card {
   white-space: nowrap;
   letter-spacing: 0.02em;
 }
-.metric-card-compact .metric-footer-sub {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: #64748b;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
 
-[data-theme="dark"] .metric-pastel-icon-floating,
-[data-theme="dark"] .metric-card-compact .metric-icon-badge {
+[data-theme="dark"] .metric-pastel-icon-floating {
   background: rgba(0, 0, 0, 0.35) !important;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
 }
@@ -2821,8 +2715,8 @@ svg g.apextree-selected .apextree-sleek-card {
   border: 1px solid var(--border-color, #e2e8f0);
   border-radius: 14px;
   padding: 1rem;
-  margin-top: 0.75rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 0;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 [data-theme="dark"] .smart-filter-matrix {
@@ -2878,110 +2772,91 @@ svg g.apextree-selected .apextree-sleek-card {
   z-index: 5;
 }
 
-/* Filter Reset & Search Action Buttons (Powered by Theme Variables) */
-/* 5. Reset Button (Secondary Slate Pastel) */
-.btn-pastel-reset {
+/* 5. Slate Button (Reset / Secondary) */
+.btn-pastel-slate {
   background-color: var(--btn-pastel-reset-bg) !important;
   border: 1px solid var(--btn-pastel-reset-border) !important;
   color: var(--btn-pastel-reset-text) !important;
   box-shadow: 0 2px 6px var(--btn-pastel-reset-shadow) !important;
 }
-.btn-pastel-reset i {
+.btn-pastel-slate i {
   color: var(--btn-pastel-reset-text) !important;
 }
-.btn-pastel-reset:hover,
-.btn-pastel-reset:focus {
+.btn-pastel-slate:hover,
+.btn-pastel-slate:focus {
   background-color: var(--btn-pastel-reset-bg-hover) !important;
   border-color: var(--btn-pastel-reset-border-hover) !important;
   color: var(--btn-pastel-reset-text-hover) !important;
   box-shadow: 0 4px 12px var(--btn-pastel-reset-shadow-hover) !important;
 }
-.btn-pastel-reset:hover i,
-.btn-pastel-reset:focus i {
+.btn-pastel-slate:hover i,
+.btn-pastel-slate:focus i {
   color: var(--btn-pastel-reset-text-hover) !important;
 }
 
-/* 6. Search Button (Primary Blue Pastel) */
-.btn-pastel-search {
+/* 6. Cyan Button (Search) */
+.btn-pastel-cyan {
   background: var(--btn-pastel-search-bg) !important;
   border: 1px solid var(--btn-pastel-search-border) !important;
   color: var(--btn-pastel-search-text) !important;
   box-shadow: 0 2px 6px var(--btn-pastel-search-shadow) !important;
 }
-.btn-pastel-search i {
+.btn-pastel-cyan i {
   color: var(--btn-pastel-search-text) !important;
 }
-.btn-pastel-search:hover,
-.btn-pastel-search:focus {
+.btn-pastel-cyan:hover,
+.btn-pastel-cyan:focus {
   background: var(--btn-pastel-search-bg-hover) !important;
   border-color: var(--btn-pastel-search-border-hover) !important;
   color: var(--btn-pastel-search-text-hover) !important;
   box-shadow: 0 4px 12px var(--btn-pastel-search-shadow-hover) !important;
 }
-.btn-pastel-search:hover i,
-.btn-pastel-search:focus i {
+.btn-pastel-cyan:hover i,
+.btn-pastel-cyan:focus i {
   color: var(--btn-pastel-search-text-hover) !important;
 }
 
-/* 7. Primary Action Button (Brand Blue Solid Gradient / Save Changes) */
-.btn-pastel-primary {
+/* 7. Purple Button (Save / Primary Action) */
+.btn-pastel-purple {
   background: var(--btn-pastel-primary-bg) !important;
   border: 1px solid var(--btn-pastel-primary-border) !important;
   color: var(--btn-pastel-primary-text) !important;
   box-shadow: 0 2px 6px var(--btn-pastel-primary-shadow) !important;
 }
-.btn-pastel-primary i {
+.btn-pastel-purple i {
   color: var(--btn-pastel-primary-text) !important;
 }
-.btn-pastel-primary:hover,
-.btn-pastel-primary:focus {
+.btn-pastel-purple:hover,
+.btn-pastel-purple:focus {
   background: var(--btn-pastel-primary-bg-hover) !important;
   border-color: var(--btn-pastel-primary-border-hover) !important;
   color: var(--btn-pastel-primary-text-hover) !important;
   box-shadow: 0 4px 12px var(--btn-pastel-primary-shadow-hover) !important;
 }
-.btn-pastel-primary:hover i,
-.btn-pastel-primary:focus i {
+.btn-pastel-purple:hover i,
+.btn-pastel-purple:focus i {
   color: var(--btn-pastel-primary-text-hover) !important;
 }
 
-/* 7. IO Pastel Buttons (Import & Export - Unique Royal Indigo Theme) */
-.btn-pastel-pink,
-.btn-pastel-io,
-.btn-pastel-import,
-.btn-pastel-export {
+/* 8. Indigo Button (Import & Export) */
+.btn-pastel-indigo {
   background: var(--btn-pastel-io-bg) !important;
   border: 1px solid var(--btn-pastel-io-border) !important;
   color: var(--btn-pastel-io-text) !important;
   box-shadow: 0 2px 6px var(--btn-pastel-io-shadow) !important;
 }
-.btn-pastel-pink i,
-.btn-pastel-io i,
-.btn-pastel-import i,
-.btn-pastel-export i {
+.btn-pastel-indigo i {
   color: var(--btn-pastel-io-text) !important;
 }
-.btn-pastel-pink:hover,
-.btn-pastel-pink:focus,
-.btn-pastel-io:hover,
-.btn-pastel-io:focus,
-.btn-pastel-import:hover,
-.btn-pastel-import:focus,
-.btn-pastel-export:hover,
-.btn-pastel-export:focus {
+.btn-pastel-indigo:hover,
+.btn-pastel-indigo:focus {
   background: var(--btn-pastel-io-bg-hover) !important;
   border-color: var(--btn-pastel-io-border-hover) !important;
   color: var(--btn-pastel-io-text-hover) !important;
   box-shadow: 0 4px 12px var(--btn-pastel-io-shadow-hover) !important;
 }
-.btn-pastel-pink:hover i,
-.btn-pastel-pink:focus i,
-.btn-pastel-io:hover i,
-.btn-pastel-io:focus i,
-.btn-pastel-import:hover i,
-.btn-pastel-import:focus i,
-.btn-pastel-export:hover i,
-.btn-pastel-export:focus i {
+.btn-pastel-indigo:hover i,
+.btn-pastel-indigo:focus i {
   color: var(--btn-pastel-io-text-hover) !important;
 }
 
@@ -3078,11 +2953,7 @@ svg g.apextree-selected .apextree-sleek-card {
   width: 48px;
   height: 48px;
   border-radius: 14px;
-  background: linear-gradient(
-    135deg,
-    rgba(37, 99, 235, 0.1) 0%,
-    rgba(124, 58, 237, 0.1) 100%
-  );
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
   color: #2563eb;
   display: flex;
   align-items: center;

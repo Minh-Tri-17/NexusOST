@@ -36,6 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
   ) {
     initEmployeeOrgChart();
   }
+
+  // Country Page Modal Handler
+  if (document.getElementById("countryFormModal")) {
+    initCountryPageModal();
+  }
 });
 
 /* 1. Sidebar Active Link matching current path */
@@ -256,3 +261,170 @@ function initTopbarInteractiveControls() {
     });
   }
 }
+
+/* 6. Nexus Enterprise Toast Notification System */
+function showToast({
+  title = "Notification",
+  message = "",
+  type = "success", // 'primary' | 'info' | 'success' | 'warning' | 'danger'
+  duration = 4000,
+  icon = null,
+} = {}) {
+  let container = document.getElementById("nexusToastContainer");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "nexusToastContainer";
+    container.className = "nexus-toast-container";
+    document.body.appendChild(container);
+  }
+
+  const iconMap = {
+    primary: "fa-solid fa-bell",
+    info: "fa-solid fa-circle-info",
+    success: "fa-solid fa-circle-check",
+    warning: "fa-solid fa-triangle-exclamation",
+    danger: "fa-solid fa-circle-xmark",
+  };
+
+  const validTypes = ["primary", "info", "success", "warning", "danger"];
+  const toastType = validTypes.includes(type) ? type : "success";
+  const toastIcon = icon || iconMap[toastType];
+
+  const toastEl = document.createElement("div");
+  toastEl.className = `nexus-toast nexus-toast-${toastType}`;
+  toastEl.setAttribute("role", "alert");
+
+  toastEl.innerHTML = `
+    <div class="nexus-toast-accent-bar"></div>
+    <div class="nexus-toast-icon-box">
+      <i class="${toastIcon}"></i>
+    </div>
+    <div class="nexus-toast-content">
+      <h6 class="nexus-toast-title">${title}</h6>
+      ${message ? `<p class="nexus-toast-message">${message}</p>` : ""}
+    </div>
+    <button type="button" class="nexus-toast-close" aria-label="Close">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  `;
+
+  const closeBtn = toastEl.querySelector(".nexus-toast-close");
+  const dismiss = () => {
+    if (toastEl.classList.contains("toast-hiding")) return;
+    toastEl.classList.add("toast-hiding");
+    setTimeout(() => {
+      if (toastEl.parentNode) {
+        toastEl.parentNode.removeChild(toastEl);
+      }
+    }, 250);
+  };
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", dismiss);
+  }
+
+  container.appendChild(toastEl);
+
+  if (duration > 0) {
+    setTimeout(dismiss, duration);
+  }
+
+  return toastEl;
+}
+
+/* 7. Country Page Modal Handler */
+function initCountryPageModal() {
+  const countryModalEl = document.getElementById("countryFormModal");
+  if (!countryModalEl) return;
+
+  const countryModal =
+    typeof bootstrap !== "undefined"
+      ? bootstrap.Modal.getInstance(countryModalEl) ||
+        new bootstrap.Modal(countryModalEl)
+      : null;
+
+  const modalTitle = document.getElementById("countryModalTitle");
+  const modalForm = document.getElementById("countryModalForm");
+  const modalBadge = document.getElementById("modalHeaderBadge");
+  const modalEyebrow = document.getElementById("modalHeaderEyebrow");
+
+  const addBtn = document.getElementById("addCountryBtn");
+  const editBtn = document.getElementById("editCountryBtn");
+
+  if (addBtn && countryModal) {
+    addBtn.addEventListener("click", () => {
+      if (modalEyebrow) {
+        modalEyebrow.innerHTML = `<span class="eyebrow-dot"></span> CREATE ENTRY`;
+      }
+      if (modalBadge) {
+        modalBadge.innerHTML = `<i class="fa-solid fa-plus text-success"></i>`;
+      }
+      if (modalTitle) {
+        modalTitle.innerHTML = `
+          <i class="fa-solid fa-plus text-success me-2"></i>
+          <span>Create New Country</span>
+        `;
+      }
+      if (modalForm) modalForm.reset();
+      countryModal.show();
+    });
+  }
+
+  if (editBtn && countryModal) {
+    editBtn.addEventListener("click", () => {
+      if (modalEyebrow) {
+        modalEyebrow.innerHTML = `<span class="eyebrow-dot"></span> EDIT CONFIGURATION`;
+      }
+      if (modalBadge) {
+        modalBadge.innerHTML = `<i class="fa-solid fa-pen-to-square text-warning"></i>`;
+      }
+      if (modalTitle) {
+        modalTitle.innerHTML = `
+          <i class="fa-solid fa-pen-to-square text-warning me-2"></i>
+          <span>Update Country Information</span>
+        `;
+      }
+      const elCode = document.getElementById("modalCountryCode");
+      const elName = document.getElementById("modalCountryName");
+      const elRegion = document.getElementById("modalCountryRegion");
+      const elDial = document.getElementById("modalDialCode");
+      const elPriority = document.getElementById("modalCountryPriority");
+      const elStatus = document.getElementById("modalCountryStatus");
+
+      if (elCode) elCode.value = "VN";
+      if (elName) elName.value = "Vietnam";
+      if (elRegion) elRegion.value = "Asia";
+      if (elDial) elDial.value = "+84";
+      if (elPriority) elPriority.value = "High";
+      if (elStatus) elStatus.value = "Active";
+
+      countryModal.show();
+    });
+  }
+
+  if (modalForm) {
+    modalForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (countryModal) countryModal.hide();
+
+      const isEdit =
+        modalTitle &&
+        modalTitle.innerText.toLowerCase().includes("update");
+
+      showToast({
+        title: isEdit ? "Changes Saved" : "Country Created",
+        message: isEdit
+          ? "Country information has been updated successfully."
+          : "New country record has been created successfully.",
+        type: "success",
+        duration: 4000,
+      });
+    });
+  }
+}
+
+// Expose globally
+window.showToast = showToast;
+window.initCountryPageModal = initCountryPageModal;
+
+

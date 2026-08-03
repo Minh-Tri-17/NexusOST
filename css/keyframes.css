@@ -197,3 +197,18 @@
   }
 }
 
+/* --------------------------------------------------------------------------
+   5. TOAST SLIDE IN ANIMATION
+   -------------------------------------------------------------------------- */
+@keyframes nexusToastSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(40px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+

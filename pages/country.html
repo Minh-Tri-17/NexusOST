@@ -30,9 +30,11 @@
       <!-- Sidebar -->
       <aside class="app-sidebar">
         <div class="sidebar-header">
-          <div class="brand-logo-icon">
-            <i class="fa-solid fa-users-viewfinder"></i>
-          </div>
+          <img
+            src="../assets/logo.png"
+            alt="Nexus Logo"
+            class="brand-logo-img"
+          />
           <div>
             <h1 class="brand-title">Nexus</h1>
             <div class="brand-subtitle">Human Resource & Sales</div>
@@ -425,7 +427,7 @@
 
                 <!-- Filter Matrix Toggle Button -->
                 <button
-                  class="btn btn-sm btn-pastel-reset d-inline-flex align-items-center gap-2 px-3 rounded-3"
+                  class="btn btn-sm btn-pastel-slate d-inline-flex align-items-center gap-2 px-3 rounded-3"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#smartFilterMatrixCollapse"
@@ -447,19 +449,19 @@
                 <!-- Record CRUD Group -->
                 <div class="d-flex align-items-center gap-2">
                   <button
-                    class="btn btn-sm btn-pastel-success d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    class="btn btn-sm btn-pastel-green d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
                     id="addCountryBtn"
                   >
                     <i class="fa-solid fa-plus"></i> Create
                   </button>
                   <button
-                    class="btn btn-sm btn-pastel-warning d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    class="btn btn-sm btn-pastel-orange d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
                     id="editCountryBtn"
                   >
                     <i class="fa-solid fa-pen-to-square"></i> Edit
                   </button>
                   <button
-                    class="btn btn-sm btn-pastel-danger d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    class="btn btn-sm btn-pastel-red d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
                     id="deleteCountryBtn"
                   >
                     <i class="fa-solid fa-trash-can"></i> Delete
@@ -472,13 +474,13 @@
                 <!-- Data IO Group -->
                 <div class="d-flex align-items-center gap-2">
                   <button
-                    class="btn btn-sm btn-pastel-import d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
                     id="importCountryBtn"
                   >
                     <i class="fa-solid fa-file-import"></i> Import
                   </button>
                   <button
-                    class="btn btn-sm btn-pastel-export d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
                     id="exportCountryBtn"
                   >
                     <i class="fa-solid fa-file-export"></i> Export
@@ -519,8 +521,8 @@
             </div>
 
             <!-- Expandable Smart Filter Matrix (Scalable Dropdowns Panel) -->
-            <div class="collapse mb-3" id="smartFilterMatrixCollapse">
-              <div class="smart-filter-matrix">
+            <div class="collapse" id="smartFilterMatrixCollapse">
+              <div class="smart-filter-matrix mb-3">
                 <div
                   class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom"
                 >
@@ -585,7 +587,7 @@
                   class="d-flex align-items-center justify-content-end gap-2 mt-3 pt-2 border-top"
                 >
                   <button
-                    class="btn btn-sm btn-pastel-search px-4 rounded-3"
+                    class="btn btn-sm btn-pastel-cyan px-4 rounded-3"
                     type="button"
                   >
                     <i class="fa-solid fa-check me-1"></i> Apply
@@ -866,14 +868,14 @@
               <div class="d-flex align-items-center gap-2 ms-auto">
                 <button
                   type="button"
-                  class="btn btn-sm btn-pastel-reset px-3 py-2 rounded-3"
+                  class="btn btn-sm btn-pastel-slate px-3 py-2 rounded-3"
                   data-bs-dismiss="modal"
                 >
                   <i class="fa-solid fa-xmark me-1"></i> Cancel
                 </button>
                 <button
                   type="submit"
-                  class="btn btn-sm btn-pastel-primary px-4 py-2 rounded-3"
+                  class="btn btn-sm btn-pastel-purple px-4 py-2 rounded-3"
                   id="saveCountryBtn"
                 >
                   <i class="fa-solid fa-floppy-disk me-1"></i> Save Changes
@@ -896,69 +898,5 @@
     <script src="../js/apex-grid.js"></script>
     <!-- Main Application JS -->
     <script src="../js/app.js"></script>
-
-    <!-- Country Page Modal Trigger Script -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const countryModalEl = document.getElementById("countryFormModal");
-        if (!countryModalEl) return;
-
-        const countryModal = new bootstrap.Modal(countryModalEl);
-        const modalTitle = document.getElementById("countryModalTitle");
-        const modalForm = document.getElementById("countryModalForm");
-        const modalBadge = document.getElementById("modalHeaderBadge");
-        const modalEyebrow = document.getElementById("modalHeaderEyebrow");
-
-        const addBtn = document.getElementById("addCountryBtn");
-        const editBtn = document.getElementById("editCountryBtn");
-
-        if (addBtn) {
-          addBtn.addEventListener("click", () => {
-            if (modalEyebrow) {
-              modalEyebrow.innerHTML = `<span class="eyebrow-dot"></span> CREATE ENTRY`;
-            }
-            if (modalBadge) {
-              modalBadge.innerHTML = `<i class="fa-solid fa-plus text-success"></i>`;
-            }
-            modalTitle.innerHTML = `
-              <i class="fa-solid fa-plus text-success me-2"></i>
-              <span>Create New Country</span>
-            `;
-            if (modalForm) modalForm.reset();
-            countryModal.show();
-          });
-        }
-
-        if (editBtn) {
-          editBtn.addEventListener("click", () => {
-            if (modalEyebrow) {
-              modalEyebrow.innerHTML = `<span class="eyebrow-dot"></span> EDIT CONFIGURATION`;
-            }
-            if (modalBadge) {
-              modalBadge.innerHTML = `<i class="fa-solid fa-pen-to-square text-warning"></i>`;
-            }
-            modalTitle.innerHTML = `
-              <i class="fa-solid fa-pen-to-square text-warning me-2"></i>
-              <span>Update Country Information</span>
-            `;
-            // Populate sample country data for editing mode
-            document.getElementById("modalCountryCode").value = "VN";
-            document.getElementById("modalCountryName").value = "Vietnam";
-            document.getElementById("modalCountryRegion").value = "Asia";
-            document.getElementById("modalDialCode").value = "+84";
-            document.getElementById("modalCountryPriority").value = "High";
-            document.getElementById("modalCountryStatus").value = "Active";
-            countryModal.show();
-          });
-        }
-
-        if (modalForm) {
-          modalForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            countryModal.hide();
-          });
-        }
-      });
-    </script>
   </body>
 </html>
