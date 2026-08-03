@@ -198,9 +198,7 @@ function applyNexusCustomPagination(rootNode, isDark) {
         background: ${isDark ? "#334155" : "#ffffff"} !important;
         color: ${isDark ? "#ffffff" : "#0f172a"} !important;
         box-shadow: ${
-          isDark
-            ? "0 4px 12px rgba(0, 0, 0, 0.3)"
-            : "0 4px 12px rgba(0, 0, 0, 0.08)"
+          isDark ? "0 4px 12px rgba(0, 0, 0, 0.3)" : "0 4px 12px rgba(0, 0, 0, 0.08)"
         } !important;
         transform: translateY(-1px) scale(1.05) !important;
       }
@@ -277,22 +275,14 @@ function applyNexusBadgeCSSVars(isDark) {
 
 function initApexGridDarkModeHandler() {
   const updateGridStyles = () => {
-    // Remove external theme tags if present
-    const extStyle = document.getElementById("apex-grid-bootstrap-themes");
-    if (extStyle) extStyle.remove();
-
-    const isDark =
-      document.documentElement.getAttribute("data-theme") === "dark";
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
     const grids = document.querySelectorAll("apex-grid");
 
     grids.forEach((grid) => {
       // Remove any leftover injected shadow DOM style tags
       const cleanShadowRoot = (root) => {
         if (!root) return;
-        const fixTag = root.getElementById("nexus-pinned-grid-fix");
-        if (fixTag) fixTag.remove();
-        const darkTag = root.getElementById("nexus-dark-grid-style");
-        if (darkTag) darkTag.remove();
+
         try {
           root.querySelectorAll("*").forEach((child) => {
             if (child.shadowRoot) cleanShadowRoot(child.shadowRoot);
@@ -509,13 +499,7 @@ async function initCountryGrid() {
     },
   ];
 
-  const usersSeed = [
-    "Admin User",
-    "Tristan Nguyen",
-    "System Bot",
-    "Sarah Jenkins",
-    "Alex Rivera",
-  ];
+  const usersSeed = ["Admin User", "Tristan Nguyen", "System Bot", "Sarah Jenkins", "Alex Rivera"];
   const notesSeed = [
     "Strategic key market",
     "Standard operational hub",
@@ -622,9 +606,7 @@ async function initCountryGrid() {
       resizable: true,
       cellTemplate: ({ value }) =>
         html
-          ? html`<span style="${pillStyle(value)}"
-              >${STATUS_LABEL[value] ?? value}</span
-            >`
+          ? html`<span style="${pillStyle(value)}">${STATUS_LABEL[value] ?? value}</span>`
           : String(value),
     },
     {
@@ -707,9 +689,7 @@ async function initCountryGrid() {
   const totalCount = countryData.length;
   const activeCount = countryData.filter((c) => c.active).length;
   const totalPop = countryData.reduce((acc, c) => acc + c.population, 0);
-  const highPriorityCount = countryData.filter(
-    (c) => c.priority === "High",
-  ).length;
+  const highPriorityCount = countryData.filter((c) => c.priority === "High").length;
   const uniqueRegionsCount = new Set(countryData.map((c) => c.region)).size;
 
   const elTotal = document.getElementById("statTotalCountries");

@@ -202,32 +202,25 @@
 }
 
 /* Card Floating Icons & Badge Accents */
-.card-pastel-blue .metric-pastel-icon-floating,
-.card-pastel-blue .metric-icon-badge {
+.card-pastel-blue .metric-pastel-icon-floating {
   color: var(--badge-blue-text);
 }
-.card-pastel-purple .metric-pastel-icon-floating,
-.card-pastel-purple .metric-icon-badge {
+.card-pastel-purple .metric-pastel-icon-floating {
   color: var(--badge-purple-text);
 }
-.card-pastel-mint .metric-pastel-icon-floating,
-.card-pastel-mint .metric-icon-badge {
+.card-pastel-mint .metric-pastel-icon-floating {
   color: var(--badge-green-text);
 }
-.card-pastel-amber .metric-pastel-icon-floating,
-.card-pastel-amber .metric-icon-badge {
+.card-pastel-amber .metric-pastel-icon-floating {
   color: var(--badge-amber-text);
 }
-.card-pastel-rose .metric-pastel-icon-floating,
-.card-pastel-rose .metric-icon-badge {
+.card-pastel-rose .metric-pastel-icon-floating {
   color: var(--badge-rose-text);
 }
-.card-pastel-orange .metric-pastel-icon-floating,
-.card-pastel-orange .metric-icon-badge {
+.card-pastel-orange .metric-pastel-icon-floating {
   color: var(--badge-orange-text);
 }
-.card-pastel-teal .metric-pastel-icon-floating,
-.card-pastel-teal .metric-icon-badge {
+.card-pastel-teal .metric-pastel-icon-floating {
   color: var(--badge-teal-text);
 }
 
@@ -469,4 +462,3 @@
     0 20px 40px -10px rgba(0, 0, 0, 0.65),
     0 0 1px rgba(255, 255, 255, 0.08);
 }
-

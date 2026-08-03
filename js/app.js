@@ -45,13 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* 1. Sidebar Active Link matching current path */
 function initSidebarActiveState() {
-  const currentPath =
-    window.location.pathname.split("/").pop() || "dashboard.html";
+  const currentPath = window.location.pathname.split("/").pop() || "dashboard.html";
 
   // Handle standard nav links (exclude collapse-toggle)
-  const navLinks = document.querySelectorAll(
-    ".sidebar-nav .nav-link:not(.collapse-toggle)",
-  );
+  const navLinks = document.querySelectorAll(".sidebar-nav .nav-link:not(.collapse-toggle)");
   navLinks.forEach((link) => {
     const href = link.getAttribute("href");
     if (
@@ -125,8 +122,7 @@ function initMobileSidebarToggle() {
   };
 
   // Apply saved collapsed preference on desktop
-  const isCollapsed =
-    localStorage.getItem("nexus_sidebar_collapsed") === "true";
+  const isCollapsed = localStorage.getItem("nexus_sidebar_collapsed") === "true";
   if (isCollapsed && appWrapper && window.innerWidth >= 992) {
     appWrapper.classList.add("sidebar-collapsed");
   }
@@ -144,8 +140,7 @@ function initMobileSidebarToggle() {
       } else {
         if (appWrapper) {
           appWrapper.classList.toggle("sidebar-collapsed");
-          const nowCollapsed =
-            appWrapper.classList.contains("sidebar-collapsed");
+          const nowCollapsed = appWrapper.classList.contains("sidebar-collapsed");
           localStorage.setItem("nexus_sidebar_collapsed", nowCollapsed);
         }
       }
@@ -186,8 +181,7 @@ function initThemeToggle() {
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener("click", () => {
-      const currentTheme =
-        document.documentElement.getAttribute("data-theme") || "light";
+      const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
       const newTheme = currentTheme === "dark" ? "light" : "dark";
 
       document.documentElement.setAttribute("data-theme", newTheme);
@@ -256,7 +250,6 @@ function initTopbarInteractiveControls() {
   if (searchInput) {
     searchInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && searchInput.value.trim() !== "") {
-        console.log("Global search query:", searchInput.value.trim());
       }
     });
   }
@@ -339,8 +332,7 @@ function initCountryPageModal() {
 
   const countryModal =
     typeof bootstrap !== "undefined"
-      ? bootstrap.Modal.getInstance(countryModalEl) ||
-        new bootstrap.Modal(countryModalEl)
+      ? bootstrap.Modal.getInstance(countryModalEl) || new bootstrap.Modal(countryModalEl)
       : null;
 
   const modalTitle = document.getElementById("countryModalTitle");
@@ -407,9 +399,7 @@ function initCountryPageModal() {
       e.preventDefault();
       if (countryModal) countryModal.hide();
 
-      const isEdit =
-        modalTitle &&
-        modalTitle.innerText.toLowerCase().includes("update");
+      const isEdit = modalTitle && modalTitle.innerText.toLowerCase().includes("update");
 
       showToast({
         title: isEdit ? "Changes Saved" : "Country Created",
@@ -426,5 +416,3 @@ function initCountryPageModal() {
 // Expose globally
 window.showToast = showToast;
 window.initCountryPageModal = initCountryPageModal;
-
-
