@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Manage employees with department, contract type, and work status filters. Switch between card and list views."
+    />
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
-    <title>Employees - Nexus Enterprise ERP & HRM</title>
+    <title>Employees - Nexus Enterprise ERP &amp; HRM</title>
 
     <!-- Bootstrap 5 CSS -->
     <link
@@ -24,6 +28,7 @@
       href="https://cdn.jsdelivr.net/npm/apexcharts@3.45.1/dist/apexcharts.css"
     />
     <script type="module" src="https://esm.run/apex-grid@3/define"></script>
+
   </head>
   <body>
     <div class="app-wrapper">
@@ -33,7 +38,7 @@
           <img src="../assets/logo.png" alt="Nexus Logo" class="brand-logo-img" />
           <div>
             <h1 class="brand-title">Nexus</h1>
-            <div class="brand-subtitle">Human Resource & Sales</div>
+            <div class="brand-subtitle">Human Resource &amp; Sales</div>
           </div>
         </div>
 
@@ -61,14 +66,6 @@
           <a href="leave-management.html" class="nav-link">
             <i class="fa-solid fa-calendar-minus"></i>
             <span>Leave Management</span>
-          </a>
-          <a href="performance.html" class="nav-link">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Performance</span>
-          </a>
-          <a href="reports.html" class="nav-link">
-            <i class="fa-solid fa-file-invoice-dollar"></i>
-            <span>Reports</span>
           </a>
           <div class="nav-item-collapsible">
             <a
@@ -108,13 +105,22 @@
         </nav>
 
         <div class="sidebar-footer-graphic">
-          <div class="security-badge-box">
-            <i class="fa-solid fa-shield-halved"></i>
-            <div>
-              <p>
-                <strong>Your data is secure</strong> We keep your enterprise data safe and
-                compliant.
-              </p>
+          <div class="sidebar-system-status-card">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div class="status-indicator-pill">
+                <span class="live-pulse-dot"></span>
+                <span class="status-text">Operational</span>
+              </div>
+              <span class="version-badge">v2.4.0</span>
+            </div>
+            <div class="status-brand-title">
+              <i class="fa-solid fa-cube brand-icon"></i>
+              <span>NexusOST Enterprise</span>
+            </div>
+            <div class="status-footer-sub">
+              <span>&copy; 2026 Suite</span>
+              <span class="status-dot-sep">&bull;</span>
+              <span class="uptime-tag"><i class="fa-solid fa-bolt me-1"></i>99.9% Uptime</span>
             </div>
           </div>
         </div>
@@ -133,7 +139,7 @@
               <input
                 type="text"
                 id="topbarSearchInput"
-                placeholder="Search employees, sales deals, reports..."
+                placeholder="Search employees, departments..."
               />
             </div>
           </div>
@@ -143,11 +149,9 @@
               <button class="btn-icon-action" id="langTranslateBtn" title="Language / Ngôn ngữ">
                 <i class="fa-solid fa-language"></i>
               </button>
-
               <button class="btn-icon-action" id="themeToggleBtn" title="Switch to Dark Mode">
                 <i class="fa-regular fa-moon"></i>
               </button>
-
               <button class="btn-icon-action" id="notifBellBtn" title="Notifications">
                 <i class="fa-regular fa-bell"></i>
                 <span class="badge-dot">3</span>
@@ -215,48 +219,2142 @@
         </header>
 
         <!-- Page Content Container -->
-        <div
-          class="page-container d-flex flex-column align-items-center justify-content-center"
-          style="min-height: calc(100vh - 140px)"
-        >
-          <div class="erp-card text-center p-5 shadow-sm" style="max-width: 580px; width: 100%">
-            <div class="mb-4">
-              <div
-                class="mx-auto d-flex align-items-center justify-content-center rounded-circle"
-                style="
-                  width: 84px;
-                  height: 84px;
-                  background: #eef4ff;
-                  color: #2563eb;
-                  font-size: 2.5rem;
-                  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
-                "
-              >
-                <i class="fa-solid fa-user-gear"></i>
+        <div class="page-container p-4">
+          <!-- ── PAGE HEADER ── -->
+          <div class="mb-4">
+            <h2 class="h3 fw-bold text-dark mb-1">Employee Management</h2>
+            <p class="text-muted mb-0">
+              Manage all employee records — department, contract type, work status, and more.
+            </p>
+          </div>
+
+          <!-- Quick Stat Summary Cards Row (5 Cards Layout - Sleek 2-Line Format) -->
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 mb-4">
+            <!-- Card 1: Tổng Nhân Sự -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-orange py-3 px-3">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">TỔNG NHÂN SỰ</span>
+                    <span class="metric-tag-pill ms-auto">100% Headcount</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                    <h3 class="metric-pastel-val mb-0" id="statTotalEmp">248</h3>
+                    <span class="metric-pastel-sub mb-0">
+                      <i class="fa-solid fa-layer-group me-1 text-primary"></i>Toàn bộ nhân viên
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-users"></i>
+                </div>
               </div>
             </div>
-            <span
-              class="badge bg-primary-subtle text-primary font-semibold px-3 py-2 rounded-pill mb-3"
-              style="font-size: 0.8rem; letter-spacing: 0.05em"
-              >SYSTEM NOTICE</span
-            >
-            <h2 class="fw-bold text-dark mb-2" style="font-size: 1.75rem">
-              Employees - Feature Under Development
-            </h2>
-            <p class="text-muted mb-4" style="font-size: 0.95rem; line-height: 1.6">
-              Chức năng Quản lý Nhân sự đang trong quá trình phát triển và hoàn thiện. Vui lòng quay
-              lại sau!
-            </p>
-            <div class="d-flex justify-content-center">
-              <a
-                href="dashboard.html"
-                class="btn btn-primary px-4 py-2 font-semibold rounded-pill d-inline-flex align-items-center gap-2"
-              >
-                <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
-              </a>
+
+            <!-- Card 2: Đang Làm Việc -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-mint py-3 px-3">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">ĐANG LÀM VIỆC</span>
+                    <span class="metric-tag-pill ms-auto">81.0% Active</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                    <h3 class="metric-pastel-val mb-0" id="statActiveEmp">201</h3>
+                    <span class="metric-pastel-sub mb-0">
+                      <i class="fa-solid fa-shield-halved me-1 text-success"></i>Đang hoạt động
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Thử Việc -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-purple py-3 px-3">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">THỬ VIỆC</span>
+                    <span class="metric-tag-pill ms-auto">7.3% Rate</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                    <h3 class="metric-pastel-val mb-0" id="statProbationEmp">18</h3>
+                    <span class="metric-pastel-sub mb-0">
+                      <i class="fa-solid fa-chart-line me-1 text-purple"></i>Đang thử việc
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-hourglass-half"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Đã Nghỉ Việc -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-rose py-3 px-3">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">ĐÃ NGHỈ VIỆC</span>
+                    <span class="metric-tag-pill ms-auto">4.8% Turnover</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                    <h3 class="metric-pastel-val mb-0" id="statResignedEmp">12</h3>
+                    <span class="metric-pastel-sub mb-0">
+                      <i class="fa-solid fa-fire me-1 text-danger"></i>Tỷ lệ nghỉ việc
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-circle-xmark"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Làm Việc Từ Xa -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-teal py-3 px-3">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">LÀM VIỆC TỪ XA</span>
+                    <span class="metric-tag-pill ms-auto">6.9% Remote</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                    <h3 class="metric-pastel-val mb-0" id="statRemoteEmp">17</h3>
+                    <span class="metric-pastel-sub mb-0">
+                      <i class="fa-solid fa-compass me-1 text-warning"></i>Làm việc từ xa
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-laptop-house"></i>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- ApexGrid Card Wrapper -->
+          <div class="erp-card p-4 shadow-sm rounded-4">
+            <!-- Linear-Tier Unified Command Dock: Search, Smart Filter Toggle & Action Buttons -->
+            <div
+              class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3 pb-3 filter-toolbar-border"
+            >
+              <!-- Left Controls: Global Search, Filter Matrix Toggle -->
+              <div class="d-flex flex-wrap align-items-center gap-2">
+                <!-- Search Input Box -->
+                <div class="position-relative" style="min-width: 240px">
+                  <i
+                    class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 filter-search-icon"
+                  ></i>
+                  <input
+                    type="text"
+                    id="empSearchInput"
+                    class="form-control form-control-sm ps-5 pe-3 rounded-3 filter-input"
+                    placeholder="Search name, ID, email..."
+                  />
+                </div>
+
+                <!-- Filter Matrix Toggle Button -->
+                <button
+                  class="btn btn-sm btn-pastel-slate d-inline-flex align-items-center gap-2 px-3 rounded-3"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#empFilterCollapse"
+                  aria-expanded="false"
+                  aria-controls="empFilterCollapse"
+                  id="empFilterToggleBtn"
+                >
+                  <i class="fa-solid fa-sliders text-primary"></i> Filter
+                  <span class="badge-soft badge-blue ms-1" id="empActiveFilterCount">3</span>
+                </button>
+              </div>
+
+              <!-- Right: Quick Action Buttons (CRUD & Data IO) -->
+              <div class="d-flex align-items-center gap-2 flex-wrap ms-auto">
+                <!-- View Toggle -->
+                <div class="view-toggle-group" role="group" aria-label="View mode">
+                  <button class="view-toggle-btn active" id="cardViewBtn" title="Card View">
+                    <i class="fa-solid fa-grip"></i>
+                    <span class="d-none d-md-inline">Cards</span>
+                  </button>
+                  <button class="view-toggle-btn" id="listViewBtn" title="List View">
+                    <i class="fa-solid fa-list"></i>
+                    <span class="d-none d-md-inline">List</span>
+                  </button>
+                </div>
+
+                <!-- Group Divider -->
+                <div class="action-bar-divider mx-1"></div>
+
+                <!-- Record CRUD Group -->
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    class="btn btn-sm btn-pastel-green d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="addEmpBtn"
+                  >
+                    <i class="fa-solid fa-plus"></i> Create
+                  </button>
+                  <button
+                    class="btn btn-sm btn-pastel-orange d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="editEmpBtn"
+                  >
+                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                  </button>
+                  <button
+                    class="btn btn-sm btn-pastel-red d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="deleteEmpBtn"
+                  >
+                    <i class="fa-solid fa-trash-can"></i> Delete
+                  </button>
+                </div>
+
+                <!-- Group Divider -->
+                <div class="action-bar-divider mx-1"></div>
+
+                <!-- Data IO Group -->
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="importEmpBtn"
+                  >
+                    <i class="fa-solid fa-file-import"></i> Import
+                  </button>
+                  <button
+                    class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="exportEmpBtn"
+                  >
+                    <i class="fa-solid fa-file-export"></i> Export
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Active Filter Chips Bar (Linear Tag Chips) -->
+            <div class="active-filter-chips-bar mb-3">
+              <span class="text-muted small fw-semibold me-1">Active Filters:</span>
+
+              <span class="filter-chip">
+                <i class="fa-solid fa-building chip-icon"></i> Department:
+                <strong>Engineering</strong>
+                <i class="fa-solid fa-xmark chip-remove-btn"></i>
+              </span>
+
+              <span class="filter-chip">
+                <i class="fa-solid fa-circle-check chip-icon"></i> Status:
+                <strong>Active</strong>
+                <i class="fa-solid fa-xmark chip-remove-btn"></i>
+              </span>
+
+              <span class="filter-chip">
+                <i class="fa-solid fa-file-contract chip-icon"></i> Contract:
+                <strong>Full-time</strong>
+                <i class="fa-solid fa-xmark chip-remove-btn"></i>
+              </span>
+
+              <button class="btn btn-link text-muted p-0 border-0 btn-clear-all-chips ms-auto">
+                <i class="fa-solid fa-trash-can me-1"></i> Clear All
+              </button>
+            </div>
+
+            <!-- Expandable Smart Filter Matrix (Scalable Dropdowns Panel) -->
+            <div class="collapse" id="empFilterCollapse">
+              <div class="smart-filter-matrix mb-3">
+                <div
+                  class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom"
+                >
+                  <span class="fw-bold small text-muted text-uppercase tracking-wider">
+                    <i class="fa-solid fa-sliders text-primary me-2"></i>Filter Criteria Matrix
+                  </span>
+                  <span class="text-muted small">Select criteria to refine results</span>
+                </div>
+                <div class="row g-3">
+                  <!-- Department Filter -->
+                  <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted">Department</label>
+                    <select
+                      class="form-select form-select-sm rounded-3 filter-select w-100"
+                      id="filterDept"
+                    >
+                      <option selected value="">All Departments</option>
+                      <option value="Engineering">Engineering</option>
+                      <option value="Marketing">Marketing</option>
+                      <option value="Human Resources">Human Resources</option>
+                      <option value="Finance">Finance</option>
+                      <option value="Operations">Operations</option>
+                      <option value="Sales">Sales</option>
+                      <option value="Design">Design</option>
+                      <option value="Management">Management</option>
+                      <option value="Product">Product</option>
+                    </select>
+                  </div>
+
+                  <!-- Contract Type Filter -->
+                  <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted">Contract Type</label>
+                    <select
+                      class="form-select form-select-sm rounded-3 filter-select w-100"
+                      id="filterContract"
+                    >
+                      <option selected value="">All Contracts</option>
+                      <option value="Full-time">Full-time</option>
+                      <option value="Part-time">Part-time</option>
+                      <option value="Contract">Contract</option>
+                      <option value="Internship">Internship</option>
+                      <option value="Freelance">Freelance</option>
+                    </select>
+                  </div>
+
+                  <!-- Work Status Filter -->
+                  <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted">Work Status</label>
+                    <select
+                      class="form-select form-select-sm rounded-3 filter-select w-100"
+                      id="filterStatus"
+                    >
+                      <option selected value="">All Statuses</option>
+                      <option value="Active">Active</option>
+                      <option value="Probation">Probation</option>
+                      <option value="Maternity Leave">Maternity Leave</option>
+                      <option value="Remote">Remote</option>
+                      <option value="Resigned">Resigned</option>
+                    </select>
+                  </div>
+
+                  <!-- Work Location Filter -->
+                  <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted">Work Location</label>
+                    <select
+                      class="form-select form-select-sm rounded-3 filter-select w-100"
+                      id="filterLocation"
+                    >
+                      <option selected value="">All Locations</option>
+                      <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+                      <option value="Ha Noi">Ha Noi</option>
+                      <option value="Da Nang">Da Nang</option>
+                      <option value="Remote">Remote</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div
+                  class="d-flex align-items-center justify-content-end gap-2 mt-3 pt-2 border-top"
+                >
+                  <button
+                    class="btn btn-sm btn-pastel-cyan px-4 rounded-3"
+                    type="button"
+                    id="applyEmpFilterBtn"
+                  >
+                    <i class="fa-solid fa-check me-1"></i> Apply
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ══════════════════════════
+                 CARD VIEW
+            ══════════════════════════ -->
+            <div id="empCardView" class="emp-card-grid">
+              <!-- Card 1 -->
+              <div class="emp-card" data-emp-id="EMP001">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Linh Tran" />
+                  <span class="emp-badge status-active"
+                    ><i class="fa-solid fa-circle"></i> Active</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=47" alt="Linh Tran" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Linh Tran</h3>
+                    <span class="emp-card-id-chip">#EMP001</span>
+                  </div>
+                  <div class="emp-card-role">Senior UX Designer</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-design"
+                    ><i class="fa-solid fa-paintbrush"></i> Design</span
+                  >
+                  <span class="emp-badge contract-fulltime"
+                    ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Lan Hoang</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> linh.tran@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ho Chi Minh City
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Jan 2022
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="emp-card" data-emp-id="EMP002">
+                <div class="emp-card-top-bar">
+                  <input
+                    type="checkbox"
+                    class="emp-card-checkbox"
+                    aria-label="Select Minh Nguyen"
+                  />
+                  <span class="emp-badge status-remote"
+                    ><i class="fa-solid fa-laptop-house"></i> Remote</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=12" alt="Minh Nguyen" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Minh Nguyen</h3>
+                    <span class="emp-card-id-chip">#EMP002</span>
+                  </div>
+                  <div class="emp-card-role">Backend Engineer</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-engineering"
+                    ><i class="fa-solid fa-code"></i> Engineering</span
+                  >
+                  <span class="emp-badge contract-fulltime"
+                    ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Phuong Vo</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> minh.nguyen@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ha Noi (Remote)
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Mar 2021
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="emp-card" data-emp-id="EMP003">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Thu Pham" />
+                  <span class="emp-badge status-maternity"
+                    ><i class="fa-solid fa-baby"></i> Mat. Leave</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <div
+                      class="emp-avatar-initials"
+                      style="background: linear-gradient(135deg, #8b5cf6, #6366f1)"
+                    >
+                      TP
+                    </div>
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Thu Pham</h3>
+                    <span class="emp-card-id-chip">#EMP003</span>
+                  </div>
+                  <div class="emp-card-role">HR Manager</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-hr"><i class="fa-solid fa-people-roof"></i> HR</span>
+                  <span class="emp-badge contract-fulltime"
+                    ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Lan Hoang</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> thu.pham@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ho Chi Minh City
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Jul 2020
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="emp-card" data-emp-id="EMP004">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Duc Le" />
+                  <span class="emp-badge status-probation"
+                    ><i class="fa-solid fa-hourglass-half"></i> Probation</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=57" alt="Duc Le" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Duc Le</h3>
+                    <span class="emp-card-id-chip">#EMP004</span>
+                  </div>
+                  <div class="emp-card-role">Sales Executive</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-sales"
+                    ><i class="fa-solid fa-handshake"></i> Sales</span
+                  >
+                  <span class="emp-badge contract-contract"
+                    ><i class="fa-solid fa-file-signature"></i> Contract</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Mai Nguyen</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> duc.le@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Da Nang
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Oct 2024
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 5 -->
+              <div class="emp-card" data-emp-id="EMP005">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Hoa Vo" />
+                  <span class="emp-badge status-active"
+                    ><i class="fa-solid fa-circle"></i> Active</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=32" alt="Hoa Vo" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Hoa Vo</h3>
+                    <span class="emp-card-id-chip">#EMP005</span>
+                  </div>
+                  <div class="emp-card-role">Marketing Lead</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-marketing"
+                    ><i class="fa-solid fa-bullhorn"></i> Marketing</span
+                  >
+                  <span class="emp-badge contract-fulltime"
+                    ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Lan Hoang</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> hoa.vo@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ho Chi Minh City
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Apr 2019
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 6 -->
+              <div class="emp-card" data-emp-id="EMP006">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Khoa Dinh" />
+                  <span class="emp-badge status-active"
+                    ><i class="fa-solid fa-circle"></i> Active</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <div
+                      class="emp-avatar-initials"
+                      style="background: linear-gradient(135deg, #10b981, #059669)"
+                    >
+                      KD
+                    </div>
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Khoa Dinh</h3>
+                    <span class="emp-card-id-chip">#EMP006</span>
+                  </div>
+                  <div class="emp-card-role">Finance Analyst</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-finance"
+                    ><i class="fa-solid fa-coins"></i> Finance</span
+                  >
+                  <span class="emp-badge contract-fulltime"
+                    ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Son Tran</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> khoa.dinh@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ha Noi
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Jun 2023
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 7 -->
+              <div class="emp-card" data-emp-id="EMP007">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select An Nguyen" />
+                  <span class="emp-badge status-active"
+                    ><i class="fa-solid fa-circle"></i> Active</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=68" alt="An Nguyen" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">An Nguyen</h3>
+                    <span class="emp-card-id-chip">#EMP007</span>
+                  </div>
+                  <div class="emp-card-role">Ops Coordinator</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-operations"
+                    ><i class="fa-solid fa-gears"></i> Operations</span
+                  >
+                  <span class="emp-badge contract-parttime"
+                    ><i class="fa-solid fa-clock"></i> Part-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Tuan Bui</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> an.nguyen@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Da Nang
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Feb 2023
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 8 -->
+              <div class="emp-card" data-emp-id="EMP008">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Bao Tran" />
+                  <span class="emp-badge status-probation"
+                    ><i class="fa-solid fa-hourglass-half"></i> Probation</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <div
+                      class="emp-avatar-initials"
+                      style="background: linear-gradient(135deg, #f59e0b, #d97706)"
+                    >
+                      BT
+                    </div>
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Bao Tran</h3>
+                    <span class="emp-card-id-chip">#EMP008</span>
+                  </div>
+                  <div class="emp-card-role">Frontend Dev Intern</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-engineering"
+                    ><i class="fa-solid fa-code"></i> Engineering</span
+                  >
+                  <span class="emp-badge contract-internship"
+                    ><i class="fa-solid fa-graduation-cap"></i> Intern</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Minh Nguyen</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> bao.tran@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ho Chi Minh City
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Sep 2024
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 9 -->
+              <div class="emp-card" data-emp-id="EMP009">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Lan Hoang" />
+                  <span class="emp-badge status-active"
+                    ><i class="fa-solid fa-circle"></i> Active</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=25" alt="Lan Hoang" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Lan Hoang</h3>
+                    <span class="emp-card-id-chip">#EMP009</span>
+                  </div>
+                  <div class="emp-card-role">Chief Marketing Officer</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-management"
+                    ><i class="fa-solid fa-crown"></i> Management</span
+                  >
+                  <span class="emp-badge contract-fulltime"
+                    ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">CEO Board</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> lan.hoang@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ho Chi Minh City
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Nov 2018
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 10 -->
+              <div class="emp-card" data-emp-id="EMP010">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Tuan Bui" />
+                  <span class="emp-badge status-active"
+                    ><i class="fa-solid fa-circle"></i> Active</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=71" alt="Tuan Bui" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Tuan Bui</h3>
+                    <span class="emp-card-id-chip">#EMP010</span>
+                  </div>
+                  <div class="emp-card-role">Full-stack Developer</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-engineering"
+                    ><i class="fa-solid fa-code"></i> Engineering</span
+                  >
+                  <span class="emp-badge contract-freelance"
+                    ><i class="fa-solid fa-briefcase"></i> Freelance</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Phuong Vo</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> tuan.bui@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ha Noi (Remote)
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Aug 2022
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 11 -->
+              <div class="emp-card" data-emp-id="EMP011">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Mai Nguyen" />
+                  <span class="emp-badge status-resigned"
+                    ><i class="fa-solid fa-circle-xmark"></i> Resigned</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <div
+                      class="emp-avatar-initials"
+                      style="background: linear-gradient(135deg, #ef4444, #dc2626)"
+                    >
+                      MN
+                    </div>
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Mai Nguyen</h3>
+                    <span class="emp-card-id-chip">#EMP011</span>
+                  </div>
+                  <div class="emp-card-role">Account Manager</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-sales"
+                    ><i class="fa-solid fa-handshake"></i> Sales</span
+                  >
+                  <span class="emp-badge contract-fulltime"
+                    ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Hoa Vo</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> mai.nguyen@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Da Nang
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Left Dec 2024
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 12 -->
+              <div class="emp-card" data-emp-id="EMP012">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Phat Do" />
+                  <span class="emp-badge status-remote"
+                    ><i class="fa-solid fa-laptop-house"></i> Remote</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=53" alt="Phat Do" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Phat Do</h3>
+                    <span class="emp-card-id-chip">#EMP012</span>
+                  </div>
+                  <div class="emp-card-role">DevOps Engineer</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-engineering"
+                    ><i class="fa-solid fa-code"></i> Engineering</span
+                  >
+                  <span class="emp-badge contract-fulltime"
+                    ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Minh Nguyen</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> phat.do@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Remote
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined May 2021
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 13 -->
+              <div class="emp-card" data-emp-id="EMP013">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Hoang Vu" />
+                  <span class="emp-badge status-active"
+                    ><i class="fa-solid fa-circle"></i> Active</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="Hoang Vu" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Hoang Vu</h3>
+                    <span class="emp-card-id-chip">#EMP013</span>
+                  </div>
+                  <div class="emp-card-role">Product Manager</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-management"
+                    ><i class="fa-solid fa-crown"></i> Management</span
+                  >
+                  <span class="emp-badge contract-fulltime"
+                    ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Lan Hoang</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> hoang.vu@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ho Chi Minh City
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Aug 2020
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 14 -->
+              <div class="emp-card" data-emp-id="EMP014">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Nhung Dang" />
+                  <span class="emp-badge status-active"
+                    ><i class="fa-solid fa-circle"></i> Active</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=44" alt="Nhung Dang" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Nhung Dang</h3>
+                    <span class="emp-card-id-chip">#EMP014</span>
+                  </div>
+                  <div class="emp-card-role">QA Automation Lead</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-engineering"
+                    ><i class="fa-solid fa-code"></i> Engineering</span
+                  >
+                  <span class="emp-badge contract-fulltime"
+                    ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Phuong Vo</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> nhung.dang@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ha Noi
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Feb 2021
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 15 -->
+              <div class="emp-card" data-emp-id="EMP015">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Thanh Bui" />
+                  <span class="emp-badge status-remote"
+                    ><i class="fa-solid fa-laptop-house"></i> Remote</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=60" alt="Thanh Bui" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Thanh Bui</h3>
+                    <span class="emp-card-id-chip">#EMP015</span>
+                  </div>
+                  <div class="emp-card-role">Content Strategist</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-marketing"
+                    ><i class="fa-solid fa-bullhorn"></i> Marketing</span
+                  >
+                  <span class="emp-badge contract-contract"
+                    ><i class="fa-solid fa-file-signature"></i> Contract</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Hoa Vo</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> thanh.bui@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Da Nang (Remote)
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Nov 2023
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 16 -->
+              <div class="emp-card" data-emp-id="EMP016">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Vy Ngo" />
+                  <span class="emp-badge status-active"
+                    ><i class="fa-solid fa-circle"></i> Active</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <div
+                      class="emp-avatar-initials"
+                      style="background: linear-gradient(135deg, #ec4899, #be185d)"
+                    >
+                      VN
+                    </div>
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Vy Ngo</h3>
+                    <span class="emp-card-id-chip">#EMP016</span>
+                  </div>
+                  <div class="emp-card-role">Talent Acquisition Lead</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-hr"><i class="fa-solid fa-people-roof"></i> HR</span>
+                  <span class="emp-badge contract-fulltime"
+                    ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Thu Pham</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> vy.ngo@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ho Chi Minh City
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined May 2022
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 17 -->
+              <div class="emp-card" data-emp-id="EMP017">
+                <div class="emp-card-top-bar">
+                  <input
+                    type="checkbox"
+                    class="emp-card-checkbox"
+                    aria-label="Select Long Truong"
+                  />
+                  <span class="emp-badge status-active"
+                    ><i class="fa-solid fa-circle"></i> Active</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=15" alt="Long Truong" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Long Truong</h3>
+                    <span class="emp-card-id-chip">#EMP017</span>
+                  </div>
+                  <div class="emp-card-role">Financial Controller</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-finance"
+                    ><i class="fa-solid fa-coins"></i> Finance</span
+                  >
+                  <span class="emp-badge contract-fulltime"
+                    ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Son Tran</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> long.truong@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ha Noi
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Jan 2019
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 18 -->
+              <div class="emp-card" data-emp-id="EMP018">
+                <div class="emp-card-top-bar">
+                  <input
+                    type="checkbox"
+                    class="emp-card-checkbox"
+                    aria-label="Select Quynh Nguyen"
+                  />
+                  <span class="emp-badge status-probation"
+                    ><i class="fa-solid fa-hourglass-half"></i> Probation</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=49" alt="Quynh Nguyen" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Quynh Nguyen</h3>
+                    <span class="emp-card-id-chip">#EMP018</span>
+                  </div>
+                  <div class="emp-card-role">UI Designer Intern</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-design"
+                    ><i class="fa-solid fa-paintbrush"></i> Design</span
+                  >
+                  <span class="emp-badge contract-internship"
+                    ><i class="fa-solid fa-graduation-cap"></i> Intern</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Linh Tran</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> quynh.nguyen@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ho Chi Minh City
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Jan 2025
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 19 -->
+              <div class="emp-card" data-emp-id="EMP019">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Kien Pham" />
+                  <span class="emp-badge status-active"
+                    ><i class="fa-solid fa-circle"></i> Active</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <div
+                      class="emp-avatar-initials"
+                      style="background: linear-gradient(135deg, #0284c7, #0369a1)"
+                    >
+                      KP
+                    </div>
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Kien Pham</h3>
+                    <span class="emp-card-id-chip">#EMP019</span>
+                  </div>
+                  <div class="emp-card-role">System Admin</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-operations"
+                    ><i class="fa-solid fa-gears"></i> Operations</span
+                  >
+                  <span class="emp-badge contract-parttime"
+                    ><i class="fa-solid fa-clock"></i> Part-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">Tuan Bui</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> kien.pham@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Da Nang
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Oct 2023
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 20 -->
+              <div class="emp-card" data-emp-id="EMP020">
+                <div class="emp-card-top-bar">
+                  <input type="checkbox" class="emp-card-checkbox" aria-label="Select Trinh Do" />
+                  <span class="emp-badge status-active"
+                    ><i class="fa-solid fa-circle"></i> Active</span
+                  >
+                </div>
+                <div class="emp-card-hero">
+                  <div class="emp-card-avatar-ring">
+                    <img src="https://i.pravatar.cc/150?img=20" alt="Trinh Do" />
+                  </div>
+                  <div class="emp-card-name-row">
+                    <h3 class="emp-card-name">Trinh Do</h3>
+                    <span class="emp-card-id-chip">#EMP020</span>
+                  </div>
+                  <div class="emp-card-role">Sales Director</div>
+                </div>
+                <div class="emp-card-badges">
+                  <span class="emp-badge dept-sales"
+                    ><i class="fa-solid fa-handshake"></i> Sales</span
+                  >
+                  <span class="emp-badge contract-fulltime"
+                    ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                  >
+                </div>
+                <div class="emp-card-contact">
+                  <div class="emp-card-contact-row emp-manager-row">
+                    <i class="fa-solid fa-user-tie"></i> Manager:
+                    <strong class="emp-manager-name">CEO Board</strong>
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-envelope"></i> trinh.do@nexusost.com
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-solid fa-location-dot"></i> Ho Chi Minh City
+                  </div>
+                  <div class="emp-card-contact-row">
+                    <i class="fa-regular fa-calendar"></i> Joined Mar 2017
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /emp-card-grid -->
+
+            <!-- ══════════════════════════
+                 LIST VIEW (hidden by default)
+            ══════════════════════════ -->
+            <div id="empListView" class="d-none">
+              <div class="table-responsive rounded-3">
+                <table class="emp-list-table" id="empListTable">
+                  <thead>
+                    <tr>
+                      <th style="width: 36px">
+                        <input type="checkbox" id="selectAllList" aria-label="Select all" />
+                      </th>
+                      <th>Employee</th>
+                      <th>Department</th>
+                      <th>Position</th>
+                      <th>Contract</th>
+                      <th>Status</th>
+                      <th>Location</th>
+                      <th>Joined</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Linh Tran" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=47"
+                            class="emp-list-avatar"
+                            alt="Linh Tran"
+                          />
+                          <div>
+                            <div class="emp-list-name">Linh Tran</div>
+                            <div class="emp-list-id">#EMP001</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-design"
+                          ><i class="fa-solid fa-paintbrush"></i> Design</span
+                        >
+                      </td>
+                      <td>Senior UX Designer</td>
+                      <td>
+                        <span class="emp-badge contract-fulltime"
+                          ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-active"
+                          ><i class="fa-solid fa-circle"></i> Active</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>HCM City</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Jan 2022</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Minh Nguyen" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=12"
+                            class="emp-list-avatar"
+                            alt="Minh Nguyen"
+                          />
+                          <div>
+                            <div class="emp-list-name">Minh Nguyen</div>
+                            <div class="emp-list-id">#EMP002</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-engineering"
+                          ><i class="fa-solid fa-code"></i> Engineering</span
+                        >
+                      </td>
+                      <td>Backend Engineer</td>
+                      <td>
+                        <span class="emp-badge contract-fulltime"
+                          ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-remote"
+                          ><i class="fa-solid fa-laptop-house"></i> Remote</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>Ha Noi</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Mar 2021</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Thu Pham" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <div
+                            class="emp-list-avatar-initials"
+                            style="background: linear-gradient(135deg, #8b5cf6, #6366f1)"
+                          >
+                            TP
+                          </div>
+                          <div>
+                            <div class="emp-list-name">Thu Pham</div>
+                            <div class="emp-list-id">#EMP003</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-hr"
+                          ><i class="fa-solid fa-people-roof"></i> HR</span
+                        >
+                      </td>
+                      <td>HR Manager</td>
+                      <td>
+                        <span class="emp-badge contract-fulltime"
+                          ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-maternity"
+                          ><i class="fa-solid fa-baby"></i> Mat. Leave</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>HCM City</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Jul 2020</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Duc Le" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=57"
+                            class="emp-list-avatar"
+                            alt="Duc Le"
+                          />
+                          <div>
+                            <div class="emp-list-name">Duc Le</div>
+                            <div class="emp-list-id">#EMP004</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-sales"
+                          ><i class="fa-solid fa-handshake"></i> Sales</span
+                        >
+                      </td>
+                      <td>Sales Executive</td>
+                      <td>
+                        <span class="emp-badge contract-contract"
+                          ><i class="fa-solid fa-file-signature"></i> Contract</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-probation"
+                          ><i class="fa-solid fa-hourglass-half"></i> Probation</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>Da Nang</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Oct 2024</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Hoa Vo" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=32"
+                            class="emp-list-avatar"
+                            alt="Hoa Vo"
+                          />
+                          <div>
+                            <div class="emp-list-name">Hoa Vo</div>
+                            <div class="emp-list-id">#EMP005</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-marketing"
+                          ><i class="fa-solid fa-bullhorn"></i> Marketing</span
+                        >
+                      </td>
+                      <td>Marketing Lead</td>
+                      <td>
+                        <span class="emp-badge contract-fulltime"
+                          ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-active"
+                          ><i class="fa-solid fa-circle"></i> Active</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>HCM City</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Apr 2019</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Khoa Dinh" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <div
+                            class="emp-list-avatar-initials"
+                            style="background: linear-gradient(135deg, #10b981, #059669)"
+                          >
+                            KD
+                          </div>
+                          <div>
+                            <div class="emp-list-name">Khoa Dinh</div>
+                            <div class="emp-list-id">#EMP006</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-finance"
+                          ><i class="fa-solid fa-coins"></i> Finance</span
+                        >
+                      </td>
+                      <td>Finance Analyst</td>
+                      <td>
+                        <span class="emp-badge contract-fulltime"
+                          ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-active"
+                          ><i class="fa-solid fa-circle"></i> Active</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>Ha Noi</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Jun 2023</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select An Nguyen" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=68"
+                            class="emp-list-avatar"
+                            alt="An Nguyen"
+                          />
+                          <div>
+                            <div class="emp-list-name">An Nguyen</div>
+                            <div class="emp-list-id">#EMP007</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-operations"
+                          ><i class="fa-solid fa-gears"></i> Operations</span
+                        >
+                      </td>
+                      <td>Ops Coordinator</td>
+                      <td>
+                        <span class="emp-badge contract-parttime"
+                          ><i class="fa-solid fa-clock"></i> Part-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-active"
+                          ><i class="fa-solid fa-circle"></i> Active</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>Da Nang</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Feb 2023</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Bao Tran" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <div
+                            class="emp-list-avatar-initials"
+                            style="background: linear-gradient(135deg, #f59e0b, #d97706)"
+                          >
+                            BT
+                          </div>
+                          <div>
+                            <div class="emp-list-name">Bao Tran</div>
+                            <div class="emp-list-id">#EMP008</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-engineering"
+                          ><i class="fa-solid fa-code"></i> Engineering</span
+                        >
+                      </td>
+                      <td>Frontend Dev Intern</td>
+                      <td>
+                        <span class="emp-badge contract-internship"
+                          ><i class="fa-solid fa-graduation-cap"></i> Internship</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-probation"
+                          ><i class="fa-solid fa-hourglass-half"></i> Probation</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>HCM City</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Sep 2024</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Lan Hoang" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=25"
+                            class="emp-list-avatar"
+                            alt="Lan Hoang"
+                          />
+                          <div>
+                            <div class="emp-list-name">Lan Hoang</div>
+                            <div class="emp-list-id">#EMP009</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-management"
+                          ><i class="fa-solid fa-crown"></i> Management</span
+                        >
+                      </td>
+                      <td>Chief Marketing Officer</td>
+                      <td>
+                        <span class="emp-badge contract-fulltime"
+                          ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-active"
+                          ><i class="fa-solid fa-circle"></i> Active</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>HCM City</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Nov 2018</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Tuan Bui" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=71"
+                            class="emp-list-avatar"
+                            alt="Tuan Bui"
+                          />
+                          <div>
+                            <div class="emp-list-name">Tuan Bui</div>
+                            <div class="emp-list-id">#EMP010</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-engineering"
+                          ><i class="fa-solid fa-code"></i> Engineering</span
+                        >
+                      </td>
+                      <td>Full-stack Developer</td>
+                      <td>
+                        <span class="emp-badge contract-freelance"
+                          ><i class="fa-solid fa-briefcase"></i> Freelance</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-active"
+                          ><i class="fa-solid fa-circle"></i> Active</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>Ha Noi</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Aug 2022</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Mai Nguyen" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <div
+                            class="emp-list-avatar-initials"
+                            style="background: linear-gradient(135deg, #ef4444, #dc2626)"
+                          >
+                            MN
+                          </div>
+                          <div>
+                            <div class="emp-list-name">Mai Nguyen</div>
+                            <div class="emp-list-id">#EMP011</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-sales"
+                          ><i class="fa-solid fa-handshake"></i> Sales</span
+                        >
+                      </td>
+                      <td>Account Manager</td>
+                      <td>
+                        <span class="emp-badge contract-fulltime"
+                          ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-resigned"
+                          ><i class="fa-solid fa-circle-xmark"></i> Resigned</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>Da Nang</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Dec 2024</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Phat Do" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=53"
+                            class="emp-list-avatar"
+                            alt="Phat Do"
+                          />
+                          <div>
+                            <div class="emp-list-name">Phat Do</div>
+                            <div class="emp-list-id">#EMP012</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-engineering"
+                          ><i class="fa-solid fa-code"></i> Engineering</span
+                        >
+                      </td>
+                      <td>DevOps Engineer</td>
+                      <td>
+                        <span class="emp-badge contract-fulltime"
+                          ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-remote"
+                          ><i class="fa-solid fa-laptop-house"></i> Remote</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>Remote</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 2021</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Hoang Vu" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=11"
+                            class="emp-list-avatar"
+                            alt="Hoang Vu"
+                          />
+                          <div>
+                            <div class="emp-list-name">Hoang Vu</div>
+                            <div class="emp-list-id">#EMP013</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-management"
+                          ><i class="fa-solid fa-crown"></i> Management</span
+                        >
+                      </td>
+                      <td>Product Manager</td>
+                      <td>
+                        <span class="emp-badge contract-fulltime"
+                          ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-active"
+                          ><i class="fa-solid fa-circle"></i> Active</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>HCM City</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Aug 2020</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Nhung Dang" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=44"
+                            class="emp-list-avatar"
+                            alt="Nhung Dang"
+                          />
+                          <div>
+                            <div class="emp-list-name">Nhung Dang</div>
+                            <div class="emp-list-id">#EMP014</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-engineering"
+                          ><i class="fa-solid fa-code"></i> Engineering</span
+                        >
+                      </td>
+                      <td>QA Automation Lead</td>
+                      <td>
+                        <span class="emp-badge contract-fulltime"
+                          ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-active"
+                          ><i class="fa-solid fa-circle"></i> Active</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>Ha Noi</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Feb 2021</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Thanh Bui" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=60"
+                            class="emp-list-avatar"
+                            alt="Thanh Bui"
+                          />
+                          <div>
+                            <div class="emp-list-name">Thanh Bui</div>
+                            <div class="emp-list-id">#EMP015</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-marketing"
+                          ><i class="fa-solid fa-bullhorn"></i> Marketing</span
+                        >
+                      </td>
+                      <td>Content Strategist</td>
+                      <td>
+                        <span class="emp-badge contract-contract"
+                          ><i class="fa-solid fa-file-signature"></i> Contract</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-remote"
+                          ><i class="fa-solid fa-laptop-house"></i> Remote</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>Da Nang</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Nov 2023</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Vy Ngo" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <div
+                            class="emp-list-avatar-initials"
+                            style="background: linear-gradient(135deg, #ec4899, #be185d)"
+                          >
+                            VN
+                          </div>
+                          <div>
+                            <div class="emp-list-name">Vy Ngo</div>
+                            <div class="emp-list-id">#EMP016</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-hr"
+                          ><i class="fa-solid fa-people-roof"></i> HR</span
+                        >
+                      </td>
+                      <td>Talent Acquisition Lead</td>
+                      <td>
+                        <span class="emp-badge contract-fulltime"
+                          ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-active"
+                          ><i class="fa-solid fa-circle"></i> Active</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>HCM City</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 2022</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Long Truong" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=15"
+                            class="emp-list-avatar"
+                            alt="Long Truong"
+                          />
+                          <div>
+                            <div class="emp-list-name">Long Truong</div>
+                            <div class="emp-list-id">#EMP017</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-finance"
+                          ><i class="fa-solid fa-coins"></i> Finance</span
+                        >
+                      </td>
+                      <td>Financial Controller</td>
+                      <td>
+                        <span class="emp-badge contract-fulltime"
+                          ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-active"
+                          ><i class="fa-solid fa-circle"></i> Active</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>Ha Noi</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Jan 2019</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Quynh Nguyen" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=49"
+                            class="emp-list-avatar"
+                            alt="Quynh Nguyen"
+                          />
+                          <div>
+                            <div class="emp-list-name">Quynh Nguyen</div>
+                            <div class="emp-list-id">#EMP018</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-design"
+                          ><i class="fa-solid fa-paintbrush"></i> Design</span
+                        >
+                      </td>
+                      <td>UI Designer Intern</td>
+                      <td>
+                        <span class="emp-badge contract-internship"
+                          ><i class="fa-solid fa-graduation-cap"></i> Intern</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-probation"
+                          ><i class="fa-solid fa-hourglass-half"></i> Probation</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>HCM City</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Jan 2025</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Kien Pham" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <div
+                            class="emp-list-avatar-initials"
+                            style="background: linear-gradient(135deg, #0284c7, #0369a1)"
+                          >
+                            KP
+                          </div>
+                          <div>
+                            <div class="emp-list-name">Kien Pham</div>
+                            <div class="emp-list-id">#EMP019</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-operations"
+                          ><i class="fa-solid fa-gears"></i> Operations</span
+                        >
+                      </td>
+                      <td>System Admin</td>
+                      <td>
+                        <span class="emp-badge contract-parttime"
+                          ><i class="fa-solid fa-clock"></i> Part-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-active"
+                          ><i class="fa-solid fa-circle"></i> Active</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>Da Nang</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Oct 2023</span></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Trinh Do" /></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://i.pravatar.cc/150?img=20"
+                            class="emp-list-avatar"
+                            alt="Trinh Do"
+                          />
+                          <div>
+                            <div class="emp-list-name">Trinh Do</div>
+                            <div class="emp-list-id">#EMP020</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="emp-badge dept-sales"
+                          ><i class="fa-solid fa-handshake"></i> Sales</span
+                        >
+                      </td>
+                      <td>Sales Director</td>
+                      <td>
+                        <span class="emp-badge contract-fulltime"
+                          ><i class="fa-solid fa-file-contract"></i> Full-time</span
+                        >
+                      </td>
+                      <td>
+                        <span class="emp-badge status-active"
+                          ><i class="fa-solid fa-circle"></i> Active</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-solid fa-location-dot me-1"></i>HCM City</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">Mar 2017</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- /empListView -->
+
+            <!-- Enterprise Table Footer & Pagination -->
+            <div class="emp-table-footer" role="region" aria-label="Table pagination footer">
+              <!-- Left Zone: Counter & Rows per page -->
+              <div class="emp-footer-left">
+                <div class="emp-footer-counter">
+                  <span id="empResultCount"
+                    >Showing <strong>1 – 12</strong> of <strong>248</strong> employees</span
+                  >
+                </div>
+                <div class="emp-footer-divider"></div>
+                <div class="emp-page-size-picker">
+                  <span>Rows per page:</span>
+                  <select id="empPageSizeSelect" class="emp-size-select" aria-label="Rows per page">
+                    <option value="12" selected>12</option>
+                    <option value="24">24</option>
+                    <option value="48">48</option>
+                    <option value="100">100</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Center Zone: Quick Jump Widget -->
+              <div class="emp-footer-center">
+                <span class="emp-jump-label"
+                  ><i class="fa-solid fa-arrow-right-to-line me-1"></i>Go to page:</span
+                >
+                <form id="empPageJumpForm" class="emp-jump-form" onsubmit="return false;">
+                  <input
+                    type="number"
+                    id="empJumpInput"
+                    class="emp-jump-input"
+                    value="1"
+                    min="1"
+                    max="21"
+                    aria-label="Target page number"
+                  />
+                  <span class="emp-jump-total">/ <span id="empTotalPages">21</span></span>
+                  <button type="submit" class="emp-jump-btn" id="empJumpGoBtn" title="Jump to page">
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </button>
+                </form>
+              </div>
+
+              <!-- Right Zone: Page Control Buttons -->
+              <div class="emp-footer-right" role="navigation" aria-label="Pagination Navigation">
+                <button
+                  class="emp-page-btn"
+                  id="empFirstBtn"
+                  disabled
+                  title="First page"
+                  aria-label="First page"
+                >
+                  <i class="fa-solid fa-angles-left"></i>
+                </button>
+                <button
+                  class="emp-page-btn"
+                  id="empPrevBtn"
+                  disabled
+                  title="Previous page"
+                  aria-label="Previous page"
+                >
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+                <div class="d-flex align-items-center gap-1" id="empPageNumbersGroup">
+                  <button class="emp-page-btn active" data-page="1">1</button>
+                  <button class="emp-page-btn" data-page="2">2</button>
+                  <button class="emp-page-btn" data-page="3">3</button>
+                  <span class="emp-page-ellipsis">…</span>
+                  <button class="emp-page-btn" data-page="21">21</button>
+                </div>
+
+                <button
+                  class="emp-page-btn"
+                  id="empNextBtn"
+                  title="Next page"
+                  aria-label="Next page"
+                >
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                <button
+                  class="emp-page-btn"
+                  id="empLastBtn"
+                  title="Last page"
+                  aria-label="Last page"
+                >
+                  <i class="fa-solid fa-angles-right"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /emp-table-footer -->
+          </div>
+          <!-- /erp-card -->
         </div>
+        <!-- /page-container -->
       </main>
     </div>
 
@@ -271,5 +2369,292 @@
     <script src="../js/apex-grid.js"></script>
     <!-- Main Application JS -->
     <script src="../js/app.js"></script>
+
+
+    <!-- ══════════════════════════
+         EMPLOYEE DETAIL MODAL (Nexus Enterprise Specification)
+    ══════════════════════════ -->
+    <div
+      class="modal fade custom-nexus-modal"
+      id="empDetailModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="empModalName"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content border-0 shadow-2xl rounded-5 overflow-hidden">
+          <!-- Ambient Radial Glow Backdrop & Top Accent Line -->
+          <div class="modal-bg-glow"></div>
+          <div class="modal-top-accent-bar"></div>
+
+          <!-- Modal Header (Synchronized with Country / Category Specification) -->
+          <div
+            class="modal-header border-0 px-4 pt-4 pb-3 position-relative d-flex align-items-start justify-content-between z-1"
+          >
+            <div class="d-flex align-items-center gap-3">
+              <div class="emp-modal-avatar-wrap" id="empModalAvatar"></div>
+              <div>
+                <div class="modal-eyebrow-tag mb-1" id="modalHeaderEyebrow">
+                  <span class="eyebrow-dot"></span> HRM EMPLOYEE DIRECTORY
+                </div>
+                <h5
+                  class="modal-title fw-bold text-dark mb-0 d-flex align-items-center gap-2"
+                  id="empModalName"
+                ></h5>
+                <div class="d-flex align-items-center flex-wrap gap-2 mt-1">
+                  <span class="text-muted small fw-medium" id="empModalRole"></span>
+                  <div
+                    class="emp-modal-hero-badges d-inline-flex align-items-center gap-2 ms-1"
+                    id="empModalBadges"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <button
+                type="button"
+                class="custom-btn-close ms-1"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Scrollable body -->
+          <div class="modal-body px-4 py-3 position-relative z-1 emp-modal-body">
+            <!-- Section 1: Contact & Org -->
+            <p class="emp-modal-section-title">Contact &amp; Organization</p>
+            <div class="emp-modal-info-grid" id="empModalInfoGrid">
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon blue"><i class="fa-solid fa-envelope"></i></div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Email Address</div>
+                  <div class="emp-modal-info-value" id="empModalEmail">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon green"><i class="fa-solid fa-phone"></i></div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Phone Number</div>
+                  <div class="emp-modal-info-value" id="empModalPhone">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon purple"><i class="fa-solid fa-user-tie"></i></div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Direct Manager</div>
+                  <div class="emp-modal-info-value" id="empModalManager">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon rose"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Work Location</div>
+                  <div class="emp-modal-info-value" id="empModalLocation">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon teal">
+                  <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Joined Date</div>
+                  <div class="emp-modal-info-value" id="empModalJoined">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon amber">
+                  <i class="fa-solid fa-money-bill-wave"></i>
+                </div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Monthly Salary</div>
+                  <div class="emp-modal-info-value" id="empModalSalary">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon indigo">
+                  <i class="fa-solid fa-file-signature"></i>
+                </div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Contract Term</div>
+                  <div class="emp-modal-info-value" id="empModalContractTerm">—</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Personal Info -->
+            <p class="emp-modal-section-title">Personal Information</p>
+            <div class="emp-modal-info-grid" id="empModalPersonalGrid">
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon rose"><i class="fa-solid fa-cake-candles"></i></div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Date of Birth</div>
+                  <div class="emp-modal-info-value" id="empModalDob">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon purple"><i class="fa-solid fa-venus-mars"></i></div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Gender</div>
+                  <div class="emp-modal-info-value" id="empModalGender">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon teal"><i class="fa-solid fa-flag"></i></div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Nationality</div>
+                  <div class="emp-modal-info-value" id="empModalNationality">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon blue">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Education</div>
+                  <div class="emp-modal-info-value" id="empModalEducation">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon amber">
+                  <i class="fa-solid fa-house-chimney"></i>
+                </div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Permanent Address</div>
+                  <div class="emp-modal-info-value" id="empModalPermAddress">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon rose">
+                  <i class="fa-solid fa-location-crosshairs"></i>
+                </div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Temporary Address</div>
+                  <div class="emp-modal-info-value" id="empModalTempAddress">—</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Legal & Insurance -->
+            <p class="emp-modal-section-title">Legal, Insurance &amp; Tax</p>
+            <div class="emp-modal-info-grid" id="empModalLegalGrid">
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon blue"><i class="fa-solid fa-id-card"></i></div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">National ID (CCCD)</div>
+                  <div class="emp-modal-info-value" id="empModalCccd">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon amber">
+                  <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">ID Issue Date</div>
+                  <div class="emp-modal-info-value" id="empModalCccdDate">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon slate"><i class="fa-solid fa-building"></i></div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">ID Issue Place</div>
+                  <div class="emp-modal-info-value" id="empModalCccdPlace">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon green"><i class="fa-solid fa-receipt"></i></div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Personal Tax ID</div>
+                  <div class="emp-modal-info-value" id="empModalTaxCode">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon purple"><i class="fa-solid fa-users"></i></div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Dependents</div>
+                  <div class="emp-modal-info-value" id="empModalDependents">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon teal"><i class="fa-solid fa-book-medical"></i></div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Social Insurance No.</div>
+                  <div class="emp-modal-info-value" id="empModalBhxh">—</div>
+                </div>
+              </div>
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon rose"><i class="fa-solid fa-shield-heart"></i></div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Health Insurance No.</div>
+                  <div class="emp-modal-info-value" id="empModalBhyt">—</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 4: Banking -->
+            <p class="emp-modal-section-title">Banking Information</p>
+            <div class="emp-modal-info-grid" id="empModalBankGrid">
+              <div class="emp-modal-info-item">
+                <div class="emp-modal-info-icon blue">
+                  <i class="fa-solid fa-building-columns"></i>
+                </div>
+                <div class="emp-modal-info-text">
+                  <div class="emp-modal-info-label">Bank Account</div>
+                  <div class="emp-modal-info-value" id="empModalBankAccount">—</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- At a Glance -->
+            <p class="emp-modal-section-title">At a Glance</p>
+            <div class="emp-modal-stat-row" id="empModalStatRow">
+              <div class="emp-modal-stat-card">
+                <div class="emp-modal-stat-val" id="empModalStatYearsExp">0</div>
+                <div class="emp-modal-stat-lbl">Experience</div>
+              </div>
+              <div class="emp-modal-stat-card">
+                <div class="emp-modal-stat-val" id="empModalStatReportCount">0</div>
+                <div class="emp-modal-stat-lbl">Direct Reports</div>
+              </div>
+              <div class="emp-modal-stat-card">
+                <div class="emp-modal-stat-val" id="empModalStatSkillCount">0</div>
+                <div class="emp-modal-stat-lbl">Total Skills</div>
+              </div>
+            </div>
+
+            <!-- Skills -->
+            <p class="emp-modal-section-title">Skills &amp; Expertise</p>
+            <div class="emp-modal-skills" id="empModalSkills"></div>
+          </div>
+
+          <!-- Modal Footer (Synchronized with Country Specification) -->
+          <div
+            class="modal-footer px-4 py-3 border-top-0 d-flex align-items-center justify-content-between modal-footer-custom z-1"
+          >
+            <div class="d-none d-md-flex align-items-center gap-2 text-muted small">
+              <i class="fa-solid fa-shield-halved text-primary opacity-75"></i>
+              <span>Enterprise Encrypted</span>
+              <span class="modal-footer-divider"></span>
+              <span class="d-inline-flex align-items-center gap-1">
+                <kbd class="nexus-kbd">ESC</kbd> Close
+              </span>
+            </div>
+            <div class="d-flex align-items-center gap-2 ms-auto">
+              <button
+                type="button"
+                class="btn btn-sm btn-pastel-slate px-3 py-2 rounded-3"
+                data-bs-dismiss="modal"
+              >
+                <i class="fa-solid fa-xmark me-1"></i> Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>

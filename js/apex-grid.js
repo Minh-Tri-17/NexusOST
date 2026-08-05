@@ -76,7 +76,7 @@ function applyNexusUnifiedScrollbar(rootNode, isDark) {
   } catch (e) {}
 }
 
-/* 2. Custom Pagination System for ApexGrid Shadow Root Tree (Creative Floating Glass Dock) */
+/* 2. Hide Built-in ApexGrid Shadow Root Paginator */
 function applyNexusCustomPagination(rootNode, isDark) {
   if (!rootNode) return;
 
@@ -90,150 +90,9 @@ function applyNexusCustomPagination(rootNode, isDark) {
   }
   if (tag) {
     tag.textContent = `
-      /* Creative Floating Glass Dock Paginator Rules */
-      igc-paginator, [part="paginator"], .ig-paginator {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        gap: 1rem !important;
-        margin: 6px 12px 6px 12px !important;
-        padding: 0.35rem 0.85rem !important;
-        border-radius: 16px !important;
-        background: ${isDark ? "rgba(15, 23, 42, 0.78)" : "rgba(255, 255, 255, 0.78)"} !important;
-        backdrop-filter: blur(20px) saturate(190%) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
-        border: 1px solid ${isDark ? "rgba(148, 163, 184, 0.15)" : "rgba(124, 58, 237, 0.12)"} !important;
-        box-shadow: ${
-          isDark
-            ? "0 8px 24px -6px rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.08)"
-            : "0 8px 24px -6px rgba(124, 58, 237, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.8)"
-        } !important;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      }
-
-      /* Compact Centered Status Badge Label */
-      [part="paginator-info"], .ig-paginator__label {
-        flex: 0 0 auto !important;
-        width: auto !important;
-        max-width: max-content !important;
-        margin: 0 auto !important;
-        font-size: 0.78rem !important;
-        font-weight: 600 !important;
-        color: ${isDark ? "#c4b5fd" : "#6d28d9"} !important;
-        background: ${isDark ? "rgba(167, 139, 250, 0.1)" : "rgba(124, 58, 237, 0.06)"} !important;
-        border: 1px solid ${isDark ? "rgba(167, 139, 250, 0.2)" : "rgba(124, 58, 237, 0.15)"} !important;
-        padding: 4px 16px !important;
-        border-radius: 9999px !important;
-        letter-spacing: 0.02em !important;
-        font-variant-numeric: tabular-nums !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        text-align: center !important;
-        box-shadow: 0 2px 6px rgba(124, 58, 237, 0.05) !important;
-      }
-
-      /* Floating Dropdown Control Pill */
-      [part="paginator-page-size"], .ig-paginator__select, select {
-        height: 30px !important;
-        padding: 0 0.65rem !important;
-        font-size: 0.8rem !important;
-        font-weight: 600 !important;
-        color: ${isDark ? "#f8fafc" : "#0f172a"} !important;
-        background-color: ${isDark ? "rgba(30, 41, 59, 0.8)" : "#ffffff"} !important;
-        border: 1px solid ${isDark ? "rgba(148, 163, 184, 0.2)" : "rgba(203, 213, 225, 0.9)"} !important;
-        border-radius: 10px !important;
-        cursor: pointer !important;
-        outline: none !important;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
-        transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-      }
-
-      [part="paginator-page-size"]:hover, .ig-paginator__select:hover {
-        border-color: ${isDark ? "#a78bfa" : "#7c3aed"} !important;
-        background-color: ${isDark ? "rgba(51, 65, 85, 0.9)" : "#ffffff"} !important;
-        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.18) !important;
-        transform: translateY(-1px) !important;
-      }
-
-      [part="paginator-page-size"]:focus, .ig-paginator__select:focus {
-        border-color: ${isDark ? "#a78bfa" : "#7c3aed"} !important;
-        box-shadow: 0 0 0 3px ${isDark ? "rgba(167, 139, 250, 0.25)" : "rgba(124, 58, 237, 0.2)"} !important;
-      }
-
-      /* Capsule Control Dock */
-      [part="paginator-controls"], .ig-paginator__pager {
-        display: inline-flex !important;
-        align-items: center !important;
-        gap: 3px !important;
-        padding: 3px !important;
-        background: ${isDark ? "rgba(15, 23, 42, 0.6)" : "rgba(241, 245, 249, 0.9)"} !important;
-        border: 1px solid ${isDark ? "rgba(148, 163, 184, 0.15)" : "rgba(226, 232, 240, 0.9)"} !important;
-        border-radius: 9999px !important;
-        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05) !important;
-      }
-
-      /* Kinetic Haptic Pill Buttons */
-      [part="paginator-button"], .ig-paginator__button, button {
-        min-width: 28px !important;
-        height: 28px !important;
-        padding: 0 6px !important;
-        border-radius: 9999px !important;
-        border: none !important;
-        background: transparent !important;
-        color: ${isDark ? "#94a3b8" : "#475569"} !important;
-        font-size: 0.78rem !important;
-        font-weight: 600 !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        cursor: pointer !important;
-        outline: none !important;
-        user-select: none !important;
-        transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-      }
-
-      [part="paginator-button"]:hover:not(:disabled),
-      .ig-paginator__button:hover:not(:disabled) {
-        background: ${isDark ? "#334155" : "#ffffff"} !important;
-        color: ${isDark ? "#ffffff" : "#0f172a"} !important;
-        box-shadow: ${
-          isDark ? "0 4px 12px rgba(0, 0, 0, 0.3)" : "0 4px 12px rgba(0, 0, 0, 0.08)"
-        } !important;
-        transform: translateY(-1px) scale(1.05) !important;
-      }
-
-      [part="paginator-button"]:active:not(:disabled),
-      .ig-paginator__button:active:not(:disabled) {
-        transform: scale(0.92) translateY(0) !important;
-        box-shadow: none !important;
-      }
-
-      /* Active Glowing Pill State */
-      [part="paginator-button"][active],
-      [part="paginator-button"][selected],
-      [part="paginator-button"][aria-current="page"],
-      .ig-paginator__button--active,
-      .ig-paginator__button[active] {
-        background: linear-gradient(135deg, ${
-          isDark ? "#a78bfa 0%, #818cf8 100%" : "#7c3aed 0%, #4f46e5 100%"
-        }) !important;
-        color: #ffffff !important;
-        font-weight: 700 !important;
-        transform: translateY(-1px) scale(1.06) !important;
-        box-shadow: 0 4px 14px -2px ${
-          isDark ? "rgba(167, 139, 250, 0.5)" : "rgba(124, 58, 237, 0.45)"
-        }, inset 0 1px 1px rgba(255, 255, 255, 0.4) !important;
-      }
-
-      [part="paginator-button"]:disabled,
-      [part="paginator-button"][disabled],
-      .ig-paginator__button:disabled {
-        opacity: 0.3 !important;
-        cursor: not-allowed !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        transform: none !important;
+      /* Hide Built-in ApexGrid Paginator Dock */
+      igc-paginator, [part="paginator"], .ig-paginator, footer, .ag-footer {
+        display: none !important;
       }
     `;
   }
@@ -658,19 +517,15 @@ async function initCountryGrid() {
     },
   ];
 
+  window.allCountryData = countryData;
   grid.style.height = "550px";
   grid.columns = countryColumns;
-  grid.data = countryData;
   grid.selection = {
     enabled: true,
     mode: "multiple",
     showCheckboxColumn: true,
   };
-  grid.pagination = {
-    enabled: true,
-    pageSize: 20,
-    pageSizeOptions: [10, 20, 50, 100, 200, 500, 1000],
-  };
+  grid.pagination = false;
 
   // Pin Code and Country Name columns
   try {

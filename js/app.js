@@ -41,6 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("countryFormModal")) {
     initCountryPageModal();
   }
+
+  // Employee Directory Page Logic
+  if (document.getElementById("empCardView") || document.getElementById("empDetailModal")) {
+    initEmployeesPage();
+  }
 });
 
 /* 1. Sidebar Active Link matching current path */
@@ -103,11 +108,6 @@ function initMobileSidebarToggle() {
     document.body.appendChild(backdrop);
   }
 
-  // Remove any previously injected close button if present
-  const existingCloseBtn = document.querySelector(".sidebar-close-btn");
-  if (existingCloseBtn) {
-    existingCloseBtn.remove();
-  }
 
   // Helper function to close mobile sidebar drawer
   const closeMobileSidebar = () => {
@@ -250,6 +250,14 @@ function initTopbarInteractiveControls() {
   if (searchInput) {
     searchInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && searchInput.value.trim() !== "") {
+        if (typeof showToast === "function") {
+          showToast({
+            title: "Global Search",
+            message: `Searching system records for "${searchInput.value.trim()}"...`,
+            type: "info",
+            duration: 3000,
+          });
+        }
       }
     });
   }
@@ -732,5 +740,1103 @@ window.showToast = showToast;
 window.initCountryPageModal = initCountryPageModal;
 window.initCountryImportModal = initCountryImportModal;
 window.initCountryExportModal = initCountryExportModal;
+
+/* ======================================================
+   10. EMPLOYEE DIRECTORY — DATA & CONTROLLER LOGIC
+   ====================================================== */
+const EMP_DATA = {
+  EMP001: {
+    name: "Linh Tran",
+    role: "Senior UX Designer",
+    id: "#EMP001",
+    avatar: "https://i.pravatar.cc/150?img=47",
+    initials: null,
+    avatarGrad: null,
+    dept: "Design",
+    deptIcon: "fa-paintbrush",
+    deptClass: "dept-design",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Active",
+    statusClass: "status-active",
+    manager: "Lan Hoang",
+    email: "linh.tran@nexusost.com",
+    location: "Ho Chi Minh City",
+    joined: "January 2022",
+    phone: "+84 90 123 4567",
+    dob: "15 May 1992",
+    gender: "Female",
+    nationality: "Vietnamese",
+    education: "Bachelor — HCMC University of Fine Arts",
+    yearsExp: 7,
+    salary: "28,000,000 VND",
+    reportCount: 2,
+    contractTerm: "Indefinite (Full-time)",
+    permAddress: "123 Le Loi, Ben Nghe Ward, District 1, HCMC",
+    tempAddress: "123 Le Loi, Ben Nghe Ward, District 1, HCMC",
+    cccd: "079192001234",
+    cccdDate: "12/04/2021",
+    cccdPlace: "Police Dept for Admin Management — HCMC",
+    taxCode: "8492018239",
+    dependents: 1,
+    bhxh: "VN-7601-0012345",
+    bhyt: "DN4-7601-0012345",
+    bankAccount: "0071001234567 — Vietcombank",
+    skills: ["UI/UX Design", "Figma", "Design System", "User Research", "Prototyping"],
+  },
+  EMP002: {
+    name: "Minh Nguyen",
+    role: "Backend Engineer",
+    id: "#EMP002",
+    avatar: "https://i.pravatar.cc/150?img=12",
+    initials: null,
+    avatarGrad: null,
+    dept: "Engineering",
+    deptIcon: "fa-code",
+    deptClass: "dept-engineering",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Remote",
+    statusClass: "status-remote",
+    manager: "Phuong Vo",
+    email: "minh.nguyen@nexusost.com",
+    location: "Ha Noi (Remote)",
+    joined: "March 2021",
+    phone: "+84 91 234 5678",
+    dob: "20 Aug 1990",
+    gender: "Male",
+    nationality: "Vietnamese",
+    education: "Master — Hanoi University of Science and Tech",
+    yearsExp: 9,
+    salary: "35,000,000 VND",
+    reportCount: 0,
+    contractTerm: "36 Months (15/03/2021 – 15/03/2024)",
+    permAddress: "45 Tran Phu, Ba Dinh District, Hanoi",
+    tempAddress: "45 Tran Phu, Ba Dinh District, Hanoi",
+    cccd: "001190005678",
+    cccdDate: "05/09/2020",
+    cccdPlace: "Police Dept for Admin Management — Hanoi",
+    taxCode: "8501928374",
+    dependents: 2,
+    bhxh: "VN-0101-0023456",
+    bhyt: "DN4-0101-0023456",
+    bankAccount: "1903456789012 — Techcombank",
+    skills: ["Node.js", "PostgreSQL", "Docker", "Microservices", "Redis", "GraphQL"],
+  },
+  EMP003: {
+    name: "Thu Pham",
+    role: "HR Manager",
+    id: "#EMP003",
+    avatar: null,
+    initials: "TP",
+    avatarGrad: "linear-gradient(135deg,#8b5cf6,#6366f1)",
+    dept: "Human Resources",
+    deptIcon: "fa-people-roof",
+    deptClass: "dept-hr",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Maternity Leave",
+    statusClass: "status-maternity",
+    manager: "CEO Board",
+    email: "thu.pham@nexusost.com",
+    location: "Ho Chi Minh City",
+    joined: "June 2020",
+    phone: "+84 92 345 6789",
+    dob: "10 Feb 1988",
+    gender: "Female",
+    nationality: "Vietnamese",
+    education: "Bachelor — University of Economics HCMC",
+    yearsExp: 10,
+    salary: "32,000,000 VND",
+    reportCount: 4,
+    contractTerm: "Indefinite (Full-time)",
+    permAddress: "78 Nguyen Hue, District 1, HCMC",
+    tempAddress: "78 Nguyen Hue, District 1, HCMC",
+    cccd: "079188009876",
+    cccdDate: "18/11/2019",
+    cccdPlace: "Police Dept for Admin Management — HCMC",
+    taxCode: "8392017482",
+    dependents: 1,
+    bhxh: "VN-7601-0034567",
+    bhyt: "DN4-7601-0034567",
+    bankAccount: "0071009876543 — Vietcombank",
+    skills: ["Talent Acquisition", "Employee Relations", "Payroll", "Labor Law", "KPI Management"],
+  },
+  EMP004: {
+    name: "Tuan Le",
+    role: "DevOps Engineer",
+    id: "#EMP004",
+    avatar: "https://i.pravatar.cc/150?img=68",
+    initials: null,
+    avatarGrad: null,
+    dept: "Engineering",
+    deptIcon: "fa-code",
+    deptClass: "dept-engineering",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Active",
+    statusClass: "status-active",
+    manager: "Phuong Vo",
+    email: "tuan.le@nexusost.com",
+    location: "Ho Chi Minh City",
+    joined: "November 2022",
+    phone: "+84 93 456 7890",
+    dob: "03 Dec 1994",
+    gender: "Male",
+    nationality: "Vietnamese",
+    education: "Bachelor — VNUHCM-University of Information Tech",
+    yearsExp: 5,
+    salary: "30,000,000 VND",
+    reportCount: 0,
+    contractTerm: "12 Months (01/11/2022 – 01/11/2023)",
+    permAddress: "12 Vo Van Ngan, Thu Duc City, HCMC",
+    tempAddress: "12 Vo Van Ngan, Thu Duc City, HCMC",
+    cccd: "079194003456",
+    cccdDate: "22/02/2022",
+    cccdPlace: "Police Dept for Admin Management — HCMC",
+    taxCode: "8601928371",
+    dependents: 0,
+    bhxh: "VN-7601-0045678",
+    bhyt: "DN4-7601-0045678",
+    bankAccount: "1012345678 — MB Bank",
+    skills: ["Kubernetes", "AWS", "Terraform", "CI/CD", "Prometheus", "Linux Administration"],
+  },
+  EMP005: {
+    name: "Ha Vo",
+    role: "Product Manager",
+    id: "#EMP005",
+    avatar: null,
+    initials: "HV",
+    avatarGrad: "linear-gradient(135deg,#f59e0b,#ef4444)",
+    dept: "Product",
+    deptIcon: "fa-cubes",
+    deptClass: "dept-product",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Active",
+    statusClass: "status-active",
+    manager: "CEO Board",
+    email: "ha.vo@nexusost.com",
+    location: "Ho Chi Minh City",
+    joined: "September 2020",
+    phone: "+84 94 567 8901",
+    dob: "28 Jul 1991",
+    gender: "Female",
+    nationality: "Vietnamese",
+    education: "Bachelor — Foreign Trade University HCMC",
+    yearsExp: 8,
+    salary: "40,000,000 VND",
+    reportCount: 3,
+    contractTerm: "Indefinite (Full-time)",
+    permAddress: "56 Cach Mang Thang 8, District 3, HCMC",
+    tempAddress: "56 Cach Mang Thang 8, District 3, HCMC",
+    cccd: "079191007890",
+    cccdDate: "14/07/2020",
+    cccdPlace: "Police Dept for Admin Management — HCMC",
+    taxCode: "8291038475",
+    dependents: 1,
+    bhxh: "VN-7601-0056789",
+    bhyt: "DN4-7601-0056789",
+    bankAccount: "0071005678901 — Vietcombank",
+    skills: ["Product Strategy", "Agile/Scrum", "Data Analytics", "Roadmapping", "Jira"],
+  },
+  EMP006: {
+    name: "Duc Hoang",
+    role: "Frontend Developer",
+    id: "#EMP006",
+    avatar: "https://i.pravatar.cc/150?img=53",
+    initials: null,
+    avatarGrad: null,
+    dept: "Engineering",
+    deptIcon: "fa-code",
+    deptClass: "dept-engineering",
+    contract: "Part-time",
+    contractClass: "contract-parttime",
+    status: "Active",
+    statusClass: "status-active",
+    manager: "Phuong Vo",
+    email: "duc.hoang@nexusost.com",
+    location: "Da Nang",
+    joined: "February 2023",
+    phone: "+84 95 678 9012",
+    dob: "11 Nov 1996",
+    gender: "Male",
+    nationality: "Vietnamese",
+    education: "Bachelor — University of Science and Tech - Da Nang",
+    yearsExp: 3,
+    salary: "15,000,000 VND",
+    reportCount: 0,
+    contractTerm: "12 Months (01/02/2023 – 01/02/2024)",
+    permAddress: "89 Nguyen Van Linh, Hai Chau District, Da Nang",
+    tempAddress: "89 Nguyen Van Linh, Hai Chau District, Da Nang",
+    cccd: "048196001234",
+    cccdDate: "10/10/2021",
+    cccdPlace: "Police Dept for Admin Management — Da Nang",
+    taxCode: "8701928374",
+    dependents: 0,
+    bhxh: "VN-4801-0067890",
+    bhyt: "DN4-4801-0067890",
+    bankAccount: "0123456789 — VPBank",
+    skills: ["React.js", "TypeScript", "Tailwind CSS", "Next.js", "HTML5/CSS3"],
+  },
+  EMP007: {
+    name: "Mai Dang",
+    role: "Financial Analyst",
+    id: "#EMP007",
+    avatar: "https://i.pravatar.cc/150?img=32",
+    initials: null,
+    avatarGrad: null,
+    dept: "Finance",
+    deptIcon: "fa-coins",
+    deptClass: "dept-finance",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Probation",
+    statusClass: "status-probation",
+    manager: "Long Truong",
+    email: "mai.dang@nexusost.com",
+    location: "Ho Chi Minh City",
+    joined: "May 2024",
+    phone: "+84 96 789 0123",
+    dob: "05 Apr 1995",
+    gender: "Female",
+    nationality: "Vietnamese",
+    education: "Bachelor — Banking University HCMC",
+    yearsExp: 4,
+    salary: "22,000,000 VND",
+    reportCount: 0,
+    contractTerm: "02 Months Probation (01/05/2024 – 01/07/2024)",
+    permAddress: "234 Dien Bien Phu, Binh Thanh District, HCMC",
+    tempAddress: "234 Dien Bien Phu, Binh Thanh District, HCMC",
+    cccd: "079195004567",
+    cccdDate: "05/05/2022",
+    cccdPlace: "Police Dept for Admin Management — HCMC",
+    taxCode: "8801928376",
+    dependents: 0,
+    bhxh: "—",
+    bhyt: "DN4-7601-0078901",
+    bankAccount: "0071007890123 — Vietcombank",
+    skills: ["Financial Modeling", "Excel Advanced", "Power BI", "Budgeting", "Auditing"],
+  },
+  EMP008: {
+    name: "Nam Bui",
+    role: "Sales Executive",
+    id: "#EMP008",
+    avatar: null,
+    initials: "NB",
+    avatarGrad: "linear-gradient(135deg,#10b981,#059669)",
+    dept: "Sales",
+    deptIcon: "fa-chart-line",
+    deptClass: "dept-sales",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Active",
+    statusClass: "status-active",
+    manager: "Trinh Do",
+    email: "nam.bui@nexusost.com",
+    location: "Ho Chi Minh City",
+    joined: "August 2021",
+    phone: "+84 97 890 1234",
+    dob: "19 Sep 1993",
+    gender: "Male",
+    nationality: "Vietnamese",
+    education: "Bachelor — HCMC University of Economics and Finance",
+    yearsExp: 6,
+    salary: "20,000,000 VND",
+    reportCount: 0,
+    contractTerm: "Indefinite (Full-time)",
+    permAddress: "12 Ly Thường Kiệt, District 10, HCMC",
+    tempAddress: "12 Ly Thường Kiệt, District 10, HCMC",
+    cccd: "079193006789",
+    cccdDate: "12/12/2020",
+    cccdPlace: "Police Dept for Admin Management — HCMC",
+    taxCode: "8901928375",
+    dependents: 0,
+    bhxh: "VN-7601-0089012",
+    bhyt: "DN4-7601-0089012",
+    bankAccount: "1089012345 — ACB",
+    skills: ["B2B Sales", "CRM", "Negotiation", "Lead Generation", "Client Pitching"],
+  },
+  EMP009: {
+    name: "Khoa Tran",
+    role: "QA Lead",
+    id: "#EMP009",
+    avatar: "https://i.pravatar.cc/150?img=11",
+    initials: null,
+    avatarGrad: null,
+    dept: "Engineering",
+    deptIcon: "fa-code",
+    deptClass: "dept-engineering",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Active",
+    statusClass: "status-active",
+    manager: "Phuong Vo",
+    email: "khoa.tran@nexusost.com",
+    location: "Ho Chi Minh City",
+    joined: "October 2019",
+    phone: "+84 90 901 2345",
+    dob: "30 Jan 1989",
+    gender: "Male",
+    nationality: "Vietnamese",
+    education: "Bachelor — VNUHCM-University of Science",
+    yearsExp: 10,
+    salary: "33,000,000 VND",
+    reportCount: 3,
+    contractTerm: "Indefinite (Full-time)",
+    permAddress: "34 Phan Xich Long, Phu Nhuan District, HCMC",
+    tempAddress: "34 Phan Xich Long, Phu Nhuan District, HCMC",
+    cccd: "079189001234",
+    cccdDate: "01/06/2018",
+    cccdPlace: "Police Dept for Admin Management — HCMC",
+    taxCode: "8001928374",
+    dependents: 2,
+    bhxh: "VN-7601-0090123",
+    bhyt: "DN4-7601-0090123",
+    bankAccount: "0071009012345 — Vietcombank",
+    skills: ["Automation Testing", "Cypress", "Selenium", "JMeter", "API Testing", "CI Test Integration"],
+  },
+  EMP010: {
+    name: "Lan Hoang",
+    role: "Design Lead",
+    id: "#EMP010",
+    avatar: "https://i.pravatar.cc/150?img=25",
+    initials: null,
+    avatarGrad: null,
+    dept: "Design",
+    deptIcon: "fa-paintbrush",
+    deptClass: "dept-design",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Active",
+    statusClass: "status-active",
+    manager: "Khoa Tran",
+    email: "lan.hoang@nexusost.com",
+    location: "Ho Chi Minh City",
+    joined: "July 2019",
+    phone: "+84 91 123 4567",
+    dob: "07 Dec 1987",
+    gender: "Female",
+    nationality: "Vietnamese",
+    education: "Master — HCMC University of Fine Arts",
+    yearsExp: 12,
+    salary: "45,000,000 VND",
+    reportCount: 3,
+    contractTerm: "Indefinite (Full-time)",
+    permAddress: "78 Hai Ba Trung, Ben Nghe Ward, District 1, HCMC",
+    tempAddress: "78 Hai Ba Trung, Ben Nghe Ward, District 1, HCMC",
+    cccd: "079187101234",
+    cccdDate: "01/12/2020",
+    cccdPlace: "Police Dept for Admin Management — HCMC",
+    taxCode: "8501108901",
+    dependents: 0,
+    bhxh: "VN-7601-0101234",
+    bhyt: "HM4-7601-0101234",
+    bankAccount: "0101234567890 — VPBank",
+    skills: ["Brand Identity", "Figma", "Illustration", "Design Systems", "Motion Design"],
+  },
+  EMP011: {
+    name: "Phuong Vo",
+    role: "Engineering Lead",
+    id: "#EMP011",
+    avatar: "https://i.pravatar.cc/150?img=60",
+    initials: null,
+    avatarGrad: null,
+    dept: "Engineering",
+    deptIcon: "fa-code",
+    deptClass: "dept-engineering",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Remote",
+    statusClass: "status-remote",
+    manager: "Khoa Tran",
+    email: "phuong.vo@nexusost.com",
+    location: "Da Nang (Remote)",
+    joined: "April 2018",
+    phone: "+84 93 234 5678",
+    dob: "14 Oct 1989",
+    gender: "Male",
+    nationality: "Vietnamese",
+    education: "Bachelor — University of Science and Tech - Da Nang",
+    yearsExp: 11,
+    salary: "50,000,000 VND",
+    reportCount: 6,
+    contractTerm: "Indefinite (Full-time)",
+    permAddress: "99 Bach Dang, Hai Chau 1 Ward, Hai Chau District, Da Nang",
+    tempAddress: "99 Bach Dang, Hai Chau 1 Ward, Hai Chau District, Da Nang",
+    cccd: "048189112345",
+    cccdDate: "10/10/2021",
+    cccdPlace: "Police Dept for Admin Management — Da Nang",
+    taxCode: "8512209012",
+    dependents: 1,
+    bhxh: "VN-4801-0112345",
+    bhyt: "HM4-4801-0112345",
+    bankAccount: "0112345678901 — BIDV",
+    skills: ["Python", "Kubernetes", "CI/CD", "System Design", "Code Review", "Mentoring"],
+  },
+  EMP012: {
+    name: "Hung Dao",
+    role: "Brand Designer",
+    id: "#EMP012",
+    avatar: null,
+    initials: "HD",
+    avatarGrad: "linear-gradient(135deg,#06b6d4,#3b82f6)",
+    dept: "Design",
+    deptIcon: "fa-paintbrush",
+    deptClass: "dept-design",
+    contract: "Freelance",
+    contractClass: "contract-freelance",
+    status: "Resigned",
+    statusClass: "status-resigned",
+    manager: "Lan Hoang",
+    email: "hung.dao@nexusost.com",
+    location: "Ho Chi Minh City",
+    joined: "December 2021",
+    phone: "+84 94 345 6789",
+    dob: "25 Jul 1993",
+    gender: "Male",
+    nationality: "Vietnamese",
+    education: "College — HCMC College of Fine Arts",
+    yearsExp: 6,
+    salary: "20,000,000 VND",
+    reportCount: 0,
+    contractTerm: "Project-based (Freelance)",
+    permAddress: "12 Cong Hoa, Ward 4, Tan Binh District, HCMC",
+    tempAddress: "12 Cong Hoa, Ward 4, Tan Binh District, HCMC",
+    cccd: "079193012345",
+    cccdDate: "15/03/2019",
+    cccdPlace: "Police Dept for Admin Management — HCMC",
+    taxCode: "8523310123",
+    dependents: 0,
+    bhxh: "—",
+    bhyt: "—",
+    bankAccount: "0123456789012 — MB Bank",
+    skills: ["Photoshop", "Illustrator", "3D Blender", "Typography", "Packaging"],
+  },
+  EMP013: {
+    name: "Ngan Le",
+    role: "Scrum Master",
+    id: "#EMP013",
+    avatar: "https://i.pravatar.cc/150?img=44",
+    initials: null,
+    avatarGrad: null,
+    dept: "Product",
+    deptIcon: "fa-cubes",
+    deptClass: "dept-product",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Active",
+    statusClass: "status-active",
+    manager: "Ha Vo",
+    email: "ngan.le@nexusost.com",
+    location: "Ho Chi Minh City",
+    joined: "August 2020",
+    phone: "+84 96 456 7890",
+    dob: "18 Mar 1991",
+    gender: "Female",
+    nationality: "Vietnamese",
+    education: "Bachelor — VNUHCM-University of Social Sciences and Humanities",
+    yearsExp: 8,
+    salary: "34,000,000 VND",
+    reportCount: 0,
+    contractTerm: "Indefinite (Full-time)",
+    permAddress: "88 Tran Hung Dao, District 5, HCMC",
+    tempAddress: "88 Tran Hung Dao, District 5, HCMC",
+    cccd: "079191013456",
+    cccdDate: "20/07/2021",
+    cccdPlace: "Police Dept for Admin Management — HCMC",
+    taxCode: "8534411234",
+    dependents: 1,
+    bhxh: "VN-7601-0134567",
+    bhyt: "HM4-7601-0134567",
+    bankAccount: "0134567890123 — Techcombank",
+    skills: ["Agile/Scrum", "Kanban", "Facilitation", "Jira", "Conflict Resolution"],
+  },
+  EMP014: {
+    name: "Son Hoang",
+    role: "Data Engineer",
+    id: "#EMP014",
+    avatar: null,
+    initials: "SH",
+    avatarGrad: "linear-gradient(135deg,#84cc16,#10b981)",
+    dept: "Engineering",
+    deptIcon: "fa-code",
+    deptClass: "dept-engineering",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Active",
+    statusClass: "status-active",
+    manager: "Phuong Vo",
+    email: "son.hoang@nexusost.com",
+    location: "Ha Noi",
+    joined: "June 2021",
+    phone: "+84 97 567 8901",
+    dob: "30 Dec 1992",
+    gender: "Male",
+    nationality: "Vietnamese",
+    education: "Bachelor — Hanoi University of Science and Tech",
+    yearsExp: 7,
+    salary: "38,000,000 VND",
+    reportCount: 0,
+    contractTerm: "36 Months (01/06/2021 – 01/06/2024)",
+    permAddress: "15 Thuy Khue, Tay Ho District, Hanoi",
+    tempAddress: "15 Thuy Khue, Tay Ho District, Hanoi",
+    cccd: "001192014567",
+    cccdDate: "05/11/2020",
+    cccdPlace: "Police Dept for Admin Management — Hanoi",
+    taxCode: "8545512345",
+    dependents: 0,
+    bhxh: "VN-0101-0145678",
+    bhyt: "HM4-0101-0145678",
+    bankAccount: "0145678901234 — VietinBank",
+    skills: ["Apache Spark", "Python", "SQL", "Airflow", "ETL Pipelines", "Snowflake"],
+  },
+  EMP015: {
+    name: "Thao Vu",
+    role: "Content Strategist",
+    id: "#EMP015",
+    avatar: "https://i.pravatar.cc/150?img=38",
+    initials: null,
+    avatarGrad: null,
+    dept: "Marketing",
+    deptIcon: "fa-bullhorn",
+    deptClass: "dept-marketing",
+    contract: "Contract",
+    contractClass: "contract-contract",
+    status: "Remote",
+    statusClass: "status-remote",
+    manager: "Trinh Do",
+    email: "thao.vu@nexusost.com",
+    location: "Da Nang (Remote)",
+    joined: "November 2023",
+    phone: "+84 98 678 9012",
+    dob: "09 May 1997",
+    gender: "Female",
+    nationality: "Vietnamese",
+    education: "Bachelor — Danang University of Foreign Language Studies",
+    yearsExp: 4,
+    salary: "21,000,000 VND",
+    reportCount: 0,
+    contractTerm: "12 Months (01/11/2023 – 01/11/2024)",
+    permAddress: "220 Nguyen Huu Tho, Cam Le District, Da Nang",
+    tempAddress: "220 Nguyen Huu Tho, Cam Le District, Da Nang",
+    cccd: "048197015678",
+    cccdDate: "14/02/2022",
+    cccdPlace: "Police Dept for Admin Management — Da Nang",
+    taxCode: "8556613456",
+    dependents: 0,
+    bhxh: "VN-4801-0156789",
+    bhyt: "HM4-4801-0156789",
+    bankAccount: "0156789012345 — TPBank",
+    skills: ["Copywriting", "SEO", "Social Media", "Brand Storytelling", "Content Marketing"],
+  },
+  EMP016: {
+    name: "Vy Ngo",
+    role: "Talent Acquisition Lead",
+    id: "#EMP016",
+    avatar: null,
+    initials: "VN",
+    avatarGrad: "linear-gradient(135deg,#ec4899,#be185d)",
+    dept: "Human Resources",
+    deptIcon: "fa-people-roof",
+    deptClass: "dept-hr",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Active",
+    statusClass: "status-active",
+    manager: "Thu Pham",
+    email: "vy.ngo@nexusost.com",
+    location: "Ho Chi Minh City",
+    joined: "May 2022",
+    phone: "+84 90 789 0123",
+    dob: "16 Aug 1993",
+    gender: "Female",
+    nationality: "Vietnamese",
+    education: "Bachelor — VNUHCM-University of Economics and Law",
+    yearsExp: 7,
+    salary: "29,000,000 VND",
+    reportCount: 2,
+    contractTerm: "Indefinite (Full-time)",
+    permAddress: "45 Le Van Syt, Ward 13, District 3, HCMC",
+    tempAddress: "45 Le Van Syt, Ward 13, District 3, HCMC",
+    cccd: "079193016789",
+    cccdDate: "19/09/2020",
+    cccdPlace: "Police Dept for Admin Management — HCMC",
+    taxCode: "8567714567",
+    dependents: 0,
+    bhxh: "VN-7601-0167890",
+    bhyt: "HM4-7601-0167890",
+    bankAccount: "0167890123456 — VIB",
+    skills: ["Tech Recruiting", "Headhunting", "Employer Branding", "Interviewing", "ATS"],
+  },
+  EMP017: {
+    name: "Long Truong",
+    role: "Financial Controller",
+    id: "#EMP017",
+    avatar: "https://i.pravatar.cc/150?img=15",
+    initials: null,
+    avatarGrad: null,
+    dept: "Finance",
+    deptIcon: "fa-coins",
+    deptClass: "dept-finance",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Active",
+    statusClass: "status-active",
+    manager: "CEO Board",
+    email: "long.truong@nexusost.com",
+    location: "Ha Noi",
+    joined: "January 2019",
+    phone: "+84 91 890 1234",
+    dob: "22 Jan 1985",
+    gender: "Male",
+    nationality: "Vietnamese",
+    education: "Master — National Economics University Hanoi",
+    yearsExp: 15,
+    salary: "48,000,000 VND",
+    reportCount: 5,
+    contractTerm: "Indefinite (Full-time)",
+    permAddress: "102 Hoang Hoa Tham, Ba Dinh District, Hanoi",
+    tempAddress: "102 Hoang Hoa Tham, Ba Dinh District, Hanoi",
+    cccd: "001185017890",
+    cccdDate: "03/04/2018",
+    cccdPlace: "Police Dept for Admin Management — Hanoi",
+    taxCode: "8578815678",
+    dependents: 2,
+    bhxh: "VN-0101-0178901",
+    bhyt: "HM4-0101-0178901",
+    bankAccount: "0178901234567 — Vietcombank",
+    skills: ["Corporate Finance", "Tax Planning", "Accounting Standards", "Cashflow", "ERP Finance"],
+  },
+  EMP018: {
+    name: "Quynh Nguyen",
+    role: "UI Designer Intern",
+    id: "#EMP018",
+    avatar: "https://i.pravatar.cc/150?img=49",
+    initials: null,
+    avatarGrad: null,
+    dept: "Design",
+    deptIcon: "fa-paintbrush",
+    deptClass: "dept-design",
+    contract: "Internship",
+    contractClass: "contract-internship",
+    status: "Probation",
+    statusClass: "status-probation",
+    manager: "Lan Hoang",
+    email: "quynh.nguyen@nexusost.com",
+    location: "Da Nang",
+    joined: "January 2024",
+    phone: "+84 91 901 2345",
+    dob: "11 Nov 2003",
+    gender: "Female",
+    nationality: "Vietnamese",
+    education: "Undergraduate — FPT Polytechnic College",
+    yearsExp: 0,
+    salary: "5,000,000 VND",
+    reportCount: 0,
+    contractTerm: "03 Months (01/01/2024 – 01/04/2024)",
+    permAddress: "12 Truong Dinh, Man Thai Ward, Son Tra District, Da Nang",
+    tempAddress: "12 Truong Dinh, Man Thai Ward, Son Tra District, Da Nang",
+    cccd: "048203189012",
+    cccdDate: "08/11/2022",
+    cccdPlace: "Police Dept for Admin Management — Da Nang",
+    taxCode: "—",
+    dependents: 0,
+    bhxh: "—",
+    bhyt: "HM4-4801-0189012",
+    bankAccount: "0189012345678 — ACB",
+    skills: ["Figma", "Canva", "UI Design", "Color Theory"],
+  },
+  EMP019: {
+    name: "Kien Pham",
+    role: "System Administrator",
+    id: "#EMP019",
+    avatar: null,
+    initials: "KP",
+    avatarGrad: "linear-gradient(135deg,#0ea5e9,#22d3ee)",
+    dept: "Operations",
+    deptIcon: "fa-gears",
+    deptClass: "dept-ops",
+    contract: "Part-time",
+    contractClass: "contract-parttime",
+    status: "Active",
+    statusClass: "status-active",
+    manager: "Trang Nguyen",
+    email: "kien.pham@nexusost.com",
+    location: "Ho Chi Minh City",
+    joined: "July 2022",
+    phone: "+84 93 012 3456",
+    dob: "02 Sep 1991",
+    gender: "Male",
+    nationality: "Vietnamese",
+    education: "Bachelor — HCM City University of Technology and Education",
+    yearsExp: 8,
+    salary: "18,000,000 VND",
+    reportCount: 0,
+    contractTerm: "12 Months (15/07/2022 – 15/07/2023)",
+    permAddress: "44 Hoang Van Thu, Ward 9, Phu Nhuan District, HCMC",
+    tempAddress: "44 Hoang Van Thu, Ward 9, Phu Nhuan District, HCMC",
+    cccd: "079191190123",
+    cccdDate: "28/08/2021",
+    cccdPlace: "Police Dept for Admin Management — HCMC",
+    taxCode: "8589916789",
+    dependents: 1,
+    bhxh: "VN-7601-0190123",
+    bhyt: "HM4-7601-0190123",
+    bankAccount: "0190123456789 — Sacombank",
+    skills: ["Linux", "Networking", "VMware", "Bash Scripting", "IT Security"],
+  },
+  EMP020: {
+    name: "Trinh Do",
+    role: "Sales Director",
+    id: "#EMP020",
+    avatar: "https://i.pravatar.cc/150?img=26",
+    initials: null,
+    avatarGrad: null,
+    dept: "Sales",
+    deptIcon: "fa-chart-line",
+    deptClass: "dept-sales",
+    contract: "Full-time",
+    contractClass: "contract-fulltime",
+    status: "Active",
+    statusClass: "status-active",
+    manager: "Nam Bui",
+    email: "trinh.do@nexusost.com",
+    location: "Ho Chi Minh City",
+    joined: "April 2019",
+    phone: "+84 94 123 4567",
+    dob: "24 Jun 1986",
+    gender: "Female",
+    nationality: "Vietnamese",
+    education: "MBA — University of Economics HCMC",
+    yearsExp: 14,
+    salary: "52,000,000 VND",
+    reportCount: 7,
+    contractTerm: "Indefinite (Full-time)",
+    permAddress: "112 Nguyen Van Troi, Ward 8, Phu Nhuan District, HCMC",
+    tempAddress: "112 Nguyen Van Troi, Ward 8, Phu Nhuan District, HCMC",
+    cccd: "079186201234",
+    cccdDate: "18/06/2020",
+    cccdPlace: "Police Dept for Admin Management — HCMC",
+    taxCode: "8501017890",
+    dependents: 2,
+    bhxh: "VN-7601-0201234",
+    bhyt: "HM4-7601-0201234",
+    bankAccount: "0201234567890 — Vietcombank",
+    skills: ["Enterprise Sales", "Account Management", "Salesforce", "Contract Negotiation"],
+  },
+};
+
+// Status icon map
+const STATUS_ICON = {
+  Active: "fa-circle",
+  Remote: "fa-laptop-house",
+  Probation: "fa-hourglass-half",
+  "Maternity Leave": "fa-baby",
+  Resigned: "fa-ban",
+};
+
+// Open Employee Detail Modal
+function openEmpModal(empId) {
+  const raw = empId.replace("#", "");
+  const d = EMP_DATA[raw];
+  if (!d) return;
+
+  // Avatar
+  const avatarEl = document.getElementById("empModalAvatar");
+  if (avatarEl) {
+    if (d.avatar) {
+      avatarEl.innerHTML = `<img src="${d.avatar}" alt="${d.name}">`;
+    } else {
+      avatarEl.innerHTML = `<div class="emp-avatar-initials" style="background:${d.avatarGrad}">${d.initials}</div>`;
+    }
+  }
+
+  // Name / role
+  const nameEl = document.getElementById("empModalName");
+  if (nameEl) {
+    nameEl.innerHTML = `
+      <span>${d.name}</span>
+      <span class="emp-card-id-chip ms-1">${d.id}</span>
+    `;
+  }
+  const roleEl = document.getElementById("empModalRole");
+  if (roleEl) roleEl.textContent = d.role;
+
+  // Badges
+  const badgesEl = document.getElementById("empModalBadges");
+  if (badgesEl) {
+    badgesEl.innerHTML = `
+      <span class="emp-badge ${d.deptClass}"><i class="fa-solid ${d.deptIcon}"></i> ${d.dept}</span>
+      <span class="emp-badge ${d.contractClass}"><i class="fa-solid fa-file-contract"></i> ${d.contract}</span>
+      <span class="emp-badge ${d.statusClass}"><i class="fa-solid ${STATUS_ICON[d.status] || "fa-circle"}"></i> ${d.status}</span>
+    `;
+  }
+
+  // Helper setter
+  const setTxt = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  };
+
+  // Section 1: Contact & Org
+  setTxt("empModalEmail", d.email || "—");
+  setTxt("empModalPhone", d.phone || "—");
+  setTxt("empModalManager", d.manager || "—");
+  setTxt("empModalLocation", d.location || "—");
+  setTxt("empModalJoined", d.joined || "—");
+  setTxt("empModalSalary", d.salary || "—");
+  setTxt("empModalContractTerm", d.contractTerm || "—");
+
+  // Section 2: Personal Info
+  setTxt("empModalDob", d.dob || "—");
+  setTxt("empModalGender", d.gender || "—");
+  setTxt("empModalNationality", d.nationality || "—");
+  setTxt("empModalEducation", d.education || "—");
+  setTxt("empModalPermAddress", d.permAddress || "—");
+  setTxt("empModalTempAddress", d.tempAddress || "—");
+
+  // Section 3: Legal, Insurance & Tax
+  setTxt("empModalCccd", d.cccd || "—");
+  setTxt("empModalCccdDate", d.cccdDate || "—");
+  setTxt("empModalCccdPlace", d.cccdPlace || "—");
+  setTxt("empModalTaxCode", d.taxCode || "—");
+  setTxt("empModalDependents", String(d.dependents ?? "—"));
+  setTxt("empModalBhxh", d.bhxh || "—");
+  setTxt("empModalBhyt", d.bhyt || "—");
+
+  // Section 4: Banking
+  setTxt("empModalBankAccount", d.bankAccount || "—");
+
+  // Stats mini-row
+  setTxt("empModalStatYearsExp", (d.yearsExp || 0) + (d.yearsExp === 1 ? " year" : " yrs"));
+  setTxt("empModalStatReportCount", d.reportCount || 0);
+  setTxt("empModalStatSkillCount", d.skills ? d.skills.length : 0);
+
+  // Skills
+  const skillsEl = document.getElementById("empModalSkills");
+  if (skillsEl) {
+    const skillsHtml = (d.skills || [])
+      .map(
+        (sk) =>
+          `<span class="emp-modal-skill-chip"><i class="fa-solid fa-tag"></i> ${sk}</span>`,
+      )
+      .join("");
+    skillsEl.innerHTML =
+      skillsHtml ||
+      '<span style="color:var(--text-light);font-size:0.8rem">No skills listed</span>';
+  }
+
+  // Open — use Bootstrap Modal API
+  const modalElem = document.getElementById("empDetailModal");
+  if (modalElem && typeof bootstrap !== "undefined") {
+    const _bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
+    _bsModal.show();
+  }
+}
+
+function initEmployeesPage() {
+  // ── View Toggle ──
+  const cardViewBtn = document.getElementById("cardViewBtn");
+  const listViewBtn = document.getElementById("listViewBtn");
+  const empCardView = document.getElementById("empCardView");
+  const empListView = document.getElementById("empListView");
+
+  if (cardViewBtn && listViewBtn && empCardView && empListView) {
+    cardViewBtn.addEventListener("click", () => {
+      cardViewBtn.classList.add("active");
+      listViewBtn.classList.remove("active");
+      empCardView.classList.remove("d-none");
+      empListView.classList.add("d-none");
+    });
+
+    listViewBtn.addEventListener("click", () => {
+      listViewBtn.classList.add("active");
+      cardViewBtn.classList.remove("active");
+      empListView.classList.remove("d-none");
+      empCardView.classList.add("d-none");
+    });
+  }
+
+  // ── Select All in List View ──
+  const selectAll = document.getElementById("selectAllList");
+  if (selectAll) {
+    selectAll.addEventListener("change", (e) => {
+      document
+        .querySelectorAll('#empListTable tbody input[type="checkbox"]')
+        .forEach((cb) => (cb.checked = e.target.checked));
+    });
+  }
+
+  // ── Interactive Pagination Logic ──
+  (function initPagination() {
+    let currentPage = 1;
+    let pageSize = 12;
+    const totalEmployees = 248;
+    let totalPages = Math.ceil(totalEmployees / pageSize);
+
+    const empResultCount = document.getElementById("empResultCount");
+    const empPageSizeSelect = document.getElementById("empPageSizeSelect");
+    const empJumpInput = document.getElementById("empJumpInput");
+    const empTotalPages = document.getElementById("empTotalPages");
+    const empPageJumpForm = document.getElementById("empPageJumpForm");
+
+    const empFirstBtn = document.getElementById("empFirstBtn");
+    const empPrevBtn = document.getElementById("empPrevBtn");
+    const empNextBtn = document.getElementById("empNextBtn");
+    const empLastBtn = document.getElementById("empLastBtn");
+    const empPageNumbersGroup = document.getElementById("empPageNumbersGroup");
+
+    function updatePaginationUI() {
+      totalPages = Math.max(1, Math.ceil(totalEmployees / pageSize));
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      const startItem = (currentPage - 1) * pageSize + 1;
+      const endItem = Math.min(currentPage * pageSize, totalEmployees);
+
+      if (empResultCount) {
+        empResultCount.innerHTML = `Showing <strong>${startItem} – ${endItem}</strong> of <strong>${totalEmployees}</strong> employees`;
+      }
+      if (empTotalPages) empTotalPages.textContent = totalPages;
+      if (empJumpInput) {
+        empJumpInput.value = currentPage;
+        empJumpInput.max = totalPages;
+      }
+
+      // Toggle disabled state on nav buttons
+      if (empFirstBtn) empFirstBtn.disabled = currentPage === 1;
+      if (empPrevBtn) empPrevBtn.disabled = currentPage === 1;
+      if (empNextBtn) empNextBtn.disabled = currentPage === totalPages;
+      if (empLastBtn) empLastBtn.disabled = currentPage === totalPages;
+
+      renderPageNumbers();
+    }
+
+    function renderPageNumbers() {
+      if (!empPageNumbersGroup) return;
+      let html = "";
+      let pages = [];
+
+      if (totalPages <= 5) {
+        for (let i = 1; i <= totalPages; i++) pages.push(i);
+      } else {
+        if (currentPage <= 3) {
+          pages = [1, 2, 3, "...", totalPages];
+        } else if (currentPage >= totalPages - 2) {
+          pages = [1, "...", totalPages - 2, totalPages - 1, totalPages];
+        } else {
+          pages = [1, "...", currentPage, "...", totalPages];
+        }
+      }
+
+      pages.forEach((p) => {
+        if (p === "...") {
+          html += `<span class="emp-page-ellipsis">…</span>`;
+        } else {
+          const isActive = p === currentPage ? "active" : "";
+          html += `<button type="button" class="emp-page-btn ${isActive}" data-page="${p}">${p}</button>`;
+        }
+      });
+
+      empPageNumbersGroup.innerHTML = html;
+
+      // Attach listeners to newly rendered page buttons
+      empPageNumbersGroup.querySelectorAll(".emp-page-btn").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const pageNum = parseInt(e.currentTarget.getAttribute("data-page"), 10);
+          if (pageNum && pageNum !== currentPage) {
+            currentPage = pageNum;
+            updatePaginationUI();
+          }
+        });
+      });
+    }
+
+    // Rows per page change
+    if (empPageSizeSelect) {
+      empPageSizeSelect.addEventListener("change", (e) => {
+        pageSize = parseInt(e.target.value, 10) || 12;
+        currentPage = 1;
+        updatePaginationUI();
+      });
+    }
+
+    // Jump form submit
+    if (empPageJumpForm) {
+      empPageJumpForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const target = parseInt(empJumpInput.value, 10);
+        if (target && target >= 1 && target <= totalPages) {
+          currentPage = target;
+          updatePaginationUI();
+        } else {
+          empJumpInput.value = currentPage;
+        }
+      });
+    }
+
+    // Navigation button events
+    if (empFirstBtn)
+      empFirstBtn.addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage = 1;
+          updatePaginationUI();
+        }
+      });
+    if (empPrevBtn)
+      empPrevBtn.addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage--;
+          updatePaginationUI();
+        }
+      });
+    if (empNextBtn)
+      empNextBtn.addEventListener("click", () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          updatePaginationUI();
+        }
+      });
+    if (empLastBtn)
+      empLastBtn.addEventListener("click", () => {
+        if (currentPage < totalPages) {
+          currentPage = totalPages;
+          updatePaginationUI();
+        }
+      });
+
+    // Initial render
+    updatePaginationUI();
+  })();
+
+  // Card click delegation
+  const cardViewContainer = document.getElementById("empCardView");
+  if (cardViewContainer) {
+    cardViewContainer.addEventListener("click", function (e) {
+      if (e.target.closest(".emp-card-checkbox")) return;
+      const card = e.target.closest(".emp-card[data-emp-id]");
+      if (card) openEmpModal(card.dataset.empId);
+    });
+  }
+
+  // List row click delegation
+  const listTableContainer = document.getElementById("empListTable");
+  if (listTableContainer) {
+    listTableContainer.addEventListener("click", function (e) {
+      if (e.target.closest('input[type="checkbox"]')) return;
+      if (e.target.closest("thead")) return;
+      const row = e.target.closest("tr");
+      if (!row) return;
+      const idCell = row.querySelector(".emp-list-id");
+      if (idCell) openEmpModal(idCell.textContent.trim());
+    });
+  }
+}
+
+// Expose globally
+window.EMP_DATA = EMP_DATA;
+window.openEmpModal = openEmpModal;
+window.initEmployeesPage = initEmployeesPage;
 
 
