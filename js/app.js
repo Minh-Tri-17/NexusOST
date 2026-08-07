@@ -43,6 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("empCardView") || document.getElementById("empDetailModal")) {
     initEmployeesPage();
   }
+
+  // Recruitment Pipeline Page Logic
+  if (document.getElementById("recruitmentPipelineBoard") || document.getElementById("candidateDetailModal")) {
+    initRecruitmentPage();
+  }
 });
 
 /* 1. Sidebar Active Link matching current path */
@@ -2037,28 +2042,18 @@ function initEmployeesPage() {
     updatePaginationUI();
   })();
 
-  // Card click delegation
+  // Card click delegation (Only view icon button opens modal)
   const cardViewContainer = document.getElementById("empCardView");
   if (cardViewContainer) {
     cardViewContainer.addEventListener("click", function (e) {
-      if (e.target.closest(".emp-card-checkbox")) return;
-      const card = e.target.closest(".emp-card[data-emp-id]");
-      if (card) openEmpModal(card.dataset.empId);
+      const viewBtn = e.target.closest(".emp-card-view-btn");
+      if (viewBtn) {
+        const card = viewBtn.closest(".emp-card[data-emp-id]");
+        if (card) openEmpModal(card.dataset.empId);
+      }
     });
   }
 
-  // List row click delegation
-  const listTableContainer = document.getElementById("empListTable");
-  if (listTableContainer) {
-    listTableContainer.addEventListener("click", function (e) {
-      if (e.target.closest('input[type="checkbox"]')) return;
-      if (e.target.closest("thead")) return;
-      const row = e.target.closest("tr");
-      if (!row) return;
-      const idCell = row.querySelector(".emp-list-id");
-      if (idCell) openEmpModal(idCell.textContent.trim());
-    });
-  }
 
 }
 
@@ -2116,3 +2111,1056 @@ function updateActiveFilterBadgeCount(chipsBar) {
 window.EMP_DATA = EMP_DATA;
 window.openEmpModal = openEmpModal;
 window.initEmployeesPage = initEmployeesPage;
+
+/* ==========================================================================
+   RECRUITMENT PIPELINE PAGE LOGIC
+   ========================================================================== */
+
+let RECRUITMENT_DATA = [
+  // Applied Column (Stage: applied)
+  {
+    id: "cand-1",
+    name: "Ananya Patel",
+    role: "Software Engineer",
+    department: "Engineering",
+    matchScore: 72,
+    matchClass: "match-medium",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+    stage: "applied",
+    starred: true,
+    subtext: "Applied 2h ago",
+    dateTag: "Applied 2h ago",
+    email: "ananya.patel@example.com",
+    phone: "+84 912 345 678",
+    experience: "4 years",
+    location: "Ho Chi Minh City",
+    expectedSalary: "$2,500/mo",
+    appliedDate: "May 20, 2024",
+    skills: ["React", "TypeScript", "Node.js", "GraphQL"],
+    notes: "Strong frontend developer with e-commerce platform experience."
+  },
+  {
+    id: "cand-2",
+    name: "Rahul Verma",
+    role: "Frontend Developer",
+    department: "Engineering",
+    matchScore: 68,
+    matchClass: "match-fair",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+    stage: "applied",
+    starred: false,
+    subtext: "Applied 5h ago",
+    dateTag: "Applied 5h ago",
+    email: "rahul.verma@example.com",
+    phone: "+84 903 888 123",
+    experience: "3 years",
+    location: "Da Nang",
+    expectedSalary: "$1,800/mo",
+    appliedDate: "May 20, 2024",
+    skills: ["Vue.js", "CSS3", "HTML5", "JavaScript"],
+    notes: "Good UI design sense and responsive layout skills."
+  },
+  {
+    id: "cand-3",
+    name: "Priya Nair",
+    role: "Product Designer",
+    department: "Design",
+    matchScore: 64,
+    matchClass: "match-fair",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    stage: "applied",
+    starred: false,
+    subtext: "Applied 1d ago",
+    dateTag: "Applied 1d ago",
+    email: "priya.nair@example.com",
+    phone: "+84 987 111 222",
+    experience: "5 years",
+    location: "Hanoi",
+    expectedSalary: "$2,200/mo",
+    appliedDate: "May 19, 2024",
+    skills: ["Figma", "UI/UX", "User Research", "Prototyping"],
+    notes: "Impressive portfolio in mobile UI & design systems."
+  },
+
+  // Screening Column (Stage: screening)
+  {
+    id: "cand-4",
+    name: "James Carter",
+    role: "Software Engineer",
+    department: "Engineering",
+    matchScore: 81,
+    matchClass: "match-high",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+    stage: "screening",
+    starred: false,
+    subtext: "Screening | Today, 11:30 AM",
+    dateTag: "Today, 11:30 AM",
+    email: "james.carter@example.com",
+    phone: "+84 944 555 666",
+    experience: "6 years",
+    location: "Ho Chi Minh City",
+    expectedSalary: "$3,200/mo",
+    appliedDate: "May 18, 2024",
+    skills: ["Java", "Spring Boot", "Microservices", "Docker"],
+    notes: "Passed HR phone screening. Technically solid."
+  },
+  {
+    id: "cand-5",
+    name: "Sophia Lee",
+    role: "Data Analyst",
+    department: "Product",
+    matchScore: 76,
+    matchClass: "match-medium",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
+    stage: "screening",
+    starred: false,
+    subtext: "Screening | Today, 02:00 PM",
+    dateTag: "Today, 02:00 PM",
+    email: "sophia.lee@example.com",
+    phone: "+84 918 222 333",
+    experience: "4 years",
+    location: "Hanoi",
+    expectedSalary: "$2,400/mo",
+    appliedDate: "May 18, 2024",
+    skills: ["Python", "SQL", "Tableau", "PowerBI"],
+    notes: "Strong statistical background. Scheduled for tech test."
+  },
+  {
+    id: "cand-6",
+    name: "Arjun Mehta",
+    role: "DevOps Engineer",
+    department: "Engineering",
+    matchScore: 69,
+    matchClass: "match-fair",
+    avatar: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=150&auto=format&fit=crop&q=80",
+    stage: "screening",
+    starred: false,
+    subtext: "Screening | Tomorrow, 10:00 AM",
+    dateTag: "Tomorrow, 10:00 AM",
+    email: "arjun.mehta@example.com",
+    phone: "+84 909 333 444",
+    experience: "5 years",
+    location: "Ho Chi Minh City",
+    expectedSalary: "$2,800/mo",
+    appliedDate: "May 17, 2024",
+    skills: ["Kubernetes", "AWS", "CI/CD", "Terraform"],
+    notes: "Cloud architecture screening interview set for tomorrow."
+  },
+
+  // Interview Column (Stage: interview)
+  {
+    id: "cand-7",
+    name: "Michael Brown",
+    role: "Backend Developer",
+    department: "Engineering",
+    matchScore: 85,
+    matchClass: "match-purple",
+    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80",
+    stage: "interview",
+    starred: false,
+    subtext: "Round 2 | Today, 03:00 PM",
+    dateTag: "Round 2 | Today, 03:00 PM",
+    email: "michael.brown@example.com",
+    phone: "+84 911 222 555",
+    experience: "7 years",
+    location: "Ho Chi Minh City",
+    expectedSalary: "$3,500/mo",
+    appliedDate: "May 15, 2024",
+    skills: ["Go", "PostgreSQL", "Redis", "gRPC"],
+    notes: "Passed Round 1 coding challenge with 98% score."
+  },
+  {
+    id: "cand-8",
+    name: "Emily Johnson",
+    role: "UX Designer",
+    department: "Design",
+    matchScore: 80,
+    matchClass: "match-medium",
+    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80",
+    stage: "interview",
+    starred: false,
+    subtext: "Round 1 | Today, 04:30 PM",
+    dateTag: "Round 1 | Today, 04:30 PM",
+    email: "emily.johnson@example.com",
+    phone: "+84 933 444 888",
+    experience: "5 years",
+    location: "Da Nang",
+    expectedSalary: "$2,600/mo",
+    appliedDate: "May 14, 2024",
+    skills: ["Figma", "User Journey", "Wireframing", "Usability Testing"],
+    notes: "Design portfolio review round scheduled with Design Lead."
+  },
+  {
+    id: "cand-9",
+    name: "Daniel Kim",
+    role: "QA Engineer",
+    department: "Engineering",
+    matchScore: 74,
+    matchClass: "match-medium",
+    avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=150&auto=format&fit=crop&q=80",
+    stage: "interview",
+    starred: false,
+    subtext: "Round 2 | Tomorrow, 09:30 AM",
+    dateTag: "Round 2 | Tomorrow, 09:30 AM",
+    email: "daniel.kim@example.com",
+    phone: "+84 977 888 999",
+    experience: "4 years",
+    location: "Hanoi",
+    expectedSalary: "$2,000/mo",
+    appliedDate: "May 13, 2024",
+    skills: ["Cypress", "Selenium", "Jest", "API Testing"],
+    notes: "Automation testing assessment interview tomorrow morning."
+  },
+
+  // Offer Column (Stage: offer)
+  {
+    id: "cand-10",
+    name: "Olivia Wilson",
+    role: "HR Specialist",
+    department: "HR Specialist",
+    matchScore: 88,
+    matchClass: "match-high",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+    stage: "offer",
+    starred: false,
+    subtext: "Offer Sent | May 20, 2024",
+    dateTag: "Offer Sent | May 20, 2024",
+    email: "olivia.wilson@example.com",
+    phone: "+84 966 777 888",
+    experience: "6 years",
+    location: "Ho Chi Minh City",
+    expectedSalary: "$2,300/mo",
+    appliedDate: "May 10, 2024",
+    skills: ["Talent Acquisition", "Employee Relations", "Payroll", "HRIS"],
+    notes: "Formal job offer letter sent. Awaiting signed acceptance."
+  },
+  {
+    id: "cand-11",
+    name: "William Davis",
+    role: "Sales Manager",
+    department: "Sales",
+    matchScore: 82,
+    matchClass: "match-high",
+    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80",
+    stage: "offer",
+    starred: false,
+    subtext: "Offer Sent | May 19, 2024",
+    dateTag: "Offer Sent | May 19, 2024",
+    email: "william.davis@example.com",
+    phone: "+84 922 333 444",
+    experience: "8 years",
+    location: "Hanoi",
+    expectedSalary: "$3,800/mo",
+    appliedDate: "May 08, 2024",
+    skills: ["B2B Sales", "Key Account Management", "CRM", "Negotiation"],
+    notes: "Offer package under review. Candidate requested stock options."
+  },
+  {
+    id: "cand-12",
+    name: "Neha Sharma",
+    role: "Marketing Manager",
+    department: "Marketing",
+    matchScore: 78,
+    matchClass: "match-medium",
+    avatar: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=150&auto=format&fit=crop&q=80",
+    stage: "offer",
+    starred: false,
+    subtext: "Negotiation | May 18, 2024",
+    dateTag: "Negotiation | May 18, 2024",
+    email: "neha.sharma@example.com",
+    phone: "+84 955 666 777",
+    experience: "5 years",
+    location: "Ho Chi Minh City",
+    expectedSalary: "$2,700/mo",
+    appliedDate: "May 07, 2024",
+    skills: ["Digital Marketing", "SEO/SEM", "Content Strategy", "Brand"],
+    notes: "Salary negotiation phase. Final decision expected by Friday."
+  },
+
+  // Hired Column (Stage: hired)
+  {
+    id: "cand-13",
+    name: "Ethan Thompson",
+    role: "Software Engineer",
+    department: "Engineering",
+    matchScore: 91,
+    matchClass: "match-high",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80",
+    stage: "hired",
+    starred: false,
+    subtext: "Joined | May 16, 2024",
+    dateTag: "Joined | May 16, 2024",
+    email: "ethan.thompson@example.com",
+    phone: "+84 938 111 999",
+    experience: "7 years",
+    location: "Ho Chi Minh City",
+    expectedSalary: "$3,400/mo",
+    appliedDate: "May 01, 2024",
+    skills: ["Fullstack", "React", "Node.js", "PostgreSQL", "AWS"],
+    notes: "Onboarded successfully! Assigned to Core Platform Team."
+  },
+  {
+    id: "cand-14",
+    name: "Isabella Martinez",
+    role: "HR Specialist",
+    department: "HR Specialist",
+    matchScore: 89,
+    matchClass: "match-high",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
+    stage: "hired",
+    starred: false,
+    subtext: "Joined | May 15, 2024",
+    dateTag: "Joined | May 15, 2024",
+    email: "isabella.martinez@example.com",
+    phone: "+84 947 222 111",
+    experience: "6 years",
+    location: "Ho Chi Minh City",
+    expectedSalary: "$2,200/mo",
+    appliedDate: "Apr 28, 2024",
+    skills: ["HR Operations", "Onboarding", "Labor Law", "Training"],
+    notes: "Completed orientation and documentation."
+  },
+  {
+    id: "cand-15",
+    name: "Alexander Garcia",
+    role: "Sales Manager",
+    department: "Sales",
+    matchScore: 86,
+    matchClass: "match-high",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80",
+    stage: "hired",
+    starred: false,
+    subtext: "Joined | May 14, 2024",
+    dateTag: "Joined | May 14, 2024",
+    email: "alexander.garcia@example.com",
+    phone: "+84 988 777 666",
+    experience: "9 years",
+    location: "Hanoi",
+    expectedSalary: "$4,000/mo",
+    appliedDate: "Apr 25, 2024",
+    skills: ["Enterprise Sales", "Team Leadership", "Strategic Partnerships"],
+    notes: "Leading APAC Sales Expansion Initiative."
+  },
+
+  // Rejected Column (Stage: rejected)
+  {
+    id: "cand-16",
+    name: "Marcus Vance",
+    role: "Backend Developer",
+    department: "Engineering",
+    matchScore: 54,
+    matchClass: "match-fair",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+    stage: "rejected",
+    starred: false,
+    subtext: "Rejected | Tech Test",
+    dateTag: "Rejected | Tech Test",
+    email: "marcus.vance@example.com",
+    phone: "+84 911 000 111",
+    experience: "2 years",
+    location: "Ho Chi Minh City",
+    expectedSalary: "$2,000/mo",
+    appliedDate: "Apr 20, 2024",
+    skills: ["PHP", "Laravel", "MySQL"],
+    notes: "Did not meet technical benchmark for senior backend position."
+  },
+  {
+    id: "cand-17",
+    name: "Chloe Bennett",
+    role: "Marketing Manager",
+    department: "Marketing",
+    matchScore: 61,
+    matchClass: "match-fair",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+    stage: "rejected",
+    starred: false,
+    subtext: "Rejected | Salary Expectation",
+    dateTag: "Rejected | Salary Expectation",
+    email: "chloe.bennett@example.com",
+    phone: "+84 944 888 222",
+    experience: "4 years",
+    location: "Hanoi",
+    expectedSalary: "$4,500/mo",
+    appliedDate: "Apr 18, 2024",
+    skills: ["Copywriting", "Social Media", "SEO"],
+    notes: "Salary expectation out of approved budget range."
+  }
+];
+
+let activeCandidateIdForModal = null;
+
+function initRecruitmentPage() {
+  renderPipelineBoard();
+  initRecruitmentDragAndDrop();
+  initRecruitmentFilters();
+  initRecruitmentForms();
+  initViewToggle();
+  initSelectAllCandidatesCheckbox();
+}
+
+function initViewToggle() {
+  const kanbanBtn = document.getElementById("kanbanViewBtn");
+  const listBtn = document.getElementById("listViewBtn");
+  const kanbanBoard = document.getElementById("recruitmentPipelineBoard");
+  const listView = document.getElementById("recruitmentListView");
+
+  if (kanbanBtn && listBtn && kanbanBoard && listView) {
+    kanbanBtn.addEventListener("click", () => {
+      kanbanBtn.classList.add("active");
+      listBtn.classList.remove("active");
+      kanbanBoard.classList.remove("d-none");
+      listView.classList.add("d-none");
+    });
+
+    listBtn.addEventListener("click", () => {
+      listBtn.classList.add("active");
+      kanbanBtn.classList.remove("active");
+      listView.classList.remove("d-none");
+      kanbanBoard.classList.add("d-none");
+    });
+  }
+}
+
+function initSelectAllCandidatesCheckbox() {
+  const selectAll = document.getElementById("selectAllCandidates");
+  if (selectAll) {
+    selectAll.addEventListener("change", () => {
+      const checkboxes = document.querySelectorAll(".candidate-checkbox");
+      checkboxes.forEach(cb => cb.checked = selectAll.checked);
+    });
+  }
+}
+
+function renderPipelineBoard() {
+  const stages = ["applied", "screening", "interview", "offer", "hired", "rejected"];
+  
+  // Filter variables
+  const searchVal = (document.getElementById("recruitmentSearchInput")?.value || "").toLowerCase().trim();
+  const deptVal = document.getElementById("filterDepartment")?.value || "all";
+  const roleVal = document.getElementById("filterRole")?.value || "all";
+  const stageVal = document.getElementById("filterStage")?.value || "all";
+  const matchVal = document.getElementById("filterMatchLevel")?.value || "all";
+
+  // Total counts tracking
+  const stageCounts = { applied: 0, screening: 0, interview: 0, offer: 0, hired: 0, rejected: 0 };
+  const stageTotalBaseline = { applied: 126, screening: 84, interview: 52, offer: 28, hired: 16, rejected: 42 };
+
+  stages.forEach(stage => {
+    const listContainer = document.getElementById(`col-${stage}-list`);
+    if (!listContainer) return;
+
+    let filtered = RECRUITMENT_DATA.filter(c => c.stage === stage);
+
+    // Apply Department filter
+    if (deptVal !== "all") {
+      filtered = filtered.filter(c => c.department === deptVal);
+    }
+    // Apply Role filter
+    if (roleVal !== "all") {
+      filtered = filtered.filter(c => c.role === roleVal);
+    }
+    // Apply Stage filter
+    if (stageVal !== "all" && stageVal !== stage) {
+      filtered = [];
+    }
+    // Apply Match score filter
+    if (matchVal === "high") filtered = filtered.filter(c => c.matchScore >= 80);
+    if (matchVal === "medium") filtered = filtered.filter(c => c.matchScore >= 70 && c.matchScore < 80);
+    if (matchVal === "fair") filtered = filtered.filter(c => c.matchScore < 70);
+
+    // Apply Search Filter
+    if (searchVal) {
+      filtered = filtered.filter(c => 
+        c.name.toLowerCase().includes(searchVal) ||
+        c.role.toLowerCase().includes(searchVal) ||
+        c.department.toLowerCase().includes(searchVal)
+      );
+    }
+
+    stageCounts[stage] = filtered.length;
+
+    // Build Cards HTML
+    if (filtered.length === 0) {
+      listContainer.innerHTML = `
+        <div class="empty-column-placeholder">
+          <i class="fa-solid fa-inbox fs-3 mb-2 text-muted"></i>
+          <div>No candidates in this stage</div>
+        </div>
+      `;
+    } else {
+      listContainer.innerHTML = filtered.map(c => createCandidateCardHTML(c)).join("");
+    }
+
+    // Update Stage Count Badge
+    const countBadge = document.getElementById(`count-${stage}`);
+    if (countBadge) {
+      countBadge.textContent = stageCounts[stage];
+    }
+
+    // Update "+ X more candidates" button text
+    const moreBtnText = document.getElementById(`more-${stage}-text`);
+    if (moreBtnText) {
+      const extraCount = Math.max(0, stageTotalBaseline[stage] - 3 + (stageCounts[stage] - 3));
+      moreBtnText.textContent = `+ ${extraCount} more candidates`;
+    }
+  });
+
+  // Update Metric Header Stats
+  const totalAppliedEl = document.getElementById("statTotalApplied");
+  if (totalAppliedEl) totalAppliedEl.textContent = stageCounts.applied + 123;
+  const inScreeningEl = document.getElementById("statInScreening");
+  if (inScreeningEl) inScreeningEl.textContent = stageCounts.screening + 81;
+  const interviewingEl = document.getElementById("statInterviewing");
+  if (interviewingEl) interviewingEl.textContent = stageCounts.interview + 49;
+  const offersSentEl = document.getElementById("statOffersSent");
+  if (offersSentEl) offersSentEl.textContent = stageCounts.offer + 25;
+  const totalHiredEl = document.getElementById("statTotalHired");
+  if (totalHiredEl) totalHiredEl.textContent = stageCounts.hired + 13;
+
+  // Re-attach card events
+  attachCardEvents();
+
+  // Render Table View
+  renderCandidateTable();
+}
+
+function renderCandidateTable() {
+  const tbody = document.getElementById("recruitmentTableBody");
+  if (!tbody) return;
+
+  const searchVal = (document.getElementById("recruitmentSearchInput")?.value || "").toLowerCase().trim();
+  const deptVal = document.getElementById("filterDepartment")?.value || "all";
+  const roleVal = document.getElementById("filterRole")?.value || "all";
+  const stageVal = document.getElementById("filterStage")?.value || "all";
+  const matchVal = document.getElementById("filterMatchLevel")?.value || "all";
+
+  let filtered = [...RECRUITMENT_DATA];
+
+  if (deptVal !== "all") filtered = filtered.filter(c => c.department === deptVal);
+  if (roleVal !== "all") filtered = filtered.filter(c => c.role === roleVal);
+  if (stageVal !== "all") filtered = filtered.filter(c => c.stage === stageVal);
+  if (matchVal === "high") filtered = filtered.filter(c => c.matchScore >= 80);
+  if (matchVal === "medium") filtered = filtered.filter(c => c.matchScore >= 70 && c.matchScore < 80);
+  if (matchVal === "fair") filtered = filtered.filter(c => c.matchScore < 70);
+
+  if (searchVal) {
+    filtered = filtered.filter(c => 
+      c.name.toLowerCase().includes(searchVal) ||
+      c.role.toLowerCase().includes(searchVal) ||
+      c.department.toLowerCase().includes(searchVal)
+    );
+  }
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="15" class="text-center py-4 text-muted">No candidate records matching criteria.</td></tr>`;
+    return;
+  }
+
+  const deptBadgeMap = {
+    "Engineering": `<span class="emp-badge dept-engineering"><i class="fa-solid fa-code"></i> Engineering</span>`,
+    "Marketing": `<span class="emp-badge dept-marketing"><i class="fa-solid fa-bullhorn"></i> Marketing</span>`,
+    "Design": `<span class="emp-badge dept-design"><i class="fa-solid fa-paintbrush"></i> Design</span>`,
+    "Product": `<span class="emp-badge dept-product"><i class="fa-solid fa-cubes"></i> Product</span>`,
+    "Sales": `<span class="emp-badge dept-sales"><i class="fa-solid fa-handshake"></i> Sales</span>`,
+    "HR Specialist": `<span class="emp-badge dept-hr"><i class="fa-solid fa-user-group"></i> HR Specialist</span>`
+  };
+
+  const stageBadgeMap = {
+    applied: `<span class="emp-badge status-active" style="background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe;"><i class="fa-solid fa-circle"></i> Applied</span>`,
+    screening: `<span class="emp-badge status-maternity" style="background:#ecfeff;color:#0e7490;border-color:#a5f3fc;"><i class="fa-solid fa-circle"></i> Screening</span>`,
+    interview: `<span class="emp-badge status-remote" style="background:#f5f3ff;color:#6d28d9;border-color:#ddd6fe;"><i class="fa-solid fa-circle"></i> Interview</span>`,
+    offer: `<span class="emp-badge status-probation" style="background:#fffbeb;color:#b45309;border-color:#fde68a;"><i class="fa-solid fa-circle"></i> Offer</span>`,
+    hired: `<span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Hired</span>`,
+    rejected: `<span class="emp-badge status-resigned"><i class="fa-solid fa-circle"></i> Rejected</span>`
+  };
+
+  tbody.innerHTML = filtered.map((c, idx) => {
+    const code = `#CAND${String(idx + 1).padStart(3, '0')}`;
+    const deptBadge = deptBadgeMap[c.department] || `<span class="emp-badge dept-management">${c.department}</span>`;
+    const stageBadge = stageBadgeMap[c.stage] || `<span class="emp-badge status-active">${c.stage}</span>`;
+
+    return `
+      <tr>
+        <td><input type="checkbox" class="candidate-checkbox" value="${c.id}" /></td>
+        <td class="text-center">
+          <button class="btn-action-eye" title="View Profile" onclick="openCandidateDetailModal('${c.id}')">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </td>
+        <td><span class="badge-soft badge-blue emp-list-id">${code}</span></td>
+        <td>
+          <div class="emp-list-identity">
+            <img src="${c.avatar}" class="emp-list-avatar" alt="${c.name}" />
+            <div>
+              <div class="emp-list-name">${c.name}</div>
+            </div>
+          </div>
+        </td>
+        <td>${deptBadge}</td>
+        <td><span class="fw-semibold text-dark">${c.role}</span></td>
+        <td>
+          <div class="match-score-pill ${c.matchClass}">
+            <i class="fa-solid fa-sparkles"></i> <span>${c.matchScore}%</span>
+          </div>
+        </td>
+        <td>${stageBadge}</td>
+        <td>
+          <div class="small text-muted">
+            <div><i class="fa-regular fa-envelope me-1"></i>${c.email}</div>
+            <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>${c.phone || '+84 900 000 000'}</div>
+          </div>
+        </td>
+        <td><span class="text-muted small">${c.appliedDate || 'May 20, 2024'}</span></td>
+        <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>HR Recruiter</span></td>
+        <td><span class="text-muted small">2024-05-20</span></td>
+        <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+        <td><span class="text-muted small">2026-08-07</span></td>
+        <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">${c.notes || 'Candidate evaluation notes'}</span></td>
+      </tr>
+    `;
+  }).join("");
+}
+
+function createCandidateCardHTML(c) {
+  const isStarredClass = c.starred ? "starred" : "";
+  const starIconClass = c.starred ? "fa-solid fa-star" : "fa-regular fa-star";
+  
+  // Tag styling based on stage
+  const tagClassMap = {
+    applied: "tag-applied",
+    screening: "tag-screening",
+    interview: "tag-interview",
+    offer: "tag-offer",
+    hired: "tag-hired",
+    rejected: "tag-rejected"
+  };
+
+  return `
+    <div class="candidate-card" draggable="true" data-id="${c.id}" data-stage="${c.stage}">
+      <div class="candidate-card-header d-flex align-items-center justify-content-between mb-2">
+        <input type="checkbox" class="form-check-input candidate-checkbox m-0" value="${c.id}" onclick="event.stopPropagation()" aria-label="Select ${c.name}" />
+        <div class="d-flex align-items-center gap-1 ms-auto">
+          <button class="btn-star-candidate ${isStarredClass}" title="Star candidate" onclick="toggleStarCandidate(event, '${c.id}')">
+            <i class="${starIconClass}"></i>
+          </button>
+          <button class="card-action-btn" title="View Profile" onclick="openCandidateDetailModal('${c.id}')">
+            <i class="fa-regular fa-eye text-primary"></i>
+          </button>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-2.5 mb-2">
+        <img src="${c.avatar}" alt="${c.name}" class="candidate-avatar" />
+        <div>
+          <h4 class="candidate-name" onclick="openCandidateDetailModal('${c.id}')">${c.name}</h4>
+          <div class="candidate-role">${c.role}</div>
+          <div class="match-score-pill ${c.matchClass}">
+            <i class="fa-solid fa-sparkles"></i>
+            <span>${c.matchScore}% Match</span>
+          </div>
+        </div>
+      </div>
+      <div class="candidate-card-footer">
+        <span class="status-tag ${tagClassMap[c.stage]}">
+          <i class="fa-regular fa-clock"></i>
+          <span>${c.subtext}</span>
+        </span>
+      </div>
+    </div>
+  `;
+}
+
+function attachCardEvents() {
+  const cards = document.querySelectorAll(".candidate-card");
+  cards.forEach(card => {
+    card.addEventListener("dragstart", handleDragStart);
+    card.addEventListener("dragend", handleDragEnd);
+  });
+}
+
+// Drag & Drop Implementation
+let draggedCandidateId = null;
+
+function handleDragStart(e) {
+  draggedCandidateId = this.getAttribute("data-id");
+  this.classList.add("dragging");
+  e.dataTransfer.setData("text/plain", draggedCandidateId);
+  e.dataTransfer.effectAllowed = "move";
+}
+
+function handleDragEnd() {
+  this.classList.remove("dragging");
+  const columns = document.querySelectorAll(".pipeline-column");
+  columns.forEach(col => col.classList.remove("drag-over"));
+}
+
+function initRecruitmentDragAndDrop() {
+  const columns = document.querySelectorAll(".pipeline-column");
+  columns.forEach(col => {
+    col.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
+      col.classList.add("drag-over");
+    });
+
+    col.addEventListener("dragleave", () => {
+      col.classList.remove("drag-over");
+    });
+
+    col.addEventListener("drop", (e) => {
+      e.preventDefault();
+      col.classList.remove("drag-over");
+      const targetStage = col.getAttribute("data-stage");
+      const candidateId = e.dataTransfer.getData("text/plain") || draggedCandidateId;
+
+      if (candidateId && targetStage) {
+        moveCandidateToStage(candidateId, targetStage);
+      }
+    });
+  });
+}
+
+function moveCandidateToStage(id, newStage) {
+  const candidate = RECRUITMENT_DATA.find(c => c.id === id);
+  if (!candidate) return;
+
+  if (candidate.stage === newStage) return;
+
+  const oldStage = candidate.stage;
+  candidate.stage = newStage;
+
+  // Update subtext / dateTag according to new stage
+  const stageLabels = {
+    applied: `Applied just now`,
+    screening: `Screening | Today`,
+    interview: `Interview | Scheduled`,
+    offer: `Offer Sent | Today`,
+    hired: `Joined | Today`,
+    rejected: `Not selected`
+  };
+  candidate.subtext = stageLabels[newStage];
+
+  renderPipelineBoard();
+
+  showToast({
+    title: "Candidate Stage Updated",
+    message: `${candidate.name} moved from ${oldStage.toUpperCase()} to ${newStage.toUpperCase()}`,
+    type: "success",
+    duration: 3000
+  });
+}
+
+function toggleStarCandidate(e, id) {
+  e.stopPropagation();
+  const candidate = RECRUITMENT_DATA.find(c => c.id === id);
+  if (candidate) {
+    candidate.starred = !candidate.starred;
+    renderPipelineBoard();
+    showToast({
+      title: candidate.starred ? "Candidate Bookmarked" : "Bookmark Removed",
+      message: `${candidate.name} is ${candidate.starred ? "now starred" : "unstarred"}.`,
+      type: "info",
+      duration: 2000
+    });
+  }
+}
+
+function initRecruitmentFilters() {
+  const searchInput = document.getElementById("recruitmentSearchInput");
+  const clearBtn = document.getElementById("clearRecruitmentSearchBtn");
+  const deptSelect = document.getElementById("filterDepartment");
+  const roleSelect = document.getElementById("filterRole");
+  const stageSelect = document.getElementById("filterStage");
+
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      if (clearBtn) {
+        if (searchInput.value.trim() !== "") {
+          clearBtn.classList.remove("d-none");
+        } else {
+          clearBtn.classList.add("d-none");
+        }
+      }
+      renderPipelineBoard();
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      if (searchInput) searchInput.value = "";
+      clearBtn.classList.add("d-none");
+      renderPipelineBoard();
+    });
+  }
+
+  [deptSelect, roleSelect, stageSelect].forEach(select => {
+    if (select) select.addEventListener("change", renderPipelineBoard);
+  });
+}
+
+function openCandidateDetailModal(id) {
+  activeCandidateIdForModal = id;
+  const c = RECRUITMENT_DATA.find(item => item.id === id);
+  if (!c) return;
+
+  const modalEl = document.getElementById("candidateDetailModal");
+  if (!modalEl) return;
+
+  // Eyebrow tag title (View-only profile)
+  const eyebrowTag = modalEl.querySelector(".emp-modal-eyebrow-tag span");
+  if (eyebrowTag) {
+    eyebrowTag.textContent = "CANDIDATE RECRUITMENT PROFILE (VIEW ONLY)";
+  }
+
+  document.getElementById("detailAvatar").src = c.avatar;
+  document.getElementById("detailName").textContent = c.name;
+  document.getElementById("detailRole").textContent = c.role;
+  document.getElementById("detailDept").textContent = c.department;
+  document.getElementById("detailLocation").textContent = c.location || "Ho Chi Minh City";
+  document.getElementById("detailEmail").textContent = c.email || `${c.name.toLowerCase().replace(/\s+/g, '.')}@example.com`;
+  document.getElementById("detailPhone").textContent = c.phone || "+84 912 345 678";
+  document.getElementById("detailSalary").textContent = c.expectedSalary || "$2,500 / month";
+  document.getElementById("detailAppliedDate").textContent = c.appliedDate || "May 20, 2024";
+  document.getElementById("detailNotes").textContent = c.notes || "High recommendation from technical interviewer.";
+
+  const statMatch = document.getElementById("detailStatMatch");
+  if (statMatch) statMatch.textContent = `${c.matchScore}%`;
+
+  const statExp = document.getElementById("detailStatExp");
+  if (statExp) statExp.textContent = c.experience || "4 Yrs";
+
+  const statSkills = document.getElementById("detailStatSkills");
+  if (statSkills) statSkills.textContent = (c.skills || []).length || 5;
+
+  const matchBadge = document.getElementById("detailMatchBadge");
+  if (matchBadge) {
+    matchBadge.className = `match-score-pill ${c.matchClass}`;
+    matchBadge.innerHTML = `<i class="fa-solid fa-sparkles"></i> <span>${c.matchScore}% Match</span>`;
+  }
+
+  const stageBadge = document.getElementById("detailStageBadge");
+  if (stageBadge) {
+    stageBadge.className = `emp-badge status-active`;
+    stageBadge.innerHTML = `<i class="fa-solid fa-circle"></i> ${c.stage.toUpperCase()}`;
+  }
+
+  // Render skills chips
+  const skillsContainer = document.getElementById("detailSkillsContainer");
+  if (skillsContainer) {
+    skillsContainer.innerHTML = (c.skills || ["JavaScript", "Problem Solving", "Teamwork"])
+      .map(s => `<span class="emp-modal-skill-chip"><i class="fa-solid fa-check text-primary"></i> ${s}</span>`)
+      .join("");
+  }
+
+  // Ensure View-Only Mode
+  const stageControlBox = document.getElementById("modalStageControlBox");
+  const closeBtn = document.getElementById("modalCloseBtn");
+  const rejectBtn = document.getElementById("modalRejectBtn");
+  const saveBtn = document.getElementById("modalSaveBtn");
+
+  if (stageControlBox) stageControlBox.classList.add("d-none");
+  if (rejectBtn) rejectBtn.classList.add("d-none");
+  if (saveBtn) saveBtn.classList.add("d-none");
+  if (closeBtn) closeBtn.innerHTML = `<i class="fa-solid fa-xmark me-1"></i> Close`;
+
+  const bsModal = new bootstrap.Modal(modalEl);
+  bsModal.show();
+}
+
+function promptUpdateCandidate() {
+  const selectedCbs = document.querySelectorAll(".candidate-checkbox:checked");
+  if (selectedCbs.length === 1) {
+    openCandidateDetailModal(selectedCbs[0].value);
+  } else if (selectedCbs.length > 1) {
+    showToast({
+      title: "Select Single Candidate",
+      message: "Please select a single candidate to view.",
+      type: "warning"
+    });
+  } else {
+    if (RECRUITMENT_DATA.length > 0) {
+      openCandidateDetailModal(RECRUITMENT_DATA[0].id);
+    } else {
+      showToast({
+        title: "No Candidate Available",
+        message: "There are no candidates available to view.",
+        type: "warning"
+      });
+    }
+  }
+}
+
+function advanceCandidateFromModal() {
+  if (!activeCandidateIdForModal) return;
+  const stageSelect = document.getElementById("modalStageSelect");
+  if (stageSelect) {
+    moveCandidateToStage(activeCandidateIdForModal, stageSelect.value);
+    const modalEl = document.getElementById("candidateDetailModal");
+    const bsModal = bootstrap.Modal.getInstance(modalEl);
+    if (bsModal) bsModal.hide();
+  }
+}
+
+function rejectCandidateFromModal() {
+  if (!activeCandidateIdForModal) return;
+  moveCandidateToStage(activeCandidateIdForModal, "rejected");
+  const modalEl = document.getElementById("candidateDetailModal");
+  const bsModal = bootstrap.Modal.getInstance(modalEl);
+  if (bsModal) bsModal.hide();
+}
+
+function promptMoveCandidateStage(id) {
+  openCandidateDetailModal(id);
+}
+
+function deleteCandidate(id) {
+  const index = RECRUITMENT_DATA.findIndex(c => c.id === id);
+  if (index !== -1) {
+    const deletedName = RECRUITMENT_DATA[index].name;
+    RECRUITMENT_DATA.splice(index, 1);
+    renderPipelineBoard();
+    showToast({
+      title: "Candidate Removed",
+      message: `${deletedName} has been removed from the pipeline.`,
+      type: "info",
+      duration: 3000
+    });
+  }
+}
+
+function initRecruitmentForms() {
+  // Add Candidate Form Submit
+  const addForm = document.getElementById("addCandidateForm");
+  if (addForm) {
+    addForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("addCandName")?.value || "New Candidate";
+      const role = document.getElementById("addCandRole")?.value || "Software Engineer";
+      const dept = document.getElementById("addCandDept")?.value || "Engineering";
+      const email = document.getElementById("addCandEmail")?.value || "candidate@example.com";
+      const phone = document.getElementById("addCandPhone")?.value || "+84 912 345 678";
+      const match = parseInt(document.getElementById("addCandMatch")?.value || "85");
+      const stage = document.getElementById("addCandStage")?.value || "applied";
+      const notes = document.getElementById("addCandNotes")?.value || "Newly added candidate.";
+
+      let matchClass = "match-high";
+      if (match < 70) matchClass = "match-fair";
+      else if (match < 80) matchClass = "match-medium";
+
+      const newCand = {
+        id: `cand-${Date.now()}`,
+        name,
+        role,
+        department: dept,
+        matchScore: match,
+        matchClass,
+        avatar: `https://images.unsplash.com/photo-${1535713875002 + Math.floor(Math.random()*100)}?w=150&auto=format&fit=crop&q=80`,
+        stage,
+        starred: false,
+        subtext: "Just added",
+        dateTag: "Just added",
+        email,
+        phone,
+        experience: "3+ years",
+        location: "Ho Chi Minh City",
+        expectedSalary: "$2,000 / mo",
+        appliedDate: "Today",
+        skills: ["Problem Solving", "Communication", role],
+        notes
+      };
+
+      RECRUITMENT_DATA.unshift(newCand);
+      renderPipelineBoard();
+
+      const modalEl = document.getElementById("addCandidateModal");
+      const bsModal = bootstrap.Modal.getInstance(modalEl);
+      if (bsModal) bsModal.hide();
+      addForm.reset();
+
+      showToast({
+        title: "Candidate Added",
+        message: `${name} has been added to ${stage.toUpperCase()} stage!`,
+        type: "success",
+        duration: 3500
+      });
+    });
+  }
+
+  // New Job Post Form Submit
+  const jobForm = document.getElementById("newJobPostForm");
+  if (jobForm) {
+    jobForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const title = document.getElementById("jobTitleInput")?.value || "New Job";
+      const dept = document.getElementById("jobDeptInput")?.value || "Engineering";
+
+      // Dynamically add role option to filter dropdown if new
+      const roleFilter = document.getElementById("filterRole");
+      if (roleFilter) {
+        const exists = Array.from(roleFilter.options).some(opt => opt.value === title);
+        if (!exists) {
+          const opt = document.createElement("option");
+          opt.value = title;
+          opt.textContent = title;
+          roleFilter.appendChild(opt);
+        }
+      }
+
+      const modalEl = document.getElementById("newJobPostModal");
+      const bsModal = bootstrap.Modal.getInstance(modalEl);
+      if (bsModal) bsModal.hide();
+      jobForm.reset();
+
+      showToast({
+        title: "Job Post Created",
+        message: `New job opening for "${title}" (${dept}) is now live!`,
+        type: "success",
+        duration: 4000
+      });
+    });
+  }
+}
+
+function openMoreCandidatesModal(stage) {
+  const modalEl = document.getElementById("moreCandidatesModal");
+  if (!modalEl) return;
+
+  const titleEl = document.getElementById("moreModalTitle");
+  if (titleEl) titleEl.textContent = `${stage.toUpperCase()} Stage Candidates`;
+
+  const bodyEl = document.getElementById("moreModalBody");
+  if (bodyEl) {
+    const list = RECRUITMENT_DATA.filter(c => c.stage === stage);
+    if (list.length === 0) {
+      bodyEl.innerHTML = `<div class="text-center p-4 text-muted">No candidate records found.</div>`;
+    } else {
+      bodyEl.innerHTML = list.map(c => `
+        <div class="d-flex align-items-center justify-content-between p-2 border rounded-3 bg-light">
+          <div class="d-flex align-items-center gap-2">
+            <img src="${c.avatar}" class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;" />
+            <div>
+              <div class="font-semibold text-dark small">${c.name}</div>
+              <div class="text-muted text-xs">${c.role} • ${c.department}</div>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-outline-primary rounded-pill font-medium text-xs" onclick="openCandidateDetailModal('${c.id}')">View</button>
+        </div>
+      `).join("");
+    }
+  }
+
+  const bsModal = new bootstrap.Modal(modalEl);
+  bsModal.show();
+}
+
+// Expose globally
+window.RECRUITMENT_DATA = RECRUITMENT_DATA;
+window.initRecruitmentPage = initRecruitmentPage;
+window.openCandidateDetailModal = openCandidateDetailModal;
+window.toggleStarCandidate = toggleStarCandidate;
+window.moveCandidateToStage = moveCandidateToStage;
+window.advanceCandidateFromModal = advanceCandidateFromModal;
+window.rejectCandidateFromModal = rejectCandidateFromModal;
+window.promptMoveCandidateStage = promptMoveCandidateStage;
+window.deleteCandidate = deleteCandidate;
+window.openMoreCandidatesModal = openMoreCandidatesModal;
+

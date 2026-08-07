@@ -241,55 +241,817 @@
         </header>
 
         <!-- Page Content Container -->
-        <div
-          class="page-container d-flex flex-column align-items-center justify-content-center"
-          style="min-height: calc(100vh - 140px)"
-        >
-          <div
-            class="erp-card text-center p-5 shadow-sm"
-            style="max-width: 580px; width: 100%"
-          >
-            <div class="mb-4">
-              <div
-                class="mx-auto d-flex align-items-center justify-content-center rounded-circle"
-                style="
-                  width: 84px;
-                  height: 84px;
-                  background: #eef4ff;
-                  color: #2563eb;
-                  font-size: 2.5rem;
-                  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
-                "
-              >
-                <i class="fa-solid fa-user-plus"></i>
+        <div class="page-container p-4">
+          <!-- Page Header -->
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+            <div>
+              <h2 class="h3 fw-bold text-dark mb-1">Recruitment Management</h2>
+              <p class="text-muted mb-0">
+                Quản lý quy trình tuyển dụng, theo dõi hồ sơ ứng viên theo giai đoạn và đánh giá ứng viên.
+              </p>
+            </div>
+          </div>
+
+          <!-- Quick Stat Summary Cards Row (5 Cards Layout - Sleek 2-Line Format) -->
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 mb-4">
+            <!-- Card 1: Tổng Ứng Viên -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-orange">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">TỔNG ỨNG VIÊN</span>
+                    <span class="metric-tag-pill ms-auto">100% Pipeline</span>
+                  </div>
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
+                    <h3 class="metric-pastel-val mb-0" id="statTotalApplied">348</h3>
+                    <span class="metric-pastel-sub mb-0 text-truncate">
+                      <i class="fa-solid fa-users me-1 text-primary"></i>Hồ sơ tuyển dụng
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-file-signature"></i>
+                </div>
               </div>
             </div>
-            <span
-              class="badge bg-primary-subtle text-primary font-semibold px-3 py-2 rounded-pill mb-3"
-              style="font-size: 0.8rem; letter-spacing: 0.05em"
-              >SYSTEM NOTICE</span
-            >
-            <h2 class="fw-bold text-dark mb-2" style="font-size: 1.75rem">
-              Recruitment - Feature Under Development
-            </h2>
-            <p
-              class="text-muted mb-4"
-              style="font-size: 0.95rem; line-height: 1.6"
-            >
-              Chức năng Quản lý Tuyển dụng đang trong quá trình phát triển và
-              hoàn thiện. Vui lòng quay lại sau!
-            </p>
-            <div class="d-flex justify-content-center">
-              <a
-                href="dashboard.html"
-                class="btn btn-primary px-4 py-2 font-semibold rounded-pill d-inline-flex align-items-center gap-2"
-              >
-                <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
-              </a>
+
+            <!-- Card 2: Đang Đánh Giá -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-mint">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">ĐANG ĐÁNH GIÁ</span>
+                    <span class="metric-tag-pill ms-auto">39.1% Active</span>
+                  </div>
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
+                    <h3 class="metric-pastel-val mb-0" id="statInScreening">136</h3>
+                    <span class="metric-pastel-sub mb-0 text-truncate">
+                      <i class="fa-solid fa-filter me-1 text-info"></i>Sơ tuyển & Test
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-user-check"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Phỏng Vấn -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-purple">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">PHỎNG VẤN</span>
+                    <span class="metric-tag-pill ms-auto">14.9% Round</span>
+                  </div>
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
+                    <h3 class="metric-pastel-val mb-0" id="statInterviewing">52</h3>
+                    <span class="metric-pastel-sub mb-0 text-truncate">
+                      <i class="fa-solid fa-comments me-1 text-purple"></i>Đang phỏng vấn
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-calendar-day"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Gửi Offer -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-amber">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">GỬI OFFER</span>
+                    <span class="metric-tag-pill ms-auto">8.0% Rate</span>
+                  </div>
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
+                    <h3 class="metric-pastel-val mb-0" id="statOffersSent">28</h3>
+                    <span class="metric-pastel-sub mb-0 text-truncate">
+                      <i class="fa-solid fa-paper-plane me-1 text-warning"></i>Đang đàm phán
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Đã Tuyển Dụng -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-teal">
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">ĐÃ TUYỂN DỤNG</span>
+                    <span class="metric-tag-pill ms-auto">4.6% Conversion</span>
+                  </div>
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
+                    <h3 class="metric-pastel-val mb-0" id="statTotalHired">16</h3>
+                    <span class="metric-pastel-sub mb-0 text-truncate">
+                      <i class="fa-solid fa-trophy me-1 text-success"></i>Đã nhận việc
+                    </span>
+                  </div>
+                </div>
+                <div class="metric-pastel-icon-floating">
+                  <i class="fa-solid fa-user-plus"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ApexGrid Card Wrapper -->
+          <div class="erp-card p-4 shadow-sm rounded-4">
+            <!-- Linear-Tier Unified Command Dock: Search, Smart Filter Toggle & Action Buttons -->
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3 pb-3 filter-toolbar-border">
+              <!-- Left Controls: Global Search, Filter Matrix Toggle -->
+              <div class="d-flex flex-wrap align-items-center gap-2">
+                <!-- Search Input Box -->
+                <div class="position-relative" style="min-width: 240px">
+                  <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 filter-search-icon"></i>
+                  <input
+                    type="text"
+                    id="recruitmentSearchInput"
+                    class="form-control form-control-sm ps-5 pe-3 rounded-3 filter-input"
+                    placeholder="Search candidate, role, dept..."
+                  />
+                </div>
+
+                <!-- Filter Matrix Toggle Button -->
+                <button
+                  class="btn btn-sm btn-pastel-slate d-inline-flex align-items-center gap-2 px-3 rounded-3"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#recruitmentFilterCollapse"
+                  aria-expanded="false"
+                  aria-controls="recruitmentFilterCollapse"
+                  id="recruitmentFilterToggleBtn"
+                >
+                  <i class="fa-solid fa-sliders text-primary"></i> Filter
+                  <span class="badge-soft badge-blue ms-1" id="recruitmentActiveFilterCount">3</span>
+                </button>
+              </div>
+
+              <!-- Right: Quick Action Buttons (CRUD & Data IO) -->
+              <div class="d-flex align-items-center gap-2 flex-wrap ms-auto">
+                <!-- View Toggle Group (Kanban Board vs List Table) -->
+                <div class="view-toggle-group" role="group" aria-label="View mode">
+                  <button class="view-toggle-btn active" id="kanbanViewBtn" title="Kanban Pipeline View">
+                    <i class="fa-solid fa-table-columns"></i>
+                    <span class="d-none d-md-inline">Kanban</span>
+                  </button>
+                  <button class="view-toggle-btn" id="listViewBtn" title="Table List View">
+                    <i class="fa-solid fa-list"></i>
+                    <span class="d-none d-md-inline">List</span>
+                  </button>
+                </div>
+
+                <!-- Group Divider -->
+                <div class="action-bar-divider mx-1"></div>
+
+                <!-- Record CRUD Group -->
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    class="btn btn-sm btn-pastel-green d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    type="button"
+                  >
+                    <i class="fa-solid fa-user-plus"></i> Create
+                  </button>
+                  <button
+                    class="btn btn-sm btn-pastel-orange d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    type="button"
+                    id="updateCandidateBtn"
+                  >
+                    <i class="fa-solid fa-pen-to-square"></i> Update
+                  </button>
+                  <button
+                    class="btn btn-sm btn-pastel-red d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    type="button"
+                  >
+                    <i class="fa-solid fa-trash-can"></i> Delete
+                  </button>
+                </div>
+
+                <!-- Group Divider -->
+                <div class="action-bar-divider mx-1"></div>
+
+                <!-- Data IO Group -->
+                <div class="d-flex align-items-center gap-2">
+                  <button class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs" id="importCandBtn">
+                    <i class="fa-solid fa-file-import"></i> Import
+                  </button>
+                  <button class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs" id="exportCandBtn">
+                    <i class="fa-solid fa-file-export"></i> Export
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Active Filter Chips Bar (Linear Tag Chips) -->
+            <div class="active-filter-chips-bar mb-3" id="recruitmentChipsBar">
+              <span class="text-muted small fw-semibold me-1">Active Filters:</span>
+
+              <span class="filter-chip">
+                <i class="fa-solid fa-building chip-icon"></i> Department:
+                <strong id="chipDeptVal">All Departments</strong>
+                <i class="fa-solid fa-xmark chip-remove-btn"></i>
+              </span>
+
+              <span class="filter-chip">
+                <i class="fa-solid fa-user-tie chip-icon"></i> Role:
+                <strong id="chipRoleVal">All Roles</strong>
+                <i class="fa-solid fa-xmark chip-remove-btn"></i>
+              </span>
+
+              <span class="filter-chip">
+                <i class="fa-solid fa-layer-group chip-icon"></i> Stage:
+                <strong id="chipStageVal">All Stages</strong>
+                <i class="fa-solid fa-xmark chip-remove-btn"></i>
+              </span>
+
+              <button class="btn btn-link text-muted p-0 border-0 btn-clear-all-chips ms-auto">
+                <i class="fa-solid fa-trash-can me-1"></i> Clear All
+              </button>
+            </div>
+
+            <!-- Expandable Smart Filter Matrix (Scalable Dropdowns Panel) -->
+            <div class="collapse" id="recruitmentFilterCollapse">
+              <div class="smart-filter-matrix mb-3">
+                <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
+                  <span class="fw-bold small text-muted text-uppercase tracking-wider">
+                    <i class="fa-solid fa-sliders text-primary me-2"></i>Filter Criteria Matrix
+                  </span>
+                  <span class="text-muted small">Select criteria to refine recruitment board</span>
+                </div>
+                <div class="row g-3">
+                  <!-- Department Filter -->
+                  <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted">Department</label>
+                    <select class="form-select form-select-sm rounded-3 filter-select w-100" id="filterDepartment">
+                      <option selected value="all">All Departments</option>
+                      <option value="Engineering">Engineering</option>
+                      <option value="Product">Product</option>
+                      <option value="Design">Design</option>
+                      <option value="Marketing">Marketing</option>
+                      <option value="Sales">Sales</option>
+                      <option value="HR Specialist">HR Specialist</option>
+                    </select>
+                  </div>
+
+                  <!-- Role Filter -->
+                  <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted">Target Role</label>
+                    <select class="form-select form-select-sm rounded-3 filter-select w-100" id="filterRole">
+                      <option selected value="all">All Roles</option>
+                      <option value="Software Engineer">Software Engineer</option>
+                      <option value="Backend Developer">Backend Developer</option>
+                      <option value="Frontend Developer">Frontend Developer</option>
+                      <option value="Data Analyst">Data Analyst</option>
+                      <option value="UX Designer">UX Designer</option>
+                      <option value="QA Engineer">QA Engineer</option>
+                      <option value="HR Specialist">HR Specialist</option>
+                      <option value="Sales Manager">Sales Manager</option>
+                      <option value="Marketing Manager">Marketing Manager</option>
+                      <option value="Product Designer">Product Designer</option>
+                    </select>
+                  </div>
+
+                  <!-- Pipeline Stage Filter -->
+                  <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted">Pipeline Stage</label>
+                    <select class="form-select form-select-sm rounded-3 filter-select w-100" id="filterStage">
+                      <option selected value="all">All Stages</option>
+                      <option value="applied">Applied</option>
+                      <option value="screening">Screening</option>
+                      <option value="interview">Interview</option>
+                      <option value="offer">Offer</option>
+                      <option value="hired">Hired</option>
+                      <option value="rejected">Rejected</option>
+                    </select>
+                  </div>
+
+                  <!-- Match Score Filter -->
+                  <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted">Match Score Level</label>
+                    <select class="form-select form-select-sm rounded-3 filter-select w-100" id="filterMatchLevel">
+                      <option selected value="all">All Match Levels</option>
+                      <option value="high">High (>80%)</option>
+                      <option value="medium">Medium (70-79%)</option>
+                      <option value="fair">Fair (<70%)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-end gap-2 mt-3 pt-2 border-top">
+                  <button class="btn btn-sm btn-pastel-cyan px-4 rounded-3" type="button" id="applyRecruitmentFilterBtn">
+                    <i class="fa-solid fa-check me-1"></i> Apply
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ══════════════════════════
+                 VIEW 1: KANBAN BOARD VIEW
+            ══════════════════════════ -->
+            <div class="pipeline-board-container" id="recruitmentPipelineBoard">
+              <!-- 1. APPLIED COLUMN -->
+              <div class="pipeline-column column-applied" data-stage="applied">
+                <div class="column-header">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="column-dot dot-applied"></span>
+                      <h3 class="column-title text-applied">Applied</h3>
+                    </div>
+                    <span class="column-count-badge badge-applied" id="count-applied">126</span>
+                  </div>
+                </div>
+                <div class="column-body" id="col-applied-list">
+                  <!-- Dynamic candidate cards -->
+                </div>
+                <div class="column-footer">
+                  <button class="btn-more-candidates text-applied" onclick="openMoreCandidatesModal('applied')">
+                    <i class="fa-solid fa-plus me-1"></i> <span id="more-applied-text">+ 123 more candidates</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 2. SCREENING COLUMN -->
+              <div class="pipeline-column column-screening" data-stage="screening">
+                <div class="column-header">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="column-dot dot-screening"></span>
+                      <h3 class="column-title text-screening">Screening</h3>
+                    </div>
+                    <span class="column-count-badge badge-screening" id="count-screening">84</span>
+                  </div>
+                </div>
+                <div class="column-body" id="col-screening-list">
+                  <!-- Dynamic candidate cards -->
+                </div>
+                <div class="column-footer">
+                  <button class="btn-more-candidates text-screening" onclick="openMoreCandidatesModal('screening')">
+                    <i class="fa-solid fa-plus me-1"></i> <span id="more-screening-text">+ 81 more candidates</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 3. INTERVIEW COLUMN -->
+              <div class="pipeline-column column-interview" data-stage="interview">
+                <div class="column-header">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="column-dot dot-interview"></span>
+                      <h3 class="column-title text-interview">Interview</h3>
+                    </div>
+                    <span class="column-count-badge badge-interview" id="count-interview">52</span>
+                  </div>
+                </div>
+                <div class="column-body" id="col-interview-list">
+                  <!-- Dynamic candidate cards -->
+                </div>
+                <div class="column-footer">
+                  <button class="btn-more-candidates text-interview" onclick="openMoreCandidatesModal('interview')">
+                    <i class="fa-solid fa-plus me-1"></i> <span id="more-interview-text">+ 49 more candidates</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 4. OFFER COLUMN -->
+              <div class="pipeline-column column-offer" data-stage="offer">
+                <div class="column-header">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="column-dot dot-offer"></span>
+                      <h3 class="column-title text-offer">Offer</h3>
+                    </div>
+                    <span class="column-count-badge badge-offer" id="count-offer">28</span>
+                  </div>
+                </div>
+                <div class="column-body" id="col-offer-list">
+                  <!-- Dynamic candidate cards -->
+                </div>
+                <div class="column-footer">
+                  <button class="btn-more-candidates text-offer" onclick="openMoreCandidatesModal('offer')">
+                    <i class="fa-solid fa-plus me-1"></i> <span id="more-offer-text">+ 25 more candidates</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 5. HIRED COLUMN -->
+              <div class="pipeline-column column-hired" data-stage="hired">
+                <div class="column-header">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="column-dot dot-hired"></span>
+                      <h3 class="column-title text-hired">Hired</h3>
+                    </div>
+                    <span class="column-count-badge badge-hired" id="count-hired">16</span>
+                  </div>
+                </div>
+                <div class="column-body" id="col-hired-list">
+                  <!-- Dynamic candidate cards -->
+                </div>
+                <div class="column-footer">
+                  <button class="btn-more-candidates text-hired" onclick="openMoreCandidatesModal('hired')">
+                    <i class="fa-solid fa-plus me-1"></i> <span id="more-hired-text">+ 13 more candidates</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 6. REJECTED COLUMN -->
+              <div class="pipeline-column column-rejected" data-stage="rejected">
+                <div class="column-header">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="column-dot dot-rejected"></span>
+                      <h3 class="column-title text-rejected">Rejected</h3>
+                    </div>
+                    <span class="column-count-badge badge-rejected" id="count-rejected">42</span>
+                  </div>
+                </div>
+                <div class="column-body" id="col-rejected-list">
+                  <!-- Dynamic candidate cards -->
+                </div>
+                <div class="column-footer">
+                  <button class="btn-more-candidates text-rejected" onclick="openMoreCandidatesModal('rejected')">
+                    <i class="fa-solid fa-plus me-1"></i> <span id="more-rejected-text">+ 39 more candidates</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ══════════════════════════
+                 VIEW 2: CANDIDATE LIST TABLE VIEW (Hidden by default)
+            ══════════════════════════ -->
+            <div id="recruitmentListView" class="d-none">
+              <div class="table-responsive rounded-3">
+                <table class="emp-list-table" id="recruitmentListTable">
+                  <thead>
+                    <tr>
+                      <th style="width: 36px">
+                        <input type="checkbox" id="selectAllCandidates" aria-label="Select all" />
+                      </th>
+                      <th style="width: 44px" class="text-center">Action</th>
+                      <th>Code</th>
+                      <th>Candidate</th>
+                      <th>Department</th>
+                      <th>Target Role</th>
+                      <th>Match Score</th>
+                      <th>Stage</th>
+                      <th>Contact</th>
+                      <th>Applied Date</th>
+                      <th>Created By</th>
+                      <th>Created At</th>
+                      <th>Updated By</th>
+                      <th>Updated At</th>
+                      <th>Note</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recruitmentTableBody">
+                    <!-- Rendered dynamically by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Pagination Footer Bar (Standard NexusOST Layout) -->
+            <div class="d-flex flex-wrap align-items-center justify-content-between pt-3 border-top mt-3">
+              <div class="d-flex align-items-center gap-2 text-muted small">
+                <span>Show</span>
+                <select class="form-select form-select-sm rounded-3 filter-select" style="width: 70px;">
+                  <option value="10">10</option>
+                  <option value="25" selected>25</option>
+                  <option value="50">50</option>
+                </select>
+                <span>entries per page</span>
+              </div>
+
+              <div class="d-flex align-items-center gap-3">
+                <span class="text-muted small">Showing <strong id="recruitmentShowingCount">1-17</strong> of <strong>348</strong> candidates</span>
+                <nav aria-label="Recruitment pagination">
+                  <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item disabled"><a class="page-link" href="#"><i class="fa-solid fa-chevron-left"></i></a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-chevron-right"></i></a></li>
+                  </ul>
+                </nav>
+              </div>
             </div>
           </div>
         </div>
-      </main>
+
+        <!-- ==========================================
+             RECRUITMENT MODALS
+             ========================================== -->
+
+        <!-- 1. Candidate Detail Modal (NexusOST Employee Modal Standard) -->
+        <div
+          class="modal fade custom-nexus-modal"
+          id="candidateDetailModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="detailName"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content border-0 shadow-2xl rounded-5 overflow-hidden">
+              <!-- Ambient Radial Glow Backdrop & Top Accent Line -->
+              <div class="modal-bg-glow"></div>
+              <div class="modal-top-accent-bar"></div>
+
+              <!-- Modal Header -->
+              <div
+                class="modal-header border-0 px-4 pt-4 pb-3 position-relative d-flex align-items-start justify-content-between z-1"
+              >
+                <div class="d-flex align-items-center gap-3">
+                  <div class="emp-modal-avatar-wrap">
+                    <img id="detailAvatar" src="" alt="Candidate Avatar" />
+                  </div>
+                  <div>
+                    <div class="modal-eyebrow-tag mb-1">
+                      <span class="eyebrow-dot"></span> CANDIDATE RECRUITMENT PROFILE
+                    </div>
+                    <h5
+                      class="modal-title fw-bold text-dark mb-0 d-flex align-items-center gap-2"
+                      id="detailName"
+                    ></h5>
+                    <div class="d-flex align-items-center flex-wrap gap-2 mt-1">
+                      <span class="text-muted small fw-medium" id="detailRole"></span>
+                      <div class="emp-modal-hero-badges d-inline-flex align-items-center gap-2 ms-1">
+                        <span id="detailMatchBadge" class="match-score-pill match-high">88% Match</span>
+                        <span id="detailStageBadge" class="emp-badge status-active">Stage</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    type="button"
+                    class="custom-btn-close ms-1"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Scrollable Body -->
+              <div class="modal-body px-4 py-3 position-relative z-1 emp-modal-body">
+
+                <!-- Section 1: Candidate Contact & Application -->
+                <p class="emp-modal-section-title">Contact &amp; Application Details</p>
+                <div class="emp-modal-info-grid">
+                  <div class="emp-modal-info-item">
+                    <div class="emp-modal-info-icon blue"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="emp-modal-info-text">
+                      <div class="emp-modal-info-label">Email Address</div>
+                      <div class="emp-modal-info-value" id="detailEmail">—</div>
+                    </div>
+                  </div>
+                  <div class="emp-modal-info-item">
+                    <div class="emp-modal-info-icon green"><i class="fa-solid fa-phone"></i></div>
+                    <div class="emp-modal-info-text">
+                      <div class="emp-modal-info-label">Phone Number</div>
+                      <div class="emp-modal-info-value" id="detailPhone">—</div>
+                    </div>
+                  </div>
+                  <div class="emp-modal-info-item">
+                    <div class="emp-modal-info-icon purple"><i class="fa-solid fa-building"></i></div>
+                    <div class="emp-modal-info-text">
+                      <div class="emp-modal-info-label">Department</div>
+                      <div class="emp-modal-info-value" id="detailDept">—</div>
+                    </div>
+                  </div>
+                  <div class="emp-modal-info-item">
+                    <div class="emp-modal-info-icon rose"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="emp-modal-info-text">
+                      <div class="emp-modal-info-label">Work Location</div>
+                      <div class="emp-modal-info-value" id="detailLocation">—</div>
+                    </div>
+                  </div>
+                  <div class="emp-modal-info-item">
+                    <div class="emp-modal-info-icon amber"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <div class="emp-modal-info-text">
+                      <div class="emp-modal-info-label">Expected Salary</div>
+                      <div class="emp-modal-info-value" id="detailSalary">—</div>
+                    </div>
+                  </div>
+                  <div class="emp-modal-info-item">
+                    <div class="emp-modal-info-icon teal"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="emp-modal-info-text">
+                      <div class="emp-modal-info-label">Applied Date</div>
+                      <div class="emp-modal-info-value" id="detailAppliedDate">—</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Section 2: AI Match Score & Insights -->
+                <p class="emp-modal-section-title">AI Matching &amp; Candidate Metrics</p>
+                <div class="emp-modal-stat-row">
+                  <div class="emp-modal-stat-card">
+                    <div class="emp-modal-stat-val text-primary" id="detailStatMatch">88%</div>
+                    <div class="emp-modal-stat-lbl">Match Score</div>
+                  </div>
+                  <div class="emp-modal-stat-card">
+                    <div class="emp-modal-stat-val" id="detailStatExp">4 Yrs</div>
+                    <div class="emp-modal-stat-lbl">Experience</div>
+                  </div>
+                  <div class="emp-modal-stat-card">
+                    <div class="emp-modal-stat-val" id="detailStatSkills">6</div>
+                    <div class="emp-modal-stat-lbl">Matched Skills</div>
+                  </div>
+                </div>
+
+                <!-- Section 3: Skills -->
+                <p class="emp-modal-section-title">Skills &amp; Qualifications</p>
+                <div class="emp-modal-skills mb-4" id="detailSkillsContainer"></div>
+
+                <!-- Section 4: Interviewer Notes & Attachment -->
+                <p class="emp-modal-section-title">Interviewer Notes &amp; Resume Attachment</p>
+                <div class="p-3 bg-light rounded-3 border mb-3">
+                  <p id="detailNotes" class="small text-muted mb-0">Candidate evaluation notes...</p>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between p-3 rounded-3 border bg-surface">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-file-pdf text-danger fs-4"></i>
+                    <div>
+                      <div class="fw-semibold text-dark small">Candidate_Resume.pdf</div>
+                      <div class="text-muted text-xs">Verified • 1.4 MB</div>
+                    </div>
+                  </div>
+                  <button class="btn btn-sm btn-pastel-indigo rounded-3"><i class="fa-solid fa-download me-1"></i>Download Resume</button>
+                </div>
+              </div>
+
+              <!-- Modal Footer -->
+              <div class="modal-footer px-4 py-3 border-top-0 d-flex align-items-center justify-content-between modal-footer-custom z-1">
+                <div class="d-none d-md-flex align-items-center gap-2 text-muted small">
+                  <i class="fa-solid fa-shield-halved text-primary opacity-75"></i>
+                  <span>Enterprise Encrypted</span>
+                  <span class="modal-footer-divider"></span>
+                  <span class="d-inline-flex align-items-center gap-1">
+                    <kbd class="nexus-kbd">ESC</kbd> Close
+                  </span>
+                </div>
+                
+                <div class="d-flex align-items-center gap-2 ms-auto">
+                  <button type="button" id="modalCloseBtn" class="btn btn-sm btn-pastel-slate px-3 py-2 rounded-3" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-xmark me-1"></i> Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Add Candidate Modal -->
+        <div class="modal fade" id="addCandidateModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+              <div class="modal-header bg-primary text-white p-3">
+                <h5 class="modal-title font-bold text-white mb-0"><i class="fa-solid fa-user-plus me-2"></i>Add New Candidate</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="addCandidateForm">
+                <div class="modal-body p-4">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label font-semibold small">Full Name <span class="text-danger">*</span></label>
+                      <input type="text" id="addCandName" class="form-control form-control-sm" placeholder="e.g. Linh Nguyen" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label font-semibold small">Target Role <span class="text-danger">*</span></label>
+                      <input type="text" id="addCandRole" class="form-control form-control-sm" placeholder="e.g. Software Engineer" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label font-semibold small">Department</label>
+                      <select id="addCandDept" class="form-select form-select-sm">
+                        <option value="Engineering">Engineering</option>
+                        <option value="Product">Product</option>
+                        <option value="Design">Design</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Sales">Sales</option>
+                        <option value="HR Specialist">HR Specialist</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label font-semibold small">Email Address</label>
+                      <input type="email" id="addCandEmail" class="form-control form-control-sm" placeholder="cand@example.com" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label font-semibold small">Phone Number</label>
+                      <input type="tel" id="addCandPhone" class="form-control form-control-sm" placeholder="+84 900 000 000" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label font-semibold small">Match Score (%)</label>
+                      <input type="number" id="addCandMatch" class="form-control form-control-sm" min="40" max="100" value="85" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label font-semibold small">Pipeline Stage</label>
+                      <select id="addCandStage" class="form-select form-select-sm">
+                        <option value="applied">Applied</option>
+                        <option value="screening">Screening</option>
+                        <option value="interview">Interview</option>
+                        <option value="offer">Offer</option>
+                        <option value="hired">Hired</option>
+                        <option value="rejected">Rejected</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label font-semibold small">Interviewer / Initial Notes</label>
+                      <textarea id="addCandNotes" class="form-control form-control-sm" rows="2" placeholder="Brief candidate background or interview feedback..."></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer bg-light p-3">
+                  <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 primary-gradient-btn font-semibold"><i class="fa-solid fa-check me-1"></i>Save Candidate</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. New Job Post Modal -->
+        <div class="modal fade" id="newJobPostModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+              <div class="modal-header bg-dark text-white p-3">
+                <h5 class="modal-title font-bold text-white mb-0"><i class="fa-solid fa-briefcase me-2 text-primary"></i>Create New Job Post</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="newJobPostForm">
+                <div class="modal-body p-4">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label font-semibold small">Job Title <span class="text-danger">*</span></label>
+                      <input type="text" id="jobTitleInput" class="form-control form-control-sm" placeholder="e.g. Senior Frontend Architect" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label font-semibold small">Department</label>
+                      <select id="jobDeptInput" class="form-select form-select-sm">
+                        <option value="Engineering">Engineering</option>
+                        <option value="Product">Product</option>
+                        <option value="Design">Design</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Sales">Sales</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label font-semibold small">Job Type</label>
+                      <select id="jobTypeInput" class="form-select form-select-sm">
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Remote">Remote</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label font-semibold small">Salary Range</label>
+                      <input type="text" id="jobSalaryInput" class="form-control form-control-sm" placeholder="e.g. $2,000 - $3,500 / mo" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label font-semibold small">Location</label>
+                      <input type="text" id="jobLocInput" class="form-control form-control-sm" placeholder="e.g. Ho Chi Minh City" />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label font-semibold small">Description & Requirements</label>
+                      <textarea id="jobDescInput" class="form-control form-control-sm" rows="3" placeholder="Key responsibilities, skills required..."></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer bg-light p-3">
+                  <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 primary-gradient-btn font-semibold"><i class="fa-solid fa-paper-plane me-1"></i>Publish Job Post</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. More Candidates Modal -->
+        <div class="modal fade" id="moreCandidatesModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+              <div class="modal-header bg-light p-3">
+                <h5 id="moreModalTitle" class="modal-title font-bold mb-0">Extra Candidates</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body p-3">
+                <div id="moreModalBody" class="d-flex flex-column gap-2">
+                  <!-- Extra candidates list rendered dynamically -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
     </div>
 
     <!-- Bootstrap 5 JS Bundle -->
