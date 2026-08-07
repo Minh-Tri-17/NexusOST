@@ -10,7 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
   initTopbarInteractiveControls();
   initFilterChipsSystem();
 
-  if ((document.getElementById("countryTableBody") || document.getElementById("countryFormModal")) && typeof initCountryGrid === "function") {
+  if (
+    (document.getElementById("countryTableBody") || document.getElementById("countryFormModal")) &&
+    typeof initCountryGrid === "function"
+  ) {
     initCountryGrid();
   }
 
@@ -45,7 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Recruitment Pipeline Page Logic
-  if (document.getElementById("recruitmentPipelineBoard") || document.getElementById("candidateDetailModal")) {
+  if (
+    document.getElementById("recruitmentPipelineBoard") ||
+    document.getElementById("candidateDetailModal")
+  ) {
     initRecruitmentPage();
   }
 });
@@ -109,7 +115,6 @@ function initMobileSidebarToggle() {
     backdrop.className = "sidebar-backdrop";
     document.body.appendChild(backdrop);
   }
-
 
   // Helper function to close mobile sidebar drawer
   const closeMobileSidebar = () => {
@@ -680,7 +685,8 @@ function initCountryExportModal() {
       exportProgressBar.setAttribute("aria-valuenow", "0");
     }
     if (exportProgressPercentText) exportProgressPercentText.textContent = "0%";
-    if (exportProgressStatusText) exportProgressStatusText.textContent = "Generating export file...";
+    if (exportProgressStatusText)
+      exportProgressStatusText.textContent = "Generating export file...";
   }
 
   if (exportForm) {
@@ -765,26 +771,166 @@ window.initCountryExportModal = initCountryExportModal;
 /* Country Management Dataset & HTML Table Renderer */
 function generateCountryDataset() {
   const seedCountries = [
-    { code: "VN", countryName: "Việt Nam", capital: "Hà Nội", region: "Asia", basePop: 98186856, priority: "High" },
-    { code: "US", countryName: "United States", capital: "Washington, D.C.", region: "Americas", basePop: 331893745, priority: "High" },
-    { code: "JP", countryName: "Japan", capital: "Tokyo", region: "Asia", basePop: 125507472, priority: "High" },
-    { code: "DE", countryName: "Germany", capital: "Berlin", region: "Europe", basePop: 83190556, priority: "Standard" },
-    { code: "GB", countryName: "United Kingdom", capital: "London", region: "Europe", basePop: 67326569, priority: "High" },
-    { code: "FR", countryName: "France", capital: "Paris", region: "Europe", basePop: 67749632, priority: "Standard" },
-    { code: "KR", countryName: "South Korea", capital: "Seoul", region: "Asia", basePop: 51744876, priority: "High" },
-    { code: "SG", countryName: "Singapore", capital: "Singapore", region: "Asia", basePop: 5453600, priority: "High" },
-    { code: "AU", countryName: "Australia", capital: "Canberra", region: "Oceania", basePop: 25688079, priority: "Standard" },
-    { code: "CA", countryName: "Canada", capital: "Ottawa", region: "Americas", basePop: 38246108, priority: "Standard" },
-    { code: "TH", countryName: "Thailand", capital: "Bangkok", region: "Asia", basePop: 71601103, priority: "Standard" },
-    { code: "CN", countryName: "China", capital: "Beijing", region: "Asia", basePop: 1412360000, priority: "High" },
-    { code: "IN", countryName: "India", capital: "New Delhi", region: "Asia", basePop: 1408044253, priority: "High" },
-    { code: "BR", countryName: "Brazil", capital: "Brasília", region: "Americas", basePop: 214326223, priority: "Low" },
-    { code: "IT", countryName: "Italy", capital: "Rome", region: "Europe", basePop: 59066225, priority: "Standard" },
-    { code: "ES", countryName: "Spain", capital: "Madrid", region: "Europe", basePop: 47415750, priority: "Standard" },
-    { code: "NL", countryName: "Netherlands", capital: "Amsterdam", region: "Europe", basePop: 17530000, priority: "Standard" },
-    { code: "SE", countryName: "Sweden", capital: "Stockholm", region: "Europe", basePop: 10420000, priority: "Low" },
-    { code: "CH", countryName: "Switzerland", capital: "Bern", region: "Europe", basePop: 8700000, priority: "High" },
-    { code: "AE", countryName: "United Arab Emirates", capital: "Abu Dhabi", region: "Asia", basePop: 9890400, priority: "High" },
+    {
+      code: "VN",
+      countryName: "Việt Nam",
+      capital: "Hà Nội",
+      region: "Asia",
+      basePop: 98186856,
+      priority: "High",
+    },
+    {
+      code: "US",
+      countryName: "United States",
+      capital: "Washington, D.C.",
+      region: "Americas",
+      basePop: 331893745,
+      priority: "High",
+    },
+    {
+      code: "JP",
+      countryName: "Japan",
+      capital: "Tokyo",
+      region: "Asia",
+      basePop: 125507472,
+      priority: "High",
+    },
+    {
+      code: "DE",
+      countryName: "Germany",
+      capital: "Berlin",
+      region: "Europe",
+      basePop: 83190556,
+      priority: "Standard",
+    },
+    {
+      code: "GB",
+      countryName: "United Kingdom",
+      capital: "London",
+      region: "Europe",
+      basePop: 67326569,
+      priority: "High",
+    },
+    {
+      code: "FR",
+      countryName: "France",
+      capital: "Paris",
+      region: "Europe",
+      basePop: 67749632,
+      priority: "Standard",
+    },
+    {
+      code: "KR",
+      countryName: "South Korea",
+      capital: "Seoul",
+      region: "Asia",
+      basePop: 51744876,
+      priority: "High",
+    },
+    {
+      code: "SG",
+      countryName: "Singapore",
+      capital: "Singapore",
+      region: "Asia",
+      basePop: 5453600,
+      priority: "High",
+    },
+    {
+      code: "AU",
+      countryName: "Australia",
+      capital: "Canberra",
+      region: "Oceania",
+      basePop: 25688079,
+      priority: "Standard",
+    },
+    {
+      code: "CA",
+      countryName: "Canada",
+      capital: "Ottawa",
+      region: "Americas",
+      basePop: 38246108,
+      priority: "Standard",
+    },
+    {
+      code: "TH",
+      countryName: "Thailand",
+      capital: "Bangkok",
+      region: "Asia",
+      basePop: 71601103,
+      priority: "Standard",
+    },
+    {
+      code: "CN",
+      countryName: "China",
+      capital: "Beijing",
+      region: "Asia",
+      basePop: 1412360000,
+      priority: "High",
+    },
+    {
+      code: "IN",
+      countryName: "India",
+      capital: "New Delhi",
+      region: "Asia",
+      basePop: 1408044253,
+      priority: "High",
+    },
+    {
+      code: "BR",
+      countryName: "Brazil",
+      capital: "Brasília",
+      region: "Americas",
+      basePop: 214326223,
+      priority: "Low",
+    },
+    {
+      code: "IT",
+      countryName: "Italy",
+      capital: "Rome",
+      region: "Europe",
+      basePop: 59066225,
+      priority: "Standard",
+    },
+    {
+      code: "ES",
+      countryName: "Spain",
+      capital: "Madrid",
+      region: "Europe",
+      basePop: 47415750,
+      priority: "Standard",
+    },
+    {
+      code: "NL",
+      countryName: "Netherlands",
+      capital: "Amsterdam",
+      region: "Europe",
+      basePop: 17530000,
+      priority: "Standard",
+    },
+    {
+      code: "SE",
+      countryName: "Sweden",
+      capital: "Stockholm",
+      region: "Europe",
+      basePop: 10420000,
+      priority: "Low",
+    },
+    {
+      code: "CH",
+      countryName: "Switzerland",
+      capital: "Bern",
+      region: "Europe",
+      basePop: 8700000,
+      priority: "High",
+    },
+    {
+      code: "AE",
+      countryName: "United Arab Emirates",
+      capital: "Abu Dhabi",
+      region: "Asia",
+      basePop: 9890400,
+      priority: "High",
+    },
   ];
   const usersSeed = ["Admin User", "Tristan Nguyen", "System Bot", "Sarah Jenkins", "Alex Rivera"];
   const notesSeed = [
@@ -902,7 +1048,11 @@ function renderCountryTableRows(data) {
       const charSum = (code.charCodeAt(0) || 0) + (code.charCodeAt(1) || 0);
       const bgGrad = gradientMap[charSum % gradientMap.length];
       const reg = REGION_BADGES[item.region] || { bg: "badge-slate", icon: "fa-globe" };
-      const prio = PRIORITY_BADGES[item.priority] || { class: "badge-slate", icon: "fa-circle-info", label: item.priority };
+      const prio = PRIORITY_BADGES[item.priority] || {
+        class: "badge-slate",
+        icon: "fa-circle-info",
+        label: item.priority,
+      };
       const statusClass = item.active ? "status-active" : "status-resigned";
       const statusIcon = item.active ? "fa-circle" : "fa-circle-xmark";
       const statusLabel = item.active ? "Active" : "Inactive";
@@ -1326,7 +1476,14 @@ const EMP_DATA = {
     bhxh: "VN-7601-0090123",
     bhyt: "DN4-7601-0090123",
     bankAccount: "0071009012345 — Vietcombank",
-    skills: ["Automation Testing", "Cypress", "Selenium", "JMeter", "API Testing", "CI Test Integration"],
+    skills: [
+      "Automation Testing",
+      "Cypress",
+      "Selenium",
+      "JMeter",
+      "API Testing",
+      "CI Test Integration",
+    ],
   },
   EMP010: {
     name: "Lan Hoang",
@@ -1638,7 +1795,13 @@ const EMP_DATA = {
     bhxh: "VN-0101-0178901",
     bhyt: "HM4-0101-0178901",
     bankAccount: "0178901234567 — Vietcombank",
-    skills: ["Corporate Finance", "Tax Planning", "Accounting Standards", "Cashflow", "ERP Finance"],
+    skills: [
+      "Corporate Finance",
+      "Tax Planning",
+      "Accounting Standards",
+      "Cashflow",
+      "ERP Finance",
+    ],
   },
   EMP018: {
     name: "Quynh Nguyen",
@@ -1850,8 +2013,7 @@ function openEmpModal(empId) {
   if (skillsEl) {
     const skillsHtml = (d.skills || [])
       .map(
-        (sk) =>
-          `<span class="emp-modal-skill-chip"><i class="fa-solid fa-tag"></i> ${sk}</span>`,
+        (sk) => `<span class="emp-modal-skill-chip"><i class="fa-solid fa-tag"></i> ${sk}</span>`,
       )
       .join("");
     skillsEl.innerHTML =
@@ -2053,8 +2215,6 @@ function initEmployeesPage() {
       }
     });
   }
-
-
 }
 
 /* 10. Global Interactive Filter Chips System */
@@ -2125,7 +2285,8 @@ let RECRUITMENT_DATA = [
     department: "Engineering",
     matchScore: 72,
     matchClass: "match-medium",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
     stage: "applied",
     starred: true,
     subtext: "Applied 2h ago",
@@ -2137,7 +2298,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$2,500/mo",
     appliedDate: "May 20, 2024",
     skills: ["React", "TypeScript", "Node.js", "GraphQL"],
-    notes: "Strong frontend developer with e-commerce platform experience."
+    notes: "Strong frontend developer with e-commerce platform experience.",
   },
   {
     id: "cand-2",
@@ -2146,7 +2307,8 @@ let RECRUITMENT_DATA = [
     department: "Engineering",
     matchScore: 68,
     matchClass: "match-fair",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
     stage: "applied",
     starred: false,
     subtext: "Applied 5h ago",
@@ -2158,7 +2320,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$1,800/mo",
     appliedDate: "May 20, 2024",
     skills: ["Vue.js", "CSS3", "HTML5", "JavaScript"],
-    notes: "Good UI design sense and responsive layout skills."
+    notes: "Good UI design sense and responsive layout skills.",
   },
   {
     id: "cand-3",
@@ -2167,7 +2329,8 @@ let RECRUITMENT_DATA = [
     department: "Design",
     matchScore: 64,
     matchClass: "match-fair",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
     stage: "applied",
     starred: false,
     subtext: "Applied 1d ago",
@@ -2179,7 +2342,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$2,200/mo",
     appliedDate: "May 19, 2024",
     skills: ["Figma", "UI/UX", "User Research", "Prototyping"],
-    notes: "Impressive portfolio in mobile UI & design systems."
+    notes: "Impressive portfolio in mobile UI & design systems.",
   },
 
   // Screening Column (Stage: screening)
@@ -2190,7 +2353,8 @@ let RECRUITMENT_DATA = [
     department: "Engineering",
     matchScore: 81,
     matchClass: "match-high",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
     stage: "screening",
     starred: false,
     subtext: "Screening | Today, 11:30 AM",
@@ -2202,7 +2366,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$3,200/mo",
     appliedDate: "May 18, 2024",
     skills: ["Java", "Spring Boot", "Microservices", "Docker"],
-    notes: "Passed HR phone screening. Technically solid."
+    notes: "Passed HR phone screening. Technically solid.",
   },
   {
     id: "cand-5",
@@ -2211,7 +2375,8 @@ let RECRUITMENT_DATA = [
     department: "Product",
     matchScore: 76,
     matchClass: "match-medium",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
     stage: "screening",
     starred: false,
     subtext: "Screening | Today, 02:00 PM",
@@ -2223,7 +2388,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$2,400/mo",
     appliedDate: "May 18, 2024",
     skills: ["Python", "SQL", "Tableau", "PowerBI"],
-    notes: "Strong statistical background. Scheduled for tech test."
+    notes: "Strong statistical background. Scheduled for tech test.",
   },
   {
     id: "cand-6",
@@ -2232,7 +2397,8 @@ let RECRUITMENT_DATA = [
     department: "Engineering",
     matchScore: 69,
     matchClass: "match-fair",
-    avatar: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=150&auto=format&fit=crop&q=80",
     stage: "screening",
     starred: false,
     subtext: "Screening | Tomorrow, 10:00 AM",
@@ -2244,7 +2410,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$2,800/mo",
     appliedDate: "May 17, 2024",
     skills: ["Kubernetes", "AWS", "CI/CD", "Terraform"],
-    notes: "Cloud architecture screening interview set for tomorrow."
+    notes: "Cloud architecture screening interview set for tomorrow.",
   },
 
   // Interview Column (Stage: interview)
@@ -2255,7 +2421,8 @@ let RECRUITMENT_DATA = [
     department: "Engineering",
     matchScore: 85,
     matchClass: "match-purple",
-    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80",
     stage: "interview",
     starred: false,
     subtext: "Round 2 | Today, 03:00 PM",
@@ -2267,7 +2434,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$3,500/mo",
     appliedDate: "May 15, 2024",
     skills: ["Go", "PostgreSQL", "Redis", "gRPC"],
-    notes: "Passed Round 1 coding challenge with 98% score."
+    notes: "Passed Round 1 coding challenge with 98% score.",
   },
   {
     id: "cand-8",
@@ -2276,7 +2443,8 @@ let RECRUITMENT_DATA = [
     department: "Design",
     matchScore: 80,
     matchClass: "match-medium",
-    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80",
     stage: "interview",
     starred: false,
     subtext: "Round 1 | Today, 04:30 PM",
@@ -2288,7 +2456,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$2,600/mo",
     appliedDate: "May 14, 2024",
     skills: ["Figma", "User Journey", "Wireframing", "Usability Testing"],
-    notes: "Design portfolio review round scheduled with Design Lead."
+    notes: "Design portfolio review round scheduled with Design Lead.",
   },
   {
     id: "cand-9",
@@ -2297,7 +2465,8 @@ let RECRUITMENT_DATA = [
     department: "Engineering",
     matchScore: 74,
     matchClass: "match-medium",
-    avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=150&auto=format&fit=crop&q=80",
     stage: "interview",
     starred: false,
     subtext: "Round 2 | Tomorrow, 09:30 AM",
@@ -2309,7 +2478,117 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$2,000/mo",
     appliedDate: "May 13, 2024",
     skills: ["Cypress", "Selenium", "Jest", "API Testing"],
-    notes: "Automation testing assessment interview tomorrow morning."
+    notes: "Automation testing assessment interview tomorrow morning.",
+  },
+  {
+    id: "cand-18",
+    name: "Lucas Scott",
+    role: "Frontend Lead",
+    department: "Design",
+    matchScore: 91,
+    matchClass: "match-high",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+    stage: "interview",
+    starred: true,
+    subtext: "Round 3 | Today, 05:00 PM",
+    dateTag: "Round 3 | Today, 05:00 PM",
+    email: "lucas.scott@example.com",
+    phone: "+84 901 111 222",
+    experience: "8 years",
+    location: "Ho Chi Minh City",
+    expectedSalary: "$4,200/mo",
+    appliedDate: "May 12, 2024",
+    skills: ["React", "Vue.js", "TypeScript", "System Design"],
+    notes: "Excellent technical leadership candidate. Finalizing tech interview.",
+  },
+  {
+    id: "cand-19",
+    name: "Mia Tanaka",
+    role: "Product Designer",
+    department: "Design",
+    matchScore: 84,
+    matchClass: "match-high",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    stage: "interview",
+    starred: false,
+    subtext: "Round 2 | Tomorrow, 02:00 PM",
+    dateTag: "Round 2 | Tomorrow, 02:00 PM",
+    email: "mia.tanaka@example.com",
+    phone: "+84 902 333 444",
+    experience: "5 years",
+    location: "Da Nang",
+    expectedSalary: "$2,900/mo",
+    appliedDate: "May 11, 2024",
+    skills: ["Figma", "Design Systems", "Prototyping", "User Research"],
+    notes: "Great portfolio presentation. Scheduled interview with VP of Product.",
+  },
+  {
+    id: "cand-20",
+    name: "Ethan Hunt",
+    role: "Cybersecurity Specialist",
+    department: "Engineering",
+    matchScore: 78,
+    matchClass: "match-medium",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+    stage: "interview",
+    starred: false,
+    subtext: "Round 1 | Friday, 10:00 AM",
+    dateTag: "Round 1 | Friday, 10:00 AM",
+    email: "ethan.hunt@example.com",
+    phone: "+84 903 555 666",
+    experience: "6 years",
+    location: "Hanoi",
+    expectedSalary: "$3,800/mo",
+    appliedDate: "May 10, 2024",
+    skills: ["Penetration Testing", "SIEM", "SOC", "Cloud Security"],
+    notes: "Strong security audits track record.",
+  },
+  {
+    id: "cand-21",
+    name: "Charlotte Dubois",
+    role: "Growth Marketer",
+    department: "Marketing",
+    matchScore: 87,
+    matchClass: "match-high",
+    avatar:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+    stage: "interview",
+    starred: true,
+    subtext: "Round 2 | Friday, 03:00 PM",
+    dateTag: "Round 2 | Friday, 03:00 PM",
+    email: "charlotte.dubois@example.com",
+    phone: "+84 904 777 888",
+    experience: "5 years",
+    location: "Ho Chi Minh City",
+    expectedSalary: "$2,700/mo",
+    appliedDate: "May 09, 2024",
+    skills: ["SEO", "SEM", "Google Analytics", "A/B Testing"],
+    notes: "Proven user acquisition strategy results.",
+  },
+  {
+    id: "cand-22",
+    name: "Liam O'Connor",
+    role: "Solution Architect",
+    department: "Engineering",
+    matchScore: 92,
+    matchClass: "match-high",
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80",
+    stage: "interview",
+    starred: false,
+    subtext: "Round 3 | Next Monday",
+    dateTag: "Round 3 | Next Monday",
+    email: "liam.oconnor@example.com",
+    phone: "+84 905 999 000",
+    experience: "10 years",
+    location: "Ho Chi Minh City",
+    expectedSalary: "$5,000/mo",
+    appliedDate: "May 08, 2024",
+    skills: ["AWS Solution Architect", "Microservices", "Kafka", "Docker"],
+    notes: "Exceptional architecture interview performance.",
   },
 
   // Offer Column (Stage: offer)
@@ -2320,7 +2599,8 @@ let RECRUITMENT_DATA = [
     department: "HR Specialist",
     matchScore: 88,
     matchClass: "match-high",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
     stage: "offer",
     starred: false,
     subtext: "Offer Sent | May 20, 2024",
@@ -2332,7 +2612,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$2,300/mo",
     appliedDate: "May 10, 2024",
     skills: ["Talent Acquisition", "Employee Relations", "Payroll", "HRIS"],
-    notes: "Formal job offer letter sent. Awaiting signed acceptance."
+    notes: "Formal job offer letter sent. Awaiting signed acceptance.",
   },
   {
     id: "cand-11",
@@ -2341,7 +2621,8 @@ let RECRUITMENT_DATA = [
     department: "Sales",
     matchScore: 82,
     matchClass: "match-high",
-    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80",
     stage: "offer",
     starred: false,
     subtext: "Offer Sent | May 19, 2024",
@@ -2353,7 +2634,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$3,800/mo",
     appliedDate: "May 08, 2024",
     skills: ["B2B Sales", "Key Account Management", "CRM", "Negotiation"],
-    notes: "Offer package under review. Candidate requested stock options."
+    notes: "Offer package under review. Candidate requested stock options.",
   },
   {
     id: "cand-12",
@@ -2362,7 +2643,8 @@ let RECRUITMENT_DATA = [
     department: "Marketing",
     matchScore: 78,
     matchClass: "match-medium",
-    avatar: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=150&auto=format&fit=crop&q=80",
     stage: "offer",
     starred: false,
     subtext: "Negotiation | May 18, 2024",
@@ -2374,7 +2656,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$2,700/mo",
     appliedDate: "May 07, 2024",
     skills: ["Digital Marketing", "SEO/SEM", "Content Strategy", "Brand"],
-    notes: "Salary negotiation phase. Final decision expected by Friday."
+    notes: "Salary negotiation phase. Final decision expected by Friday.",
   },
 
   // Hired Column (Stage: hired)
@@ -2385,7 +2667,8 @@ let RECRUITMENT_DATA = [
     department: "Engineering",
     matchScore: 91,
     matchClass: "match-high",
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80",
     stage: "hired",
     starred: false,
     subtext: "Joined | May 16, 2024",
@@ -2397,7 +2680,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$3,400/mo",
     appliedDate: "May 01, 2024",
     skills: ["Fullstack", "React", "Node.js", "PostgreSQL", "AWS"],
-    notes: "Onboarded successfully! Assigned to Core Platform Team."
+    notes: "Onboarded successfully! Assigned to Core Platform Team.",
   },
   {
     id: "cand-14",
@@ -2406,7 +2689,8 @@ let RECRUITMENT_DATA = [
     department: "HR Specialist",
     matchScore: 89,
     matchClass: "match-high",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
     stage: "hired",
     starred: false,
     subtext: "Joined | May 15, 2024",
@@ -2418,7 +2702,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$2,200/mo",
     appliedDate: "Apr 28, 2024",
     skills: ["HR Operations", "Onboarding", "Labor Law", "Training"],
-    notes: "Completed orientation and documentation."
+    notes: "Completed orientation and documentation.",
   },
   {
     id: "cand-15",
@@ -2427,7 +2711,8 @@ let RECRUITMENT_DATA = [
     department: "Sales",
     matchScore: 86,
     matchClass: "match-high",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80",
     stage: "hired",
     starred: false,
     subtext: "Joined | May 14, 2024",
@@ -2439,7 +2724,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$4,000/mo",
     appliedDate: "Apr 25, 2024",
     skills: ["Enterprise Sales", "Team Leadership", "Strategic Partnerships"],
-    notes: "Leading APAC Sales Expansion Initiative."
+    notes: "Leading APAC Sales Expansion Initiative.",
   },
 
   // Rejected Column (Stage: rejected)
@@ -2450,7 +2735,8 @@ let RECRUITMENT_DATA = [
     department: "Engineering",
     matchScore: 54,
     matchClass: "match-fair",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
     stage: "rejected",
     starred: false,
     subtext: "Rejected | Tech Test",
@@ -2462,7 +2748,7 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$2,000/mo",
     appliedDate: "Apr 20, 2024",
     skills: ["PHP", "Laravel", "MySQL"],
-    notes: "Did not meet technical benchmark for senior backend position."
+    notes: "Did not meet technical benchmark for senior backend position.",
   },
   {
     id: "cand-17",
@@ -2471,7 +2757,8 @@ let RECRUITMENT_DATA = [
     department: "Marketing",
     matchScore: 61,
     matchClass: "match-fair",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
     stage: "rejected",
     starred: false,
     subtext: "Rejected | Salary Expectation",
@@ -2483,8 +2770,8 @@ let RECRUITMENT_DATA = [
     expectedSalary: "$4,500/mo",
     appliedDate: "Apr 18, 2024",
     skills: ["Copywriting", "Social Media", "SEO"],
-    notes: "Salary expectation out of approved budget range."
-  }
+    notes: "Salary expectation out of approved budget range.",
+  },
 ];
 
 let activeCandidateIdForModal = null;
@@ -2526,16 +2813,146 @@ function initSelectAllCandidatesCheckbox() {
   if (selectAll) {
     selectAll.addEventListener("change", () => {
       const checkboxes = document.querySelectorAll(".candidate-checkbox");
-      checkboxes.forEach(cb => cb.checked = selectAll.checked);
+      checkboxes.forEach((cb) => (cb.checked = selectAll.checked));
     });
   }
 }
 
+let activeStageForModal = "";
+
+function openStageCandidatesModal(stage) {
+  const modalEl = document.getElementById("stageCandidatesModal");
+  if (!modalEl) return;
+
+  activeStageForModal = stage;
+  const list = RECRUITMENT_DATA.filter((c) => c.stage === stage);
+
+  const stageTitles = {
+    applied: "Applied Candidates",
+    screening: "Screening Candidates",
+    interview: "Interview Candidates",
+    offer: "Offer Candidates",
+    hired: "Hired Candidates",
+    rejected: "Rejected Candidates",
+  };
+
+  const stageBaselineCounts = {
+    applied: 126,
+    screening: 84,
+    interview: 52,
+    offer: 28,
+    hired: 16,
+    rejected: 42,
+  };
+
+  const totalCount = stageBaselineCounts[stage] || list.length;
+
+  const titleEl = document.getElementById("stageModalTitle");
+  if (titleEl) titleEl.textContent = stageTitles[stage] || `${stage.toUpperCase()} Candidates`;
+
+  const countBadge = document.getElementById("stageModalCountBadge");
+  if (countBadge) countBadge.textContent = `${totalCount} Candidates`;
+
+  const searchInput = document.getElementById("stageModalSearchInput");
+  if (searchInput) searchInput.value = "";
+
+  const clearBtn = document.getElementById("stageModalClearSearchBtn");
+  if (clearBtn) clearBtn.classList.add("d-none");
+
+  renderStageModalList(list);
+
+  if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
+    const bsModal = bootstrap.Modal.getOrCreateInstance(modalEl);
+    if (bsModal) bsModal.show();
+  } else {
+    modalEl.classList.add("show");
+    modalEl.style.display = "block";
+  }
+}
+
+function renderStageModalList(list) {
+  const container = document.getElementById("stageModalCandidateList");
+  if (!container) return;
+
+  if (!list || list.length === 0) {
+    container.innerHTML = `
+      <div class="text-center py-4 text-muted">
+        <i class="fa-solid fa-folder-open fs-3 mb-2"></i>
+        <div>No candidate records in this stage</div>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = list
+    .map(
+      (c) => `
+    <div class="d-flex align-items-center justify-content-between rounded-4 border bg-surface stage-modal-item-card">
+      <div class="d-flex align-items-center gap-3.5">
+        <img src="${c.avatar}" class="rounded-circle shadow-xs" style="width: 48px; height: 48px; object-fit: cover;" alt="${c.name}" />
+        <div>
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <h6 class="fw-bold text-main mb-0 fs-6 cursor-pointer text-hover-primary" onclick="openCandidateDetailFromStageModal('${c.id}')">${c.name}</h6>
+            <span class="emp-badge dept-engineering text-2xs px-2.5 py-0.5">${c.department}</span>
+          </div>
+          <div class="text-muted small d-flex align-items-center gap-2">
+            <span><i class="fa-solid fa-briefcase me-1 text-muted"></i>${c.role}</span>
+            <span>•</span>
+            <span class="match-score-pill ${c.matchClass}"><i class="fa-solid fa-sparkles"></i> ${c.matchScore}% Match</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-sm btn-pastel-primary rounded-pill px-4 py-2 font-semibold text-xs d-inline-flex align-items-center gap-1.5" onclick="openCandidateDetailFromStageModal('${c.id}')">
+        <span>View Profile</span> <i class="fa-solid fa-arrow-right text-2xs"></i>
+      </button>
+    </div>
+  `,
+    )
+    .join("");
+}
+
+function openCandidateDetailFromStageModal(id) {
+  const stageModalEl = document.getElementById("stageCandidatesModal");
+  if (stageModalEl) {
+    const bsModal = bootstrap.Modal.getInstance(stageModalEl);
+    if (bsModal) bsModal.hide();
+  }
+  openCandidateDetailModal(id);
+}
+
+function clearStageModalSearch() {
+  const searchInput = document.getElementById("stageModalSearchInput");
+  if (searchInput) {
+    searchInput.value = "";
+    filterStageCandidatesModal("");
+  }
+}
+
+function filterStageCandidatesModal(query) {
+  const q = (query || "").toLowerCase().trim();
+  const clearBtn = document.getElementById("stageModalClearSearchBtn");
+  if (clearBtn) {
+    if (q.length > 0) clearBtn.classList.remove("d-none");
+    else clearBtn.classList.add("d-none");
+  }
+
+  const list = RECRUITMENT_DATA.filter((c) => c.stage === activeStageForModal);
+  const filtered = list.filter(
+    (c) =>
+      c.name.toLowerCase().includes(q) ||
+      c.role.toLowerCase().includes(q) ||
+      c.department.toLowerCase().includes(q),
+  );
+  renderStageModalList(filtered);
+}
+
 function renderPipelineBoard() {
   const stages = ["applied", "screening", "interview", "offer", "hired", "rejected"];
-  
+
   // Filter variables
-  const searchVal = (document.getElementById("recruitmentSearchInput")?.value || "").toLowerCase().trim();
+  const searchVal = (document.getElementById("recruitmentSearchInput")?.value || "")
+    .toLowerCase()
+    .trim();
   const deptVal = document.getElementById("filterDepartment")?.value || "all";
   const roleVal = document.getElementById("filterRole")?.value || "all";
   const stageVal = document.getElementById("filterStage")?.value || "all";
@@ -2543,43 +2960,55 @@ function renderPipelineBoard() {
 
   // Total counts tracking
   const stageCounts = { applied: 0, screening: 0, interview: 0, offer: 0, hired: 0, rejected: 0 };
-  const stageTotalBaseline = { applied: 126, screening: 84, interview: 52, offer: 28, hired: 16, rejected: 42 };
+  const stageTotalBaseline = {
+    applied: 126,
+    screening: 84,
+    interview: 52,
+    offer: 28,
+    hired: 16,
+    rejected: 42,
+  };
 
-  stages.forEach(stage => {
+  stages.forEach((stage) => {
     const listContainer = document.getElementById(`col-${stage}-list`);
     if (!listContainer) return;
 
-    let filtered = RECRUITMENT_DATA.filter(c => c.stage === stage);
+    let filtered = RECRUITMENT_DATA.filter((c) => c.stage === stage);
 
     // Apply Department filter
     if (deptVal !== "all") {
-      filtered = filtered.filter(c => c.department === deptVal);
+      filtered = filtered.filter((c) => c.department === deptVal);
     }
     // Apply Role filter
     if (roleVal !== "all") {
-      filtered = filtered.filter(c => c.role === roleVal);
+      filtered = filtered.filter((c) => c.role === roleVal);
     }
     // Apply Stage filter
     if (stageVal !== "all" && stageVal !== stage) {
       filtered = [];
     }
     // Apply Match score filter
-    if (matchVal === "high") filtered = filtered.filter(c => c.matchScore >= 80);
-    if (matchVal === "medium") filtered = filtered.filter(c => c.matchScore >= 70 && c.matchScore < 80);
-    if (matchVal === "fair") filtered = filtered.filter(c => c.matchScore < 70);
+    if (matchVal === "high") filtered = filtered.filter((c) => c.matchScore >= 80);
+    if (matchVal === "medium")
+      filtered = filtered.filter((c) => c.matchScore >= 70 && c.matchScore < 80);
+    if (matchVal === "fair") filtered = filtered.filter((c) => c.matchScore < 70);
 
     // Apply Search Filter
     if (searchVal) {
-      filtered = filtered.filter(c => 
-        c.name.toLowerCase().includes(searchVal) ||
-        c.role.toLowerCase().includes(searchVal) ||
-        c.department.toLowerCase().includes(searchVal)
+      filtered = filtered.filter(
+        (c) =>
+          c.name.toLowerCase().includes(searchVal) ||
+          c.role.toLowerCase().includes(searchVal) ||
+          c.department.toLowerCase().includes(searchVal),
       );
     }
 
     stageCounts[stage] = filtered.length;
 
-    // Build Cards HTML
+    // Display Top 3 cards in Kanban Column
+    const initialLimit = 3;
+    const cardsToDisplay = filtered.slice(0, initialLimit);
+
     if (filtered.length === 0) {
       listContainer.innerHTML = `
         <div class="empty-column-placeholder">
@@ -2588,7 +3017,7 @@ function renderPipelineBoard() {
         </div>
       `;
     } else {
-      listContainer.innerHTML = filtered.map(c => createCandidateCardHTML(c)).join("");
+      listContainer.innerHTML = cardsToDisplay.map((c) => createCandidateCardHTML(c)).join("");
     }
 
     // Update Stage Count Badge
@@ -2600,7 +3029,11 @@ function renderPipelineBoard() {
     // Update "+ X more candidates" button text
     const moreBtnText = document.getElementById(`more-${stage}-text`);
     if (moreBtnText) {
-      const extraCount = Math.max(0, stageTotalBaseline[stage] - 3 + (stageCounts[stage] - 3));
+      const baselineTotal = stageTotalBaseline[stage] || 0;
+      const extraCount = Math.max(
+        0,
+        baselineTotal - initialLimit + (stageCounts[stage] - initialLimit),
+      );
       moreBtnText.textContent = `+ ${extraCount} more candidates`;
     }
   });
@@ -2628,7 +3061,9 @@ function renderCandidateTable() {
   const tbody = document.getElementById("recruitmentTableBody");
   if (!tbody) return;
 
-  const searchVal = (document.getElementById("recruitmentSearchInput")?.value || "").toLowerCase().trim();
+  const searchVal = (document.getElementById("recruitmentSearchInput")?.value || "")
+    .toLowerCase()
+    .trim();
   const deptVal = document.getElementById("filterDepartment")?.value || "all";
   const roleVal = document.getElementById("filterRole")?.value || "all";
   const stageVal = document.getElementById("filterStage")?.value || "all";
@@ -2636,18 +3071,20 @@ function renderCandidateTable() {
 
   let filtered = [...RECRUITMENT_DATA];
 
-  if (deptVal !== "all") filtered = filtered.filter(c => c.department === deptVal);
-  if (roleVal !== "all") filtered = filtered.filter(c => c.role === roleVal);
-  if (stageVal !== "all") filtered = filtered.filter(c => c.stage === stageVal);
-  if (matchVal === "high") filtered = filtered.filter(c => c.matchScore >= 80);
-  if (matchVal === "medium") filtered = filtered.filter(c => c.matchScore >= 70 && c.matchScore < 80);
-  if (matchVal === "fair") filtered = filtered.filter(c => c.matchScore < 70);
+  if (deptVal !== "all") filtered = filtered.filter((c) => c.department === deptVal);
+  if (roleVal !== "all") filtered = filtered.filter((c) => c.role === roleVal);
+  if (stageVal !== "all") filtered = filtered.filter((c) => c.stage === stageVal);
+  if (matchVal === "high") filtered = filtered.filter((c) => c.matchScore >= 80);
+  if (matchVal === "medium")
+    filtered = filtered.filter((c) => c.matchScore >= 70 && c.matchScore < 80);
+  if (matchVal === "fair") filtered = filtered.filter((c) => c.matchScore < 70);
 
   if (searchVal) {
-    filtered = filtered.filter(c => 
-      c.name.toLowerCase().includes(searchVal) ||
-      c.role.toLowerCase().includes(searchVal) ||
-      c.department.toLowerCase().includes(searchVal)
+    filtered = filtered.filter(
+      (c) =>
+        c.name.toLowerCase().includes(searchVal) ||
+        c.role.toLowerCase().includes(searchVal) ||
+        c.department.toLowerCase().includes(searchVal),
     );
   }
 
@@ -2657,12 +3094,12 @@ function renderCandidateTable() {
   }
 
   const deptBadgeMap = {
-    "Engineering": `<span class="emp-badge dept-engineering"><i class="fa-solid fa-code"></i> Engineering</span>`,
-    "Marketing": `<span class="emp-badge dept-marketing"><i class="fa-solid fa-bullhorn"></i> Marketing</span>`,
-    "Design": `<span class="emp-badge dept-design"><i class="fa-solid fa-paintbrush"></i> Design</span>`,
-    "Product": `<span class="emp-badge dept-product"><i class="fa-solid fa-cubes"></i> Product</span>`,
-    "Sales": `<span class="emp-badge dept-sales"><i class="fa-solid fa-handshake"></i> Sales</span>`,
-    "HR Specialist": `<span class="emp-badge dept-hr"><i class="fa-solid fa-user-group"></i> HR Specialist</span>`
+    Engineering: `<span class="emp-badge dept-engineering"><i class="fa-solid fa-code"></i> Engineering</span>`,
+    Marketing: `<span class="emp-badge dept-marketing"><i class="fa-solid fa-bullhorn"></i> Marketing</span>`,
+    Design: `<span class="emp-badge dept-design"><i class="fa-solid fa-paintbrush"></i> Design</span>`,
+    Product: `<span class="emp-badge dept-product"><i class="fa-solid fa-cubes"></i> Product</span>`,
+    Sales: `<span class="emp-badge dept-sales"><i class="fa-solid fa-handshake"></i> Sales</span>`,
+    "HR Specialist": `<span class="emp-badge dept-hr"><i class="fa-solid fa-user-group"></i> HR Specialist</span>`,
   };
 
   const stageBadgeMap = {
@@ -2671,15 +3108,19 @@ function renderCandidateTable() {
     interview: `<span class="emp-badge status-remote" style="background:#f5f3ff;color:#6d28d9;border-color:#ddd6fe;"><i class="fa-solid fa-circle"></i> Interview</span>`,
     offer: `<span class="emp-badge status-probation" style="background:#fffbeb;color:#b45309;border-color:#fde68a;"><i class="fa-solid fa-circle"></i> Offer</span>`,
     hired: `<span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Hired</span>`,
-    rejected: `<span class="emp-badge status-resigned"><i class="fa-solid fa-circle"></i> Rejected</span>`
+    rejected: `<span class="emp-badge status-resigned"><i class="fa-solid fa-circle"></i> Rejected</span>`,
   };
 
-  tbody.innerHTML = filtered.map((c, idx) => {
-    const code = `#CAND${String(idx + 1).padStart(3, '0')}`;
-    const deptBadge = deptBadgeMap[c.department] || `<span class="emp-badge dept-management">${c.department}</span>`;
-    const stageBadge = stageBadgeMap[c.stage] || `<span class="emp-badge status-active">${c.stage}</span>`;
+  tbody.innerHTML = filtered
+    .map((c, idx) => {
+      const code = `#CAND${String(idx + 1).padStart(3, "0")}`;
+      const deptBadge =
+        deptBadgeMap[c.department] ||
+        `<span class="emp-badge dept-management">${c.department}</span>`;
+      const stageBadge =
+        stageBadgeMap[c.stage] || `<span class="emp-badge status-active">${c.stage}</span>`;
 
-    return `
+      return `
       <tr>
         <td><input type="checkbox" class="candidate-checkbox" value="${c.id}" /></td>
         <td class="text-center">
@@ -2707,24 +3148,25 @@ function renderCandidateTable() {
         <td>
           <div class="small text-muted">
             <div><i class="fa-regular fa-envelope me-1"></i>${c.email}</div>
-            <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>${c.phone || '+84 900 000 000'}</div>
+            <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>${c.phone || "+84 900 000 000"}</div>
           </div>
         </td>
-        <td><span class="text-muted small">${c.appliedDate || 'May 20, 2024'}</span></td>
+        <td><span class="text-muted small">${c.appliedDate || "May 20, 2024"}</span></td>
         <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>HR Recruiter</span></td>
         <td><span class="text-muted small">2024-05-20</span></td>
         <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
         <td><span class="text-muted small">2026-08-07</span></td>
-        <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">${c.notes || 'Candidate evaluation notes'}</span></td>
+        <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">${c.notes || "Candidate evaluation notes"}</span></td>
       </tr>
     `;
-  }).join("");
+    })
+    .join("");
 }
 
 function createCandidateCardHTML(c) {
   const isStarredClass = c.starred ? "starred" : "";
   const starIconClass = c.starred ? "fa-solid fa-star" : "fa-regular fa-star";
-  
+
   // Tag styling based on stage
   const tagClassMap = {
     applied: "tag-applied",
@@ -2732,7 +3174,7 @@ function createCandidateCardHTML(c) {
     interview: "tag-interview",
     offer: "tag-offer",
     hired: "tag-hired",
-    rejected: "tag-rejected"
+    rejected: "tag-rejected",
   };
 
   return `
@@ -2771,7 +3213,7 @@ function createCandidateCardHTML(c) {
 
 function attachCardEvents() {
   const cards = document.querySelectorAll(".candidate-card");
-  cards.forEach(card => {
+  cards.forEach((card) => {
     card.addEventListener("dragstart", handleDragStart);
     card.addEventListener("dragend", handleDragEnd);
   });
@@ -2790,12 +3232,12 @@ function handleDragStart(e) {
 function handleDragEnd() {
   this.classList.remove("dragging");
   const columns = document.querySelectorAll(".pipeline-column");
-  columns.forEach(col => col.classList.remove("drag-over"));
+  columns.forEach((col) => col.classList.remove("drag-over"));
 }
 
 function initRecruitmentDragAndDrop() {
   const columns = document.querySelectorAll(".pipeline-column");
-  columns.forEach(col => {
+  columns.forEach((col) => {
     col.addEventListener("dragover", (e) => {
       e.preventDefault();
       e.dataTransfer.dropEffect = "move";
@@ -2820,7 +3262,7 @@ function initRecruitmentDragAndDrop() {
 }
 
 function moveCandidateToStage(id, newStage) {
-  const candidate = RECRUITMENT_DATA.find(c => c.id === id);
+  const candidate = RECRUITMENT_DATA.find((c) => c.id === id);
   if (!candidate) return;
 
   if (candidate.stage === newStage) return;
@@ -2835,7 +3277,7 @@ function moveCandidateToStage(id, newStage) {
     interview: `Interview | Scheduled`,
     offer: `Offer Sent | Today`,
     hired: `Joined | Today`,
-    rejected: `Not selected`
+    rejected: `Not selected`,
   };
   candidate.subtext = stageLabels[newStage];
 
@@ -2845,13 +3287,13 @@ function moveCandidateToStage(id, newStage) {
     title: "Candidate Stage Updated",
     message: `${candidate.name} moved from ${oldStage.toUpperCase()} to ${newStage.toUpperCase()}`,
     type: "success",
-    duration: 3000
+    duration: 3000,
   });
 }
 
 function toggleStarCandidate(e, id) {
   e.stopPropagation();
-  const candidate = RECRUITMENT_DATA.find(c => c.id === id);
+  const candidate = RECRUITMENT_DATA.find((c) => c.id === id);
   if (candidate) {
     candidate.starred = !candidate.starred;
     renderPipelineBoard();
@@ -2859,7 +3301,7 @@ function toggleStarCandidate(e, id) {
       title: candidate.starred ? "Candidate Bookmarked" : "Bookmark Removed",
       message: `${candidate.name} is ${candidate.starred ? "now starred" : "unstarred"}.`,
       type: "info",
-      duration: 2000
+      duration: 2000,
     });
   }
 }
@@ -2892,14 +3334,14 @@ function initRecruitmentFilters() {
     });
   }
 
-  [deptSelect, roleSelect, stageSelect].forEach(select => {
+  [deptSelect, roleSelect, stageSelect].forEach((select) => {
     if (select) select.addEventListener("change", renderPipelineBoard);
   });
 }
 
 function openCandidateDetailModal(id) {
   activeCandidateIdForModal = id;
-  const c = RECRUITMENT_DATA.find(item => item.id === id);
+  const c = RECRUITMENT_DATA.find((item) => item.id === id);
   if (!c) return;
 
   const modalEl = document.getElementById("candidateDetailModal");
@@ -2916,11 +3358,13 @@ function openCandidateDetailModal(id) {
   document.getElementById("detailRole").textContent = c.role;
   document.getElementById("detailDept").textContent = c.department;
   document.getElementById("detailLocation").textContent = c.location || "Ho Chi Minh City";
-  document.getElementById("detailEmail").textContent = c.email || `${c.name.toLowerCase().replace(/\s+/g, '.')}@example.com`;
+  document.getElementById("detailEmail").textContent =
+    c.email || `${c.name.toLowerCase().replace(/\s+/g, ".")}@example.com`;
   document.getElementById("detailPhone").textContent = c.phone || "+84 912 345 678";
   document.getElementById("detailSalary").textContent = c.expectedSalary || "$2,500 / month";
   document.getElementById("detailAppliedDate").textContent = c.appliedDate || "May 20, 2024";
-  document.getElementById("detailNotes").textContent = c.notes || "High recommendation from technical interviewer.";
+  document.getElementById("detailNotes").textContent =
+    c.notes || "High recommendation from technical interviewer.";
 
   const statMatch = document.getElementById("detailStatMatch");
   if (statMatch) statMatch.textContent = `${c.matchScore}%`;
@@ -2947,7 +3391,10 @@ function openCandidateDetailModal(id) {
   const skillsContainer = document.getElementById("detailSkillsContainer");
   if (skillsContainer) {
     skillsContainer.innerHTML = (c.skills || ["JavaScript", "Problem Solving", "Teamwork"])
-      .map(s => `<span class="emp-modal-skill-chip"><i class="fa-solid fa-check text-primary"></i> ${s}</span>`)
+      .map(
+        (s) =>
+          `<span class="emp-modal-skill-chip"><i class="fa-solid fa-check text-primary"></i> ${s}</span>`,
+      )
       .join("");
   }
 
@@ -2974,7 +3421,7 @@ function promptUpdateCandidate() {
     showToast({
       title: "Select Single Candidate",
       message: "Please select a single candidate to view.",
-      type: "warning"
+      type: "warning",
     });
   } else {
     if (RECRUITMENT_DATA.length > 0) {
@@ -2983,7 +3430,7 @@ function promptUpdateCandidate() {
       showToast({
         title: "No Candidate Available",
         message: "There are no candidates available to view.",
-        type: "warning"
+        type: "warning",
       });
     }
   }
@@ -3013,7 +3460,7 @@ function promptMoveCandidateStage(id) {
 }
 
 function deleteCandidate(id) {
-  const index = RECRUITMENT_DATA.findIndex(c => c.id === id);
+  const index = RECRUITMENT_DATA.findIndex((c) => c.id === id);
   if (index !== -1) {
     const deletedName = RECRUITMENT_DATA[index].name;
     RECRUITMENT_DATA.splice(index, 1);
@@ -3022,7 +3469,7 @@ function deleteCandidate(id) {
       title: "Candidate Removed",
       message: `${deletedName} has been removed from the pipeline.`,
       type: "info",
-      duration: 3000
+      duration: 3000,
     });
   }
 }
@@ -3053,7 +3500,7 @@ function initRecruitmentForms() {
         department: dept,
         matchScore: match,
         matchClass,
-        avatar: `https://images.unsplash.com/photo-${1535713875002 + Math.floor(Math.random()*100)}?w=150&auto=format&fit=crop&q=80`,
+        avatar: `https://images.unsplash.com/photo-${1535713875002 + Math.floor(Math.random() * 100)}?w=150&auto=format&fit=crop&q=80`,
         stage,
         starred: false,
         subtext: "Just added",
@@ -3065,7 +3512,7 @@ function initRecruitmentForms() {
         expectedSalary: "$2,000 / mo",
         appliedDate: "Today",
         skills: ["Problem Solving", "Communication", role],
-        notes
+        notes,
       };
 
       RECRUITMENT_DATA.unshift(newCand);
@@ -3080,7 +3527,7 @@ function initRecruitmentForms() {
         title: "Candidate Added",
         message: `${name} has been added to ${stage.toUpperCase()} stage!`,
         type: "success",
-        duration: 3500
+        duration: 3500,
       });
     });
   }
@@ -3096,7 +3543,7 @@ function initRecruitmentForms() {
       // Dynamically add role option to filter dropdown if new
       const roleFilter = document.getElementById("filterRole");
       if (roleFilter) {
-        const exists = Array.from(roleFilter.options).some(opt => opt.value === title);
+        const exists = Array.from(roleFilter.options).some((opt) => opt.value === title);
         if (!exists) {
           const opt = document.createElement("option");
           opt.value = title;
@@ -3114,42 +3561,10 @@ function initRecruitmentForms() {
         title: "Job Post Created",
         message: `New job opening for "${title}" (${dept}) is now live!`,
         type: "success",
-        duration: 4000
+        duration: 4000,
       });
     });
   }
-}
-
-function openMoreCandidatesModal(stage) {
-  const modalEl = document.getElementById("moreCandidatesModal");
-  if (!modalEl) return;
-
-  const titleEl = document.getElementById("moreModalTitle");
-  if (titleEl) titleEl.textContent = `${stage.toUpperCase()} Stage Candidates`;
-
-  const bodyEl = document.getElementById("moreModalBody");
-  if (bodyEl) {
-    const list = RECRUITMENT_DATA.filter(c => c.stage === stage);
-    if (list.length === 0) {
-      bodyEl.innerHTML = `<div class="text-center p-4 text-muted">No candidate records found.</div>`;
-    } else {
-      bodyEl.innerHTML = list.map(c => `
-        <div class="d-flex align-items-center justify-content-between p-2 border rounded-3 bg-light">
-          <div class="d-flex align-items-center gap-2">
-            <img src="${c.avatar}" class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;" />
-            <div>
-              <div class="font-semibold text-dark small">${c.name}</div>
-              <div class="text-muted text-xs">${c.role} • ${c.department}</div>
-            </div>
-          </div>
-          <button class="btn btn-sm btn-outline-primary rounded-pill font-medium text-xs" onclick="openCandidateDetailModal('${c.id}')">View</button>
-        </div>
-      `).join("");
-    }
-  }
-
-  const bsModal = new bootstrap.Modal(modalEl);
-  bsModal.show();
 }
 
 // Expose globally
@@ -3158,9 +3573,7 @@ window.initRecruitmentPage = initRecruitmentPage;
 window.openCandidateDetailModal = openCandidateDetailModal;
 window.toggleStarCandidate = toggleStarCandidate;
 window.moveCandidateToStage = moveCandidateToStage;
-window.advanceCandidateFromModal = advanceCandidateFromModal;
-window.rejectCandidateFromModal = rejectCandidateFromModal;
-window.promptMoveCandidateStage = promptMoveCandidateStage;
-window.deleteCandidate = deleteCandidate;
-window.openMoreCandidatesModal = openMoreCandidatesModal;
-
+window.openStageCandidatesModal = openStageCandidatesModal;
+window.filterStageCandidatesModal = filterStageCandidatesModal;
+window.clearStageModalSearch = clearStageModalSearch;
+window.openCandidateDetailFromStageModal = openCandidateDetailFromStageModal;

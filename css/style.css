@@ -1,8 +1,3 @@
-/* 
-  Nexus ERP + HRM - Main Stylesheet 
-  Inspired by Image 2 (Tourist Management System / High-End Enterprise Layout)
-*/
-
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
 @import url("./keyframes.css");
 @import url("./components.css");
@@ -11,456 +6,646 @@
   --font-primary:
     "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  /* Color Palette & Theme Surfaces */
+  /* ==========================================================================
+     TIER 1: PRIMITIVE COLOR PALETTE SWATCHES
+     ========================================================================== */
+  /* Blue */
+  --palette-blue-50: #eff6ff;
+  --palette-blue-100: #dbeafe;
+  --palette-blue-200: #bfdbfe;
+  --palette-blue-500: #3b82f6;
+  --palette-blue-600: #2563eb;
+  --palette-blue-700: #1d4ed8;
+
+  /* Purple */
+  --palette-purple-50: #f5eeff;
+  --palette-purple-100: #ece0ff;
+  --palette-purple-200: #e9d5ff;
+  --palette-purple-500: #a855f7;
+  --palette-purple-600: #7e22ce;
+  --palette-purple-700: #581c87;
+
+  /* Emerald / Green */
+  --palette-green-50: #dcfce7;
+  --palette-green-100: #dcfce7;
+  --palette-green-200: #bbf7d0;
+  --palette-green-500: #10b981;
+  --palette-green-600: #15803d;
+  --palette-green-700: #047857;
+
+  /* Amber / Yellow */
+  --palette-amber-50: #fef3c7;
+  --palette-amber-100: #fde68a;
+  --palette-amber-200: #fcd34d;
+  --palette-amber-500: #f59e0b;
+  --palette-amber-600: #b45309;
+  --palette-amber-700: #92400e;
+
+  /* Orange */
+  --palette-orange-50: #fff7ed;
+  --palette-orange-100: #ffedd5;
+  --palette-orange-200: #fdba74;
+  --palette-orange-500: #f97316;
+  --palette-orange-600: #c2410c;
+  --palette-orange-700: #9a3412;
+
+  /* Red / Rose */
+  --palette-red-50: #fff1f2;
+  --palette-red-100: #ffe4e6;
+  --palette-red-200: #fecdd3;
+  --palette-red-500: #ef4444;
+  --palette-red-600: #be123c;
+  --palette-red-700: #881337;
+
+  /* Rose / Pink */
+  --palette-rose-50: #fce7f3;
+  --palette-rose-100: #fbcfe8;
+  --palette-rose-200: #f9a8d4;
+  --palette-rose-500: #f43f5e;
+  --palette-rose-600: #be185d;
+  --palette-rose-700: #9f1239;
+
+  /* Cyan / Sky */
+  --palette-cyan-50: #e0f2fe;
+  --palette-cyan-100: #bae6fd;
+  --palette-cyan-200: #7dd3fc;
+  --palette-cyan-500: #06b6d4;
+  --palette-cyan-600: #0284c7;
+  --palette-cyan-700: #0369a1;
+
+  /* Indigo */
+  --palette-indigo-50: #e0e7ff;
+  --palette-indigo-100: #c7d2fe;
+  --palette-indigo-200: #a5b4fc;
+  --palette-indigo-500: #6366f1;
+  --palette-indigo-600: #4338ca;
+  --palette-indigo-700: #3730a3;
+
+  /* Teal */
+  --palette-teal-50: #e6f8f3;
+  --palette-teal-100: #ccfbf1;
+  --palette-teal-200: #b8eadf;
+  --palette-teal-500: #14b8a6;
+  --palette-teal-600: #0d9488;
+  --palette-teal-700: #0f766e;
+
+  /* Slate / Neutral */
+  --palette-slate-50: #f8fafc;
+  --palette-slate-100: #f1f5f9;
+  --palette-slate-200: #e2e8f0;
+  --palette-slate-400: #94a3b8;
+  --palette-slate-500: #64748b;
+  --palette-slate-800: #0f172a;
+
+  /* Legacy primary scale aliases */
+  --primary-50: var(--palette-blue-50);
+  --primary-100: var(--palette-blue-100);
+  --primary-500: var(--palette-blue-500);
+  --primary-600: var(--palette-blue-600);
+  --primary-700: var(--palette-blue-700);
+
+  /* ==========================================================================
+     TIER 2: SEMANTIC DESIGN SYSTEM TOKENS (LIGHT MODE)
+     ========================================================================== */
+  /* Surfaces & Backgrounds */
   --bg-app: #f5f7fc;
   --bg-surface: #ffffff;
   --bg-sidebar: #ffffff;
   --bg-card: #ffffff;
-  --bg-header-table: #f8fafc;
-  --bg-hover: #f8fafc;
+  --bg-header-table: var(--palette-slate-50);
+  --bg-hover: var(--palette-slate-50);
+  --bg-dropdown: #ffffff;
+  --bg-dropdown-hover: var(--palette-slate-100);
 
-  --primary-50: #eff6ff;
-  --primary-100: #dbeafe;
-  --primary-500: #3b82f6;
-  --primary-600: #2563eb;
-  --primary-700: #1d4ed8;
+  /* Typography & Borders */
+  --text-main: var(--palette-slate-800);
+  --text-muted: var(--palette-slate-500);
+  --text-light: var(--palette-slate-400);
+  --border-color: var(--palette-slate-200);
+  --border-light: var(--palette-slate-100);
+  --border-dropdown: rgba(226, 232, 240, 0.95);
 
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --text-light: #94a3b8;
-
-  --border-color: #e2e8f0;
-  --border-light: #f1f5f9;
-
-  /* Sidebar Navigation Variables */
-  --bg-sidebar-hover: var(--primary-50);
+  /* Sidebar Navigation Tokens */
+  --bg-sidebar-hover: var(--palette-blue-50);
   --bg-sidebar-active: #eef4ff;
-  --text-sidebar-hover: var(--primary-600);
-  --text-sidebar-active: var(--primary-600);
-  --border-sidebar-indicator: var(--primary-600);
+  --text-sidebar-hover: var(--palette-blue-600);
+  --text-sidebar-active: var(--palette-blue-600);
+  --border-sidebar-indicator: var(--palette-blue-600);
   --sidebar-width: 260px;
   --topbar-height: 76px;
   --radius-xl: 18px;
   --radius-lg: 14px;
   --radius-md: 10px;
 
+  /* Shadows */
   --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.02);
   --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
   --shadow-hover: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
   --shadow-focus: 0 0 0 4px rgba(59, 130, 246, 0.12);
 
-  /* Dropdown & Elevated Surface Tokens (Light Mode) */
-  --bg-dropdown: #ffffff;
-  --bg-dropdown-hover: #f1f5f9;
-  --border-dropdown: rgba(226, 232, 240, 0.95);
+  /* Status Colors */
+  --color-primary: var(--palette-blue-600);
+  --color-info: var(--palette-cyan-500);
+  --color-success: var(--palette-green-500);
+  --color-warning: var(--palette-amber-500);
+  --color-danger: var(--palette-red-500);
 
-  /* Status & Theme Colors (Light Mode) */
-  --color-primary: #2563eb;
-  --color-info: #06b6d4;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
+  /* UNIFIED SOFT COLOR FAMILY TOKENS (LIGHT MODE) */
+  /* Purple */
+  --soft-purple-bg: var(--palette-purple-50);
+  --soft-purple-bg-hover: var(--palette-purple-100);
+  --soft-purple-border: var(--palette-purple-200);
+  --soft-purple-text: var(--palette-purple-600);
+  --soft-purple-grad: linear-gradient(135deg, #f5eeff 0%, #ece0ff 100%);
+  --soft-purple-grad-hover: linear-gradient(135deg, #ece0ff 0%, #e9d5ff 100%);
 
-  /* Soft Pastel Gradient Tokens (Light Mode) */
-  --grad-primary-soft: linear-gradient(135deg, #f5eeff 0%, #ece0ff 100%);
-  --grad-primary-soft-hover: linear-gradient(135deg, #ece0ff 0%, #e9d5ff 100%);
-  --grad-secondary-soft: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-  --grad-secondary-soft-hover: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
-  --grad-info-soft: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
-  --grad-info-soft-hover: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 100%);
-  --grad-success-soft: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-  --grad-success-soft-hover: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-  --grad-warning-soft: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-  --grad-warning-soft-hover: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
-  --grad-orange-soft-hover: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
-  --grad-danger-soft: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
-  --grad-danger-soft-hover: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
-  --grad-indigo-soft: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-  --grad-indigo-soft-hover: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 100%);
+  /* Blue */
+  --soft-blue-bg: var(--palette-blue-50);
+  --soft-blue-bg-hover: var(--palette-blue-100);
+  --soft-blue-border: var(--palette-blue-200);
+  --soft-blue-text: var(--palette-blue-600);
+  --soft-blue-grad: linear-gradient(135deg, #eef4ff 0%, #e0ecff 100%);
+  --soft-blue-grad-hover: linear-gradient(135deg, #e0ecff 0%, #c7d2fe 100%);
 
-  /* Metric Card Pastel Fill Tokens (Light Mode) */
-  --grad-card-blue: linear-gradient(135deg, #eef4ff 0%, #e0ecff 100%);
-  --grad-card-purple: linear-gradient(135deg, #f5eeff 0%, #ece0ff 100%);
-  --grad-card-mint: linear-gradient(135deg, #e6f8f3 0%, #d3f3ea 100%);
-  --grad-card-rose: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
-  --grad-card-amber: linear-gradient(135deg, #fffbe0 0%, #fef3c7 100%);
-  --grad-card-orange: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
-  --grad-card-teal: linear-gradient(135deg, #e6f8f3 0%, #ccfbf1 100%);
+  /* Cyan / Sky */
+  --soft-cyan-bg: var(--palette-cyan-50);
+  --soft-cyan-bg-hover: var(--palette-cyan-100);
+  --soft-cyan-border: var(--palette-cyan-100);
+  --soft-cyan-text: var(--palette-cyan-600);
+  --soft-cyan-grad: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  --soft-cyan-grad-hover: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 100%);
 
-  /* Reusable Soft Badge Color Variables (Named by Color) */
-  --badge-purple-bg: #f3e8ff;
-  --badge-purple-text: #7e22ce;
-  --badge-purple-border: #e9d5ff;
+  /* Green / Emerald */
+  --soft-green-bg: var(--palette-green-50);
+  --soft-green-bg-hover: var(--palette-green-100);
+  --soft-green-border: var(--palette-green-200);
+  --soft-green-text: var(--palette-green-600);
+  --soft-green-grad: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  --soft-green-grad-hover: linear-gradient(135deg, #bbf7d0 0%, #a7f3d0 100%);
 
-  --badge-orange-bg: #ffedd5;
-  --badge-orange-text: #c2410c;
-  --badge-orange-border: #fdba74;
+  /* Amber / Yellow */
+  --soft-amber-bg: var(--palette-amber-50);
+  --soft-amber-bg-hover: var(--palette-amber-100);
+  --soft-amber-border: var(--palette-amber-200);
+  --soft-amber-text: var(--palette-amber-600);
+  --soft-amber-grad: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  --soft-amber-grad-hover: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
 
-  --badge-amber-bg: #fef3c7;
-  --badge-amber-text: #b45309;
-  --badge-amber-border: #fcd34d;
+  /* Orange */
+  --soft-orange-bg: var(--palette-orange-100);
+  --soft-orange-bg-hover: var(--palette-orange-200);
+  --soft-orange-border: var(--palette-orange-200);
+  --soft-orange-text: var(--palette-orange-600);
+  --soft-orange-grad: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  --soft-orange-grad-hover: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
 
-  --badge-cyan-bg: #e0f2fe;
-  --badge-cyan-text: #0284c7;
-  --badge-cyan-border: #bae6fd;
+  /* Red / Rose */
+  --soft-red-bg: var(--palette-red-100);
+  --soft-red-bg-hover: var(--palette-red-200);
+  --soft-red-border: var(--palette-red-200);
+  --soft-red-text: var(--palette-red-600);
+  --soft-red-grad: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+  --soft-red-grad-hover: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
 
-  --badge-rose-bg: #fce7f3;
-  --badge-rose-text: #be185d;
-  --badge-rose-border: #fbcfe8;
+  /* Rose (Pink / Soft Rose) */
+  --soft-rose-bg: var(--palette-rose-50);
+  --soft-rose-bg-hover: var(--palette-rose-100);
+  --soft-rose-border: var(--palette-rose-100);
+  --soft-rose-text: var(--palette-rose-600);
+  --soft-rose-grad: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+  --soft-rose-grad-hover: linear-gradient(135deg, #fbcfe8 0%, #f9a8d4 100%);
 
-  --badge-red-bg: #ffe4e6;
-  --badge-red-text: #be123c;
-  --badge-red-border: #fecdd3;
+  /* Indigo */
+  --soft-indigo-bg: var(--palette-indigo-50);
+  --soft-indigo-bg-hover: var(--palette-indigo-100);
+  --soft-indigo-border: var(--palette-indigo-100);
+  --soft-indigo-text: var(--palette-indigo-700);
+  --soft-indigo-grad: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  --soft-indigo-grad-hover: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 100%);
 
-  --badge-green-bg: #dcfce7;
-  --badge-green-text: #15803d;
-  --badge-green-border: #bbf7d0;
+  /* Teal */
+  --soft-teal-bg: var(--palette-teal-50);
+  --soft-teal-bg-hover: var(--palette-teal-100);
+  --soft-teal-border: var(--palette-teal-200);
+  --soft-teal-text: var(--palette-teal-600);
+  --soft-teal-grad: linear-gradient(135deg, #e6f8f3 0%, #d3f3ea 100%);
+  --soft-teal-grad-hover: linear-gradient(135deg, #d3f3ea 0%, #ccfbf1 100%);
 
-  --badge-blue-bg: #eff6ff;
-  --badge-blue-text: #2563eb;
-  --badge-blue-border: #bfdbfe;
+  /* Slate */
+  --soft-slate-bg: var(--palette-slate-100);
+  --soft-slate-bg-hover: var(--palette-slate-200);
+  --soft-slate-border: var(--palette-slate-200);
+  --soft-slate-text: var(--palette-slate-500);
+  --soft-slate-grad: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  --soft-slate-grad-hover: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
 
-  --badge-slate-bg: #f1f5f9;
-  --badge-slate-text: #475569;
-  --badge-slate-border: #e2e8f0;
+  /* ==========================================================================
+     TIER 3: COMPONENT & BACKWARD COMPATIBILITY ALIASES (LIGHT MODE)
+     ========================================================================== */
+  /* Soft Gradient Aliases */
+  --grad-purple-soft: var(--soft-purple-grad);
+  --grad-purple-soft-hover: var(--soft-purple-grad-hover);
+  --grad-slate-soft: var(--soft-slate-grad);
+  --grad-slate-soft-hover: var(--soft-slate-grad-hover);
+  --grad-blue-soft: var(--soft-cyan-grad);
+  --grad-blue-soft-hover: var(--soft-cyan-grad-hover);
+  --grad-green-soft: var(--soft-green-grad);
+  --grad-green-soft-hover: var(--soft-green-grad-hover);
+  --grad-amber-soft: var(--soft-amber-grad);
+  --grad-amber-soft-hover: var(--soft-amber-grad-hover);
+  --grad-orange-soft: var(--soft-orange-grad);
+  --grad-orange-soft-hover: var(--soft-orange-grad-hover);
+  --grad-red-soft: var(--soft-red-grad);
+  --grad-red-soft-hover: var(--soft-red-grad-hover);
+  --grad-indigo-soft: var(--soft-indigo-grad);
+  --grad-indigo-soft-hover: var(--soft-indigo-grad-hover);
 
-  --badge-indigo-bg: #e0e7ff;
-  --badge-indigo-text: #4338ca;
-  --badge-indigo-border: #c7d2fe;
+  /* Metric Card Pastel Aliases */
+  --grad-card-blue: var(--soft-blue-grad);
+  --grad-card-purple: var(--soft-purple-grad);
+  --grad-card-mint: var(--soft-green-grad);
+  --grad-card-rose: var(--soft-red-grad);
+  --grad-card-amber: var(--soft-amber-grad);
+  --grad-card-orange: var(--soft-orange-grad);
+  --grad-card-teal: var(--soft-teal-grad);
+  --grad-card-slate: var(--soft-slate-grad);
 
-  --badge-teal-bg: #e6f8f3;
-  --badge-teal-text: #0d9488;
-  --badge-teal-border: #b8eadf;
+  /* Soft Badge Color Aliases */
+  --badge-purple-bg: var(--soft-purple-bg);
+  --badge-purple-text: var(--soft-purple-text);
+  --badge-purple-border: var(--soft-purple-border);
 
-  --badge-emerald-bg: #d1fae5;
-  --badge-emerald-text: #047857;
-  --badge-emerald-border: #a7f3d0;
+  --badge-orange-bg: var(--soft-orange-bg);
+  --badge-orange-text: var(--soft-orange-text);
+  --badge-orange-border: var(--soft-orange-border);
 
-  /* Dedicated Button Pastel Theme Tokens (Light Mode) */
-  /* 1. Create (Green) */
-  --btn-pastel-success-bg: var(--grad-success-soft);
-  --btn-pastel-success-bg-hover: var(--grad-success-soft-hover);
-  --btn-pastel-success-text: #15803d;
-  --btn-pastel-success-text-hover: #14532d;
-  --btn-pastel-success-border: var(--badge-green-border);
-  --btn-pastel-success-border-hover: #86efac;
-  --btn-pastel-success-shadow: rgba(34, 197, 94, 0.12);
-  --btn-pastel-success-shadow-hover: rgba(34, 197, 94, 0.22);
+  --badge-amber-bg: var(--soft-amber-bg);
+  --badge-amber-text: var(--soft-amber-text);
+  --badge-amber-border: var(--soft-amber-border);
 
-  /* 2. Update (Orange) */
-  --btn-pastel-warning-bg: var(--grad-card-orange);
-  --btn-pastel-warning-bg-hover: var(--grad-orange-soft-hover);
-  --btn-pastel-warning-text: #c2410c;
-  --btn-pastel-warning-text-hover: #7c2d12;
-  --btn-pastel-warning-border: var(--badge-orange-border);
-  --btn-pastel-warning-border-hover: #fb923c;
-  --btn-pastel-warning-shadow: rgba(249, 115, 22, 0.12);
-  --btn-pastel-warning-shadow-hover: rgba(249, 115, 22, 0.22);
+  --badge-cyan-bg: var(--soft-cyan-bg);
+  --badge-cyan-text: var(--soft-cyan-text);
+  --badge-cyan-border: var(--soft-cyan-border);
 
-  /* 3. Delete (Red) */
-  --btn-pastel-danger-bg: var(--grad-danger-soft);
-  --btn-pastel-danger-bg-hover: var(--grad-danger-soft-hover);
-  --btn-pastel-danger-text: #be123c;
-  --btn-pastel-danger-text-hover: #881337;
-  --btn-pastel-danger-border: var(--badge-red-border);
-  --btn-pastel-danger-border-hover: #fda4af;
-  --btn-pastel-danger-shadow: rgba(244, 63, 94, 0.12);
-  --btn-pastel-danger-shadow-hover: rgba(244, 63, 94, 0.22);
+  --badge-rose-bg: var(--soft-rose-bg);
+  --badge-rose-text: var(--soft-rose-text);
+  --badge-rose-border: var(--soft-rose-border);
 
-  /* 4. Reset (Slate / Secondary Soft Pastel) */
-  --btn-pastel-reset-bg: var(--grad-secondary-soft);
-  --btn-pastel-reset-bg-hover: var(--grad-secondary-soft-hover);
+  --badge-red-bg: var(--soft-red-bg);
+  --badge-red-text: var(--soft-red-text);
+  --badge-red-border: var(--soft-red-border);
+
+  --badge-green-bg: var(--soft-green-bg);
+  --badge-green-text: var(--soft-green-text);
+  --badge-green-border: var(--soft-green-border);
+
+  --badge-blue-bg: var(--soft-blue-bg);
+  --badge-blue-text: var(--soft-blue-text);
+  --badge-blue-border: var(--soft-blue-border);
+
+  --badge-slate-bg: var(--soft-slate-bg);
+  --badge-slate-text: var(--soft-slate-text);
+  --badge-slate-border: var(--soft-slate-border);
+
+  --badge-indigo-bg: var(--soft-indigo-bg);
+  --badge-indigo-text: var(--soft-indigo-text);
+  --badge-indigo-border: var(--soft-indigo-border);
+
+  --badge-teal-bg: var(--soft-teal-bg);
+  --badge-teal-text: var(--soft-teal-text);
+  --badge-teal-border: var(--soft-teal-border);
+
+  --badge-emerald-bg: var(--soft-green-bg);
+  --badge-emerald-text: var(--palette-green-700);
+  --badge-emerald-border: var(--palette-green-200);
+
+  /* Button Pastel Token Aliases */
+  --btn-pastel-success-bg: var(--soft-green-grad);
+  --btn-pastel-success-bg-hover: var(--soft-green-grad-hover);
+  --btn-pastel-success-text: var(--soft-green-text);
+  --btn-pastel-success-text-hover: var(--soft-green-text-hover, #14532d);
+  --btn-pastel-success-border: var(--soft-green-border);
+  --btn-pastel-success-border-hover: var(--soft-green-border-hover, #86efac);
+  --btn-pastel-success-shadow: var(--soft-green-shadow, rgba(34, 197, 94, 0.12));
+  --btn-pastel-success-shadow-hover: var(--soft-green-shadow-hover, rgba(34, 197, 94, 0.22));
+
+  --btn-pastel-warning-bg: var(--soft-orange-grad);
+  --btn-pastel-warning-bg-hover: var(--soft-orange-grad-hover);
+  --btn-pastel-warning-text: var(--soft-orange-text);
+  --btn-pastel-warning-text-hover: var(--soft-orange-text-hover, #7c2d12);
+  --btn-pastel-warning-border: var(--soft-orange-border);
+  --btn-pastel-warning-border-hover: var(--soft-orange-border-hover, #fb923c);
+  --btn-pastel-warning-shadow: var(--soft-orange-shadow, rgba(249, 115, 22, 0.12));
+  --btn-pastel-warning-shadow-hover: var(--soft-orange-shadow-hover, rgba(249, 115, 22, 0.22));
+
+  --btn-pastel-danger-bg: var(--soft-red-grad);
+  --btn-pastel-danger-bg-hover: var(--soft-red-grad-hover);
+  --btn-pastel-danger-text: var(--soft-red-text);
+  --btn-pastel-danger-text-hover: var(--soft-red-text-hover, #881337);
+  --btn-pastel-danger-border: var(--soft-red-border);
+  --btn-pastel-danger-border-hover: var(--soft-red-border-hover, #fda4af);
+  --btn-pastel-danger-shadow: var(--soft-red-shadow, rgba(244, 63, 94, 0.12));
+  --btn-pastel-danger-shadow-hover: var(--soft-red-shadow-hover, rgba(244, 63, 94, 0.22));
+
+  --btn-pastel-reset-bg: var(--soft-slate-grad);
+  --btn-pastel-reset-bg-hover: var(--soft-slate-grad-hover);
   --btn-pastel-reset-text: var(--text-muted);
   --btn-pastel-reset-text-hover: var(--text-main);
   --btn-pastel-reset-border: var(--border-color);
-  --btn-pastel-reset-border-hover: #94a3b8;
-  --btn-pastel-reset-shadow: rgba(15, 23, 42, 0.04);
-  --btn-pastel-reset-shadow-hover: rgba(15, 23, 42, 0.08);
+  --btn-pastel-reset-border-hover: var(--soft-slate-border-hover, #94a3b8);
+  --btn-pastel-reset-shadow: var(--soft-slate-shadow, rgba(15, 23, 42, 0.04));
+  --btn-pastel-reset-shadow-hover: var(--soft-slate-shadow-hover, rgba(15, 23, 42, 0.08));
 
-  /* 5. Search (Cyan / Sky Blue Soft Pastel) */
-  --btn-pastel-search-bg: var(--grad-info-soft);
-  --btn-pastel-search-bg-hover: var(--grad-info-soft-hover);
-  --btn-pastel-search-text: #0284c7;
-  --btn-pastel-search-text-hover: #0369a1;
-  --btn-pastel-search-border: #7dd3fc;
-  --btn-pastel-search-border-hover: #38bdf8;
-  --btn-pastel-search-shadow: rgba(2, 132, 199, 0.12);
-  --btn-pastel-search-shadow-hover: rgba(2, 132, 199, 0.22);
+  --btn-pastel-search-bg: var(--soft-cyan-grad);
+  --btn-pastel-search-bg-hover: var(--soft-cyan-grad-hover);
+  --btn-pastel-search-text: var(--soft-cyan-text);
+  --btn-pastel-search-text-hover: var(--soft-cyan-text-hover, #0369a1);
+  --btn-pastel-search-border: var(--soft-cyan-border);
+  --btn-pastel-search-border-hover: var(--soft-cyan-border-hover, #38bdf8);
+  --btn-pastel-search-shadow: var(--soft-cyan-shadow, rgba(2, 132, 199, 0.12));
+  --btn-pastel-search-shadow-hover: var(--soft-cyan-shadow-hover, rgba(2, 132, 199, 0.22));
 
-  /* 6. Primary (Purple Soft Pastel / Save Changes) */
-  --btn-pastel-primary-bg: var(--grad-primary-soft);
-  --btn-pastel-primary-bg-hover: var(--grad-primary-soft-hover);
-  --btn-pastel-primary-text: #7e22ce;
-  --btn-pastel-primary-text-hover: #581c87;
-  --btn-pastel-primary-border: #e9d5ff;
-  --btn-pastel-primary-border-hover: #c084fc;
-  --btn-pastel-primary-shadow: rgba(126, 34, 206, 0.12);
-  --btn-pastel-primary-shadow-hover: rgba(126, 34, 206, 0.22);
+  --btn-pastel-primary-bg: var(--soft-purple-grad);
+  --btn-pastel-primary-bg-hover: var(--soft-purple-grad-hover);
+  --btn-pastel-primary-text: var(--soft-purple-text);
+  --btn-pastel-primary-text-hover: var(--soft-purple-text-hover, #581c87);
+  --btn-pastel-primary-border: var(--soft-purple-border);
+  --btn-pastel-primary-border-hover: var(--soft-purple-border-hover, #c084fc);
+  --btn-pastel-primary-shadow: var(--soft-purple-shadow, rgba(126, 34, 206, 0.12));
+  --btn-pastel-primary-shadow-hover: var(--soft-purple-shadow-hover, rgba(126, 34, 206, 0.22));
 
-  /* 7. IO Pastel Theme (Royal Indigo Soft Pastel - Unique color for Import & Export) */
-  --btn-pastel-io-bg: var(--grad-indigo-soft);
-  --btn-pastel-io-bg-hover: var(--grad-indigo-soft-hover);
-  --btn-pastel-io-text: #3730a3;
-  --btn-pastel-io-text-hover: #1e1b4b;
-  --btn-pastel-io-border: #c7d2fe;
-  --btn-pastel-io-border-hover: #818cf8;
-  --btn-pastel-io-shadow: rgba(55, 48, 163, 0.12);
-  --btn-pastel-io-shadow-hover: rgba(55, 48, 163, 0.22);
+  --btn-pastel-io-bg: var(--soft-indigo-grad);
+  --btn-pastel-io-bg-hover: var(--soft-indigo-grad-hover);
+  --btn-pastel-io-text: var(--soft-indigo-text);
+  --btn-pastel-io-text-hover: var(--soft-indigo-text-hover, #1e1b4b);
+  --btn-pastel-io-border: var(--soft-indigo-border);
+  --btn-pastel-io-border-hover: var(--soft-indigo-border-hover, #818cf8);
+  --btn-pastel-io-shadow: var(--soft-indigo-shadow, rgba(55, 48, 163, 0.12));
+  --btn-pastel-io-shadow-hover: var(--soft-indigo-shadow-hover, rgba(55, 48, 163, 0.22));
 }
 
-/* Dark Mode Theme Variables */
+/* ==========================================================================
+   DARK MODE THEME VARIABLES (AUTOMATIC UNIFIED OVERRIDES)
+   ========================================================================== */
 [data-theme="dark"] {
-  --bg-app: #121214; /* Charcoal/Neutral Black app bg */
-  --bg-surface: #1e1e24; /* Slightly lighter charcoal for cards */
-  --bg-sidebar: #0e0e10; /* Even darker charcoal/black for sidebar */
-  --bg-card: #1e1e24; /* Card background matches surface */
-  --bg-header-table: #0e0e10; /* Table header dark background */
-  --bg-hover: #2d2d34; /* Subtle dark gray hover background */
+  --bg-app: #121214;
+  --bg-surface: #1e1e24;
+  --bg-sidebar: #0e0e10;
+  --bg-card: #1e1e24;
+  --bg-header-table: #0e0e10;
+  --bg-hover: #2d2d34;
+  --bg-dropdown: #1e1e24;
+  --bg-dropdown-hover: #2d2d34;
 
-  --text-main: #f4f4f5; /* Zinc 100 */
-  --text-muted: #a1a1aa; /* Zinc 400 */
-  --text-light: #71717a; /* Zinc 500 */
+  --text-main: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --text-light: #71717a;
 
-  --border-color: #27272a; /* Zinc 800 */
-  --border-light: #18181b; /* Zinc 900 */
+  --border-color: #27272a;
+  --border-light: #18181b;
+  --border-dropdown: #27272a;
 
-  /* Status & Theme Colors (Dark Mode) */
   --color-primary: #3b82f6;
   --color-info: #38bdf8;
   --color-success: #34d399;
   --color-warning: #fbbf24;
   --color-danger: #f87171;
 
-  /* Sidebar Navigation Variables */
   --bg-sidebar-hover: var(--bg-surface);
   --bg-sidebar-active: var(--bg-surface);
   --text-sidebar-hover: #60a5fa;
   --text-sidebar-active: #60a5fa;
   --border-sidebar-indicator: #60a5fa;
 
-  --badge-purple-bg: rgba(126, 34, 206, 0.25);
-  --badge-purple-text: #c084fc;
-  --badge-purple-border: rgba(168, 85, 247, 0.4);
-
-  --badge-orange-bg: rgba(194, 65, 12, 0.25);
-  --badge-orange-text: #fb923c;
-  --badge-orange-border: rgba(251, 146, 60, 0.4);
-
-  --badge-amber-bg: rgba(217, 119, 6, 0.25);
-  --badge-amber-text: #fbbf24;
-  --badge-amber-border: rgba(251, 191, 36, 0.4);
-
-  --badge-cyan-bg: rgba(2, 132, 199, 0.25);
-  --badge-cyan-text: #38bdf8;
-  --badge-cyan-border: rgba(56, 189, 248, 0.4);
-
-  --badge-rose-bg: rgba(190, 24, 93, 0.25);
-  --badge-rose-text: #f472b6;
-  --badge-rose-border: rgba(244, 114, 182, 0.4);
-
-  --badge-red-bg: rgba(225, 29, 72, 0.3);
-  --badge-red-text: #fb7185;
-  --badge-red-border: rgba(244, 63, 94, 0.5);
-
-  --badge-green-bg: rgba(21, 128, 61, 0.25);
-  --badge-green-text: #4ade80;
-  --badge-green-border: rgba(74, 222, 128, 0.4);
-
-  --badge-blue-bg: rgba(37, 99, 235, 0.25);
-  --badge-blue-text: #93c5fd;
-  --badge-blue-border: rgba(96, 165, 250, 0.4);
-
-  --badge-slate-bg: rgba(71, 85, 105, 0.3);
-  --badge-slate-text: #cbd5e1;
-  --badge-slate-border: rgba(148, 163, 184, 0.3);
-
-  --badge-indigo-bg: rgba(67, 56, 202, 0.25);
-  --badge-indigo-text: #818cf8;
-  --badge-indigo-border: rgba(129, 140, 248, 0.4);
-
-  --badge-teal-bg: rgba(13, 148, 136, 0.25);
-  --badge-teal-text: #2dd4bf;
-  --badge-teal-border: rgba(45, 212, 191, 0.4);
-
-  --badge-emerald-bg: rgba(16, 185, 129, 0.25);
-  --badge-emerald-text: #34d399;
-  --badge-emerald-border: rgba(52, 211, 153, 0.4);
-
-  /* Dedicated Button Pastel Theme Tokens (Dark Mode) */
-  /* 1. Create (Green) */
-  --btn-pastel-success-text: #6ee7b7;
-  --btn-pastel-success-text-hover: #ffffff;
-  --btn-pastel-success-border-hover: rgba(110, 231, 183, 0.45);
-
-  /* 2. Update (Orange) */
-  --btn-pastel-warning-text: #fb923c;
-  --btn-pastel-warning-text-hover: #ffffff;
-  --btn-pastel-warning-border-hover: rgba(251, 146, 60, 0.45);
-
-  /* 3. Delete (Red) */
-  --btn-pastel-danger-text: #fda4af;
-  --btn-pastel-danger-text-hover: #ffffff;
-  --btn-pastel-danger-border-hover: rgba(253, 164, 175, 0.45);
-
-  /* 4. Reset (Slate / Secondary Soft Pastel) */
-  --btn-pastel-reset-bg: var(--grad-secondary-soft);
-  --btn-pastel-reset-bg-hover: var(--grad-secondary-soft-hover);
-  --btn-pastel-reset-border: rgba(148, 163, 184, 0.35);
-  --btn-pastel-reset-border-hover: rgba(203, 213, 225, 0.65);
-  --btn-pastel-reset-shadow: rgba(0, 0, 0, 0.25);
-  --btn-pastel-reset-shadow-hover: rgba(0, 0, 0, 0.35);
-
-  /* 5. Search (Cyan / Sky Blue Soft Pastel) */
-  --btn-pastel-search-bg: var(--grad-info-soft);
-  --btn-pastel-search-bg-hover: var(--grad-info-soft-hover);
-  --btn-pastel-search-text: #38bdf8;
-  --btn-pastel-search-text-hover: #ffffff;
-  --btn-pastel-search-border: rgba(56, 189, 248, 0.4);
-  --btn-pastel-search-border-hover: rgba(125, 211, 252, 0.6);
-  --btn-pastel-search-shadow: rgba(56, 189, 248, 0.25);
-  --btn-pastel-search-shadow-hover: rgba(56, 189, 248, 0.4);
-
-  /* 6. Primary (Purple Soft Pastel / Save Changes - Dark Mode) */
-  --btn-pastel-primary-bg: var(--grad-primary-soft);
-  --btn-pastel-primary-bg-hover: var(--grad-primary-soft-hover);
-  --btn-pastel-primary-text: #c084fc;
-  --btn-pastel-primary-text-hover: #ffffff;
-  --btn-pastel-primary-border: rgba(168, 85, 247, 0.4);
-  --btn-pastel-primary-border-hover: rgba(192, 132, 252, 0.65);
-  --btn-pastel-primary-shadow: rgba(168, 85, 247, 0.25);
-  --btn-pastel-primary-shadow-hover: rgba(168, 85, 247, 0.45);
-
-  /* 7. Indigo (Import & Export - Dark Mode) */
-  --btn-pastel-io-bg: var(--grad-indigo-soft);
-  --btn-pastel-io-bg-hover: var(--grad-indigo-soft-hover);
-  --btn-pastel-io-text: #818cf8;
-  --btn-pastel-io-text-hover: #ffffff;
-  --btn-pastel-io-border: rgba(129, 140, 248, 0.4);
-  --btn-pastel-io-border-hover: rgba(165, 180, 252, 0.65);
-  --btn-pastel-io-shadow: rgba(99, 102, 241, 0.25);
-  --btn-pastel-io-shadow-hover: rgba(99, 102, 241, 0.45);
-
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
   --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
   --shadow-focus: 0 0 0 4px rgba(129, 140, 248, 0.25);
 
-  /* Soft Pastel Gradient Tokens (Dark Mode) */
-  --grad-primary-soft: linear-gradient(
+  /* UNIFIED SOFT COLOR FAMILY TOKENS (DARK MODE SEMANTIC TOKENS) */
+  --soft-purple-bg: rgba(126, 34, 206, 0.25);
+  --soft-purple-border: rgba(168, 85, 247, 0.4);
+  --soft-purple-border-hover: rgba(192, 132, 252, 0.65);
+  --soft-purple-text: #c084fc;
+  --soft-purple-text-hover: #ffffff;
+  --soft-purple-shadow: rgba(168, 85, 247, 0.25);
+  --soft-purple-shadow-hover: rgba(168, 85, 247, 0.45);
+  --soft-purple-grad: linear-gradient(
     135deg,
     rgba(139, 92, 246, 0.2) 0%,
     rgba(124, 58, 237, 0.3) 100%
   );
-  --grad-primary-soft-hover: linear-gradient(
+  --soft-purple-grad-hover: linear-gradient(
     135deg,
     rgba(139, 92, 246, 0.35) 0%,
     rgba(124, 58, 237, 0.5) 100%
   );
-  --grad-secondary-soft: linear-gradient(
+
+  --soft-blue-bg: rgba(37, 99, 235, 0.25);
+  --soft-blue-border: rgba(96, 165, 250, 0.4);
+  --soft-blue-border-hover: rgba(147, 197, 253, 0.65);
+  --soft-blue-text: #93c5fd;
+  --soft-blue-text-hover: #ffffff;
+  --soft-blue-shadow: rgba(37, 99, 235, 0.25);
+  --soft-blue-shadow-hover: rgba(37, 99, 235, 0.45);
+  --soft-blue-grad: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(29, 78, 216, 0.3) 100%);
+  --soft-blue-grad-hover: linear-gradient(
     135deg,
-    rgba(148, 163, 184, 0.15) 0%,
-    rgba(100, 116, 139, 0.25) 100%
+    rgba(37, 99, 235, 0.35) 0%,
+    rgba(29, 78, 216, 0.5) 100%
   );
-  --grad-secondary-soft-hover: linear-gradient(
-    135deg,
-    rgba(148, 163, 184, 0.28) 0%,
-    rgba(100, 116, 139, 0.4) 100%
-  );
-  --grad-info-soft: linear-gradient(
+
+  --soft-cyan-bg: rgba(2, 132, 199, 0.25);
+  --soft-cyan-border: rgba(56, 189, 248, 0.4);
+  --soft-cyan-border-hover: rgba(125, 211, 252, 0.6);
+  --soft-cyan-text: #38bdf8;
+  --soft-cyan-text-hover: #ffffff;
+  --soft-cyan-shadow: rgba(56, 189, 248, 0.25);
+  --soft-cyan-shadow-hover: rgba(56, 189, 248, 0.4);
+  --soft-cyan-grad: linear-gradient(
     135deg,
     rgba(2, 132, 199, 0.25) 0%,
     rgba(3, 105, 161, 0.35) 100%
   );
-  --grad-info-soft-hover: linear-gradient(
+  --soft-cyan-grad-hover: linear-gradient(
     135deg,
     rgba(2, 132, 199, 0.4) 0%,
     rgba(3, 105, 161, 0.55) 100%
   );
-  --grad-success-soft: linear-gradient(
+
+  --soft-green-bg: rgba(21, 128, 61, 0.25);
+  --soft-green-border: rgba(74, 222, 128, 0.4);
+  --soft-green-border-hover: rgba(110, 231, 183, 0.45);
+  --soft-green-text: #6ee7b7;
+  --soft-green-text-hover: #ffffff;
+  --soft-green-shadow: rgba(34, 197, 94, 0.25);
+  --soft-green-shadow-hover: rgba(34, 197, 94, 0.45);
+  --soft-green-grad: linear-gradient(
     135deg,
     rgba(16, 185, 129, 0.2) 0%,
     rgba(4, 120, 87, 0.3) 100%
   );
-  --grad-success-soft-hover: linear-gradient(
+  --soft-green-grad-hover: linear-gradient(
     135deg,
     rgba(16, 185, 129, 0.35) 0%,
     rgba(4, 120, 87, 0.5) 100%
   );
-  --grad-warning-soft: linear-gradient(
+
+  --soft-amber-bg: rgba(217, 119, 6, 0.25);
+  --soft-amber-border: rgba(251, 191, 36, 0.4);
+  --soft-amber-border-hover: rgba(253, 224, 71, 0.65);
+  --soft-amber-text: #fbbf24;
+  --soft-amber-text-hover: #ffffff;
+  --soft-amber-shadow: rgba(245, 158, 11, 0.25);
+  --soft-amber-shadow-hover: rgba(245, 158, 11, 0.45);
+  --soft-amber-grad: linear-gradient(
     135deg,
     rgba(245, 158, 11, 0.2) 0%,
     rgba(217, 119, 6, 0.3) 100%
   );
-  --grad-warning-soft-hover: linear-gradient(
+  --soft-amber-grad-hover: linear-gradient(
     135deg,
     rgba(245, 158, 11, 0.35) 0%,
     rgba(217, 119, 6, 0.5) 100%
   );
-  --grad-danger-soft: linear-gradient(
+
+  --soft-orange-bg: rgba(194, 65, 12, 0.25);
+  --soft-orange-border: rgba(251, 146, 60, 0.4);
+  --soft-orange-border-hover: rgba(251, 146, 60, 0.45);
+  --soft-orange-text: #fb923c;
+  --soft-orange-text-hover: #ffffff;
+  --soft-orange-shadow: rgba(249, 115, 22, 0.25);
+  --soft-orange-shadow-hover: rgba(249, 115, 22, 0.45);
+  --soft-orange-grad: linear-gradient(
     135deg,
-    rgba(225, 29, 72, 0.2) 0%,
-    rgba(190, 18, 60, 0.3) 100%
+    rgba(249, 115, 22, 0.2) 0%,
+    rgba(194, 65, 12, 0.3) 100%
   );
-  --grad-danger-soft-hover: linear-gradient(
+  --soft-orange-grad-hover: linear-gradient(
+    135deg,
+    rgba(249, 115, 22, 0.35) 0%,
+    rgba(194, 65, 12, 0.5) 100%
+  );
+
+  --soft-red-bg: rgba(225, 29, 72, 0.3);
+  --soft-red-border: rgba(244, 63, 94, 0.5);
+  --soft-red-border-hover: rgba(253, 164, 175, 0.45);
+  --soft-red-text: #fda4af;
+  --soft-red-text-hover: #ffffff;
+  --soft-red-shadow: rgba(244, 63, 94, 0.25);
+  --soft-red-shadow-hover: rgba(244, 63, 94, 0.45);
+  --soft-red-grad: linear-gradient(135deg, rgba(225, 29, 72, 0.2) 0%, rgba(190, 18, 60, 0.3) 100%);
+  --soft-red-grad-hover: linear-gradient(
     135deg,
     rgba(225, 29, 72, 0.35) 0%,
     rgba(190, 18, 60, 0.5) 100%
   );
-  --grad-indigo-soft: linear-gradient(
+
+  --soft-rose-bg: rgba(190, 24, 93, 0.25);
+  --soft-rose-border: rgba(244, 114, 182, 0.4);
+  --soft-rose-border-hover: rgba(244, 114, 182, 0.65);
+  --soft-rose-text: #f472b6;
+  --soft-rose-text-hover: #ffffff;
+  --soft-rose-shadow: rgba(244, 114, 182, 0.25);
+  --soft-rose-shadow-hover: rgba(244, 114, 182, 0.45);
+  --soft-rose-grad: linear-gradient(135deg, rgba(190, 24, 93, 0.2) 0%, rgba(159, 18, 57, 0.3) 100%);
+  --soft-rose-grad-hover: linear-gradient(
+    135deg,
+    rgba(190, 24, 93, 0.35) 0%,
+    rgba(159, 18, 57, 0.5) 100%
+  );
+
+  --soft-indigo-bg: rgba(67, 56, 202, 0.25);
+  --soft-indigo-border: rgba(129, 140, 248, 0.4);
+  --soft-indigo-border-hover: rgba(165, 180, 252, 0.65);
+  --soft-indigo-text: #818cf8;
+  --soft-indigo-text-hover: #ffffff;
+  --soft-indigo-shadow: rgba(99, 102, 241, 0.25);
+  --soft-indigo-shadow-hover: rgba(99, 102, 241, 0.45);
+  --soft-indigo-grad: linear-gradient(
     135deg,
     rgba(67, 56, 202, 0.25) 0%,
     rgba(49, 46, 129, 0.35) 100%
   );
-  --grad-indigo-soft-hover: linear-gradient(
+  --soft-indigo-grad-hover: linear-gradient(
     135deg,
     rgba(67, 56, 202, 0.4) 0%,
     rgba(49, 46, 129, 0.55) 100%
   );
 
-  /* Metric Card Pastel Fill Tokens (Dark Mode) */
-  --grad-card-blue: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(29, 78, 216, 0.3) 100%);
-  --grad-card-purple: linear-gradient(
-    135deg,
-    rgba(139, 92, 246, 0.2) 0%,
-    rgba(124, 58, 237, 0.3) 100%
-  );
-  --grad-card-mint: linear-gradient(
-    135deg,
-    rgba(16, 185, 129, 0.2) 0%,
-    rgba(5, 150, 105, 0.3) 100%
-  );
-  --grad-card-rose: linear-gradient(135deg, rgba(225, 29, 72, 0.2) 0%, rgba(190, 18, 60, 0.3) 100%);
-  --grad-card-amber: linear-gradient(135deg, rgba(217, 119, 6, 0.2) 0%, rgba(180, 83, 9, 0.3) 100%);
-  --grad-card-orange: linear-gradient(
-    135deg,
-    rgba(249, 115, 22, 0.2) 0%,
-    rgba(194, 65, 12, 0.3) 100%
-  );
-  --grad-orange-soft-hover: linear-gradient(
-    135deg,
-    rgba(249, 115, 22, 0.35) 0%,
-    rgba(194, 65, 12, 0.5) 100%
-  );
-  --grad-card-slate: linear-gradient(
-    135deg,
-    rgba(71, 85, 105, 0.25) 0%,
-    rgba(51, 65, 85, 0.35) 100%
-  );
-  --grad-card-teal: linear-gradient(
+  --soft-teal-bg: rgba(13, 148, 136, 0.25);
+  --soft-teal-border: rgba(45, 212, 191, 0.4);
+  --soft-teal-border-hover: rgba(94, 234, 212, 0.65);
+  --soft-teal-text: #2dd4bf;
+  --soft-teal-text-hover: #ffffff;
+  --soft-teal-shadow: rgba(20, 184, 166, 0.25);
+  --soft-teal-shadow-hover: rgba(20, 184, 166, 0.45);
+  --soft-teal-grad: linear-gradient(
     135deg,
     rgba(20, 184, 166, 0.2) 0%,
     rgba(13, 148, 136, 0.3) 100%
   );
+  --soft-teal-grad-hover: linear-gradient(
+    135deg,
+    rgba(20, 184, 166, 0.35) 0%,
+    rgba(13, 148, 136, 0.5) 100%
+  );
 
-  /* Dropdown & Elevated Surface Tokens (Dark Mode) */
-  --bg-dropdown: #1e1e24;
-  --bg-dropdown-hover: #2d2d34;
-  --border-dropdown: #27272a;
+  --soft-slate-bg: rgba(71, 85, 105, 0.3);
+  --soft-slate-border: rgba(148, 163, 184, 0.3);
+  --soft-slate-border-hover: rgba(203, 213, 225, 0.65);
+  --soft-slate-text: #cbd5e1;
+  --soft-slate-text-hover: #ffffff;
+  --soft-slate-shadow: rgba(0, 0, 0, 0.25);
+  --soft-slate-shadow-hover: rgba(0, 0, 0, 0.35);
+  --soft-slate-grad: linear-gradient(
+    135deg,
+    rgba(71, 85, 105, 0.25) 0%,
+    rgba(51, 65, 85, 0.35) 100%
+  );
+  --soft-slate-grad-hover: linear-gradient(
+    135deg,
+    rgba(71, 85, 105, 0.4) 0%,
+    rgba(51, 65, 85, 0.55) 100%
+  );
+}
 
-  /* Status Colors (Dark Mode) */
-  --color-success: #34d399;
-  --color-warning: #fbbf24;
-  --color-danger: #fb7185;
+/* ==========================================================================
+   UNIFIED MODAL & POPUP DARK MODE DESIGN SYSTEM SPECIFICATION
+   ========================================================================== */
+.modal-content {
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+.modal-header,
+.modal-footer {
+  background-color: var(--bg-surface);
+  border-color: var(--border-light);
+}
+
+[data-theme="dark"] .modal-content {
+  background-color: #1e1e24 !important;
+  color: var(--text-main) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-footer,
+[data-theme="dark"] .modal-body {
+  background-color: #1e1e24 !important;
+  color: var(--text-main) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .bg-light {
+  background-color: var(--bg-hover) !important;
+  color: var(--text-main) !important;
+}
+
+[data-theme="dark"] .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
 }
 
 /* Reset & Base Styles */
@@ -1915,9 +2100,9 @@ a {
   }
 
   .metric-pastel-icon-floating {
-    width: 40px;
-    height: 40px;
-    font-size: 1.05rem;
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
   }
 
   .donut-legend-item {
@@ -2789,25 +2974,37 @@ svg g.apextree-selected .apextree-sleek-card {
   color: var(--btn-pastel-search-text-hover) !important;
 }
 
-/* 7. Purple Button (Save / Primary Action) */
-.btn-pastel-purple {
+/* 7. Purple / Primary Button (Save / Primary Action) */
+.btn-pastel-purple,
+.btn-pastel-primary {
   background: var(--btn-pastel-primary-bg) !important;
   border: 1px solid var(--btn-pastel-primary-border) !important;
   color: var(--btn-pastel-primary-text) !important;
   box-shadow: 0 2px 6px var(--btn-pastel-primary-shadow) !important;
 }
-.btn-pastel-purple i {
+.btn-pastel-purple i,
+.btn-pastel-primary i,
+.btn-pastel-purple span,
+.btn-pastel-primary span {
   color: var(--btn-pastel-primary-text) !important;
 }
 .btn-pastel-purple:hover,
-.btn-pastel-purple:focus {
+.btn-pastel-purple:focus,
+.btn-pastel-primary:hover,
+.btn-pastel-primary:focus {
   background: var(--btn-pastel-primary-bg-hover) !important;
   border-color: var(--btn-pastel-primary-border-hover) !important;
   color: var(--btn-pastel-primary-text-hover) !important;
   box-shadow: 0 4px 12px var(--btn-pastel-primary-shadow-hover) !important;
 }
 .btn-pastel-purple:hover i,
-.btn-pastel-purple:focus i {
+.btn-pastel-purple:focus i,
+.btn-pastel-primary:hover i,
+.btn-pastel-primary:focus i,
+.btn-pastel-purple:hover span,
+.btn-pastel-purple:focus span,
+.btn-pastel-primary:hover span,
+.btn-pastel-primary:focus span {
   color: var(--btn-pastel-primary-text-hover) !important;
 }
 
@@ -3963,31 +4160,71 @@ apex-grid::part(paginator) {
 }
 
 /* Department Specific Accent Colors for Card Top Line & Avatar Ring */
-.emp-card:has(.dept-engineering)::before { background: #3b82f6; }
-.emp-card:has(.dept-engineering) .emp-card-avatar-ring { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); }
+.emp-card:has(.dept-engineering)::before {
+  background: #3b82f6;
+}
+.emp-card:has(.dept-engineering) .emp-card-avatar-ring {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
 
-.emp-card:has(.dept-marketing)::before { background: #8b5cf6; }
-.emp-card:has(.dept-marketing) .emp-card-avatar-ring { border-color: #a78bfa; box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15); }
+.emp-card:has(.dept-marketing)::before {
+  background: #8b5cf6;
+}
+.emp-card:has(.dept-marketing) .emp-card-avatar-ring {
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
 
-.emp-card:has(.dept-hr)::before { background: #14b8a6; }
-.emp-card:has(.dept-hr) .emp-card-avatar-ring { border-color: #2dd4bf; box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15); }
+.emp-card:has(.dept-hr)::before {
+  background: #14b8a6;
+}
+.emp-card:has(.dept-hr) .emp-card-avatar-ring {
+  border-color: #2dd4bf;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+}
 
-.emp-card:has(.dept-finance)::before { background: #10b981; }
-.emp-card:has(.dept-finance) .emp-card-avatar-ring { border-color: #34d399; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15); }
+.emp-card:has(.dept-finance)::before {
+  background: #10b981;
+}
+.emp-card:has(.dept-finance) .emp-card-avatar-ring {
+  border-color: #34d399;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
 
 .emp-card:has(.dept-operations)::before,
-.emp-card:has(.dept-ops)::before { background: #f97316; }
+.emp-card:has(.dept-ops)::before {
+  background: #f97316;
+}
 .emp-card:has(.dept-operations) .emp-card-avatar-ring,
-.emp-card:has(.dept-ops) .emp-card-avatar-ring { border-color: #fb923c; box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15); }
+.emp-card:has(.dept-ops) .emp-card-avatar-ring {
+  border-color: #fb923c;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+}
 
-.emp-card:has(.dept-sales)::before { background: #f43f5e; }
-.emp-card:has(.dept-sales) .emp-card-avatar-ring { border-color: #fb7185; box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.15); }
+.emp-card:has(.dept-sales)::before {
+  background: #f43f5e;
+}
+.emp-card:has(.dept-sales) .emp-card-avatar-ring {
+  border-color: #fb7185;
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.15);
+}
 
-.emp-card:has(.dept-design)::before { background: #f59e0b; }
-.emp-card:has(.dept-design) .emp-card-avatar-ring { border-color: #fbbf24; box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15); }
+.emp-card:has(.dept-design)::before {
+  background: #f59e0b;
+}
+.emp-card:has(.dept-design) .emp-card-avatar-ring {
+  border-color: #fbbf24;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+}
 
-.emp-card:has(.dept-management)::before { background: #6366f1; }
-.emp-card:has(.dept-management) .emp-card-avatar-ring { border-color: #818cf8; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15); }
+.emp-card:has(.dept-management)::before {
+  background: #6366f1;
+}
+.emp-card:has(.dept-management) .emp-card-avatar-ring {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
 
 /* Top Bar */
 .emp-card-top-bar {
@@ -4233,9 +4470,10 @@ apex-grid::part(paginator) {
 }
 
 /* ======================================================
-   ENTERPRISE DATA TABLE SCROLLABLE CONTAINER (Country & Employee List)
+   ENTERPRISE DATA TABLE SCROLLABLE CONTAINER (Country, Employee & Recruitment List)
    ====================================================== */
 #empListView .table-responsive,
+#recruitmentListView .table-responsive,
 .country-table-scroll {
   max-height: 640px;
   overflow: auto;
@@ -4243,20 +4481,24 @@ apex-grid::part(paginator) {
   border-radius: 12px;
 }
 #empListView .table-responsive::-webkit-scrollbar,
+#recruitmentListView .table-responsive::-webkit-scrollbar,
 .country-table-scroll::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 #empListView .table-responsive::-webkit-scrollbar-track,
+#recruitmentListView .table-responsive::-webkit-scrollbar-track,
 .country-table-scroll::-webkit-scrollbar-track {
   background: transparent;
 }
 #empListView .table-responsive::-webkit-scrollbar-thumb,
+#recruitmentListView .table-responsive::-webkit-scrollbar-thumb,
 .country-table-scroll::-webkit-scrollbar-thumb {
   background: var(--border-color, rgba(203, 213, 225, 0.8));
   border-radius: 10px;
 }
 #empListView .table-responsive::-webkit-scrollbar-thumb:hover,
+#recruitmentListView .table-responsive::-webkit-scrollbar-thumb:hover,
 .country-table-scroll::-webkit-scrollbar-thumb:hover {
   background: var(--primary-500, #3b82f6);
 }
@@ -4343,6 +4585,7 @@ apex-grid::part(paginator) {
 
 .emp-list-table {
   width: 100%;
+  min-width: 1400px;
   border-collapse: separate;
   border-spacing: 0;
 }
@@ -5017,12 +5260,24 @@ apex-grid::part(paginator) {
 }
 
 /* Stage Top Accent Borders */
-.column-applied { border-top: 4px solid #3b82f6; }
-.column-screening { border-top: 4px solid #06b6d4; }
-.column-interview { border-top: 4px solid #8b5cf6; }
-.column-offer { border-top: 4px solid #f59e0b; }
-.column-hired { border-top: 4px solid #10b981; }
-.column-rejected { border-top: 4px solid #ef4444; }
+.pipeline-column.column-applied {
+  border-top: 4px solid var(--palette-blue-500, #3b82f6) !important;
+}
+.pipeline-column.column-screening {
+  border-top: 4px solid var(--palette-cyan-500, #06b6d4) !important;
+}
+.pipeline-column.column-interview {
+  border-top: 4px solid var(--palette-purple-500, #8b5cf6) !important;
+}
+.pipeline-column.column-offer {
+  border-top: 4px solid var(--palette-amber-500, #f59e0b) !important;
+}
+.pipeline-column.column-hired {
+  border-top: 4px solid var(--palette-green-500, #10b981) !important;
+}
+.pipeline-column.column-rejected {
+  border-top: 4px solid var(--palette-red-500, #ef4444) !important;
+}
 
 .column-header {
   padding: 1rem 1.25rem;
@@ -5035,19 +5290,43 @@ apex-grid::part(paginator) {
   margin: 0;
 }
 
-.text-applied { color: #2563eb; }
-.text-screening { color: #0891b2; }
-.text-interview { color: #7c3aed; }
-.text-offer { color: #d97706; }
-.text-hired { color: #059669; }
-.text-rejected { color: #dc2626; }
+.text-applied {
+  color: #2563eb;
+}
+.text-screening {
+  color: #0891b2;
+}
+.text-interview {
+  color: #7c3aed;
+}
+.text-offer {
+  color: #d97706;
+}
+.text-hired {
+  color: #059669;
+}
+.text-rejected {
+  color: #dc2626;
+}
 
-[data-theme="dark"] .text-applied { color: #60a5fa; }
-[data-theme="dark"] .text-screening { color: #22d3ee; }
-[data-theme="dark"] .text-interview { color: #a78bfa; }
-[data-theme="dark"] .text-offer { color: #fbbf24; }
-[data-theme="dark"] .text-hired { color: #34d399; }
-[data-theme="dark"] .text-rejected { color: #f87171; }
+[data-theme="dark"] .text-applied {
+  color: #60a5fa;
+}
+[data-theme="dark"] .text-screening {
+  color: #22d3ee;
+}
+[data-theme="dark"] .text-interview {
+  color: #a78bfa;
+}
+[data-theme="dark"] .text-offer {
+  color: #fbbf24;
+}
+[data-theme="dark"] .text-hired {
+  color: #34d399;
+}
+[data-theme="dark"] .text-rejected {
+  color: #f87171;
+}
 
 .column-dot {
   width: 8px;
@@ -5055,12 +5334,30 @@ apex-grid::part(paginator) {
   border-radius: 50%;
   display: inline-block;
 }
-.dot-applied { background-color: #3b82f6; box-shadow: 0 0 8px rgba(59, 130, 246, 0.5); }
-.dot-screening { background-color: #06b6d4; box-shadow: 0 0 8px rgba(6, 182, 212, 0.5); }
-.dot-interview { background-color: #8b5cf6; box-shadow: 0 0 8px rgba(139, 92, 246, 0.5); }
-.dot-offer { background-color: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.5); }
-.dot-hired { background-color: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.5); }
-.dot-rejected { background-color: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.5); }
+.dot-applied {
+  background-color: #3b82f6;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+.dot-screening {
+  background-color: #06b6d4;
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
+}
+.dot-interview {
+  background-color: #8b5cf6;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
+}
+.dot-offer {
+  background-color: #f59e0b;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+}
+.dot-hired {
+  background-color: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+.dot-rejected {
+  background-color: #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+}
 
 .column-count-badge {
   font-size: 0.8rem;
@@ -5070,19 +5367,55 @@ apex-grid::part(paginator) {
   line-height: 1;
 }
 
-.badge-applied { background-color: #eff6ff; color: #1d4ed8; }
-.badge-screening { background-color: #ecfeff; color: #0e7490; }
-.badge-interview { background-color: #f5f3ff; color: #6d28d9; }
-.badge-offer { background-color: #fffbeb; color: #b45309; }
-.badge-hired { background-color: #ecfdf5; color: #047857; }
-.badge-rejected { background-color: #fef2f2; color: #b91c1c; }
+.badge-applied {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+.badge-screening {
+  background-color: #ecfeff;
+  color: #0e7490;
+}
+.badge-interview {
+  background-color: #f5f3ff;
+  color: #6d28d9;
+}
+.badge-offer {
+  background-color: #fffbeb;
+  color: #b45309;
+}
+.badge-hired {
+  background-color: #ecfdf5;
+  color: #047857;
+}
+.badge-rejected {
+  background-color: #fef2f2;
+  color: #b91c1c;
+}
 
-[data-theme="dark"] .badge-applied { background-color: rgba(37, 99, 235, 0.2); color: #93c5fd; }
-[data-theme="dark"] .badge-screening { background-color: rgba(6, 182, 212, 0.2); color: #67e8f9; }
-[data-theme="dark"] .badge-interview { background-color: rgba(139, 92, 246, 0.2); color: #c4b5fd; }
-[data-theme="dark"] .badge-offer { background-color: rgba(245, 158, 11, 0.2); color: #fde047; }
-[data-theme="dark"] .badge-hired { background-color: rgba(16, 185, 129, 0.2); color: #6ee7b7; }
-[data-theme="dark"] .badge-rejected { background-color: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+[data-theme="dark"] .badge-applied {
+  background-color: rgba(37, 99, 235, 0.2);
+  color: #93c5fd;
+}
+[data-theme="dark"] .badge-screening {
+  background-color: rgba(6, 182, 212, 0.2);
+  color: #67e8f9;
+}
+[data-theme="dark"] .badge-interview {
+  background-color: rgba(139, 92, 246, 0.2);
+  color: #c4b5fd;
+}
+[data-theme="dark"] .badge-offer {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #fde047;
+}
+[data-theme="dark"] .badge-hired {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+}
+[data-theme="dark"] .badge-rejected {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+}
 
 /* Column Body */
 .column-body {
@@ -5110,7 +5443,11 @@ apex-grid::part(paginator) {
   padding: 1rem;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
   cursor: grab;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
   position: relative;
   user-select: none;
 }
@@ -5191,10 +5528,26 @@ apex-grid::part(paginator) {
   border: 1px solid #fde68a;
 }
 
-[data-theme="dark"] .match-high { background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.3); }
-[data-theme="dark"] .match-medium { background: rgba(37, 99, 235, 0.15); color: #60a5fa; border-color: rgba(37, 99, 235, 0.3); }
-[data-theme="dark"] .match-purple { background: rgba(139, 92, 246, 0.15); color: #c4b5fd; border-color: rgba(139, 92, 246, 0.3); }
-[data-theme="dark"] .match-fair { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border-color: rgba(245, 158, 11, 0.3); }
+[data-theme="dark"] .match-high {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+[data-theme="dark"] .match-medium {
+  background: rgba(37, 99, 235, 0.15);
+  color: #60a5fa;
+  border-color: rgba(37, 99, 235, 0.3);
+}
+[data-theme="dark"] .match-purple {
+  background: rgba(139, 92, 246, 0.15);
+  color: #c4b5fd;
+  border-color: rgba(139, 92, 246, 0.3);
+}
+[data-theme="dark"] .match-fair {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.3);
+}
 
 /* Candidate Card Header & Controls Alignment */
 .candidate-card-header {
@@ -5286,19 +5639,55 @@ apex-grid::part(paginator) {
   border-radius: 6px;
 }
 
-.status-tag.tag-applied { background: #f1f5f9; color: #475569; }
-.status-tag.tag-screening { background: #e0f2fe; color: #0369a1; }
-.status-tag.tag-interview { background: #f3e8ff; color: #6b21a8; }
-.status-tag.tag-offer { background: #fef3c7; color: #92400e; }
-.status-tag.tag-hired { background: #d1fae5; color: #065f46; }
-.status-tag.tag-rejected { background: #fee2e2; color: #991b1b; }
+.status-tag.tag-applied {
+  background: #f1f5f9;
+  color: #475569;
+}
+.status-tag.tag-screening {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+.status-tag.tag-interview {
+  background: #f3e8ff;
+  color: #6b21a8;
+}
+.status-tag.tag-offer {
+  background: #fef3c7;
+  color: #92400e;
+}
+.status-tag.tag-hired {
+  background: #d1fae5;
+  color: #065f46;
+}
+.status-tag.tag-rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}
 
-[data-theme="dark"] .status-tag.tag-applied { background: rgba(241, 245, 249, 0.1); color: #cbd5e1; }
-[data-theme="dark"] .status-tag.tag-screening { background: rgba(6, 182, 212, 0.15); color: #7dd3fc; }
-[data-theme="dark"] .status-tag.tag-interview { background: rgba(139, 92, 246, 0.15); color: #d8b4fe; }
-[data-theme="dark"] .status-tag.tag-offer { background: rgba(245, 158, 11, 0.15); color: #fde047; }
-[data-theme="dark"] .status-tag.tag-hired { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; }
-[data-theme="dark"] .status-tag.tag-rejected { background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
+[data-theme="dark"] .status-tag.tag-applied {
+  background: rgba(241, 245, 249, 0.1);
+  color: #cbd5e1;
+}
+[data-theme="dark"] .status-tag.tag-screening {
+  background: rgba(6, 182, 212, 0.15);
+  color: #7dd3fc;
+}
+[data-theme="dark"] .status-tag.tag-interview {
+  background: rgba(139, 92, 246, 0.15);
+  color: #d8b4fe;
+}
+[data-theme="dark"] .status-tag.tag-offer {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fde047;
+}
+[data-theme="dark"] .status-tag.tag-hired {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+}
+[data-theme="dark"] .status-tag.tag-rejected {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+}
 
 /* Column Footer */
 .column-footer {
@@ -5338,3 +5727,94 @@ apex-grid::part(paginator) {
   font-size: 0.82rem;
 }
 
+/* Custom Nexus Modal Body Scrollbar (Single Clean Scrollbar) */
+.custom-nexus-modal .modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-nexus-modal .modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-nexus-modal .modal-body::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+.custom-nexus-modal .modal-body::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Pinned Search Box & Icon High-End Styling */
+.modal-search-box {
+  position: relative;
+  width: 100%;
+}
+
+.modal-search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.88rem;
+  color: var(--color-primary, #3b82f6);
+  pointer-events: none;
+  z-index: 5;
+  transition: color 0.2s ease;
+}
+
+.modal-search-input {
+  height: 42px;
+  padding-left: 42px !important;
+  padding-right: 40px !important;
+  border-radius: 9999px !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  background-color: var(--bg-surface) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.modal-search-input::placeholder {
+  color: var(--text-muted, #94a3b8) !important;
+  font-weight: 400;
+}
+
+.modal-search-input:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow:
+    0 0 0 4px rgba(59, 130, 246, 0.18),
+    0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  background-color: var(--bg-surface) !important;
+}
+
+.modal-search-clear {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.15s ease;
+}
+
+.modal-search-clear:hover {
+  color: var(--color-danger, #ef4444);
+  transform: translateY(-50%) scale(1.15);
+}
+
+/* Stage Candidates Item Card Spacing & Hover Styling */
+.stage-modal-item-card {
+  padding: 1rem !important;
+  border-radius: 16px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stage-modal-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-primary, #3b82f6) !important;
+}

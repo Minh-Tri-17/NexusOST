@@ -225,27 +225,23 @@
             </p>
           </div>
 
-          <!-- Quick Stat Summary Cards Row (5 Cards Layout - Sleek 2-Line Format) -->
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 mb-4">
+          <!-- Quick Stat Summary Cards Row (4 Cards Layout - Top-Right Pill & Bottom-Right Icon) -->
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-4 g-3 mb-4">
             <!-- Card 1: Tổng Nhân Sự -->
             <div class="col">
-              <div class="metric-card-pastel card-pastel-orange">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">TỔNG NHÂN SỰ</span>
-                    <span class="metric-tag-pill ms-auto">100% Headcount</span>
-                  </div>
-                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statTotalEmp">248</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-layer-group me-1 text-primary"></i>Toàn bộ nhân viên
-                    </span>
+              <div class="metric-card-pastel card-pastel-blue">
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">TỔNG NHÂN SỰ</span>
+                  <h3 class="metric-pastel-val mb-1" id="statTotalEmp">248</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-layer-group me-1 text-primary"></i>Toàn bộ nhân viên
                   </div>
                 </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-users"></i>
+                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                  <span class="metric-tag-pill">100% Headcount</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-users"></i>
+                  </div>
                 </div>
               </div>
             </div>
@@ -253,45 +249,37 @@
             <!-- Card 2: Đang Làm Việc -->
             <div class="col">
               <div class="metric-card-pastel card-pastel-mint">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">ĐANG LÀM VIỆC</span>
-                    <span class="metric-tag-pill ms-auto">81.0% Active</span>
-                  </div>
-                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statActiveEmp">201</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-shield-halved me-1 text-success"></i>Đang hoạt động
-                    </span>
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">ĐANG LÀM VIỆC</span>
+                  <h3 class="metric-pastel-val mb-1" id="statActiveEmp">201</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-shield-halved me-1 text-success"></i>Đang hoạt động
                   </div>
                 </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-circle-check"></i>
+                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                  <span class="metric-tag-pill">81.0% Active</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-circle-check"></i>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- Card 3: Thử Việc -->
             <div class="col">
-              <div class="metric-card-pastel card-pastel-purple">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">THỬ VIỆC</span>
-                    <span class="metric-tag-pill ms-auto">7.3% Rate</span>
-                  </div>
-                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statProbationEmp">18</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-chart-line me-1 text-purple"></i>Đang thử việc
-                    </span>
+              <div class="metric-card-pastel card-pastel-amber">
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">THỬ VIỆC</span>
+                  <h3 class="metric-pastel-val mb-1" id="statProbationEmp">18</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-chart-line me-1 text-purple"></i>Đang thử việc
                   </div>
                 </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-hourglass-half"></i>
+                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                  <span class="metric-tag-pill">7.3% Rate</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-hourglass-half"></i>
+                  </div>
                 </div>
               </div>
             </div>
@@ -299,45 +287,18 @@
             <!-- Card 4: Đã Nghỉ Việc -->
             <div class="col">
               <div class="metric-card-pastel card-pastel-rose">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">ĐÃ NGHỈ VIỆC</span>
-                    <span class="metric-tag-pill ms-auto">4.8% Turnover</span>
-                  </div>
-                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statResignedEmp">12</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-fire me-1 text-danger"></i>Tỷ lệ nghỉ việc
-                    </span>
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">ĐÃ NGHỈ VIỆC</span>
+                  <h3 class="metric-pastel-val mb-1" id="statResignedEmp">12</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-fire me-1 text-danger"></i>Tỷ lệ nghỉ việc
                   </div>
                 </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-circle-xmark"></i>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 5: Làm Việc Từ Xa -->
-            <div class="col">
-              <div class="metric-card-pastel card-pastel-teal">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">LÀM VIỆC TỪ XA</span>
-                    <span class="metric-tag-pill ms-auto">6.9% Remote</span>
+                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                  <span class="metric-tag-pill">4.8% Turnover</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-circle-xmark"></i>
                   </div>
-                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statRemoteEmp">17</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-compass me-1 text-warning"></i>Làm việc từ xa
-                    </span>
-                  </div>
-                </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-laptop-house"></i>
                 </div>
               </div>
             </div>

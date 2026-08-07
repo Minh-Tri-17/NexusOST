@@ -226,119 +226,80 @@
             </p>
           </div>
 
-          <!-- Quick Stat Summary Cards Row (5 Cards Layout - Sleek 2-Line Format) -->
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 mb-4">
+          <!-- Quick Stat Summary Cards Row (4 Cards Layout - Top-Right Pill & Bottom-Right Icon) -->
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-4 g-3 mb-4">
             <!-- Card 1: Tổng Số Quốc Gia -->
             <div class="col">
-              <div class="metric-card-pastel card-pastel-orange">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">TỔNG QUỐC GIA</span>
-                    <span class="metric-tag-pill ms-auto">100% Global</span>
-                  </div>
-                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statTotalCountries">120</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-layer-group me-1 text-primary"></i>Đồng bộ dữ liệu
-                    </span>
+              <div class="metric-card-pastel card-pastel-purple">
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">TỔNG QUỐC GIA</span>
+                  <h3 class="metric-pastel-val mb-1" id="statTotalCountries">120</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-layer-group me-1 text-primary"></i>Đồng bộ dữ liệu
                   </div>
                 </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-earth-americas"></i>
+                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                  <span class="metric-tag-pill">100% Global</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-earth-americas"></i>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- Card 2: Quốc Gia Hoạt Động -->
             <div class="col">
+              <div class="metric-card-pastel card-pastel-amber">
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">HOẠT ĐỘNG</span>
+                  <h3 class="metric-pastel-val mb-1" id="statActiveMarkets">103</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-shield-halved me-1 text-success"></i>Tuân thủ vận hành
+                  </div>
+                </div>
+                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                  <span class="metric-tag-pill">85.8% Active</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-circle-check"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Thị Trường Trọng Điểm -->
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-blue">
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">TRỌNG ĐIỂM</span>
+                  <h3 class="metric-pastel-val mb-1" id="statHighPriority">60</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-fire me-1 text-danger"></i>Ưu tiên mở rộng
+                  </div>
+                </div>
+                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                  <span class="metric-tag-pill">40.0% Priority</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Vùng & Châu Lục -->
+            <div class="col">
               <div class="metric-card-pastel card-pastel-mint">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">HOẠT ĐỘNG</span>
-                    <span class="metric-tag-pill ms-auto">85.8% Active</span>
-                  </div>
-                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statActiveMarkets">103</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-shield-halved me-1 text-success"></i>Tuân thủ vận hành
-                    </span>
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">VÙNG & CHÂU LỤC</span>
+                  <h3 class="metric-pastel-val mb-1" id="statTotalRegions">4</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-compass me-1 text-warning"></i>Phân bổ địa lý
                   </div>
                 </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-circle-check"></i>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 3: Tổng Dân Số -->
-            <div class="col">
-              <div class="metric-card-pastel card-pastel-purple">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">TỔNG DÂN SỐ</span>
-                    <span class="metric-tag-pill ms-auto">+3.2% YoY</span>
+                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                  <span class="metric-tag-pill">4 Regions</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-map-location-dot"></i>
                   </div>
-                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statTotalPopulation">27.89B</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-chart-line me-1 text-purple"></i>Phủ sóng toàn cầu
-                    </span>
-                  </div>
-                </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-users"></i>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 4: Thị Trường Trọng Điểm -->
-            <div class="col">
-              <div class="metric-card-pastel card-pastel-rose">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">TRỌNG ĐIỂM</span>
-                    <span class="metric-tag-pill ms-auto">40.0% Priority</span>
-                  </div>
-                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statHighPriority">60</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-fire me-1 text-danger"></i>Ưu tiên mở rộng
-                    </span>
-                  </div>
-                </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-star"></i>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 5: Vùng & Châu Lục -->
-            <div class="col">
-              <div class="metric-card-pastel card-pastel-teal">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">VÙNG & CHÂU LỤC</span>
-                    <span class="metric-tag-pill ms-auto">4 Regions</span>
-                  </div>
-                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statTotalRegions">4</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-compass me-1 text-warning"></i>Phân bổ địa lý
-                    </span>
-                  </div>
-                </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-map-location-dot"></i>
                 </div>
               </div>
             </div>

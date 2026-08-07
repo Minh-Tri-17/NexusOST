@@ -252,109 +252,80 @@
             </div>
           </div>
 
-          <!-- Quick Stat Summary Cards Row (5 Cards Layout - Sleek 2-Line Format) -->
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 mb-4">
+          <!-- Quick Stat Summary Cards Row (4 Cards Layout - Top-Right Pill & Bottom-Right Icon) -->
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-4 g-3 mb-4">
             <!-- Card 1: Tổng Ứng Viên -->
             <div class="col">
-              <div class="metric-card-pastel card-pastel-orange">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">TỔNG ỨNG VIÊN</span>
-                    <span class="metric-tag-pill ms-auto">100% Pipeline</span>
-                  </div>
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statTotalApplied">348</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-users me-1 text-primary"></i>Hồ sơ tuyển dụng
-                    </span>
+              <div class="metric-card-pastel card-pastel-teal">
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">TỔNG ỨNG VIÊN</span>
+                  <h3 class="metric-pastel-val mb-1" id="statTotalApplied">348</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-users me-1 text-primary"></i>Hồ sơ tuyển dụng
                   </div>
                 </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-file-signature"></i>
+                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                  <span class="metric-tag-pill">100% Pipeline</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-file-signature"></i>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- Card 2: Đang Đánh Giá -->
             <div class="col">
-              <div class="metric-card-pastel card-pastel-mint">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">ĐANG ĐÁNH GIÁ</span>
-                    <span class="metric-tag-pill ms-auto">39.1% Active</span>
-                  </div>
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statInScreening">136</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-filter me-1 text-info"></i>Sơ tuyển & Test
-                    </span>
+              <div class="metric-card-pastel card-pastel-purple">
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">ĐANG ĐÁNH GIÁ</span>
+                  <h3 class="metric-pastel-val mb-1" id="statInScreening">136</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-filter me-1 text-info"></i>Sơ tuyển & Test
                   </div>
                 </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-user-check"></i>
+                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                  <span class="metric-tag-pill">39.1% Active</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-user-check"></i>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- Card 3: Phỏng Vấn -->
             <div class="col">
-              <div class="metric-card-pastel card-pastel-purple">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">PHỎNG VẤN</span>
-                    <span class="metric-tag-pill ms-auto">14.9% Round</span>
-                  </div>
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statInterviewing">52</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-comments me-1 text-purple"></i>Đang phỏng vấn
-                    </span>
+              <div class="metric-card-pastel card-pastel-rose">
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">PHỎNG VẤN</span>
+                  <h3 class="metric-pastel-val mb-1" id="statInterviewing">52</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-comments me-1 text-purple"></i>Đang phỏng vấn
                   </div>
                 </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-calendar-day"></i>
+                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                  <span class="metric-tag-pill">14.9% Round</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-calendar-day"></i>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- Card 4: Gửi Offer -->
+            <!-- Card 4: Đã Tuyển Dụng -->
             <div class="col">
-              <div class="metric-card-pastel card-pastel-amber">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">GỬI OFFER</span>
-                    <span class="metric-tag-pill ms-auto">8.0% Rate</span>
-                  </div>
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statOffersSent">28</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-paper-plane me-1 text-warning"></i>Đang đàm phán
-                    </span>
+              <div class="metric-card-pastel card-pastel-orange">
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">ĐÃ TUYỂN DỤNG</span>
+                  <h3 class="metric-pastel-val mb-1" id="statTotalHired">16</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-trophy me-1 text-success"></i>Đã nhận việc
                   </div>
                 </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-envelope-open-text"></i>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 5: Đã Tuyển Dụng -->
-            <div class="col">
-              <div class="metric-card-pastel card-pastel-teal">
-                <div class="flex-grow-1 min-w-0 me-2">
-                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                    <span class="metric-pastel-title mb-0">ĐÃ TUYỂN DỤNG</span>
-                    <span class="metric-tag-pill ms-auto">4.6% Conversion</span>
+                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                  <span class="metric-tag-pill">4.6% Conversion</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-user-plus"></i>
                   </div>
-                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
-                    <h3 class="metric-pastel-val mb-0" id="statTotalHired">16</h3>
-                    <span class="metric-pastel-sub mb-0 text-truncate">
-                      <i class="fa-solid fa-trophy me-1 text-success"></i>Đã nhận việc
-                    </span>
-                  </div>
-                </div>
-                <div class="metric-pastel-icon-floating">
-                  <i class="fa-solid fa-user-plus"></i>
                 </div>
               </div>
             </div>
@@ -569,7 +540,7 @@
                   <!-- Dynamic candidate cards -->
                 </div>
                 <div class="column-footer">
-                  <button class="btn-more-candidates text-applied" onclick="openMoreCandidatesModal('applied')">
+                  <button class="btn-more-candidates text-applied" onclick="openStageCandidatesModal('applied')">
                     <i class="fa-solid fa-plus me-1"></i> <span id="more-applied-text">+ 123 more candidates</span>
                   </button>
                 </div>
@@ -590,7 +561,7 @@
                   <!-- Dynamic candidate cards -->
                 </div>
                 <div class="column-footer">
-                  <button class="btn-more-candidates text-screening" onclick="openMoreCandidatesModal('screening')">
+                  <button class="btn-more-candidates text-screening" onclick="openStageCandidatesModal('screening')">
                     <i class="fa-solid fa-plus me-1"></i> <span id="more-screening-text">+ 81 more candidates</span>
                   </button>
                 </div>
@@ -611,7 +582,7 @@
                   <!-- Dynamic candidate cards -->
                 </div>
                 <div class="column-footer">
-                  <button class="btn-more-candidates text-interview" onclick="openMoreCandidatesModal('interview')">
+                  <button class="btn-more-candidates text-interview" onclick="openStageCandidatesModal('interview')">
                     <i class="fa-solid fa-plus me-1"></i> <span id="more-interview-text">+ 49 more candidates</span>
                   </button>
                 </div>
@@ -632,7 +603,7 @@
                   <!-- Dynamic candidate cards -->
                 </div>
                 <div class="column-footer">
-                  <button class="btn-more-candidates text-offer" onclick="openMoreCandidatesModal('offer')">
+                  <button class="btn-more-candidates text-offer" onclick="openStageCandidatesModal('offer')">
                     <i class="fa-solid fa-plus me-1"></i> <span id="more-offer-text">+ 25 more candidates</span>
                   </button>
                 </div>
@@ -653,7 +624,7 @@
                   <!-- Dynamic candidate cards -->
                 </div>
                 <div class="column-footer">
-                  <button class="btn-more-candidates text-hired" onclick="openMoreCandidatesModal('hired')">
+                  <button class="btn-more-candidates text-hired" onclick="openStageCandidatesModal('hired')">
                     <i class="fa-solid fa-plus me-1"></i> <span id="more-hired-text">+ 13 more candidates</span>
                   </button>
                 </div>
@@ -674,7 +645,7 @@
                   <!-- Dynamic candidate cards -->
                 </div>
                 <div class="column-footer">
-                  <button class="btn-more-candidates text-rejected" onclick="openMoreCandidatesModal('rejected')">
+                  <button class="btn-more-candidates text-rejected" onclick="openStageCandidatesModal('rejected')">
                     <i class="fa-solid fa-plus me-1"></i> <span id="more-rejected-text">+ 39 more candidates</span>
                   </button>
                 </div>
@@ -715,29 +686,94 @@
               </div>
             </div>
 
-            <!-- Pagination Footer Bar (Standard NexusOST Layout) -->
-            <div class="d-flex flex-wrap align-items-center justify-content-between pt-3 border-top mt-3">
-              <div class="d-flex align-items-center gap-2 text-muted small">
-                <span>Show</span>
-                <select class="form-select form-select-sm rounded-3 filter-select" style="width: 70px;">
-                  <option value="10">10</option>
-                  <option value="25" selected>25</option>
-                  <option value="50">50</option>
-                </select>
-                <span>entries per page</span>
+            <!-- Enterprise Table Footer & Pagination -->
+            <div class="emp-table-footer" role="region" aria-label="Table pagination footer">
+              <!-- Left Zone: Counter & Rows per page -->
+              <div class="emp-footer-left">
+                <div class="emp-footer-counter">
+                  <span id="recruitmentResultCount"
+                    >Showing <strong>1 – 17</strong> of <strong>348</strong> candidates</span
+                  >
+                </div>
+                <div class="emp-footer-divider"></div>
+                <div class="emp-page-size-picker">
+                  <span>Rows per page:</span>
+                  <select id="recruitmentPageSizeSelect" class="emp-size-select" aria-label="Rows per page">
+                    <option value="12">12</option>
+                    <option value="25" selected>25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                </div>
               </div>
 
-              <div class="d-flex align-items-center gap-3">
-                <span class="text-muted small">Showing <strong id="recruitmentShowingCount">1-17</strong> of <strong>348</strong> candidates</span>
-                <nav aria-label="Recruitment pagination">
-                  <ul class="pagination pagination-sm mb-0">
-                    <li class="page-item disabled"><a class="page-link" href="#"><i class="fa-solid fa-chevron-left"></i></a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-chevron-right"></i></a></li>
-                  </ul>
-                </nav>
+              <!-- Center Zone: Quick Jump Widget -->
+              <div class="emp-footer-center">
+                <span class="emp-jump-label"
+                  ><i class="fa-solid fa-arrow-right-to-line me-1"></i>Go to page:</span
+                >
+                <form id="recruitmentPageJumpForm" class="emp-jump-form" onsubmit="return false;">
+                  <input
+                    type="number"
+                    id="recruitmentJumpInput"
+                    class="emp-jump-input"
+                    value="1"
+                    min="1"
+                    max="14"
+                    aria-label="Target page number"
+                  />
+                  <span class="emp-jump-total">/ <span id="recruitmentTotalPages">14</span></span>
+                  <button type="submit" class="emp-jump-btn" id="recruitmentJumpGoBtn" title="Jump to page">
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </button>
+                </form>
+              </div>
+
+              <!-- Right Zone: Page Control Buttons -->
+              <div class="emp-footer-right" role="navigation" aria-label="Pagination Navigation">
+                <button
+                  class="emp-page-btn"
+                  id="recruitmentFirstBtn"
+                  disabled
+                  title="First page"
+                  aria-label="First page"
+                >
+                  <i class="fa-solid fa-angles-left"></i>
+                </button>
+                <button
+                  class="emp-page-btn"
+                  id="recruitmentPrevBtn"
+                  disabled
+                  title="Previous page"
+                  aria-label="Previous page"
+                >
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+                <div class="d-flex align-items-center gap-1" id="recruitmentPageNumbersGroup">
+                  <button class="emp-page-btn active" data-page="1">1</button>
+                  <button class="emp-page-btn" data-page="2">2</button>
+                  <button class="emp-page-btn" data-page="3">3</button>
+                  <span class="emp-page-ellipsis">…</span>
+                  <button class="emp-page-btn" data-page="14">14</button>
+                </div>
+
+                <button
+                  class="emp-page-btn"
+                  id="recruitmentNextBtn"
+                  title="Next page"
+                  aria-label="Next page"
+                >
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                <button
+                  class="emp-page-btn"
+                  id="recruitmentLastBtn"
+                  title="Last page"
+                  aria-label="Last page"
+                >
+                  <i class="fa-solid fa-angles-right"></i>
+                </button>
               </div>
             </div>
           </div>
@@ -1034,22 +1070,81 @@
           </div>
         </div>
 
-        <!-- 4. More Candidates Modal -->
-        <div class="modal fade" id="moreCandidatesModal" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
-              <div class="modal-header bg-light p-3">
-                <h5 id="moreModalTitle" class="modal-title font-bold mb-0">Extra Candidates</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- 4. Stage Candidates List Modal (Exact Candidate Detail Profile Modal Style) -->
+        <div class="modal fade custom-nexus-modal" id="stageCandidatesModal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content border-0 shadow-2xl rounded-5 overflow-hidden">
+              <!-- Ambient Radial Glow Backdrop & Top Accent Line -->
+              <div class="modal-bg-glow"></div>
+              <div class="modal-top-accent-bar"></div>
+
+              <!-- Modal Header (Identical to Candidate Profile Modal) -->
+              <div class="modal-header border-0 px-4 pt-4 pb-3 position-relative d-flex align-items-start justify-content-between z-1">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="emp-modal-avatar-wrap d-flex align-items-center justify-content-center bg-primary-subtle text-primary rounded-circle" style="width: 56px; height: 56px; background: var(--bg-hover);">
+                    <i class="fa-solid fa-users fs-4 text-primary"></i>
+                  </div>
+                  <div>
+                    <div class="modal-eyebrow-tag mb-1">
+                      <span class="eyebrow-dot"></span> RECRUITMENT PIPELINE STAGE
+                    </div>
+                    <h5 class="modal-title fw-bold text-dark mb-0 d-flex align-items-center gap-2" id="stageModalTitle">
+                      Applied Candidates
+                    </h5>
+                    <div class="d-flex align-items-center flex-wrap gap-2 mt-1">
+                      <span class="text-muted small fw-medium">All candidates in this recruitment pipeline stage</span>
+                      <div class="emp-modal-hero-badges d-inline-flex align-items-center gap-2 ms-1">
+                        <span id="stageModalCountBadge" class="match-score-pill match-high">126 Candidates</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <button type="button" class="custom-btn-close ms-1" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </div>
               </div>
-              <div class="modal-body p-3">
-                <div id="moreModalBody" class="d-flex flex-column gap-2">
-                  <!-- Extra candidates list rendered dynamically -->
+
+              <!-- Pinned Filter & Search Bar -->
+              <div class="px-4 py-3 border-bottom border-light position-relative z-2 bg-subtle">
+                <div class="modal-search-box position-relative">
+                  <i class="fa-solid fa-magnifying-glass modal-search-icon"></i>
+                  <input type="text" id="stageModalSearchInput" class="form-control modal-search-input" placeholder="Search candidate by name, role or department...">
+                  <button type="button" id="stageModalClearSearchBtn" class="modal-search-clear btn border-0 p-0 d-none" title="Clear search">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Scrollable Body containing candidate list -->
+              <div class="modal-body px-4.5 py-4 position-relative z-1 emp-modal-body">
+                <div id="stageModalCandidateList" class="d-flex flex-column gap-2">
+                  <!-- Dynamic Candidate List Cards -->
+                </div>
+              </div>
+
+              <!-- Modal Footer (Identical to Candidate Profile Modal) -->
+              <div class="modal-footer px-4 py-3 border-top-0 d-flex align-items-center justify-content-between modal-footer-custom z-1">
+                <div class="d-none d-md-flex align-items-center gap-2 text-muted small">
+                  <i class="fa-solid fa-shield-halved text-primary opacity-75"></i>
+                  <span>Enterprise Encrypted</span>
+                  <span class="modal-footer-divider"></span>
+                  <span class="d-inline-flex align-items-center gap-1">
+                    <kbd class="nexus-kbd">ESC</kbd> Close
+                  </span>
+                </div>
+                
+                <div class="d-flex align-items-center gap-2 ms-auto">
+                  <button type="button" class="btn btn-sm btn-pastel-slate px-3 py-2 rounded-3" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-xmark me-1"></i> Close
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </main>
     </div>
