@@ -8,12 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileSidebarToggle();
   initTopbarScrollEffect();
   initTopbarInteractiveControls();
+  initFilterChipsSystem();
 
-  if (typeof initApexGridDarkModeHandler === "function") {
-    initApexGridDarkModeHandler();
-  }
-
-  if (document.getElementById("grid") && typeof initCountryGrid === "function") {
+  if ((document.getElementById("countryTableBody") || document.getElementById("countryFormModal")) && typeof initCountryGrid === "function") {
     initCountryGrid();
   }
 
@@ -187,9 +184,6 @@ function initThemeToggle() {
       document.documentElement.setAttribute("data-theme", newTheme);
       localStorage.setItem("nexus_theme", newTheme);
       updateThemeIcon(newTheme);
-      if (typeof window.updateNexusGridDarkMode === "function") {
-        window.updateNexusGridDarkMode();
-      }
     });
   }
 }
@@ -402,6 +396,30 @@ function initCountryPageModal() {
     });
   }
 
+  const deleteBtn = document.getElementById("deleteCountryBtn");
+  if (deleteBtn) {
+    deleteBtn.addEventListener("click", () => {
+      showToast({
+        title: "Record Deleted",
+        message: "Selected country record has been removed from system database.",
+        type: "danger",
+        duration: 4000,
+      });
+    });
+  }
+
+  const applyCountryFilterBtn = document.getElementById("applyCountryFilterBtn");
+  if (applyCountryFilterBtn) {
+    applyCountryFilterBtn.addEventListener("click", () => {
+      showToast({
+        title: "Filters Applied",
+        message: "Country dataset refined based on selected region, priority, and status criteria.",
+        type: "success",
+        duration: 3500,
+      });
+    });
+  }
+
   if (modalForm) {
     modalForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -508,10 +526,8 @@ function initCountryImportModal() {
   }
 
   if (dropzone && fileInput) {
-    dropzone.addEventListener("click", (e) => {
-      if (e.target !== browseBtn && !browseBtn.contains(e.target)) {
-        fileInput.click();
-      }
+    dropzone.addEventListener("click", () => {
+      fileInput.click();
     });
 
     ["dragenter", "dragover"].forEach((eventName) => {
@@ -740,6 +756,217 @@ window.showToast = showToast;
 window.initCountryPageModal = initCountryPageModal;
 window.initCountryImportModal = initCountryImportModal;
 window.initCountryExportModal = initCountryExportModal;
+
+/* Country Management Dataset & HTML Table Renderer */
+function generateCountryDataset() {
+  const seedCountries = [
+    { code: "VN", countryName: "Việt Nam", capital: "Hà Nội", region: "Asia", basePop: 98186856, priority: "High" },
+    { code: "US", countryName: "United States", capital: "Washington, D.C.", region: "Americas", basePop: 331893745, priority: "High" },
+    { code: "JP", countryName: "Japan", capital: "Tokyo", region: "Asia", basePop: 125507472, priority: "High" },
+    { code: "DE", countryName: "Germany", capital: "Berlin", region: "Europe", basePop: 83190556, priority: "Standard" },
+    { code: "GB", countryName: "United Kingdom", capital: "London", region: "Europe", basePop: 67326569, priority: "High" },
+    { code: "FR", countryName: "France", capital: "Paris", region: "Europe", basePop: 67749632, priority: "Standard" },
+    { code: "KR", countryName: "South Korea", capital: "Seoul", region: "Asia", basePop: 51744876, priority: "High" },
+    { code: "SG", countryName: "Singapore", capital: "Singapore", region: "Asia", basePop: 5453600, priority: "High" },
+    { code: "AU", countryName: "Australia", capital: "Canberra", region: "Oceania", basePop: 25688079, priority: "Standard" },
+    { code: "CA", countryName: "Canada", capital: "Ottawa", region: "Americas", basePop: 38246108, priority: "Standard" },
+    { code: "TH", countryName: "Thailand", capital: "Bangkok", region: "Asia", basePop: 71601103, priority: "Standard" },
+    { code: "CN", countryName: "China", capital: "Beijing", region: "Asia", basePop: 1412360000, priority: "High" },
+    { code: "IN", countryName: "India", capital: "New Delhi", region: "Asia", basePop: 1408044253, priority: "High" },
+    { code: "BR", countryName: "Brazil", capital: "Brasília", region: "Americas", basePop: 214326223, priority: "Low" },
+    { code: "IT", countryName: "Italy", capital: "Rome", region: "Europe", basePop: 59066225, priority: "Standard" },
+    { code: "ES", countryName: "Spain", capital: "Madrid", region: "Europe", basePop: 47415750, priority: "Standard" },
+    { code: "NL", countryName: "Netherlands", capital: "Amsterdam", region: "Europe", basePop: 17530000, priority: "Standard" },
+    { code: "SE", countryName: "Sweden", capital: "Stockholm", region: "Europe", basePop: 10420000, priority: "Low" },
+    { code: "CH", countryName: "Switzerland", capital: "Bern", region: "Europe", basePop: 8700000, priority: "High" },
+    { code: "AE", countryName: "United Arab Emirates", capital: "Abu Dhabi", region: "Asia", basePop: 9890400, priority: "High" },
+  ];
+  const usersSeed = ["Admin User", "Tristan Nguyen", "System Bot", "Sarah Jenkins", "Alex Rivera"];
+  const notesSeed = [
+    "Strategic key market",
+    "Standard operational hub",
+    "Compliance review pending",
+    "High growth potential",
+    "Regional office center",
+    "Trade agreement active",
+  ];
+  const countryData = [];
+  for (let i = 1; i <= 120; i++) {
+    const item = seedCountries[(i - 1) % seedCountries.length];
+    const suffix = Math.ceil(i / seedCountries.length);
+    const creator = usersSeed[(i - 1) % usersSeed.length];
+    const updater = usersSeed[(i + 1) % usersSeed.length];
+    const createdDate = `2024-${String((i % 12) + 1).padStart(2, "0")}-${String((i % 28) + 1).padStart(2, "0")}`;
+    const updatedDate = `2025-${String((i % 12) + 1).padStart(2, "0")}-${String((i % 28) + 1).padStart(2, "0")}`;
+    const rowNote = notesSeed[(i - 1) % notesSeed.length];
+    countryData.push({
+      select: false,
+      id: String(i).padStart(4, "0"),
+      code: `${item.code}${suffix > 1 ? suffix : ""}`,
+      countryName: `${item.countryName}${suffix > 1 ? " (" + suffix + ")" : ""}`,
+      capital: item.capital,
+      region: item.region,
+      population: Math.round(item.basePop * (1 + (i % 5) * 0.05)),
+      priority: item.priority,
+      active: i % 7 !== 0,
+      createdBy: creator,
+      createdAt: createdDate,
+      updatedBy: updater,
+      updatedAt: updatedDate,
+      note: rowNote,
+    });
+  }
+  return countryData;
+}
+
+function initCountryGrid() {
+  if (!window.allCountryData || window.allCountryData.length === 0) {
+    window.allCountryData = generateCountryDataset();
+  }
+  const countryData = window.allCountryData;
+  const totalCount = countryData.length;
+  const activeCount = countryData.filter((c) => c.active).length;
+  const totalPop = countryData.reduce((acc, c) => acc + c.population, 0);
+  const highPriorityCount = countryData.filter((c) => c.priority === "High").length;
+  const uniqueRegionsCount = new Set(countryData.map((c) => c.region)).size;
+
+  const elTotal = document.getElementById("statTotalCountries");
+  const elActive = document.getElementById("statActiveMarkets");
+  const elPop = document.getElementById("statTotalPopulation");
+  const elPriority = document.getElementById("statHighPriority");
+  const elRegions = document.getElementById("statTotalRegions");
+  if (elTotal) elTotal.textContent = totalCount;
+  if (elActive) elActive.textContent = activeCount;
+  if (elPop) elPop.textContent = (totalPop / 1e9).toFixed(2) + "B";
+  if (elPriority) elPriority.textContent = highPriorityCount;
+  if (elRegions) elRegions.textContent = uniqueRegionsCount;
+
+  // Handle select all checkbox
+  const selectAll = document.getElementById("selectAllCountry");
+  if (selectAll) {
+    selectAll.addEventListener("change", (e) => {
+      document
+        .querySelectorAll('#countryListTable tbody input[type="checkbox"]')
+        .forEach((cb) => (cb.checked = e.target.checked));
+    });
+  }
+}
+
+function renderCountryTableRows(data) {
+  const tbody = document.getElementById("countryTableBody");
+  if (!tbody) return;
+
+  if (!data || data.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="13" class="text-center py-4 text-muted">
+          <i class="fa-solid fa-folder-open me-2"></i>No country records found.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  const gradientMap = [
+    "linear-gradient(135deg, #3b82f6, #1d4ed8)",
+    "linear-gradient(135deg, #10b981, #047857)",
+    "linear-gradient(135deg, #8b5cf6, #6d28d9)",
+    "linear-gradient(135deg, #f59e0b, #b45309)",
+    "linear-gradient(135deg, #ec4899, #be185d)",
+    "linear-gradient(135deg, #06b6d4, #0e7490)",
+  ];
+
+  const REGION_BADGES = {
+    Asia: { bg: "badge-blue", icon: "fa-globe-asia" },
+    Europe: { bg: "badge-purple", icon: "fa-earth-europe" },
+    Americas: { bg: "badge-orange", icon: "fa-earth-americas" },
+    Oceania: { bg: "badge-cyan", icon: "fa-earth-oceania" },
+    Africa: { bg: "badge-rose", icon: "fa-earth-africa" },
+  };
+
+  const PRIORITY_BADGES = {
+    High: { class: "badge-red", icon: "fa-fire", label: "High Priority" },
+    Standard: { class: "badge-indigo", icon: "fa-layer-group", label: "Standard" },
+    Low: { class: "badge-slate", icon: "fa-arrow-down-short-wide", label: "Low" },
+  };
+
+  tbody.innerHTML = data
+    .map((item) => {
+      const code = item.code || "VN";
+      const initials = code.substring(0, 2).toUpperCase();
+      const charSum = (code.charCodeAt(0) || 0) + (code.charCodeAt(1) || 0);
+      const bgGrad = gradientMap[charSum % gradientMap.length];
+      const reg = REGION_BADGES[item.region] || { bg: "badge-slate", icon: "fa-globe" };
+      const prio = PRIORITY_BADGES[item.priority] || { class: "badge-slate", icon: "fa-circle-info", label: item.priority };
+      const statusClass = item.active ? "status-active" : "status-resigned";
+      const statusIcon = item.active ? "fa-circle" : "fa-circle-xmark";
+      const statusLabel = item.active ? "Active" : "Inactive";
+
+      return `
+        <tr>
+          <td>
+            <input type="checkbox" class="country-row-cb" aria-label="Select ${item.countryName}" />
+          </td>
+          <td>
+            <span class="badge-soft badge-blue">#${code}</span>
+          </td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <div style="background:${bgGrad}; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:#fff; flex-shrink:0;">
+                ${initials}
+              </div>
+              <div>
+                <div class="fw-semibold text-main">${item.countryName}</div>
+                <div class="text-muted small">${item.capital ? "Capital: " + item.capital : ""}</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <span class="text-muted small">
+              <i class="fa-solid fa-location-dot text-primary me-1"></i>${item.capital || "—"}
+            </span>
+          </td>
+          <td>
+            <span class="badge-soft ${reg.bg}">
+              <i class="fa-solid ${reg.icon} me-1"></i>${item.region}
+            </span>
+          </td>
+          <td>
+            <span class="fw-semibold text-main">
+              <i class="fa-solid fa-users text-muted me-1 small"></i>${Number(item.population).toLocaleString()}
+            </span>
+          </td>
+          <td>
+            <span class="badge-soft ${prio.class}">
+              <i class="fa-solid ${prio.icon} me-1"></i>${prio.label}
+            </span>
+          </td>
+          <td>
+            <span class="emp-badge ${statusClass}">
+              <i class="fa-solid ${statusIcon}"></i> ${statusLabel}
+            </span>
+          </td>
+          <td>
+            <span class="text-muted small">
+              <i class="fa-regular fa-user me-1"></i>${item.createdBy}
+            </span>
+          </td>
+          <td><span class="text-muted small">${item.createdAt}</span></td>
+          <td>
+            <span class="text-muted small">
+              <i class="fa-regular fa-user me-1"></i>${item.updatedBy}
+            </span>
+          </td>
+          <td><span class="text-muted small">${item.updatedAt}</span></td>
+          <td><span class="text-muted small fst-italic">${item.note || "—"}</span></td>
+        </tr>
+      `;
+    })
+    .join("");
+}
+
+window.initCountryGrid = initCountryGrid;
+window.renderCountryTableRows = renderCountryTableRows;
 
 /* ======================================================
    10. EMPLOYEE DIRECTORY — DATA & CONTROLLER LOGIC
@@ -1673,7 +1900,7 @@ function initEmployeesPage() {
     let currentPage = 1;
     let pageSize = 12;
     const totalEmployees = 248;
-    let totalPages = Math.ceil(totalEmployees / pageSize);
+    let totalPages = 1;
 
     const empResultCount = document.getElementById("empResultCount");
     const empPageSizeSelect = document.getElementById("empPageSizeSelect");
@@ -1832,11 +2059,60 @@ function initEmployeesPage() {
       if (idCell) openEmpModal(idCell.textContent.trim());
     });
   }
+
+}
+
+/* 10. Global Interactive Filter Chips System */
+function initFilterChipsSystem() {
+  document.addEventListener("click", (e) => {
+    const removeBtn = e.target.closest(".chip-remove-btn");
+    if (removeBtn) {
+      const chip = removeBtn.closest(".filter-chip");
+      if (chip) {
+        const chipsBar = chip.parentElement;
+        chip.remove();
+        updateActiveFilterBadgeCount(chipsBar);
+        showToast({
+          title: "Filter Removed",
+          message: "Filter criteria updated.",
+          type: "info",
+          duration: 2500,
+        });
+      }
+    }
+
+    const clearAllBtn = e.target.closest(".btn-clear-all-chips");
+    if (clearAllBtn) {
+      const chipsBar = clearAllBtn.parentElement;
+      if (chipsBar) {
+        const chips = chipsBar.querySelectorAll(".filter-chip");
+        chips.forEach((c) => c.remove());
+        updateActiveFilterBadgeCount(chipsBar);
+        showToast({
+          title: "Filters Cleared",
+          message: "All active filter criteria have been reset.",
+          type: "info",
+          duration: 3000,
+        });
+      }
+    }
+  });
+}
+
+function updateActiveFilterBadgeCount(chipsBar) {
+  if (!chipsBar) return;
+  const count = chipsBar.querySelectorAll(".filter-chip").length;
+  const container = chipsBar.closest(".container-fluid, body, main") || document;
+  const badge = container.querySelector("#activeFilterCountBadge, #empActiveFilterCount");
+  if (badge) {
+    badge.textContent = count;
+    if (count === 0) {
+      badge.className = "badge-soft badge-slate ms-1";
+    }
+  }
 }
 
 // Expose globally
 window.EMP_DATA = EMP_DATA;
 window.openEmpModal = openEmpModal;
 window.initEmployeesPage = initEmployeesPage;
-
-

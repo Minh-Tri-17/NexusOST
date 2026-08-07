@@ -21,8 +21,7 @@
       href="https://cdn.jsdelivr.net/npm/apexcharts@3.45.1/dist/apexcharts.css"
       rel="stylesheet"
     />
-    <!-- ApexGrid Web Component -->
-    <script type="module" src="https://esm.run/apex-grid@3/define"></script>
+
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="../css/style.css" />
   </head>
@@ -280,19 +279,23 @@
             </div>
           </div>
 
-          <!-- Metric Cards Row (4 Cards matching Image 2) -->
-          <div class="row g-3 mb-4">
+          <!-- Metric Cards Row (4 Cards matching Employee & Country Layout) -->
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-4 g-3 mb-4">
             <!-- Card 1: Light Blue Pastel -->
-            <div class="col-12 col-sm-6 col-xl-3">
+            <div class="col">
               <div class="metric-card-pastel card-pastel-blue">
-                <div>
-                  <div class="metric-pastel-title">TOTAL STAFF & BARISTAS</div>
-                  <div class="metric-pastel-val">1,248</div>
-                  <div class="metric-pastel-sub">
-                    <span class="up-green"
-                      ><i class="fa-solid fa-arrow-up"></i> 8.5%</span
-                    >
-                    vs Apr 12 - May 11, 2025
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill -->
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">TOTAL STAFF</span>
+                    <span class="metric-tag-pill ms-auto">+8.5% Growth</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
+                    <h3 class="metric-pastel-val mb-0">1,248</h3>
+                    <span class="metric-pastel-sub mb-0 text-truncate">
+                      <i class="fa-solid fa-arrow-up text-success me-1"></i>Toàn bộ nhân sự
+                    </span>
                   </div>
                 </div>
                 <div class="metric-pastel-icon-floating">
@@ -302,16 +305,20 @@
             </div>
 
             <!-- Card 2: Soft Purple Pastel -->
-            <div class="col-12 col-sm-6 col-xl-3">
+            <div class="col">
               <div class="metric-card-pastel card-pastel-purple">
-                <div>
-                  <div class="metric-pastel-title">CHAIN SALES REVENUE</div>
-                  <div class="metric-pastel-val">$485,200</div>
-                  <div class="metric-pastel-sub">
-                    <span class="up-green"
-                      ><i class="fa-solid fa-arrow-up"></i> 14.2%</span
-                    >
-                    vs Apr 12 - May 11, 2025
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill -->
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">CHAIN REVENUE</span>
+                    <span class="metric-tag-pill ms-auto">+14.2% YoY</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
+                    <h3 class="metric-pastel-val mb-0">$485,200</h3>
+                    <span class="metric-pastel-sub mb-0 text-truncate">
+                      <i class="fa-solid fa-arrow-up text-success me-1"></i>Doanh thu hệ thống
+                    </span>
                   </div>
                 </div>
                 <div class="metric-pastel-icon-floating">
@@ -321,16 +328,20 @@
             </div>
 
             <!-- Card 3: Soft Mint Green Pastel -->
-            <div class="col-12 col-sm-6 col-xl-3">
+            <div class="col">
               <div class="metric-card-pastel card-pastel-mint">
-                <div>
-                  <div class="metric-pastel-title">TOTAL PAYROLL PAID</div>
-                  <div class="metric-pastel-val">$312,800</div>
-                  <div class="metric-pastel-sub">
-                    <span class="up-green"
-                      ><i class="fa-solid fa-arrow-up"></i> 5.4%</span
-                    >
-                    vs Apr 12 - May 11, 2025
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill -->
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">TOTAL PAYROLL</span>
+                    <span class="metric-tag-pill ms-auto">98.5% Paid</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
+                    <h3 class="metric-pastel-val mb-0">$312,800</h3>
+                    <span class="metric-pastel-sub mb-0 text-truncate">
+                      <i class="fa-solid fa-arrow-up text-success me-1"></i>Chi trả lương
+                    </span>
                   </div>
                 </div>
                 <div class="metric-pastel-icon-floating">
@@ -340,16 +351,20 @@
             </div>
 
             <!-- Card 4: Soft Warm Yellow/Cream Pastel -->
-            <div class="col-12 col-sm-6 col-xl-3">
+            <div class="col">
               <div class="metric-card-pastel card-pastel-amber">
-                <div>
-                  <div class="metric-pastel-title">STORES & BRANCHES</div>
-                  <div class="metric-pastel-val">18 Outlets</div>
-                  <div class="metric-pastel-sub">
-                    <span class="up-green"
-                      ><i class="fa-solid fa-arrow-up"></i> +2 Outlets</span
-                    >
-                    active this quarter
+                <div class="flex-grow-1 min-w-0 me-2">
+                  <!-- Dòng 1: Tiêu đề & Tag Pill -->
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <span class="metric-pastel-title mb-0">STORES & BRANCHES</span>
+                    <span class="metric-tag-pill ms-auto">18 Outlets</span>
+                  </div>
+                  <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
+                    <h3 class="metric-pastel-val mb-0">18</h3>
+                    <span class="metric-pastel-sub mb-0 text-truncate">
+                      <i class="fa-solid fa-store text-warning me-1"></i>Cửa hàng hoạt động
+                    </span>
                   </div>
                 </div>
                 <div class="metric-pastel-icon-floating">
@@ -1140,7 +1155,7 @@
     <!-- Apex Custom Modules -->
     <script src="../js/apex-chart.js"></script>
     <script src="../js/apex-tree.js"></script>
-    <script src="../js/apex-grid.js"></script>
+
     <!-- Main Application JS -->
     <script src="../js/app.js"></script>
   </body>

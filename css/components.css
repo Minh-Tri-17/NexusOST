@@ -111,10 +111,11 @@
    -------------------------------------------------------------------------- */
 .metric-card-pastel {
   border-radius: var(--radius-xl);
-  padding: 1.25rem 1.4rem;
+  padding: 1rem 1.15rem;
   position: relative;
   overflow: hidden;
   height: 100%;
+  min-height: 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -165,27 +166,30 @@
 
 /* Card Pastel Typography & Elements */
 .metric-pastel-title {
-  font-size: 0.725rem;
+  font-size: 0.68rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   color: var(--text-muted);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0;
+  white-space: nowrap;
 }
 
 .metric-pastel-val {
-  font-size: 1.85rem;
+  font-size: 1.65rem;
   font-weight: 800;
   color: var(--text-main);
   letter-spacing: -0.03em;
   line-height: 1;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0;
+  white-space: nowrap;
 }
 
 .metric-pastel-sub {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: var(--text-muted);
+  white-space: nowrap;
 }
 
 .metric-pastel-icon-floating {

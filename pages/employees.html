@@ -26,9 +26,6 @@
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/apexcharts@3.45.1/dist/apexcharts.css"
-    />
-    <script type="module" src="https://esm.run/apex-grid@3/define"></script>
-
   </head>
   <body>
     <div class="app-wrapper">
@@ -232,7 +229,7 @@
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 mb-4">
             <!-- Card 1: Tổng Nhân Sự -->
             <div class="col">
-              <div class="metric-card-pastel card-pastel-orange py-3 px-3">
+              <div class="metric-card-pastel card-pastel-orange">
                 <div class="flex-grow-1 min-w-0 me-2">
                   <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
                   <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
@@ -240,9 +237,9 @@
                     <span class="metric-tag-pill ms-auto">100% Headcount</span>
                   </div>
                   <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
                     <h3 class="metric-pastel-val mb-0" id="statTotalEmp">248</h3>
-                    <span class="metric-pastel-sub mb-0">
+                    <span class="metric-pastel-sub mb-0 text-truncate">
                       <i class="fa-solid fa-layer-group me-1 text-primary"></i>Toàn bộ nhân viên
                     </span>
                   </div>
@@ -255,7 +252,7 @@
 
             <!-- Card 2: Đang Làm Việc -->
             <div class="col">
-              <div class="metric-card-pastel card-pastel-mint py-3 px-3">
+              <div class="metric-card-pastel card-pastel-mint">
                 <div class="flex-grow-1 min-w-0 me-2">
                   <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
                   <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
@@ -263,9 +260,9 @@
                     <span class="metric-tag-pill ms-auto">81.0% Active</span>
                   </div>
                   <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
                     <h3 class="metric-pastel-val mb-0" id="statActiveEmp">201</h3>
-                    <span class="metric-pastel-sub mb-0">
+                    <span class="metric-pastel-sub mb-0 text-truncate">
                       <i class="fa-solid fa-shield-halved me-1 text-success"></i>Đang hoạt động
                     </span>
                   </div>
@@ -278,7 +275,7 @@
 
             <!-- Card 3: Thử Việc -->
             <div class="col">
-              <div class="metric-card-pastel card-pastel-purple py-3 px-3">
+              <div class="metric-card-pastel card-pastel-purple">
                 <div class="flex-grow-1 min-w-0 me-2">
                   <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
                   <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
@@ -286,9 +283,9 @@
                     <span class="metric-tag-pill ms-auto">7.3% Rate</span>
                   </div>
                   <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
                     <h3 class="metric-pastel-val mb-0" id="statProbationEmp">18</h3>
-                    <span class="metric-pastel-sub mb-0">
+                    <span class="metric-pastel-sub mb-0 text-truncate">
                       <i class="fa-solid fa-chart-line me-1 text-purple"></i>Đang thử việc
                     </span>
                   </div>
@@ -301,7 +298,7 @@
 
             <!-- Card 4: Đã Nghỉ Việc -->
             <div class="col">
-              <div class="metric-card-pastel card-pastel-rose py-3 px-3">
+              <div class="metric-card-pastel card-pastel-rose">
                 <div class="flex-grow-1 min-w-0 me-2">
                   <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
                   <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
@@ -309,9 +306,9 @@
                     <span class="metric-tag-pill ms-auto">4.8% Turnover</span>
                   </div>
                   <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
                     <h3 class="metric-pastel-val mb-0" id="statResignedEmp">12</h3>
-                    <span class="metric-pastel-sub mb-0">
+                    <span class="metric-pastel-sub mb-0 text-truncate">
                       <i class="fa-solid fa-fire me-1 text-danger"></i>Tỷ lệ nghỉ việc
                     </span>
                   </div>
@@ -324,7 +321,7 @@
 
             <!-- Card 5: Làm Việc Từ Xa -->
             <div class="col">
-              <div class="metric-card-pastel card-pastel-teal py-3 px-3">
+              <div class="metric-card-pastel card-pastel-teal">
                 <div class="flex-grow-1 min-w-0 me-2">
                   <!-- Dòng 1: Tiêu đề & Tag Pill (Đẩy sang phải) -->
                   <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
@@ -332,9 +329,9 @@
                     <span class="metric-tag-pill ms-auto">6.9% Remote</span>
                   </div>
                   <!-- Dòng 2: Giá trị chỉ số & Ghi chú phụ -->
-                  <div class="d-flex align-items-baseline gap-2 flex-wrap">
+                  <div class="d-flex align-items-baseline gap-2 flex-nowrap">
                     <h3 class="metric-pastel-val mb-0" id="statRemoteEmp">17</h3>
-                    <span class="metric-pastel-sub mb-0">
+                    <span class="metric-pastel-sub mb-0 text-truncate">
                       <i class="fa-solid fa-compass me-1 text-warning"></i>Làm việc từ xa
                     </span>
                   </div>
@@ -1478,6 +1475,7 @@
                       <th style="width: 36px">
                         <input type="checkbox" id="selectAllList" aria-label="Select all" />
                       </th>
+                      <th>Code</th>
                       <th>Employee</th>
                       <th>Department</th>
                       <th>Position</th>
@@ -1485,11 +1483,17 @@
                       <th>Status</th>
                       <th>Location</th>
                       <th>Joined</th>
+                      <th>Created By</th>
+                      <th>Created At</th>
+                      <th>Updated By</th>
+                      <th>Updated At</th>
+                      <th>Note</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Linh Tran" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP001</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -1499,7 +1503,6 @@
                           />
                           <div>
                             <div class="emp-list-name">Linh Tran</div>
-                            <div class="emp-list-id">#EMP001</div>
                           </div>
                         </div>
                       </td>
@@ -1525,9 +1528,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Jan 2022</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td><span class="text-muted small">2022-01-15</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                      <td><span class="text-muted small">2025-01-10</span></td>
+                      <td><span class="text-muted small fst-italic">Senior UX Specialist candidate</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Minh Nguyen" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP002</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -1537,7 +1546,6 @@
                           />
                           <div>
                             <div class="emp-list-name">Minh Nguyen</div>
-                            <div class="emp-list-id">#EMP002</div>
                           </div>
                         </div>
                       </td>
@@ -1563,9 +1571,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Mar 2021</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td><span class="text-muted small">2021-03-01</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td><span class="text-muted small">2024-11-20</span></td>
+                      <td><span class="text-muted small fst-italic">Remote engineering squad</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Thu Pham" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP003</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <div
@@ -1576,7 +1590,6 @@
                           </div>
                           <div>
                             <div class="emp-list-name">Thu Pham</div>
-                            <div class="emp-list-id">#EMP003</div>
                           </div>
                         </div>
                       </td>
@@ -1602,9 +1615,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Jul 2020</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td><span class="text-muted small">2020-07-01</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                      <td><span class="text-muted small">2025-02-01</span></td>
+                      <td><span class="text-muted small fst-italic">Maternity leave scheduled</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Duc Le" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP004</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -1614,7 +1633,6 @@
                           />
                           <div>
                             <div class="emp-list-name">Duc Le</div>
-                            <div class="emp-list-id">#EMP004</div>
                           </div>
                         </div>
                       </td>
@@ -1640,9 +1658,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Oct 2024</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td><span class="text-muted small">2024-10-15</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td><span class="text-muted small">2024-12-05</span></td>
+                      <td><span class="text-muted small fst-italic">On 60-day probation</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Hoa Vo" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP005</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -1652,7 +1676,6 @@
                           />
                           <div>
                             <div class="emp-list-name">Hoa Vo</div>
-                            <div class="emp-list-id">#EMP005</div>
                           </div>
                         </div>
                       </td>
@@ -1678,9 +1701,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Apr 2019</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td><span class="text-muted small">2019-04-10</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                      <td><span class="text-muted small">2024-10-01</span></td>
+                      <td><span class="text-muted small fst-italic">Brand strategy lead</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Khoa Dinh" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP006</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <div
@@ -1691,7 +1720,6 @@
                           </div>
                           <div>
                             <div class="emp-list-name">Khoa Dinh</div>
-                            <div class="emp-list-id">#EMP006</div>
                           </div>
                         </div>
                       </td>
@@ -1717,9 +1745,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Jun 2023</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td><span class="text-muted small">2023-06-12</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Alex Rivera</span></td>
+                      <td><span class="text-muted small">2025-01-15</span></td>
+                      <td><span class="text-muted small fst-italic">Quarterly audit completed</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select An Nguyen" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP007</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -1729,7 +1763,6 @@
                           />
                           <div>
                             <div class="emp-list-name">An Nguyen</div>
-                            <div class="emp-list-id">#EMP007</div>
                           </div>
                         </div>
                       </td>
@@ -1755,9 +1788,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Feb 2023</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td><span class="text-muted small">2023-02-20</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td><span class="text-muted small">2024-09-18</span></td>
+                      <td><span class="text-muted small fst-italic">Da Nang hub coordinator</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Bao Tran" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP008</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <div
@@ -1768,7 +1807,6 @@
                           </div>
                           <div>
                             <div class="emp-list-name">Bao Tran</div>
-                            <div class="emp-list-id">#EMP008</div>
                           </div>
                         </div>
                       </td>
@@ -1794,9 +1832,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Sep 2024</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                      <td><span class="text-muted small">2024-09-01</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td><span class="text-muted small">2024-11-10</span></td>
+                      <td><span class="text-muted small fst-italic">Undergraduate intern</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Lan Hoang" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP009</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -1806,7 +1850,6 @@
                           />
                           <div>
                             <div class="emp-list-name">Lan Hoang</div>
-                            <div class="emp-list-id">#EMP009</div>
                           </div>
                         </div>
                       </td>
@@ -1832,9 +1875,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Nov 2018</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td><span class="text-muted small">2018-11-05</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                      <td><span class="text-muted small">2025-01-08</span></td>
+                      <td><span class="text-muted small fst-italic">CMO executive committee</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Tuan Bui" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP010</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -1844,7 +1893,6 @@
                           />
                           <div>
                             <div class="emp-list-name">Tuan Bui</div>
-                            <div class="emp-list-id">#EMP010</div>
                           </div>
                         </div>
                       </td>
@@ -1870,9 +1918,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Aug 2022</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td><span class="text-muted small">2022-08-14</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Alex Rivera</span></td>
+                      <td><span class="text-muted small">2024-12-19</span></td>
+                      <td><span class="text-muted small fst-italic">Freelance project contract</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Mai Nguyen" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP011</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <div
@@ -1883,7 +1937,6 @@
                           </div>
                           <div>
                             <div class="emp-list-name">Mai Nguyen</div>
-                            <div class="emp-list-id">#EMP011</div>
                           </div>
                         </div>
                       </td>
@@ -1909,9 +1962,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Dec 2024</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td><span class="text-muted small">2024-12-01</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td><span class="text-muted small">2025-01-02</span></td>
+                      <td><span class="text-muted small fst-italic">Resignation handover done</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Phat Do" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP012</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -1921,7 +1980,6 @@
                           />
                           <div>
                             <div class="emp-list-name">Phat Do</div>
-                            <div class="emp-list-id">#EMP012</div>
                           </div>
                         </div>
                       </td>
@@ -1947,9 +2005,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">May 2021</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td><span class="text-muted small">2021-05-18</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                      <td><span class="text-muted small">2024-10-12</span></td>
+                      <td><span class="text-muted small fst-italic">Cloud infrastructure lead</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Hoang Vu" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP013</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -1959,7 +2023,6 @@
                           />
                           <div>
                             <div class="emp-list-name">Hoang Vu</div>
-                            <div class="emp-list-id">#EMP013</div>
                           </div>
                         </div>
                       </td>
@@ -1985,9 +2048,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Aug 2020</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                      <td><span class="text-muted small">2020-08-22</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td><span class="text-muted small">2024-11-25</span></td>
+                      <td><span class="text-muted small fst-italic">ERP module PM</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Nhung Dang" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP014</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -1997,7 +2066,6 @@
                           />
                           <div>
                             <div class="emp-list-name">Nhung Dang</div>
-                            <div class="emp-list-id">#EMP014</div>
                           </div>
                         </div>
                       </td>
@@ -2023,9 +2091,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Feb 2021</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td><span class="text-muted small">2021-02-10</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Alex Rivera</span></td>
+                      <td><span class="text-muted small">2025-01-20</span></td>
+                      <td><span class="text-muted small fst-italic">Automation suite owner</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Thanh Bui" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP015</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -2035,7 +2109,6 @@
                           />
                           <div>
                             <div class="emp-list-name">Thanh Bui</div>
-                            <div class="emp-list-id">#EMP015</div>
                           </div>
                         </div>
                       </td>
@@ -2061,9 +2134,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Nov 2023</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td><span class="text-muted small">2023-11-05</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td><span class="text-muted small">2024-10-30</span></td>
+                      <td><span class="text-muted small fst-italic">Content campaign lead</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Vy Ngo" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP016</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <div
@@ -2074,7 +2153,6 @@
                           </div>
                           <div>
                             <div class="emp-list-name">Vy Ngo</div>
-                            <div class="emp-list-id">#EMP016</div>
                           </div>
                         </div>
                       </td>
@@ -2100,9 +2178,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">May 2022</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td><span class="text-muted small">2022-05-12</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                      <td><span class="text-muted small">2025-01-14</span></td>
+                      <td><span class="text-muted small fst-italic">Tech talent recruiter</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Long Truong" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP017</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -2112,7 +2196,6 @@
                           />
                           <div>
                             <div class="emp-list-name">Long Truong</div>
-                            <div class="emp-list-id">#EMP017</div>
                           </div>
                         </div>
                       </td>
@@ -2138,9 +2221,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Jan 2019</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                      <td><span class="text-muted small">2019-01-08</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td><span class="text-muted small">2024-12-28</span></td>
+                      <td><span class="text-muted small fst-italic">Financial controller lead</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Quynh Nguyen" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP018</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -2150,7 +2239,6 @@
                           />
                           <div>
                             <div class="emp-list-name">Quynh Nguyen</div>
-                            <div class="emp-list-id">#EMP018</div>
                           </div>
                         </div>
                       </td>
@@ -2176,9 +2264,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Jan 2025</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td><span class="text-muted small">2025-01-05</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td><span class="text-muted small">2025-01-25</span></td>
+                      <td><span class="text-muted small fst-italic">UI design intern</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Kien Pham" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP019</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <div
@@ -2189,7 +2283,6 @@
                           </div>
                           <div>
                             <div class="emp-list-name">Kien Pham</div>
-                            <div class="emp-list-id">#EMP019</div>
                           </div>
                         </div>
                       </td>
@@ -2215,9 +2308,15 @@
                         >
                       </td>
                       <td><span class="text-muted small">Oct 2023</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td><span class="text-muted small">2023-10-18</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Alex Rivera</span></td>
+                      <td><span class="text-muted small">2024-11-08</span></td>
+                      <td><span class="text-muted small fst-italic">Part-time sysadmin</span></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" aria-label="Select Trinh Do" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#EMP020</span></td>
                       <td>
                         <div class="emp-list-identity">
                           <img
@@ -2227,7 +2326,6 @@
                           />
                           <div>
                             <div class="emp-list-name">Trinh Do</div>
-                            <div class="emp-list-id">#EMP020</div>
                           </div>
                         </div>
                       </td>
@@ -2253,6 +2351,11 @@
                         >
                       </td>
                       <td><span class="text-muted small">Mar 2017</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td><span class="text-muted small">2017-03-15</span></td>
+                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                      <td><span class="text-muted small">2025-01-11</span></td>
+                      <td><span class="text-muted small fst-italic">Sales director board</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -2366,7 +2469,7 @@
     <!-- Apex Custom Modules -->
     <script src="../js/apex-chart.js"></script>
     <script src="../js/apex-tree.js"></script>
-    <script src="../js/apex-grid.js"></script>
+
     <!-- Main Application JS -->
     <script src="../js/app.js"></script>
 
