@@ -2903,7 +2903,7 @@ function renderStageModalList(list) {
         </div>
       </div>
       <button class="btn btn-sm btn-pastel-primary rounded-pill px-4 py-2 font-semibold text-xs d-inline-flex align-items-center gap-1.5" onclick="openCandidateDetailFromStageModal('${c.id}')">
-        <span>View Profile</span> <i class="fa-solid fa-arrow-right text-2xs"></i>
+        <span class="mx-1">View Profile</span> <i class="fa-solid fa-arrow-right text-2xs"></i>
       </button>
     </div>
   `,

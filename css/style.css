@@ -3157,19 +3157,7 @@ svg g.apextree-selected .apextree-sleek-card {
   background-color: #10b981;
   display: inline-block;
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
-  animation: pulse-dot-live 2s infinite ease-in-out;
-}
-
-@keyframes pulse-dot-live {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.3);
-    opacity: 0.7;
-  }
+  animation: pulseDotAnimation 2s infinite ease-in-out;
 }
 
 .custom-btn-close {
@@ -3875,18 +3863,7 @@ apex-grid::part(paginator) {
   border-radius: 50%;
   background: #10b981;
   box-shadow: 0 0 8px #10b981;
-  animation: pulseEmerald 2s infinite;
-}
-@keyframes pulseEmerald {
-  0% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-  }
+  animation: pulseDotAnimation 2s infinite;
 }
 .status-indicator-pill .status-text {
   font-size: 0.7rem;
