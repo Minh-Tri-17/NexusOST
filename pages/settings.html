@@ -16,14 +16,14 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       rel="stylesheet"
     />
-    <!-- Custom Stylesheet -->
+    <!-- Custom Stylesheets -->
+    <link rel="stylesheet" href="../css/components.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <!-- Apex CSS & Web Component CDN Libraries -->
+    <!-- Apex CSS CDN -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/apexcharts@3.45.1/dist/apexcharts.css"
     />
-
   </head>
   <body>
     <div class="app-wrapper">
@@ -126,11 +126,7 @@
         <!-- Top Navbar -->
         <header class="app-topbar">
           <div class="d-flex align-items-center gap-3">
-            <button
-              class="btn btn-sm btn-light"
-              id="sidebarToggleBtn"
-              title="Toggle Sidebar"
-            >
+            <button class="btn btn-sm btn-light" id="sidebarToggleBtn" title="Toggle Sidebar">
               <i class="fa-solid fa-bars"></i>
             </button>
             <div class="topbar-search-box d-none d-sm-block">
@@ -138,34 +134,22 @@
               <input
                 type="text"
                 id="topbarSearchInput"
-                placeholder="Search employees, sales deals, reports..."
+                placeholder="Search settings, roles, integrations..."
               />
             </div>
           </div>
 
           <div class="topbar-actions">
             <div class="topbar-action-group">
-              <button
-                class="btn-icon-action"
-                id="langTranslateBtn"
-                title="Language / Ngôn ngữ"
-              >
+              <button class="btn-icon-action" id="langTranslateBtn" title="Language / Ngôn ngữ">
                 <i class="fa-solid fa-language"></i>
               </button>
 
-              <button
-                class="btn-icon-action"
-                id="themeToggleBtn"
-                title="Switch to Dark Mode"
-              >
+              <button class="btn-icon-action" id="themeToggleBtn" title="Switch to Dark Mode">
                 <i class="fa-regular fa-moon"></i>
               </button>
 
-              <button
-                class="btn-icon-action"
-                id="notifBellBtn"
-                title="Notifications"
-              >
+              <button class="btn-icon-action" id="notifBellBtn" title="Notifications">
                 <i class="fa-regular fa-bell"></i>
                 <span class="badge-dot">3</span>
               </button>
@@ -181,54 +165,45 @@
                 <div class="avatar-wrapper">
                   <img
                     src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
-                    alt="Tristan Nguyen Avatar"
+                    alt="Spencer Admin Avatar"
                     class="user-avatar-img"
                   />
                   <span class="avatar-status-online" title="Online"></span>
                 </div>
                 <div class="user-info-text d-none d-md-block">
-                  <p class="user-name">Tristan Nguyen</p>
+                  <p class="user-name">Spencer</p>
                   <p class="user-role">Administrator</p>
                 </div>
-                <i
-                  class="fa-solid fa-chevron-down dropdown-chevron ms-1 text-muted"
-                ></i>
+                <i class="fa-solid fa-chevron-down dropdown-chevron ms-1 text-muted"></i>
               </div>
               <ul class="dropdown-menu dropdown-menu-end user-dropdown-menu">
                 <li class="dropdown-header-info">
                   <img
                     src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
-                    alt="Tristan Nguyen"
+                    alt="Spencer Admin"
                     class="header-avatar"
                   />
                   <div class="header-details">
-                    <div class="header-name">Tristan Nguyen</div>
-                    <div class="header-email">tristan.nguyen@nexusost.com</div>
+                    <div class="header-name">Spencer</div>
+                    <div class="header-email">spencer.admin@acme.com</div>
                   </div>
                 </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
                   <a class="dropdown-item" href="settings.html">
-                    <span class="dropdown-icon-box"
-                      ><i class="fa-regular fa-user"></i
-                    ></span>
+                    <span class="dropdown-icon-box"><i class="fa-regular fa-user"></i></span>
                     <span class="flex-grow-1">Profile</span>
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="settings.html">
-                    <span class="dropdown-icon-box"
-                      ><i class="fa-solid fa-sliders"></i
-                    ></span>
+                    <span class="dropdown-icon-box"><i class="fa-solid fa-sliders"></i></span>
                     <span class="flex-grow-1">Preferences</span>
                   </a>
                 </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <a
-                    class="dropdown-item dropdown-item-danger text-danger"
-                    href="dashboard.html"
-                  >
+                  <a class="dropdown-item dropdown-item-danger text-danger" href="dashboard.html">
                     <span class="dropdown-icon-box danger"
                       ><i class="fa-solid fa-right-from-bracket"></i
                     ></span>
@@ -240,66 +215,3425 @@
           </div>
         </header>
 
-        <!-- Page Content Container -->
-        <div
-          class="page-container d-flex flex-column align-items-center justify-content-center"
-          style="min-height: calc(100vh - 140px)"
-        >
+        <!-- Settings Main Page Content -->
+        <div class="page-container p-3 p-md-4">
+          <!-- Header Title & Action Buttons (Matching Country Page Button System) -->
           <div
-            class="erp-card text-center p-5 shadow-sm"
-            style="max-width: 580px; width: 100%"
+            class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4"
           >
-            <div class="mb-4">
-              <div
-                class="mx-auto d-flex align-items-center justify-content-center rounded-circle"
-                style="
-                  width: 84px;
-                  height: 84px;
-                  background: #eef4ff;
-                  color: #2563eb;
-                  font-size: 2.5rem;
-                  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
-                "
+            <div>
+              <h2 class="h3 fw-bold text-dark mb-1">Settings</h2>
+              <p class="text-muted mb-0">
+                Manage system preferences, access permissions, notification rules, and security
+                policies.
+              </p>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <button
+                class="btn btn-sm btn-pastel-slate d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                id="resetDefaultsBtn"
               >
-                <i class="fa-solid fa-gear"></i>
+                <i class="fa-solid fa-rotate-left"></i> Reset Defaults
+              </button>
+            </div>
+          </div>
+
+          <!-- Navigation Sub-Tabs -->
+          <ul class="nav nav-tabs settings-nav-tabs mb-4" id="settingsTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="general-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-general"
+                type="button"
+                role="tab"
+                aria-controls="tab-general"
+                aria-selected="true"
+              >
+                <i class="fa-solid fa-gear text-primary"></i> General
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="security-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-security"
+                type="button"
+                role="tab"
+                aria-controls="tab-security"
+                aria-selected="false"
+              >
+                <i class="fa-solid fa-shield-halved text-success"></i> Security
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="roles-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-roles"
+                type="button"
+                role="tab"
+                aria-controls="tab-roles"
+                aria-selected="false"
+              >
+                <i class="fa-solid fa-user-shield text-purple"></i> Permissions
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="notifications-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-notifications"
+                type="button"
+                role="tab"
+                aria-controls="tab-notifications"
+                aria-selected="false"
+              >
+                <i class="fa-solid fa-bell text-warning"></i> Notifications
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="integrations-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-integrations"
+                type="button"
+                role="tab"
+                aria-controls="tab-integrations"
+                aria-selected="false"
+              >
+                <i class="fa-solid fa-plug text-info"></i> Integrations & Data
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="status-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-status"
+                type="button"
+                role="tab"
+                aria-controls="tab-status"
+                aria-selected="false"
+              >
+                <i class="fa-solid fa-heart-pulse text-danger"></i> System Status & Audit
+              </button>
+            </li>
+          </ul>
+
+          <!-- Tab Content Panes Container -->
+          <div class="tab-content" id="settingsTabContent">
+            <!-- TAB 1: GENERAL -->
+            <div
+              class="tab-pane show active"
+              id="tab-general"
+              role="tabpanel"
+              aria-labelledby="general-tab"
+            >
+              <!-- System Control Center Banner -->
+              <div class="control-center-banner mb-4">
+                <!-- Top Header -->
+                <div
+                  class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-3"
+                >
+                  <div class="d-flex align-items-center gap-3">
+                    <div
+                      class="rounded-3 d-flex align-items-center justify-content-center bg-white shadow-sm text-primary"
+                      style="width: 48px; height: 48px; font-size: 1.5rem; flex-shrink: 0"
+                    >
+                      <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <div>
+                      <h5 class="fw-bold text-dark mb-0">System Control Center</h5>
+                      <p class="text-muted small mb-0">
+                        Manage system-wide settings and critical operations
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-pastel-indigo text-nowrap flex-shrink-0 px-3.5 py-1.5 rounded-3 shadow-xs font-semibold d-inline-flex align-items-center gap-1.5 align-self-start align-self-md-center"
+                  >
+                    <i class="fa-solid fa-gear"></i> Quick Preferences
+                  </button>
+                </div>
+
+                <!-- 4 Quick Switches Grid -->
+                <div class="row g-3 mb-3">
+                  <!-- Maintenance Mode -->
+                  <div class="col-sm-6 col-xl-3">
+                    <div
+                      class="toggle-card-item d-flex align-items-center justify-content-between gap-2"
+                    >
+                      <div class="d-flex align-items-center gap-3 min-w-0">
+                        <div class="timeline-icon-box timeline-icon-orange flex-shrink-0">
+                          <i class="fa-solid fa-wrench"></i>
+                        </div>
+                        <div class="min-w-0">
+                          <div class="fw-bold text-dark style-sm text-truncate">
+                            Maintenance Mode
+                          </div>
+                          <div class="text-muted extra-small text-truncate">
+                            Disable user access
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-check form-switch m-0 flex-shrink-0">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="switchMaintenanceMode"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Self-Service Portal -->
+                  <div class="col-sm-6 col-xl-3">
+                    <div
+                      class="toggle-card-item d-flex align-items-center justify-content-between gap-2"
+                    >
+                      <div class="d-flex align-items-center gap-3 min-w-0">
+                        <div class="timeline-icon-box timeline-icon-green flex-shrink-0">
+                          <i class="fa-solid fa-user-check"></i>
+                        </div>
+                        <div class="min-w-0">
+                          <div class="fw-bold text-dark style-sm text-truncate">
+                            Self-Service Portal
+                          </div>
+                          <div class="text-muted extra-small text-truncate">
+                            Allow employee access
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-check form-switch m-0 flex-shrink-0">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="switchSelfService"
+                          checked
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Payroll Lock -->
+                  <div class="col-sm-6 col-xl-3">
+                    <div
+                      class="toggle-card-item d-flex align-items-center justify-content-between gap-2"
+                    >
+                      <div class="d-flex align-items-center gap-3 min-w-0">
+                        <div class="timeline-icon-box timeline-icon-purple flex-shrink-0">
+                          <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <div class="min-w-0">
+                          <div class="fw-bold text-dark style-sm text-truncate">Payroll Lock</div>
+                          <div class="text-muted extra-small text-truncate">
+                            Prevent payroll edits
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-check form-switch m-0 flex-shrink-0">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="switchPayrollLock"
+                          checked
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Auto Backups -->
+                  <div class="col-sm-6 col-xl-3">
+                    <div
+                      class="toggle-card-item d-flex align-items-center justify-content-between gap-2"
+                    >
+                      <div class="d-flex align-items-center gap-3 min-w-0">
+                        <div class="timeline-icon-box timeline-icon-blue flex-shrink-0">
+                          <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+                        <div class="min-w-0">
+                          <div class="fw-bold text-dark style-sm text-truncate">Auto Backups</div>
+                          <div class="text-muted extra-small text-truncate">
+                            Auto daily snapshots
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-check form-switch m-0 flex-shrink-0">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="switchAutoBackups"
+                          checked
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Inner Styled Section: System Display Options & Quick Preferences -->
+                <div class="p-3 rounded-3 border bg-white shadow-xs">
+                  <div
+                    class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom"
+                  >
+                    <div class="d-flex align-items-center gap-2">
+                      <i class="fa-solid fa-sliders text-primary"></i>
+                      <h6 class="fw-bold text-dark mb-0 style-sm">System Display Options</h6>
+                    </div>
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label custom-form-label"> Date Display Format </label>
+                      <div class="input-group custom-input-group">
+                        <span class="input-group-text"
+                          ><i class="fa-regular fa-calendar-days text-primary"></i
+                        ></span>
+                        <select class="form-select custom-form-select">
+                          <option selected>MMM DD, YYYY (May 20, 2026)</option>
+                          <option>DD/MM/YYYY (20/05/2026)</option>
+                          <option>YYYY-MM-DD (2026-05-20)</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label custom-form-label"> Standard Work Week </label>
+                      <div class="input-group custom-input-group">
+                        <span class="input-group-text"
+                          ><i class="fa-solid fa-business-time text-indigo"></i
+                        ></span>
+                        <select class="form-select custom-form-select">
+                          <option selected>Monday - Friday (5 Days)</option>
+                          <option>Monday - Saturday (6 Days)</option>
+                          <option>Sunday - Thursday (Middle East Standard)</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Footer Action Note -->
+                  <div class="pt-3 border-top mt-3 text-muted extra-small">
+                    <i class="fa-solid fa-circle-info text-primary me-1"></i> System-wide formatting
+                    options
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-4">
+                <!-- Organization Profile Card (Left col-lg-7) -->
+                <div class="col-lg-7">
+                  <div
+                    class="erp-card p-4 shadow-sm h-100 d-flex flex-column justify-content-between"
+                  >
+                    <div>
+                      <!-- Card Header -->
+                      <div
+                        class="d-flex align-items-center justify-content-between mb-4 border-bottom pb-3"
+                      >
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="timeline-icon-box timeline-icon-blue">
+                            <i class="fa-solid fa-building"></i>
+                          </div>
+                          <div>
+                            <h5 class="fw-bold text-dark mb-0">Organization Profile</h5>
+                          </div>
+                        </div>
+                        <span class="badge-soft badge-blue">
+                          <i class="fa-solid fa-building me-1"></i> Organization Profile
+                        </span>
+                      </div>
+
+                      <!-- Company Branding & Logo Banner Box -->
+                      <div
+                        class="p-3 rounded-3 border bg-body-tertiary mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3"
+                      >
+                        <div class="d-flex align-items-center gap-3">
+                          <div
+                            class="bg-primary bg-opacity-10 text-primary rounded-3 p-3 d-flex align-items-center justify-content-center"
+                            style="width: 50px; height: 50px"
+                          >
+                            <i class="fa-solid fa-landmark fs-4"></i>
+                          </div>
+                          <div>
+                            <div class="fw-bold text-dark style-sm">Organization Logo & Brand</div>
+                            <div class="text-muted extra-small">
+                              PNG, SVG or JPG (Max 2MB &bull; 400x400px)
+                            </div>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 ms-auto">
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-pastel-indigo px-3 py-1.5 rounded-3 extra-small font-semibold"
+                          >
+                            <i class="fa-solid fa-cloud-arrow-up me-1"></i> Upload Logo
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-pastel-slate px-2.5 py-1.5 rounded-3 extra-small"
+                          >
+                            <i class="fa-solid fa-trash-can text-muted"></i>
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- Organization Profile Form -->
+                      <form id="generalOrgForm">
+                        <div class="row g-3">
+                          <!-- Org Name -->
+                          <div class="col-md-6">
+                            <label class="form-label custom-form-label">
+                              Organization Name <span class="text-danger fw-bold">*</span>
+                            </label>
+                            <div class="input-group custom-input-group">
+                              <span class="input-group-text"
+                                ><i class="fa-solid fa-building text-primary"></i
+                              ></span>
+                              <input
+                                type="text"
+                                class="form-control custom-form-control"
+                                value="Acme Corporation"
+                                required
+                              />
+                            </div>
+                          </div>
+
+                          <!-- Industry -->
+                          <div class="col-md-6">
+                            <label class="form-label custom-form-label"> Industry Sector </label>
+                            <div class="input-group custom-input-group">
+                              <span class="input-group-text"
+                                ><i class="fa-solid fa-industry text-purple"></i
+                              ></span>
+                              <input
+                                type="text"
+                                class="form-control custom-form-control"
+                                value="Technology & Software"
+                              />
+                            </div>
+                          </div>
+
+                          <!-- Company Size -->
+                          <div class="col-md-6">
+                            <label class="form-label custom-form-label"> Company Size </label>
+                            <div class="input-group custom-input-group">
+                              <span class="input-group-text"
+                                ><i class="fa-solid fa-users text-indigo"></i
+                              ></span>
+                              <select class="form-select custom-form-select">
+                                <option selected>500 - 1,000 employees</option>
+                                <option>100 - 500 employees</option>
+                                <option>1,000+ Enterprise</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <!-- Timezone -->
+                          <div class="col-md-6">
+                            <label class="form-label custom-form-label"> Timezone </label>
+                            <div class="input-group custom-input-group">
+                              <span class="input-group-text"
+                                ><i class="fa-solid fa-globe text-amber"></i
+                              ></span>
+                              <select class="form-select custom-form-select">
+                                <option selected>(GMT-07:00) Pacific Time (US & Canada)</option>
+                                <option>(GMT+07:00) Bangkok, Hanoi, Jakarta</option>
+                                <option>(GMT+00:00) UTC Universal Time</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <!-- Base Currency -->
+                          <div class="col-md-6">
+                            <label class="form-label custom-form-label"> Base Currency </label>
+                            <div class="input-group custom-input-group">
+                              <span class="input-group-text"
+                                ><i class="fa-solid fa-money-bill-wave text-success"></i
+                              ></span>
+                              <select class="form-select custom-form-select">
+                                <option selected>USD ($) - US Dollar</option>
+                                <option>VND (₫) - Vietnamese Dong</option>
+                                <option>EUR (€) - Euro</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <!-- Default Language -->
+                          <div class="col-md-6">
+                            <label class="form-label custom-form-label"> Default Language </label>
+                            <div class="input-group custom-input-group">
+                              <span class="input-group-text"
+                                ><i class="fa-solid fa-language text-info"></i
+                              ></span>
+                              <select class="form-select custom-form-select">
+                                <option selected>English (US)</option>
+                                <option>Vietnamese (Tiếng Việt)</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+                    <!-- Footer Info Bar -->
+                    <div
+                      class="pt-3 border-top mt-4 d-flex align-items-center justify-content-between text-muted extra-small"
+                    >
+                      <span
+                        ><i class="fa-solid fa-shield-halved text-success me-1"></i> HQ Reg ID:
+                        <strong>ACME-GLOBAL-892</strong></span
+                      >
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-pastel-orange px-3.5 py-2 rounded-3 shadow-xs font-semibold"
+                      >
+                        <i class="fa-solid fa-floppy-disk me-1.5"></i> Update Profile
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Admin Profile Card (Spencer) (Right col-lg-5) -->
+                <div class="col-lg-5">
+                  <div
+                    class="erp-card p-4 shadow-sm h-100 d-flex flex-column justify-content-between"
+                  >
+                    <div>
+                      <!-- Top Section: Editable Admin Profile Header Banner -->
+                      <div class="position-relative">
+                        <div
+                          class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom"
+                        >
+                          <div class="d-flex align-items-center gap-3">
+                            <div class="position-relative">
+                              <img
+                                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
+                                alt="Spencer Admin"
+                                class="rounded-circle border border-2 border-white shadow-xs"
+                                style="width: 48px; height: 48px; object-fit: cover"
+                              />
+                              <span
+                                class="position-absolute bottom-0 end-0 bg-success border border-2 border-white rounded-circle p-1"
+                                style="width: 12px; height: 12px"
+                                title="Online"
+                              ></span>
+                            </div>
+                            <div>
+                              <h6 class="fw-bold text-dark mb-0">Spencer</h6>
+                              <span class="text-muted extra-small">System Administrator</span>
+                            </div>
+                          </div>
+                          <span class="badge-soft badge-purple extra-small"
+                            ><i class="fa-solid fa-user-shield me-1"></i>Super Admin</span
+                          >
+                        </div>
+
+                        <!-- Editable Contact & Employee Information Form Inputs -->
+                        <form id="inlineAdminProfileForm">
+                          <div class="row g-2.5">
+                            <!-- Full Name -->
+                            <div class="col-md-6 mb-2">
+                              <label class="form-label custom-form-label">
+                                Full Name <span class="text-danger fw-bold">*</span>
+                              </label>
+                              <div class="input-group custom-input-group">
+                                <span class="input-group-text"
+                                  ><i class="fa-regular fa-user text-primary"></i
+                                ></span>
+                                <input
+                                  type="text"
+                                  class="form-control custom-form-control"
+                                  value="Spencer"
+                                  placeholder="Enter full name"
+                                  required
+                                />
+                              </div>
+                            </div>
+
+                            <!-- Employee ID -->
+                            <div class="col-md-6 mb-2">
+                              <label class="form-label custom-form-label">
+                                Employee ID <span class="text-danger fw-bold">*</span>
+                              </label>
+                              <div class="input-group custom-input-group">
+                                <span class="input-group-text"
+                                  ><i class="fa-solid fa-id-badge text-info"></i
+                                ></span>
+                                <input
+                                  type="text"
+                                  class="form-control custom-form-control font-monospace"
+                                  value="EMP-89204"
+                                  placeholder="e.g. EMP-001"
+                                  required
+                                />
+                              </div>
+                            </div>
+
+                            <!-- Email Address -->
+                            <div class="col-md-6 mb-2">
+                              <label class="form-label custom-form-label">
+                                Email Address <span class="text-danger fw-bold">*</span>
+                              </label>
+                              <div class="input-group custom-input-group">
+                                <span class="input-group-text"
+                                  ><i class="fa-regular fa-envelope text-primary"></i
+                                ></span>
+                                <input
+                                  type="email"
+                                  class="form-control custom-form-control font-monospace"
+                                  value="spencer.admin@acme.com"
+                                  placeholder="name@company.com"
+                                  required
+                                />
+                              </div>
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div class="col-md-6 mb-2">
+                              <label class="form-label custom-form-label"> Phone Number </label>
+                              <div class="input-group custom-input-group">
+                                <span class="input-group-text"
+                                  ><i class="fa-solid fa-phone text-success"></i
+                                ></span>
+                                <input
+                                  type="tel"
+                                  class="form-control custom-form-control"
+                                  value="+1 (555) 123-4567"
+                                  placeholder="+1 (555) 000-0000"
+                                />
+                              </div>
+                            </div>
+
+                            <!-- Department -->
+                            <div class="col-md-6 mb-2">
+                              <label class="form-label custom-form-label"> Department </label>
+                              <div class="input-group custom-input-group">
+                                <span class="input-group-text"
+                                  ><i class="fa-solid fa-sitemap text-purple"></i
+                                ></span>
+                                <input
+                                  type="text"
+                                  class="form-control custom-form-control"
+                                  value="Information Technology"
+                                  placeholder="e.g. IT Operations"
+                                />
+                              </div>
+                            </div>
+
+                            <!-- Job Title -->
+                            <div class="col-md-6 mb-2">
+                              <label class="form-label custom-form-label"> Job Title </label>
+                              <div class="input-group custom-input-group">
+                                <span class="input-group-text"
+                                  ><i class="fa-solid fa-briefcase text-warning"></i
+                                ></span>
+                                <input
+                                  type="text"
+                                  class="form-control custom-form-control"
+                                  value="Chief Technology Officer"
+                                  placeholder="e.g. System Administrator"
+                                />
+                              </div>
+                            </div>
+
+                            <!-- Office Location -->
+                            <div class="col-md-6 mb-2">
+                              <label class="form-label custom-form-label"> Office Location </label>
+                              <div class="input-group custom-input-group">
+                                <span class="input-group-text"
+                                  ><i class="fa-solid fa-location-dot text-danger"></i
+                                ></span>
+                                <input
+                                  type="text"
+                                  class="form-control custom-form-control"
+                                  value="Global HQ - San Francisco"
+                                  placeholder="e.g. HQ Branch"
+                                />
+                              </div>
+                            </div>
+
+                            <!-- Employment Type -->
+                            <div class="col-md-6 mb-2">
+                              <label class="form-label custom-form-label"> Employment Type </label>
+                              <div class="input-group custom-input-group">
+                                <span class="input-group-text"
+                                  ><i class="fa-solid fa-user-clock text-indigo"></i
+                                ></span>
+                                <select class="form-select custom-form-select">
+                                  <option selected>Full-Time (Permanent)</option>
+                                  <option>Part-Time</option>
+                                  <option>Contractor</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+
+                    <!-- Footer Action -->
+                    <div
+                      class="pt-3 border-top mt-3 d-flex align-items-center justify-content-between text-muted extra-small"
+                    >
+                      <span
+                        ><i class="fa-solid fa-user-shield text-purple me-1"></i> Account Security:
+                        <strong>MFA Enabled</strong></span
+                      >
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-pastel-orange px-3.5 py-2 rounded-3 shadow-xs font-semibold"
+                      >
+                        <i class="fa-solid fa-floppy-disk me-1.5"></i> Update Profile
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <span
-              class="badge bg-primary-subtle text-primary font-semibold px-3 py-2 rounded-pill mb-3"
-              style="font-size: 0.8rem; letter-spacing: 0.05em"
-              >SYSTEM NOTICE</span
+
+            <!-- TAB 2: SECURITY & COMPLIANCE -->
+            <div class="tab-pane" id="tab-security" role="tabpanel" aria-labelledby="security-tab">
+              <div class="row g-4 mb-4">
+                <!-- Security Policies (col-lg-6) -->
+                <div class="col-lg-6">
+                  <div class="erp-card p-4 shadow-sm h-100">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-4 border-bottom pb-3"
+                    >
+                      <div>
+                        <h5 class="fw-bold text-dark mb-0">
+                          <i class="fa-solid fa-shield-halved text-success me-2"></i>Security
+                          Policies
+                        </h5>
+                      </div>
+                      <span class="badge badge-soft badge-green">ISO 27001</span>
+                    </div>
+
+                    <div class="d-flex flex-column gap-3">
+                      <!-- 2FA -->
+                      <div
+                        class="setting-item-row d-flex align-items-center justify-content-between"
+                      >
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="timeline-icon-box timeline-icon-green">
+                            <i class="fa-solid fa-key"></i>
+                          </div>
+                          <div>
+                            <div class="fw-bold text-dark style-sm">Multi-Factor Auth (2FA)</div>
+                            <div class="text-muted extra-small">Require 2FA for all admins</div>
+                          </div>
+                        </div>
+                        <div class="form-check form-switch m-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id="switch2FA"
+                            checked
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Session Timeout -->
+                      <div
+                        class="setting-item-row d-flex align-items-center justify-content-between"
+                      >
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="timeline-icon-box timeline-icon-blue">
+                            <i class="fa-solid fa-hourglass-half"></i>
+                          </div>
+                          <div>
+                            <div class="fw-bold text-dark style-sm">Session Timeout</div>
+                            <div class="text-muted extra-small">Auto logout on inactivity</div>
+                          </div>
+                        </div>
+                        <div style="width: 130px">
+                          <select class="form-select form-select-sm">
+                            <option>15 mins</option>
+                            <option selected>30 mins</option>
+                            <option>1 hour</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Password Policy -->
+                      <div
+                        class="setting-item-row d-flex align-items-center justify-content-between"
+                      >
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="timeline-icon-box timeline-icon-purple">
+                            <i class="fa-solid fa-lock"></i>
+                          </div>
+                          <div>
+                            <div class="fw-bold text-dark style-sm">Password Policy</div>
+                            <div class="text-muted extra-small">Min 8 chars, mixed case</div>
+                          </div>
+                        </div>
+                        <span class="badge badge-soft badge-purple"
+                          ><i class="fa-solid fa-lock me-1"></i>Strong</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Password Change & Compliance (col-lg-6) -->
+                <div class="col-lg-6">
+                  <div
+                    class="erp-card p-4 shadow-sm h-100 d-flex flex-column justify-content-between"
+                  >
+                    <div>
+                      <div
+                        class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-3"
+                      >
+                        <h5 class="fw-bold text-dark mb-0 style-sm">
+                          <i class="fa-solid fa-key text-primary me-2"></i>Update Password
+                        </h5>
+                        <span class="badge-soft badge-indigo extra-small"
+                          ><i class="fa-solid fa-shield-halved me-1"></i>Account Security</span
+                        >
+                      </div>
+
+                      <form id="changePasswordForm">
+                        <div class="row g-3">
+                          <div class="col-12">
+                            <label class="form-label custom-form-label">
+                              Current Password <span class="text-danger fw-bold">*</span>
+                            </label>
+                            <div class="input-group custom-input-group">
+                              <span class="input-group-text"
+                                ><i class="fa-solid fa-lock text-muted"></i
+                              ></span>
+                              <input
+                                type="password"
+                                class="form-control custom-form-control"
+                                placeholder="Enter current password"
+                                required
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <label class="form-label custom-form-label">
+                              New Password <span class="text-danger fw-bold">*</span>
+                            </label>
+                            <div class="input-group custom-input-group">
+                              <span class="input-group-text"
+                                ><i class="fa-solid fa-key text-primary"></i
+                              ></span>
+                              <input
+                                type="password"
+                                class="form-control custom-form-control"
+                                placeholder="Enter new password"
+                                required
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <label class="form-label custom-form-label">
+                              Confirm New Password <span class="text-danger fw-bold">*</span>
+                            </label>
+                            <div class="input-group custom-input-group">
+                              <span class="input-group-text"
+                                ><i class="fa-solid fa-shield-halved text-success"></i
+                              ></span>
+                              <input
+                                type="password"
+                                class="form-control custom-form-control"
+                                placeholder="Re-enter new password"
+                                required
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+                    <!-- Footer Action: Update Password Button -->
+                    <div
+                      class="pt-3 border-top mt-3 d-flex align-items-center justify-content-between text-muted extra-small"
+                    >
+                      <span
+                        ><i class="fa-solid fa-shield-cat text-primary me-1"></i> Minimum 8
+                        characters</span
+                      >
+                      <button
+                        type="submit"
+                        form="changePasswordForm"
+                        class="btn btn-sm btn-pastel-purple px-3.5 py-2 rounded-3 shadow-xs font-semibold"
+                      >
+                        <i class="fa-solid fa-key me-1.5"></i> Update Password
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Active Administrator Sessions (col-12) -->
+              <div class="erp-card p-4 shadow-sm">
+                <h6 class="fw-bold text-dark mb-3">
+                  <i class="fa-solid fa-desktop text-primary me-2"></i>Active Administrator Sessions
+                </h6>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle mb-0 extra-small">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Browser & Device</th>
+                        <th>IP Address</th>
+                        <th>Last Active</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="fw-semibold">
+                          <i class="fa-brands fa-chrome text-success me-2"></i>Chrome on Windows 11
+                        </td>
+                        <td>14.161.42.109 (Hanoi, VN)</td>
+                        <td>Just now</td>
+                        <td><span class="badge badge-soft badge-green">Current Session</span></td>
+                      </tr>
+                      <tr>
+                        <td class="fw-semibold">
+                          <i class="fa-brands fa-apple text-dark me-2"></i>Safari on macOS Sonoma
+                        </td>
+                        <td>113.190.22.15 (HCM City, VN)</td>
+                        <td>2 hours ago</td>
+                        <td><span class="badge badge-soft badge-slate">Active</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 3: PERMISSIONS & ROLES -->
+            <div class="tab-pane" id="tab-roles" role="tabpanel" aria-labelledby="roles-tab">
+              <div class="erp-card p-4 shadow-sm">
+                <!-- Card Header -->
+                <div
+                  class="d-flex align-items-center justify-content-between mb-4 border-bottom pb-3"
+                >
+                  <div>
+                    <h5 class="fw-bold text-dark mb-1">
+                      <i class="fa-solid fa-user-shield text-purple me-2"></i>Access Roles &
+                      Permission Matrix
+                    </h5>
+                    <p class="text-muted small mb-0">
+                      Define user roles and customize module-level access permissions
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Linear-Tier Unified Command Dock: Search, Filter, CUD IO Buttons -->
+                <div
+                  class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3 pb-3 filter-toolbar-border"
+                >
+                  <!-- Left: Search + Filter Toggle -->
+                  <div class="d-flex flex-wrap align-items-center gap-2">
+                    <!-- Search -->
+                    <div class="position-relative" style="min-width: 220px">
+                      <i
+                        class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 filter-search-icon"
+                      ></i>
+                      <input
+                        type="text"
+                        class="form-control form-control-sm ps-5 pe-3 rounded-3 filter-input"
+                        placeholder="Search role, classification..."
+                        id="rolesSearchInput"
+                      />
+                    </div>
+                    <!-- Filter Toggle -->
+                    <button
+                      class="btn btn-sm btn-pastel-slate d-inline-flex align-items-center gap-2 px-3 rounded-3"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#rolesFilterMatrixCollapse"
+                      aria-expanded="false"
+                      aria-controls="rolesFilterMatrixCollapse"
+                      id="toggleRolesFilterBtn"
+                    >
+                      <i class="fa-solid fa-sliders text-primary"></i> Filter
+                      <span class="badge-soft badge-blue ms-1">3</span>
+                    </button>
+                  </div>
+
+                  <!-- Right: CUD IO Buttons -->
+                  <div class="d-flex align-items-center gap-2 flex-wrap ms-auto">
+                    <!-- CRUD Group -->
+                    <div class="d-flex align-items-center gap-2">
+                      <button
+                        class="btn btn-sm btn-pastel-green d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                        id="addRoleBtn"
+                      >
+                        <i class="fa-solid fa-plus"></i> Create
+                      </button>
+                      <button
+                        class="btn btn-sm btn-pastel-orange d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                        id="editRoleBtn"
+                      >
+                        <i class="fa-solid fa-pen-to-square"></i> Edit
+                      </button>
+                      <button
+                        class="btn btn-sm btn-pastel-red d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                        id="deleteRoleBtn"
+                      >
+                        <i class="fa-solid fa-trash-can"></i> Delete
+                      </button>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="action-bar-divider mx-1"></div>
+
+                    <!-- Data IO Group -->
+                    <div class="d-flex align-items-center gap-2">
+                      <button
+                        class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                        id="importRoleBtn"
+                      >
+                        <i class="fa-solid fa-file-import"></i> Import
+                      </button>
+                      <button
+                        class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                        id="exportRoleBtn"
+                      >
+                        <i class="fa-solid fa-file-export"></i> Export
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Active Filter Chips Bar -->
+                <div class="active-filter-chips-bar mb-3">
+                  <span class="text-muted small fw-semibold me-1">Active Filters:</span>
+
+                  <span class="filter-chip">
+                    <i class="fa-solid fa-sitemap chip-icon"></i> Module:
+                    <strong>Employees</strong>
+                    <i class="fa-solid fa-xmark chip-remove-btn"></i>
+                  </span>
+
+                  <span class="filter-chip">
+                    <i class="fa-solid fa-shield-halved chip-icon"></i> Level:
+                    <strong>Full Access</strong>
+                    <i class="fa-solid fa-xmark chip-remove-btn"></i>
+                  </span>
+
+                  <span class="filter-chip">
+                    <i class="fa-solid fa-user-gear chip-icon"></i> Class:
+                    <strong>System Roles</strong>
+                    <i class="fa-solid fa-xmark chip-remove-btn"></i>
+                  </span>
+
+                  <button class="btn btn-link text-muted p-0 border-0 btn-clear-all-chips ms-auto">
+                    <i class="fa-solid fa-trash-can me-1"></i> Clear All
+                  </button>
+                </div>
+
+                <!-- Expandable Smart Filter Matrix -->
+                <div class="collapse mb-4" id="rolesFilterMatrixCollapse">
+                  <div class="smart-filter-matrix mb-3">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom"
+                    >
+                      <span class="fw-bold small text-muted text-uppercase tracking-wider">
+                        <i class="fa-solid fa-sliders text-primary me-2"></i>Filter Criteria Matrix
+                      </span>
+                      <span class="text-muted small">Select criteria to refine results</span>
+                    </div>
+                    <div class="row g-3">
+                      <div class="col-md-4">
+                        <label class="form-label small fw-semibold text-muted">Module Scope</label>
+                        <select class="form-select form-select-sm rounded-3 filter-select w-100">
+                          <option selected value="">All Modules</option>
+                          <option value="Employees">Employees</option>
+                          <option value="Payroll">Payroll</option>
+                          <option value="Recruitment">Recruitment</option>
+                          <option value="Reports">Reports</option>
+                          <option value="Settings">Settings</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label small fw-semibold text-muted"
+                          >Permission Level</label
+                        >
+                        <select class="form-select form-select-sm rounded-3 filter-select w-100">
+                          <option selected value="">All Permission Levels</option>
+                          <option value="FullAccess">Full Access (Read/Write)</option>
+                          <option value="ReadOnly">Read Only</option>
+                          <option value="NoAccess">Restricted / No Access</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label small fw-semibold text-muted"
+                          >Role Classification</label
+                        >
+                        <select class="form-select form-select-sm rounded-3 filter-select w-100">
+                          <option selected value="">All Classifications</option>
+                          <option value="SystemAdmin">System Roles</option>
+                          <option value="Departmental">Departmental Roles</option>
+                          <option value="Custom">Custom Roles</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div
+                      class="d-flex align-items-center justify-content-end gap-2 mt-3 pt-2 border-top"
+                    >
+                      <button
+                        class="btn btn-sm btn-pastel-cyan px-4 rounded-3"
+                        type="button"
+                        id="applyRolesFilterBtn"
+                      >
+                        <i class="fa-solid fa-check me-1"></i> Apply Filter
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Permission Matrix Table (country-style app-list-table with interactive checkboxes) -->
+                <div class="table-responsive rounded-3 mb-3 app-table-scroll">
+                  <table class="app-list-table" id="rolesPermissionTable">
+                    <thead>
+                      <tr>
+                        <th style="width: 36px">
+                          <input
+                            type="checkbox"
+                            id="selectAllRoles"
+                            aria-label="Select all roles"
+                          />
+                        </th>
+                        <th>Role</th>
+                        <th>Classification</th>
+                        <th class="text-center">Employees</th>
+                        <th class="text-center">Payroll</th>
+                        <th class="text-center">Recruitment</th>
+                        <th class="text-center">Reports</th>
+                        <th class="text-center">Settings</th>
+                        <th>Created By</th>
+                        <th>Updated At</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Admin -->
+                      <tr>
+                        <td>
+                          <input type="checkbox" class="role-row-check" aria-label="Select Admin" />
+                        </td>
+                        <td>
+                          <span class="d-flex align-items-center gap-2">
+                            <span class="badge badge-soft badge-blue"
+                              ><i class="fa-solid fa-user-gear me-1"></i>Admin</span
+                            >
+                          </span>
+                        </td>
+                        <td><span class="badge badge-soft badge-slate">System Role</span></td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Employees access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Payroll access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Recruitment access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Reports access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Settings access"
+                          />
+                        </td>
+                        <td><span class="extra-small text-muted">System</span></td>
+                        <td><span class="extra-small text-muted">May 1, 2026</span></td>
+                      </tr>
+                      <!-- HR Manager -->
+                      <tr>
+                        <td>
+                          <input
+                            type="checkbox"
+                            class="role-row-check"
+                            aria-label="Select HR Manager"
+                          />
+                        </td>
+                        <td>
+                          <span class="d-flex align-items-center gap-2">
+                            <span class="badge badge-soft badge-green"
+                              ><i class="fa-solid fa-users-gear me-1"></i>HR Manager</span
+                            >
+                          </span>
+                        </td>
+                        <td><span class="badge badge-soft badge-slate">System Role</span></td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Employees access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Payroll access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Recruitment access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Reports access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            aria-label="Settings access"
+                          />
+                        </td>
+                        <td><span class="extra-small text-muted">System</span></td>
+                        <td><span class="extra-small text-muted">May 1, 2026</span></td>
+                      </tr>
+                      <!-- Payroll Officer -->
+                      <tr>
+                        <td>
+                          <input
+                            type="checkbox"
+                            class="role-row-check"
+                            aria-label="Select Payroll Officer"
+                          />
+                        </td>
+                        <td>
+                          <span class="d-flex align-items-center gap-2">
+                            <span class="badge badge-soft badge-purple"
+                              ><i class="fa-solid fa-wallet me-1"></i>Payroll Officer</span
+                            >
+                          </span>
+                        </td>
+                        <td><span class="badge badge-soft badge-slate">Departmental</span></td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Employees access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Payroll access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            aria-label="Recruitment access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Reports access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            aria-label="Settings access"
+                          />
+                        </td>
+                        <td><span class="extra-small text-muted">admin</span></td>
+                        <td><span class="extra-small text-muted">May 3, 2026</span></td>
+                      </tr>
+                      <!-- Recruiter -->
+                      <tr>
+                        <td>
+                          <input
+                            type="checkbox"
+                            class="role-row-check"
+                            aria-label="Select Recruiter"
+                          />
+                        </td>
+                        <td>
+                          <span class="d-flex align-items-center gap-2">
+                            <span class="badge badge-soft badge-amber"
+                              ><i class="fa-solid fa-user-plus me-1"></i>Recruiter</span
+                            >
+                          </span>
+                        </td>
+                        <td><span class="badge badge-soft badge-slate">Departmental</span></td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Employees access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            aria-label="Payroll access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            checked
+                            aria-label="Recruitment access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            aria-label="Reports access"
+                          />
+                        </td>
+                        <td class="text-center">
+                          <input
+                            type="checkbox"
+                            class="form-check-input perm-check"
+                            aria-label="Settings access"
+                          />
+                        </td>
+                        <td><span class="extra-small text-muted">hr.admin</span></td>
+                        <td><span class="extra-small text-muted">May 5, 2026</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Enterprise Table Footer & Pagination -->
+                <div
+                  class="app-table-footer"
+                  role="region"
+                  aria-label="Roles table pagination footer"
+                >
+                  <!-- Left Zone: Counter & Rows per page -->
+                  <div class="app-footer-left">
+                    <div class="app-footer-counter">
+                      <span id="rolesResultCount"
+                        >Showing <strong>1 – 4</strong> of <strong>4</strong> items</span
+                      >
+                    </div>
+                    <div class="app-footer-divider"></div>
+                    <div class="app-page-size-picker">
+                      <span>Rows per page:</span>
+                      <select
+                        id="rolesPageSizeSelect"
+                        class="app-size-select"
+                        aria-label="Rows per page"
+                      >
+                        <option value="10" selected>10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Center Zone: Quick Jump Widget -->
+                  <div class="app-footer-center">
+                    <span class="app-jump-label"
+                      ><i class="fa-solid fa-arrow-right-to-line me-1"></i>Go to page:</span
+                    >
+                    <form id="rolesPageJumpForm" class="app-jump-form" onsubmit="return false;">
+                      <input
+                        type="number"
+                        id="rolesJumpInput"
+                        class="app-jump-input"
+                        value="1"
+                        min="1"
+                        max="1"
+                        aria-label="Target page number"
+                      />
+                      <span class="app-jump-total">/ <span id="rolesTotalPages">1</span></span>
+                      <button
+                        type="submit"
+                        class="app-jump-btn"
+                        id="rolesJumpGoBtn"
+                        title="Jump to page"
+                      >
+                        <i class="fa-solid fa-arrow-right"></i>
+                      </button>
+                    </form>
+                  </div>
+
+                  <!-- Right Zone: Page Control Buttons -->
+                  <div
+                    class="app-footer-right"
+                    role="navigation"
+                    aria-label="Pagination Navigation"
+                  >
+                    <button
+                      class="app-page-btn"
+                      id="rolesFirstBtn"
+                      disabled
+                      title="First page"
+                      aria-label="First page"
+                    >
+                      <i class="fa-solid fa-angles-left"></i>
+                    </button>
+                    <button
+                      class="app-page-btn"
+                      id="rolesPrevBtn"
+                      disabled
+                      title="Previous page"
+                      aria-label="Previous page"
+                    >
+                      <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <div class="d-flex align-items-center gap-1" id="rolesPageNumbersGroup">
+                      <button class="app-page-btn app-page-btn--active" aria-current="page">
+                        1
+                      </button>
+                    </div>
+
+                    <button
+                      class="app-page-btn"
+                      id="rolesNextBtn"
+                      disabled
+                      title="Next page"
+                      aria-label="Next page"
+                    >
+                      <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <button
+                      class="app-page-btn"
+                      id="rolesLastBtn"
+                      disabled
+                      title="Last page"
+                      aria-label="Last page"
+                    >
+                      <i class="fa-solid fa-angles-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 4: NOTIFICATIONS -->
+            <div
+              class="tab-pane"
+              id="tab-notifications"
+              role="tabpanel"
+              aria-labelledby="notifications-tab"
             >
-            <h2 class="fw-bold text-dark mb-2" style="font-size: 1.75rem">
-              Settings - Feature Under Development
-            </h2>
-            <p
-              class="text-muted mb-4"
-              style="font-size: 0.95rem; line-height: 1.6"
+              <!-- Top Row: Notification Channels & System Preferences -->
+              <div class="control-center-banner mb-4">
+                <div
+                  class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-3 pb-3 border-bottom"
+                >
+                  <div class="d-flex align-items-center gap-3">
+                    <div
+                      class="rounded-3 d-flex align-items-center justify-content-center bg-white shadow-sm text-warning"
+                      style="width: 48px; height: 48px; font-size: 1.5rem; flex-shrink: 0"
+                    >
+                      <i class="fa-solid fa-bell"></i>
+                    </div>
+                    <div>
+                      <h5 class="fw-bold text-dark mb-0">Notification Channels & Preferences</h5>
+                      <p class="text-muted small mb-0">
+                        Manage real-time desktop alerts, email digests, and SMS maintenance
+                        broadcasts
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-pastel-indigo text-nowrap flex-shrink-0 d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-3 shadow-xs font-semibold align-self-start align-self-md-center"
+                  >
+                    <i class="fa-solid fa-sliders"></i> Quick Preferences
+                  </button>
+                </div>
+
+                <div class="row g-3">
+                  <!-- Email Notifications -->
+                  <div class="col-xl-4 col-md-6 col-12">
+                    <div
+                      class="toggle-card-item d-flex align-items-center justify-content-between gap-2"
+                    >
+                      <div class="d-flex align-items-center gap-3 min-w-0">
+                        <div class="timeline-icon-box timeline-icon-blue flex-shrink-0">
+                          <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="min-w-0">
+                          <div class="fw-bold text-dark style-sm text-truncate">
+                            Email Notifications
+                          </div>
+                          <div class="text-muted extra-small text-truncate">
+                            System activity & leave alerts
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="text-success extra-small font-semibold">On</span>
+                        <div class="form-check form-switch m-0">
+                          <input class="form-check-input" type="checkbox" role="switch" checked />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Push Notifications -->
+                  <div class="col-xl-4 col-md-6 col-12">
+                    <div
+                      class="toggle-card-item d-flex align-items-center justify-content-between gap-2"
+                    >
+                      <div class="d-flex align-items-center gap-3 min-w-0">
+                        <div class="timeline-icon-box timeline-icon-purple flex-shrink-0">
+                          <i class="fa-solid fa-desktop"></i>
+                        </div>
+                        <div class="min-w-0">
+                          <div class="fw-bold text-dark style-sm text-truncate">
+                            Push Notifications
+                          </div>
+                          <div class="text-muted extra-small text-truncate">
+                            Real-time browser popups
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="text-success extra-small font-semibold">On</span>
+                        <div class="form-check form-switch m-0">
+                          <input class="form-check-input" type="checkbox" role="switch" checked />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SMS Broadcasts -->
+                  <div class="col-xl-4 col-md-6 col-12">
+                    <div
+                      class="toggle-card-item d-flex align-items-center justify-content-between gap-2"
+                    >
+                      <div class="d-flex align-items-center gap-3 min-w-0">
+                        <div class="timeline-icon-box timeline-icon-orange flex-shrink-0">
+                          <i class="fa-solid fa-comment-sms"></i>
+                        </div>
+                        <div class="min-w-0">
+                          <div class="fw-bold text-dark style-sm text-truncate">SMS Broadcasts</div>
+                          <div class="text-muted extra-small text-truncate">
+                            Urgent security & maintenance
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="text-muted extra-small font-semibold">Off</span>
+                        <div class="form-check form-switch m-0">
+                          <input class="form-check-input" type="checkbox" role="switch" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Section 1: Notification Templates (col-lg-8) + Notification History (col-lg-4) -->
+              <div class="row g-4 mb-4">
+                <!-- Left: Notification Templates Card (col-lg-8) -->
+                <div class="col-lg-8">
+                  <div class="erp-card p-4 shadow-sm h-100">
+                    <!-- Unified Header + Command Dock (1 bar) -->
+                    <div
+                      class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3 pb-3 filter-toolbar-border"
+                    >
+                      <!-- Left: Title + Badge + Search + Filter -->
+                      <div class="d-flex flex-wrap align-items-center gap-2">
+                        <h5 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2 me-1">
+                          <i class="fa-solid fa-message text-warning"></i>
+                          <span>Notification Templates</span>
+                        </h5>
+                        <div class="action-bar-divider mx-1"></div>
+                        <div class="position-relative" style="min-width: 190px">
+                          <i
+                            class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 filter-search-icon"
+                          ></i>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm ps-5 pe-3 rounded-3 filter-input"
+                            placeholder="Search templates..."
+                          />
+                        </div>
+                        <button
+                          class="btn btn-sm btn-pastel-slate d-inline-flex align-items-center gap-2 px-3 rounded-3"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#notifFilterCollapse"
+                          aria-expanded="false"
+                        >
+                          <i class="fa-solid fa-sliders text-primary"></i> Filter
+                          <span class="badge-soft badge-blue ms-1">10</span>
+                        </button>
+                      </div>
+                      <!-- Right: CUD IO Buttons -->
+                      <div class="d-flex align-items-center gap-2 flex-wrap ms-auto">
+                        <div class="d-flex align-items-center gap-2">
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-pastel-green d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                            data-bs-toggle="modal"
+                            data-bs-target="#createNotificationTemplateModal"
+                          >
+                            <i class="fa-solid fa-plus"></i> Create
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-pastel-orange d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                            data-bs-toggle="modal"
+                            data-bs-target="#createNotificationTemplateModal"
+                          >
+                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-pastel-red d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                          >
+                            <i class="fa-solid fa-trash-can"></i> Delete
+                          </button>
+                        </div>
+                        <div class="action-bar-divider mx-1"></div>
+                        <div class="d-flex align-items-center gap-2">
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                          >
+                            <i class="fa-solid fa-file-import"></i> Import
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                          >
+                            <i class="fa-solid fa-file-export"></i> Export
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Active Filter Chips Bar (inline compact) -->
+                    <div class="active-filter-chips-bar mb-2">
+                      <span class="text-muted extra-small fw-semibold me-1">Filters:</span>
+                      <span class="filter-chip">
+                        <i class="fa-solid fa-circle-check chip-icon text-primary"></i> Category:
+                        <strong>In-App</strong>
+                        <i class="fa-solid fa-xmark chip-remove-btn"></i>
+                      </span>
+                      <span class="filter-chip">
+                        <i class="fa-solid fa-bolt chip-icon text-warning"></i> Trigger:
+                        <strong>Leave Approval</strong>
+                        <i class="fa-solid fa-xmark chip-remove-btn"></i>
+                      </span>
+                      <button
+                        type="button"
+                        class="btn btn-link text-muted p-0 border-0 btn-clear-all-chips ms-auto extra-small"
+                      >
+                        <i class="fa-solid fa-trash-can me-1"></i> Clear All
+                      </button>
+                    </div>
+
+                    <!-- Expandable Smart Filter Matrix -->
+                    <div class="collapse mb-3" id="notifFilterCollapse">
+                      <div class="smart-filter-matrix">
+                        <div
+                          class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom"
+                        >
+                          <span class="fw-bold small text-muted text-uppercase tracking-wider">
+                            <i class="fa-solid fa-sliders text-primary me-2"></i>Filter Criteria
+                            Matrix
+                          </span>
+                          <span class="text-muted small">Select criteria to refine results</span>
+                        </div>
+                        <div class="row g-3">
+                          <div class="col-md-4">
+                            <label class="form-label small fw-semibold text-muted"
+                              >Alert Category</label
+                            >
+                            <select
+                              class="form-select form-select-sm rounded-3 filter-select w-100"
+                            >
+                              <option selected value="">All Alert Types</option>
+                              <option value="In-App Alert">In-App Alert</option>
+                              <option value="Push Notice">Push Notice</option>
+                              <option value="System Banner">System Banner</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="form-label small fw-semibold text-muted"
+                              >Trigger Event</label
+                            >
+                            <select
+                              class="form-select form-select-sm rounded-3 filter-select w-100"
+                            >
+                              <option selected value="">All Triggers</option>
+                              <option value="Leave Approval">Leave Approval</option>
+                              <option value="Payroll Publication">Payroll Publication</option>
+                              <option value="System Event">System Event</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="form-label small fw-semibold text-muted"
+                              >Operational Status</label
+                            >
+                            <select
+                              class="form-select form-select-sm rounded-3 filter-select w-100"
+                            >
+                              <option selected value="">All Statuses</option>
+                              <option value="Active">Active</option>
+                              <option value="Inactive">Inactive</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          class="d-flex align-items-center justify-content-end gap-2 mt-3 pt-2 border-top"
+                        >
+                          <button class="btn btn-sm btn-pastel-cyan px-4 rounded-3" type="button">
+                            <i class="fa-solid fa-check me-1"></i> Apply Filter
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Notification Templates List (Full-width grid, scrollable) -->
+                    <div class="template-scroll-grid">
+                      <div class="row g-2">
+                        <!-- Item 1 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Leave Request Submitted</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-blue extra-small">In-App Alert</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Trigger: <strong>Leave Approval Module</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small font-monospace"
+                            >
+                              "[Employee Name] has submitted a new leave request for [Dates]."
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Payslip Ready Notice</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-purple extra-small">Push Notice</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Trigger: <strong>Payroll Publication</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small font-monospace"
+                            >
+                              "Your payslip for [Month/Year] is ready for download."
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >System Maintenance Warning</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-amber extra-small">System Banner</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Trigger: <strong>System Scheduled Event</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small font-monospace"
+                            >
+                              "System maintenance will begin at [Time]. Save your work."
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 4 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Attendance Anomaly Alert</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-red extra-small">Push Notice</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Trigger: <strong>Attendance Audit Engine</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small font-monospace"
+                            >
+                              "Unexcused absence recorded for [Employee Name] on [Date]."
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 5 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Overtime Request Approval</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-green extra-small">In-App Alert</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Trigger: <strong>OT Approval Workflow</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small font-monospace"
+                            >
+                              "Your overtime request for [Hours] hrs on [Date] has been approved."
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 6 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Performance Review Milestone</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-indigo extra-small">In-App Alert</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Trigger: <strong>KPI Evaluation Module</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small font-monospace"
+                            >
+                              "Q3 Performance Review form is now open for self-assessment."
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 7 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Security Login from New IP</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-red extra-small">System Banner</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Trigger: <strong>Audit Guard Service</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small font-monospace"
+                            >
+                              "New login detected from IP [IP_Address] ([Location])."
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 8 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Document Expiration Warning</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-slate extra-small">Push Notice</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Trigger: <strong>Compliance Engine</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small font-monospace"
+                            >
+                              "Work permit for [Employee Name] expires in 30 days."
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 9 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Shift Roster Published</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-blue extra-small">In-App Alert</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Trigger: <strong>Roster Scheduler</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small font-monospace"
+                            >
+                              "New work shift roster for next week has been published."
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 10 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Probation Review Passed</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-green extra-small">Push Notice</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Trigger: <strong>HR Onboarding Engine</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small font-monospace"
+                            >
+                              "Congratulations! Your probation period has been completed."
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Notification Templates Pagination Footer -->
+                    <div
+                      class="app-table-footer mt-3"
+                      role="region"
+                      aria-label="Notification templates pagination footer"
+                    >
+                      <!-- Left Zone: Counter & Rows per page -->
+                      <div class="app-footer-left">
+                        <div class="app-footer-counter">
+                          <span id="notifTplResultCount"
+                            >Showing <strong>1 – 10</strong> of <strong>10</strong> items</span
+                          >
+                        </div>
+                        <div class="app-footer-divider"></div>
+                        <div class="app-page-size-picker">
+                          <span>Rows per page:</span>
+                          <select
+                            id="notifTplPageSizeSelect"
+                            class="app-size-select"
+                            aria-label="Rows per page"
+                          >
+                            <option value="5">5</option>
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Center Zone: Quick Jump Widget -->
+                      <div class="app-footer-center">
+                        <span class="app-jump-label"
+                          ><i class="fa-solid fa-arrow-right-to-line me-1"></i>Go to page:</span
+                        >
+                        <form
+                          id="notifTplPageJumpForm"
+                          class="app-jump-form"
+                          onsubmit="return false;"
+                        >
+                          <input
+                            type="number"
+                            id="notifTplJumpInput"
+                            class="app-jump-input"
+                            value="1"
+                            min="1"
+                            max="1"
+                            aria-label="Target page number"
+                          />
+                          <span class="app-jump-total"
+                            >/ <span id="notifTplTotalPages">1</span></span
+                          >
+                          <button
+                            type="submit"
+                            class="app-jump-btn"
+                            id="notifTplJumpGoBtn"
+                            title="Jump to page"
+                          >
+                            <i class="fa-solid fa-arrow-right"></i>
+                          </button>
+                        </form>
+                      </div>
+
+                      <!-- Right Zone: Page Control Buttons -->
+                      <div
+                        class="app-footer-right"
+                        role="navigation"
+                        aria-label="Notification templates pagination"
+                      >
+                        <button
+                          class="app-page-btn"
+                          id="notifTplFirstBtn"
+                          disabled
+                          title="First page"
+                          aria-label="First page"
+                        >
+                          <i class="fa-solid fa-angles-left"></i>
+                        </button>
+                        <button
+                          class="app-page-btn"
+                          id="notifTplPrevBtn"
+                          disabled
+                          title="Previous page"
+                          aria-label="Previous page"
+                        >
+                          <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+
+                        <div class="d-flex align-items-center gap-1" id="notifTplPageNumbersGroup">
+                          <button class="app-page-btn app-page-btn--active" aria-current="page">
+                            1
+                          </button>
+                        </div>
+
+                        <button
+                          class="app-page-btn"
+                          id="notifTplNextBtn"
+                          disabled
+                          title="Next page"
+                          aria-label="Next page"
+                        >
+                          <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <button
+                          class="app-page-btn"
+                          id="notifTplLastBtn"
+                          disabled
+                          title="Last page"
+                          aria-label="Last page"
+                        >
+                          <i class="fa-solid fa-angles-right"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right: Notification History Card (col-lg-4) -->
+                <div class="col-lg-4">
+                  <div
+                    class="erp-card p-4 shadow-sm h-100 d-flex flex-column justify-content-between"
+                  >
+                    <div>
+                      <!-- Header Title -->
+                      <div
+                        class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-3"
+                      >
+                        <h5 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2">
+                          <i class="fa-solid fa-clock-rotate-left text-warning"></i>
+                          <span>Notification History</span>
+                        </h5>
+                        <span class="badge-soft badge-amber extra-small"
+                          ><i class="fa-solid fa-clock-rotate-left me-1"></i>Recent Logs</span
+                        >
+                      </div>
+
+                      <!-- History Items List -->
+                      <div class="d-flex flex-column gap-3">
+                        <!-- History 1 -->
+                        <div
+                          class="p-3 rounded-3 border bg-body-tertiary shadow-xs d-flex flex-column gap-1.5"
+                        >
+                          <div class="d-flex align-items-center justify-content-between">
+                            <span class="fw-bold text-dark style-sm">Leave Approval Alert</span>
+                            <span class="badge-soft badge-green extra-small"
+                              ><i class="fa-solid fa-circle-check me-1"></i>Delivered</span
+                            >
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between text-muted extra-small"
+                          >
+                            <span>To: <strong>Alex Johnson</strong></span>
+                            <span>10 mins ago</span>
+                          </div>
+                        </div>
+
+                        <!-- History 2 -->
+                        <div
+                          class="p-3 rounded-3 border bg-body-tertiary shadow-xs d-flex flex-column gap-1.5"
+                        >
+                          <div class="d-flex align-items-center justify-content-between">
+                            <span class="fw-bold text-dark style-sm">Payslip Ready Notice</span>
+                            <span class="badge-soft badge-blue extra-small"
+                              ><i class="fa-solid fa-paper-plane me-1"></i>Sent (142)</span
+                            >
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between text-muted extra-small"
+                          >
+                            <span>To: <strong>All Active Staff</strong></span>
+                            <span>1 hour ago</span>
+                          </div>
+                        </div>
+
+                        <!-- History 3 -->
+                        <div
+                          class="p-3 rounded-3 border bg-body-tertiary shadow-xs d-flex flex-column gap-1.5"
+                        >
+                          <div class="d-flex align-items-center justify-content-between">
+                            <span class="fw-bold text-dark style-sm"
+                              >System Maintenance Banner</span
+                            >
+                            <span class="badge-soft badge-amber extra-small"
+                              ><i class="fa-solid fa-eye me-1"></i>Broadcast</span
+                            >
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between text-muted extra-small"
+                          >
+                            <span>To: <strong>System Wide</strong></span>
+                            <span>3 hours ago</span>
+                          </div>
+                        </div>
+
+                        <!-- History 4 -->
+                        <div
+                          class="p-3 rounded-3 border bg-body-tertiary shadow-xs d-flex flex-column gap-1.5"
+                        >
+                          <div class="d-flex align-items-center justify-content-between">
+                            <span class="fw-bold text-dark style-sm">Security Login Warning</span>
+                            <span class="badge-soft badge-red extra-small"
+                              ><i class="fa-solid fa-triangle-exclamation me-1"></i>Alert</span
+                            >
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between text-muted extra-small"
+                          >
+                            <span>To: <strong>Spencer Davis</strong></span>
+                            <span>5 hours ago</span>
+                          </div>
+                        </div>
+
+                        <!-- History 5 -->
+                        <div
+                          class="p-3 rounded-3 border bg-body-tertiary shadow-xs d-flex flex-column gap-1.5"
+                        >
+                          <div class="d-flex align-items-center justify-content-between">
+                            <span class="fw-bold text-dark style-sm"
+                              >Overtime Request Approval</span
+                            >
+                            <span class="badge-soft badge-green extra-small"
+                              ><i class="fa-solid fa-circle-check me-1"></i>Delivered</span
+                            >
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between text-muted extra-small"
+                          >
+                            <span>To: <strong>Sarah Connor</strong></span>
+                            <span>Yesterday</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Card Footer Button -->
+                    <div class="pt-3 border-top mt-3">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-pastel-slate w-100 rounded-3 extra-small font-semibold py-2"
+                      >
+                        <i class="fa-solid fa-list me-1.5"></i> View Full Audit Log
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 2: Email Templates (col-lg-8) + Email History (col-lg-4) -->
+              <div class="row g-4">
+                <!-- Left: Email Templates Card (col-lg-8) -->
+                <div class="col-lg-8">
+                  <div class="erp-card p-4 shadow-sm h-100">
+                    <!-- Unified Header + Command Dock (1 bar) -->
+                    <div
+                      class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3 pb-3 filter-toolbar-border"
+                    >
+                      <!-- Left: Title + Badge + Search + Filter -->
+                      <div class="d-flex flex-wrap align-items-center gap-2">
+                        <h5 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2 me-1">
+                          <i class="fa-solid fa-envelope-open-text text-primary"></i>
+                          <span>Email Templates</span>
+                        </h5>
+                        <div class="action-bar-divider mx-1"></div>
+                        <div class="position-relative" style="min-width: 190px">
+                          <i
+                            class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 filter-search-icon"
+                          ></i>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm ps-5 pe-3 rounded-3 filter-input"
+                            placeholder="Search email templates..."
+                          />
+                        </div>
+                        <button
+                          class="btn btn-sm btn-pastel-slate d-inline-flex align-items-center gap-2 px-3 rounded-3"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#emailFilterCollapse"
+                          aria-expanded="false"
+                        >
+                          <i class="fa-solid fa-sliders text-primary"></i> Filter
+                          <span class="badge-soft badge-blue ms-1">6</span>
+                        </button>
+                      </div>
+                      <!-- Right: CUD IO Buttons -->
+                      <div class="d-flex align-items-center gap-2 flex-wrap ms-auto">
+                        <div class="d-flex align-items-center gap-2">
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-pastel-green d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                            data-bs-toggle="modal"
+                            data-bs-target="#createEmailTemplateModal"
+                          >
+                            <i class="fa-solid fa-plus"></i> Create
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-pastel-orange d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                            data-bs-toggle="modal"
+                            data-bs-target="#createEmailTemplateModal"
+                          >
+                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-pastel-red d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                          >
+                            <i class="fa-solid fa-trash-can"></i> Delete
+                          </button>
+                        </div>
+                        <div class="action-bar-divider mx-1"></div>
+                        <div class="d-flex align-items-center gap-2">
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                          >
+                            <i class="fa-solid fa-file-import"></i> Import
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                          >
+                            <i class="fa-solid fa-file-export"></i> Export
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Active Filter Chips Bar (inline compact) -->
+                    <div class="active-filter-chips-bar mb-2">
+                      <span class="text-muted extra-small fw-semibold me-1">Filters:</span>
+                      <span class="filter-chip">
+                        <i class="fa-solid fa-folder chip-icon text-primary"></i> Category:
+                        <strong>Onboarding</strong>
+                        <i class="fa-solid fa-xmark chip-remove-btn"></i>
+                      </span>
+                      <span class="filter-chip">
+                        <i class="fa-solid fa-code chip-icon text-indigo"></i> Format:
+                        <strong>HTML Engine</strong>
+                        <i class="fa-solid fa-xmark chip-remove-btn"></i>
+                      </span>
+                      <button
+                        type="button"
+                        class="btn btn-link text-muted p-0 border-0 btn-clear-all-chips ms-auto extra-small"
+                      >
+                        <i class="fa-solid fa-trash-can me-1"></i> Clear All
+                      </button>
+                    </div>
+
+                    <!-- Expandable Smart Filter Matrix -->
+                    <div class="collapse mb-3" id="emailFilterCollapse">
+                      <div class="smart-filter-matrix">
+                        <div
+                          class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom"
+                        >
+                          <span class="fw-bold small text-muted text-uppercase tracking-wider">
+                            <i class="fa-solid fa-sliders text-primary me-2"></i>Filter Criteria
+                            Matrix
+                          </span>
+                          <span class="text-muted small">Select criteria to refine results</span>
+                        </div>
+                        <div class="row g-3">
+                          <div class="col-md-4">
+                            <label class="form-label small fw-semibold text-muted">Category</label>
+                            <select
+                              class="form-select form-select-sm rounded-3 filter-select w-100"
+                            >
+                              <option selected value="">All Categories</option>
+                              <option value="Onboarding">Onboarding</option>
+                              <option value="HR Operations">HR Operations</option>
+                              <option value="Security">Security</option>
+                              <option value="Payroll">Payroll</option>
+                              <option value="Finance">Finance</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="form-label small fw-semibold text-muted"
+                              >Format Engine</label
+                            >
+                            <select
+                              class="form-select form-select-sm rounded-3 filter-select w-100"
+                            >
+                              <option selected value="">All Formats</option>
+                              <option value="HTML Engine">HTML Engine</option>
+                              <option value="Plain Text">Plain Text</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="form-label small fw-semibold text-muted"
+                              >Operational Status</label
+                            >
+                            <select
+                              class="form-select form-select-sm rounded-3 filter-select w-100"
+                            >
+                              <option selected value="">All Statuses</option>
+                              <option value="Active">Active</option>
+                              <option value="Draft">Draft</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          class="d-flex align-items-center justify-content-end gap-2 mt-3 pt-2 border-top"
+                        >
+                          <button class="btn btn-sm btn-pastel-cyan px-4 rounded-3" type="button">
+                            <i class="fa-solid fa-check me-1"></i> Apply Filter
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Email Templates List (Full-width grid, scrollable) -->
+                    <div class="template-scroll-grid">
+                      <div class="row g-2">
+                        <!-- Item 1 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Welcome New Employee</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-green extra-small">Onboarding</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Subject: <strong>Welcome to Acme Corp! Set up your profile</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small"
+                            >
+                              <i class="fa-solid fa-code text-primary me-1"></i> HTML Layout &bull;
+                              Auto-sent on account creation
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Leave Approval Status</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-blue extra-small">HR Operations</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Subject:
+                              <strong>Your Leave Request for [Dates] has been [Status]</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small"
+                            >
+                              <i class="fa-solid fa-code text-primary me-1"></i> HTML Layout &bull;
+                              Auto-sent on manager action
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Password Security Reset</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-purple extra-small">Security</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Subject: <strong>Security Notice: Password Reset Link</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small"
+                            >
+                              <i class="fa-solid fa-code text-primary me-1"></i> HTML Layout &bull;
+                              Sent on reset trigger
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 4 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Monthly Payslip Statement</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-indigo extra-small">Payroll</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Subject:
+                              <strong>Official Monthly Payslip Statement - [Month/Year]</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small"
+                            >
+                              <i class="fa-solid fa-code text-primary me-1"></i> HTML Layout &bull;
+                              Auto-dispatched on payroll finalize
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 5 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Annual Performance Review</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-amber extra-small">HR Operations</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Subject: <strong>Action Required: Schedule 2026 Annual Review</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small"
+                            >
+                              <i class="fa-solid fa-code text-primary me-1"></i> HTML Layout &bull;
+                              Sent on annual appraisal cycle
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item 6 -->
+                        <div class="col-12">
+                          <div
+                            class="p-2 border rounded-3 bg-body-tertiary d-flex flex-column gap-1"
+                          >
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center gap-2">
+                                <input class="form-check-input m-0 flex-shrink-0" type="checkbox" />
+                                <span class="fw-semibold text-dark extra-small"
+                                  >Expense Claim Approval Notice</span
+                                >
+                              </div>
+                              <span class="badge-soft badge-slate extra-small">Finance</span>
+                            </div>
+                            <div class="text-muted extra-small ms-4">
+                              Subject:
+                              <strong>Expense Claim #[Claim_ID] Approved for Payout</strong>
+                            </div>
+                            <div
+                              class="px-2 py-1 bg-surface rounded-2 border border-light-subtle text-muted extra-small"
+                            >
+                              <i class="fa-solid fa-code text-primary me-1"></i> HTML Layout &bull;
+                              Sent on finance payout approval
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Email Templates Pagination Footer -->
+                    <div
+                      class="app-table-footer mt-3"
+                      role="region"
+                      aria-label="Email templates pagination footer"
+                    >
+                      <!-- Left Zone: Counter & Rows per page -->
+                      <div class="app-footer-left">
+                        <div class="app-footer-counter">
+                          <span id="emailTplResultCount"
+                            >Showing <strong>1 – 6</strong> of <strong>6</strong> items</span
+                          >
+                        </div>
+                        <div class="app-footer-divider"></div>
+                        <div class="app-page-size-picker">
+                          <span>Rows per page:</span>
+                          <select
+                            id="emailTplPageSizeSelect"
+                            class="app-size-select"
+                            aria-label="Rows per page"
+                          >
+                            <option value="5">5</option>
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Center Zone: Quick Jump Widget -->
+                      <div class="app-footer-center">
+                        <span class="app-jump-label"
+                          ><i class="fa-solid fa-arrow-right-to-line me-1"></i>Go to page:</span
+                        >
+                        <form
+                          id="emailTplPageJumpForm"
+                          class="app-jump-form"
+                          onsubmit="return false;"
+                        >
+                          <input
+                            type="number"
+                            id="emailTplJumpInput"
+                            class="app-jump-input"
+                            value="1"
+                            min="1"
+                            max="1"
+                            aria-label="Target page number"
+                          />
+                          <span class="app-jump-total"
+                            >/ <span id="emailTplTotalPages">1</span></span
+                          >
+                          <button
+                            type="submit"
+                            class="app-jump-btn"
+                            id="emailTplJumpGoBtn"
+                            title="Jump to page"
+                          >
+                            <i class="fa-solid fa-arrow-right"></i>
+                          </button>
+                        </form>
+                      </div>
+
+                      <!-- Right Zone: Page Control Buttons -->
+                      <div
+                        class="app-footer-right"
+                        role="navigation"
+                        aria-label="Email templates pagination"
+                      >
+                        <button
+                          class="app-page-btn"
+                          id="emailTplFirstBtn"
+                          disabled
+                          title="First page"
+                          aria-label="First page"
+                        >
+                          <i class="fa-solid fa-angles-left"></i>
+                        </button>
+                        <button
+                          class="app-page-btn"
+                          id="emailTplPrevBtn"
+                          disabled
+                          title="Previous page"
+                          aria-label="Previous page"
+                        >
+                          <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+
+                        <div class="d-flex align-items-center gap-1" id="emailTplPageNumbersGroup">
+                          <button class="app-page-btn app-page-btn--active" aria-current="page">
+                            1
+                          </button>
+                        </div>
+
+                        <button
+                          class="app-page-btn"
+                          id="emailTplNextBtn"
+                          disabled
+                          title="Next page"
+                          aria-label="Next page"
+                        >
+                          <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <button
+                          class="app-page-btn"
+                          id="emailTplLastBtn"
+                          disabled
+                          title="Last page"
+                          aria-label="Last page"
+                        >
+                          <i class="fa-solid fa-angles-right"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right: Email History Card (col-lg-4) -->
+                <div class="col-lg-4">
+                  <div
+                    class="erp-card p-4 shadow-sm h-100 d-flex flex-column justify-content-between"
+                  >
+                    <div>
+                      <!-- Header Title -->
+                      <div
+                        class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-3"
+                      >
+                        <h5 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2">
+                          <i class="fa-solid fa-history text-primary"></i>
+                          <span>Email History</span>
+                        </h5>
+                        <span class="badge-soft badge-purple extra-small"
+                          ><i class="fa-solid fa-server me-1"></i>SMTP Logs</span
+                        >
+                      </div>
+
+                      <!-- History Items List -->
+                      <div class="d-flex flex-column gap-3">
+                        <!-- History 1 -->
+                        <div
+                          class="p-3 rounded-3 border bg-body-tertiary shadow-xs d-flex flex-column gap-1.5"
+                        >
+                          <div class="d-flex align-items-center justify-content-between">
+                            <span class="fw-bold text-dark style-sm">Welcome New Employee</span>
+                            <span class="badge-soft badge-green extra-small"
+                              ><i class="fa-solid fa-envelope-open me-1"></i>Opened</span
+                            >
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between text-muted extra-small"
+                          >
+                            <span>To: <strong>michael.brown@acme.com</strong></span>
+                            <span>25 mins ago</span>
+                          </div>
+                        </div>
+
+                        <!-- History 2 -->
+                        <div
+                          class="p-3 rounded-3 border bg-body-tertiary shadow-xs d-flex flex-column gap-1.5"
+                        >
+                          <div class="d-flex align-items-center justify-content-between">
+                            <span class="fw-bold text-dark style-sm">Leave Approval Status</span>
+                            <span class="badge-soft badge-green extra-small"
+                              ><i class="fa-solid fa-circle-check me-1"></i>Delivered</span
+                            >
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between text-muted extra-small"
+                          >
+                            <span>To: <strong>emma.watson@acme.com</strong></span>
+                            <span>2 hours ago</span>
+                          </div>
+                        </div>
+
+                        <!-- History 3 -->
+                        <div
+                          class="p-3 rounded-3 border bg-body-tertiary shadow-xs d-flex flex-column gap-1.5"
+                        >
+                          <div class="d-flex align-items-center justify-content-between">
+                            <span class="fw-bold text-dark style-sm"
+                              >Monthly Payslip Statement</span
+                            >
+                            <span class="badge-soft badge-blue extra-small"
+                              ><i class="fa-solid fa-clock me-1"></i>Queued</span
+                            >
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between text-muted extra-small"
+                          >
+                            <span>To: <strong>finance-dept@acme.com</strong></span>
+                            <span>4 hours ago</span>
+                          </div>
+                        </div>
+
+                        <!-- History 4 -->
+                        <div
+                          class="p-3 rounded-3 border bg-body-tertiary shadow-xs d-flex flex-column gap-1.5"
+                        >
+                          <div class="d-flex align-items-center justify-content-between">
+                            <span class="fw-bold text-dark style-sm">Password Security Reset</span>
+                            <span class="badge-soft badge-purple extra-small"
+                              ><i class="fa-solid fa-key me-1"></i>Reset Used</span
+                            >
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between text-muted extra-small"
+                          >
+                            <span>To: <strong>david.miller@acme.com</strong></span>
+                            <span>6 hours ago</span>
+                          </div>
+                        </div>
+
+                        <!-- History 5 -->
+                        <div
+                          class="p-3 rounded-3 border bg-body-tertiary shadow-xs d-flex flex-column gap-1.5"
+                        >
+                          <div class="d-flex align-items-center justify-content-between">
+                            <span class="fw-bold text-dark style-sm">Expense Claim Approval</span>
+                            <span class="badge-soft badge-slate extra-small"
+                              ><i class="fa-solid fa-paperclip me-1"></i>Sent</span
+                            >
+                          </div>
+                          <div
+                            class="d-flex align-items-center justify-content-between text-muted extra-small"
+                          >
+                            <span>To: <strong>accounting@acme.com</strong></span>
+                            <span>Yesterday</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Card Footer Button -->
+                    <div class="pt-3 border-top mt-3">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-pastel-slate w-100 rounded-3 extra-small font-semibold py-2"
+                      >
+                        <i class="fa-solid fa-envelope-open-text me-1.5"></i> View Mail Log Archive
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 5: INTEGRATIONS & DATA -->
+            <div
+              class="tab-pane"
+              id="tab-integrations"
+              role="tabpanel"
+              aria-labelledby="integrations-tab"
             >
-              Chức năng Cài đặt Hệ thống đang trong quá trình phát triển và hoàn
-              thiện. Vui lòng quay lại sau!
-            </p>
-            <div class="d-flex justify-content-center">
-              <a
-                href="dashboard.html"
-                class="btn btn-primary px-4 py-2 font-semibold rounded-pill d-inline-flex align-items-center gap-2"
-              >
-                <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
-              </a>
+              <div class="erp-card p-4 shadow-sm mb-4">
+                <div
+                  class="d-flex align-items-center justify-content-between mb-4 border-bottom pb-3"
+                >
+                  <div>
+                    <h5 class="fw-bold text-dark mb-1">
+                      <i class="fa-solid fa-plug text-info me-2"></i>Connected Integrations
+                    </h5>
+                    <p class="text-muted small mb-0">Connect third-party apps and services</p>
+                  </div>
+                </div>
+
+                <div class="row g-3">
+                  <div class="col-md-6 col-xl-3">
+                    <div class="integration-app-card">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="integration-icon-box bg-light text-danger">
+                            <i class="fa-brands fa-slack fs-4"></i>
+                          </div>
+                          <div>
+                            <div class="fw-bold text-dark">Slack</div>
+                            <div class="text-success extra-small font-semibold">Connected</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-xl-3">
+                    <div class="integration-app-card">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="integration-icon-box bg-light text-primary">
+                            <i class="fa-brands fa-google fs-4"></i>
+                          </div>
+                          <div>
+                            <div class="fw-bold text-dark">Google Workspace</div>
+                            <div class="text-success extra-small font-semibold">Connected</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-xl-3">
+                    <div class="integration-app-card">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="integration-icon-box bg-light text-success">
+                            <i class="fa-solid fa-calculator fs-4"></i>
+                          </div>
+                          <div>
+                            <div class="fw-bold text-dark">QuickBooks</div>
+                            <div class="text-success extra-small font-semibold">Connected</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-xl-3">
+                    <div class="integration-app-card">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="integration-icon-box bg-light text-info">
+                            <i class="fa-solid fa-video fs-4"></i>
+                          </div>
+                          <div>
+                            <div class="fw-bold text-dark">Zoom</div>
+                            <div class="text-success extra-small font-semibold">Connected</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Data & Backup Card -->
+              <div class="erp-card p-4 shadow-sm">
+                <div
+                  class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-3"
+                >
+                  <div>
+                    <h5 class="fw-bold text-dark mb-0">
+                      <i class="fa-solid fa-database text-primary me-2"></i>Data & Backup
+                    </h5>
+                    <p class="text-muted small mb-0">Manage data storage, backups, and retention</p>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between extra-small font-semibold mb-1">
+                    <span>Storage Usage</span>
+                    <span class="text-primary fw-bold">68% (341 GB of 500 GB used)</span>
+                  </div>
+                  <div class="progress" style="height: 10px; border-radius: 9999px">
+                    <div
+                      class="progress-bar bg-primary"
+                      role="progressbar"
+                      style="width: 68%"
+                      aria-valuenow="68"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                </div>
+
+                <div
+                  class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2 extra-small text-muted pt-2"
+                >
+                  <div>Last Backup: <strong class="text-dark">May 20, 2026 02:30 AM</strong></div>
+                  <div>Backup Frequency: <strong class="text-dark">Daily</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 6: SYSTEM STATUS & AUDIT -->
+            <div class="tab-pane" id="tab-status" role="tabpanel" aria-labelledby="status-tab">
+              <!-- Row 1: System Health (col-lg-6) & Recent Config Changes (col-lg-6) -->
+              <div class="row g-4 mb-4">
+                <!-- System Health (col-lg-6) -->
+                <div class="col-lg-6">
+                  <div class="erp-card p-4 shadow-sm h-100">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-3"
+                    >
+                      <h5 class="fw-bold text-dark mb-0">
+                        <i class="fa-solid fa-heart-pulse text-danger me-2"></i>System Health
+                      </h5>
+                      <span class="badge badge-soft badge-green">
+                        <span class="live-pulse-dot me-1"></span> All Operational
+                      </span>
+                    </div>
+
+                    <div class="d-flex flex-column gap-2 extra-small">
+                      <div
+                        class="d-flex align-items-center justify-content-between py-2 border-bottom"
+                      >
+                        <span class="text-dark fw-semibold"
+                          ><i class="fa-solid fa-database text-success me-2"></i>Database
+                          Connection</span
+                        >
+                        <span class="badge badge-soft badge-green">Healthy</span>
+                      </div>
+                      <div
+                        class="d-flex align-items-center justify-content-between py-2 border-bottom"
+                      >
+                        <span class="text-dark fw-semibold"
+                          ><i class="fa-solid fa-cloud-arrow-up text-success me-2"></i>Backup
+                          Service</span
+                        >
+                        <span class="text-muted">Last run 2 hours ago</span>
+                      </div>
+                      <div
+                        class="d-flex align-items-center justify-content-between py-2 border-bottom"
+                      >
+                        <span class="text-dark fw-semibold"
+                          ><i class="fa-solid fa-paper-plane text-success me-2"></i>Email Gateway
+                          (SMTP)</span
+                        >
+                        <span class="badge badge-soft badge-green">Healthy</span>
+                      </div>
+                      <div class="d-flex align-items-center justify-content-between py-2">
+                        <span class="text-dark fw-semibold"
+                          ><i class="fa-solid fa-hard-drive text-success me-2"></i>File
+                          Storage</span
+                        >
+                        <span class="badge badge-soft badge-green">Healthy</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Recent Config Activity Log (col-lg-6) -->
+                <div class="col-lg-6">
+                  <div class="erp-card p-4 shadow-sm h-100">
+                    <h5 class="fw-bold text-dark mb-3 border-bottom pb-3">
+                      <i class="fa-solid fa-clock-rotate-left text-primary me-2"></i>Recent Config
+                      Changes
+                    </h5>
+                    <div class="d-flex flex-column gap-3 extra-small">
+                      <div class="d-flex align-items-center gap-3">
+                        <img
+                          src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
+                          class="rounded-circle"
+                          style="width: 32px; height: 32px; object-fit: cover"
+                        />
+                        <div>
+                          <div class="fw-bold text-dark">Password policy updated</div>
+                          <div class="text-muted">Spencer &bull; 2 hours ago</div>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center gap-3">
+                        <img
+                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80"
+                          class="rounded-circle"
+                          style="width: 32px; height: 32px; object-fit: cover"
+                        />
+                        <div>
+                          <div class="fw-bold text-dark">New role "Recruiter" created</div>
+                          <div class="text-muted">Olivia Brown &bull; 1 day ago</div>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center gap-3">
+                        <img
+                          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80"
+                          class="rounded-circle"
+                          style="width: 32px; height: 32px; object-fit: cover"
+                        />
+                        <div>
+                          <div class="fw-bold text-dark">SMS notifications enabled</div>
+                          <div class="text-muted">Liam Smith &bull; 2 days ago</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row 2: Danger Zone (col-12) -->
+              <div class="row g-4">
+                <div class="col-12">
+                  <div class="erp-card danger-zone-card p-4 shadow-sm">
+                    <div class="d-flex align-items-center gap-2 text-danger fw-bold mb-2">
+                      <i class="fa-solid fa-triangle-exclamation fs-4"></i>
+                      <h5 class="fw-bold text-danger mb-0">Danger Zone</h5>
+                    </div>
+                    <p class="text-muted small mb-4">
+                      Critical system operations that directly affect user access and data.
+                    </p>
+
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <div class="danger-item-box">
+                          <div>
+                            <div class="fw-bold style-sm mb-1">Deactivate Employee Portal</div>
+                            <div class="text-muted extra-small mb-3">
+                              Temporarily disable self-service access for all non-admin users.
+                            </div>
+                          </div>
+                          <div>
+                            <button
+                              class="btn btn-sm btn-pastel-red d-inline-flex align-items-center gap-2 px-3.5 py-2 rounded-3 shadow-xs font-semibold"
+                              data-bs-toggle="modal"
+                              data-bs-target="#dangerZoneModal"
+                              data-action-type="deactivate"
+                            >
+                              <i class="fa-solid fa-power-off"></i> Deactivate Portal
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="danger-item-box">
+                          <div>
+                            <div class="fw-bold style-sm mb-1">Reset System Settings</div>
+                            <div class="text-muted extra-small mb-3">
+                              Restore all system configurations and preferences to default values.
+                            </div>
+                          </div>
+                          <div>
+                            <button
+                              class="btn btn-sm btn-pastel-red d-inline-flex align-items-center gap-2 px-3.5 py-2 rounded-3 shadow-xs font-semibold"
+                              data-bs-toggle="modal"
+                              data-bs-target="#dangerZoneModal"
+                              data-action-type="reset"
+                            >
+                              <i class="fa-solid fa-trash-can"></i> Reset System
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </main>
     </div>
 
+    <!-- MODAL 4: Create Notification Template Modal -->
+    <div
+      class="modal fade custom-nexus-modal"
+      id="createNotificationTemplateModal"
+      tabindex="-1"
+      aria-labelledby="createNotificationTemplateModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-2xl rounded-5 overflow-hidden">
+          <div class="modal-bg-glow"></div>
+          <div class="modal-top-accent-bar"></div>
+
+          <div
+            class="modal-header border-0 px-4 pt-4 pb-3 position-relative d-flex align-items-start justify-content-between z-1"
+          >
+            <div class="d-flex align-items-center gap-3">
+              <div class="modal-icon-badge">
+                <i class="fa-solid fa-message text-warning"></i>
+              </div>
+              <div>
+                <div class="modal-eyebrow-tag mb-1">
+                  <span class="eyebrow-dot"></span> SYSTEM ALERT TEMPLATE
+                </div>
+                <h5
+                  class="modal-title fw-bold text-dark mb-0 d-flex align-items-center gap-2"
+                  id="createNotificationTemplateModalLabel"
+                >
+                  <i class="fa-solid fa-bell text-warning"></i>
+                  <span>Notification Template Editor</span>
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <button
+                type="button"
+                class="custom-btn-close ms-1"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <form id="notificationTemplateForm" onsubmit="event.preventDefault()">
+            <div class="modal-body px-4 py-3 position-relative z-1">
+              <div class="form-section-card mb-3">
+                <div class="form-section-header">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-pen-nib text-warning"></i>
+                    <span class="fw-bold">IN-APP / PUSH ALERT DETAILS</span>
+                  </div>
+                  <span class="badge-soft badge-amber">
+                    <i class="fa-solid fa-bolt"></i> Push Ready
+                  </span>
+                </div>
+
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label custom-form-label"
+                      >Template Title <span class="text-danger">*</span></label
+                    >
+                    <div class="input-group custom-input-group">
+                      <span class="input-group-text"><i class="fa-solid fa-heading"></i></span>
+                      <input
+                        type="text"
+                        class="form-control custom-form-control"
+                        placeholder="e.g., Leave Approval Notice"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label custom-form-label">Trigger Module</label>
+                    <div class="input-group custom-input-group">
+                      <span class="input-group-text"><i class="fa-solid fa-bolt"></i></span>
+                      <select class="form-select custom-form-control">
+                        <option>Leave Approval Module</option>
+                        <option>Payroll Publication</option>
+                        <option>System Admin Event</option>
+                        <option>Security Alert</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <label class="form-label custom-form-label">Message Content Template</label>
+                    <textarea
+                      class="form-control custom-form-control"
+                      rows="3"
+                      placeholder="Enter alert message. Use tags like [Employee Name], [Date], [Status]..."
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="modal-footer px-4 py-3 border-top-0 d-flex align-items-center justify-content-between modal-footer-custom z-1"
+            >
+              <div class="d-none d-md-flex align-items-center gap-2 text-muted small">
+                <i class="fa-solid fa-shield-halved text-primary opacity-75"></i>
+                <span>Template auto-saved draft</span>
+                <span class="modal-footer-divider"></span>
+                <span class="d-inline-flex align-items-center gap-1"
+                  ><kbd class="nexus-kbd">ESC</kbd> Close</span
+                >
+              </div>
+              <div class="d-flex align-items-center gap-2 ms-auto">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-pastel-slate px-3 py-2 rounded-3"
+                  data-bs-dismiss="modal"
+                >
+                  <i class="fa-solid fa-xmark me-1"></i> Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-pastel-purple px-4 py-2 rounded-3"
+                  data-bs-dismiss="modal"
+                >
+                  <i class="fa-solid fa-floppy-disk me-1"></i> Save Template
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 5: Create Email Template Modal -->
+    <div
+      class="modal fade custom-nexus-modal"
+      id="createEmailTemplateModal"
+      tabindex="-1"
+      aria-labelledby="createEmailTemplateModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-2xl rounded-5 overflow-hidden">
+          <div class="modal-bg-glow"></div>
+          <div class="modal-top-accent-bar"></div>
+
+          <div
+            class="modal-header border-0 px-4 pt-4 pb-3 position-relative d-flex align-items-start justify-content-between z-1"
+          >
+            <div class="d-flex align-items-center gap-3">
+              <div class="modal-icon-badge">
+                <i class="fa-solid fa-envelope-open-text text-primary"></i>
+              </div>
+              <div>
+                <div class="modal-eyebrow-tag mb-1">
+                  <span class="eyebrow-dot"></span> HTML EMAIL BROADCAST
+                </div>
+                <h5
+                  class="modal-title fw-bold text-dark mb-0 d-flex align-items-center gap-2"
+                  id="createEmailTemplateModalLabel"
+                >
+                  <i class="fa-solid fa-envelope text-primary"></i>
+                  <span>Email Template Editor</span>
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <button
+                type="button"
+                class="custom-btn-close ms-1"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <form id="emailTemplateForm" onsubmit="event.preventDefault()">
+            <div class="modal-body px-4 py-3 position-relative z-1">
+              <div class="form-section-card mb-3">
+                <div class="form-section-header">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-paper-plane text-primary"></i>
+                    <span class="fw-bold">EMAIL SPECIFICATION & HEADERS</span>
+                  </div>
+                  <span class="badge-soft badge-blue">
+                    <i class="fa-solid fa-code"></i> HTML Engine
+                  </span>
+                </div>
+
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label custom-form-label"
+                      >Template Name <span class="text-danger">*</span></label
+                    >
+                    <div class="input-group custom-input-group">
+                      <span class="input-group-text"><i class="fa-solid fa-tag"></i></span>
+                      <input
+                        type="text"
+                        class="form-control custom-form-control"
+                        placeholder="e.g., Welcome New Employee"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label custom-form-label">Category</label>
+                    <div class="input-group custom-input-group">
+                      <span class="input-group-text"><i class="fa-solid fa-folder"></i></span>
+                      <select class="form-select custom-form-control">
+                        <option>Onboarding</option>
+                        <option>HR Operations</option>
+                        <option>Payroll Publication</option>
+                        <option>Security</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <label class="form-label custom-form-label"
+                      >Email Subject Line <span class="text-danger">*</span></label
+                    >
+                    <div class="input-group custom-input-group">
+                      <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                      <input
+                        type="text"
+                        class="form-control custom-form-control"
+                        placeholder="Subject line with placeholders..."
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <label class="form-label custom-form-label">HTML Body Content</label>
+                    <textarea
+                      class="form-control custom-form-control font-monospace"
+                      rows="4"
+                      placeholder="<p>Dear {{Employee_Name}},</p><p>Welcome to our team!</p>"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="modal-footer px-4 py-3 border-top-0 d-flex align-items-center justify-content-between modal-footer-custom z-1"
+            >
+              <div class="d-none d-md-flex align-items-center gap-2 text-muted small">
+                <i class="fa-solid fa-shield-halved text-primary opacity-75"></i>
+                <span>Enterprise HTML renderer</span>
+                <span class="modal-footer-divider"></span>
+                <span class="d-inline-flex align-items-center gap-1"
+                  ><kbd class="nexus-kbd">ESC</kbd> Close</span
+                >
+              </div>
+              <div class="d-flex align-items-center gap-2 ms-auto">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-pastel-slate px-3 py-2 rounded-3"
+                  data-bs-dismiss="modal"
+                >
+                  <i class="fa-solid fa-xmark me-1"></i> Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-pastel-purple px-4 py-2 rounded-3"
+                  data-bs-dismiss="modal"
+                >
+                  <i class="fa-solid fa-floppy-disk me-1"></i> Save Email Template
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 3: Danger Zone Confirmation Modal -->
+    <div
+      class="modal fade"
+      id="dangerZoneModal"
+      tabindex="-1"
+      aria-labelledby="dangerZoneModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+          <div class="modal-header border-bottom-0 pb-0">
+            <h5 class="modal-title fw-bold text-danger" id="dangerZoneModalLabel">
+              <i class="fa-solid fa-triangle-exclamation me-2"></i>Confirm Action
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body py-3">
+            <div class="alert alert-danger border-0 rounded-3 mb-3 extra-small">
+              <strong>Warning:</strong> These actions cannot be undone. Please confirm before
+              proceeding.
+            </div>
+            <p class="text-muted small mb-2">
+              Type <strong>CONFIRM</strong> in the box below to authorize:
+            </p>
+            <input
+              type="text"
+              class="form-control text-uppercase"
+              id="dangerConfirmInput"
+              placeholder="Type CONFIRM here..."
+            />
+          </div>
+          <div class="modal-footer border-top-0 pt-0">
+            <button
+              type="button"
+              class="btn btn-sm btn-pastel-slate px-3.5 py-2 rounded-3"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-sm btn-pastel-red px-4 py-2 rounded-3 shadow-xs font-semibold"
+              id="confirmDangerActionBtn"
+            >
+              <i class="fa-solid fa-triangle-exclamation me-1"></i> Confirm Action
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Apex CDN Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.45.1/dist/apexcharts.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apextree@1.14.0/apextree.min.js"></script>
-    <!-- Apex Custom Modules -->
-    <script src="../js/apex-chart.js"></script>
-    <script src="../js/apex-tree.js"></script>
 
     <!-- Main Application JS -->
     <script src="../js/app.js"></script>

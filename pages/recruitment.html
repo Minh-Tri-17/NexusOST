@@ -247,7 +247,7 @@
             <div>
               <h2 class="h3 fw-bold text-dark mb-1">Recruitment Management</h2>
               <p class="text-muted mb-0">
-                Quản lý quy trình tuyển dụng, theo dõi hồ sơ ứng viên theo giai đoạn và đánh giá ứng viên.
+                Manage recruitment pipelines, candidate tracking, interview stages, and candidate evaluations.
               </p>
             </div>
           </div>
@@ -452,7 +452,7 @@
                   <span class="fw-bold small text-muted text-uppercase tracking-wider">
                     <i class="fa-solid fa-sliders text-primary me-2"></i>Filter Criteria Matrix
                   </span>
-                  <span class="text-muted small">Select criteria to refine recruitment board</span>
+                  <span class="text-muted small">Select criteria to refine results</span>
                 </div>
                 <div class="row g-3">
                   <!-- Department Filter -->
@@ -515,7 +515,7 @@
 
                 <div class="d-flex align-items-center justify-content-end gap-2 mt-3 pt-2 border-top">
                   <button class="btn btn-sm btn-pastel-cyan px-4 rounded-3" type="button" id="applyRecruitmentFilterBtn">
-                    <i class="fa-solid fa-check me-1"></i> Apply
+                    <i class="fa-solid fa-check me-1"></i> Apply Filter
                   </button>
                 </div>
               </div>
@@ -657,7 +657,7 @@
             ══════════════════════════ -->
             <div id="recruitmentListView" class="d-none">
               <div class="table-responsive rounded-3">
-                <table class="emp-list-table" id="recruitmentListTable">
+                <table class="app-list-table" id="recruitmentListTable">
                   <thead>
                     <tr>
                       <th style="width: 36px">
@@ -687,18 +687,18 @@
             </div>
 
             <!-- Enterprise Table Footer & Pagination -->
-            <div class="emp-table-footer" role="region" aria-label="Table pagination footer">
+            <div class="app-table-footer" role="region" aria-label="Table pagination footer">
               <!-- Left Zone: Counter & Rows per page -->
-              <div class="emp-footer-left">
-                <div class="emp-footer-counter">
+              <div class="app-footer-left">
+                <div class="app-footer-counter">
                   <span id="recruitmentResultCount"
-                    >Showing <strong>1 – 17</strong> of <strong>348</strong> candidates</span
+                    >Showing <strong>1 – 17</strong> of <strong>348</strong> items</span
                   >
                 </div>
-                <div class="emp-footer-divider"></div>
-                <div class="emp-page-size-picker">
+                <div class="app-footer-divider"></div>
+                <div class="app-page-size-picker">
                   <span>Rows per page:</span>
-                  <select id="recruitmentPageSizeSelect" class="emp-size-select" aria-label="Rows per page">
+                  <select id="recruitmentPageSizeSelect" class="app-size-select" aria-label="Rows per page">
                     <option value="12">12</option>
                     <option value="25" selected>25</option>
                     <option value="50">50</option>
@@ -708,31 +708,31 @@
               </div>
 
               <!-- Center Zone: Quick Jump Widget -->
-              <div class="emp-footer-center">
-                <span class="emp-jump-label"
+              <div class="app-footer-center">
+                <span class="app-jump-label"
                   ><i class="fa-solid fa-arrow-right-to-line me-1"></i>Go to page:</span
                 >
-                <form id="recruitmentPageJumpForm" class="emp-jump-form" onsubmit="return false;">
+                <form id="recruitmentPageJumpForm" class="app-jump-form" onsubmit="return false;">
                   <input
                     type="number"
                     id="recruitmentJumpInput"
-                    class="emp-jump-input"
+                    class="app-jump-input"
                     value="1"
                     min="1"
                     max="14"
                     aria-label="Target page number"
                   />
-                  <span class="emp-jump-total">/ <span id="recruitmentTotalPages">14</span></span>
-                  <button type="submit" class="emp-jump-btn" id="recruitmentJumpGoBtn" title="Jump to page">
+                  <span class="app-jump-total">/ <span id="recruitmentTotalPages">14</span></span>
+                  <button type="submit" class="app-jump-btn" id="recruitmentJumpGoBtn" title="Jump to page">
                     <i class="fa-solid fa-arrow-right"></i>
                   </button>
                 </form>
               </div>
 
               <!-- Right Zone: Page Control Buttons -->
-              <div class="emp-footer-right" role="navigation" aria-label="Pagination Navigation">
+              <div class="app-footer-right" role="navigation" aria-label="Pagination Navigation">
                 <button
-                  class="emp-page-btn"
+                  class="app-page-btn"
                   id="recruitmentFirstBtn"
                   disabled
                   title="First page"
@@ -741,7 +741,7 @@
                   <i class="fa-solid fa-angles-left"></i>
                 </button>
                 <button
-                  class="emp-page-btn"
+                  class="app-page-btn"
                   id="recruitmentPrevBtn"
                   disabled
                   title="Previous page"
@@ -751,15 +751,15 @@
                 </button>
 
                 <div class="d-flex align-items-center gap-1" id="recruitmentPageNumbersGroup">
-                  <button class="emp-page-btn active" data-page="1">1</button>
-                  <button class="emp-page-btn" data-page="2">2</button>
-                  <button class="emp-page-btn" data-page="3">3</button>
-                  <span class="emp-page-ellipsis">…</span>
-                  <button class="emp-page-btn" data-page="14">14</button>
+                  <button class="app-page-btn active" data-page="1">1</button>
+                  <button class="app-page-btn" data-page="2">2</button>
+                  <button class="app-page-btn" data-page="3">3</button>
+                  <span class="app-page-ellipsis">…</span>
+                  <button class="app-page-btn" data-page="14">14</button>
                 </div>
 
                 <button
-                  class="emp-page-btn"
+                  class="app-page-btn"
                   id="recruitmentNextBtn"
                   title="Next page"
                   aria-label="Next page"
@@ -767,7 +767,7 @@
                   <i class="fa-solid fa-chevron-right"></i>
                 </button>
                 <button
-                  class="emp-page-btn"
+                  class="app-page-btn"
                   id="recruitmentLastBtn"
                   title="Last page"
                   aria-label="Last page"
@@ -803,7 +803,7 @@
                 class="modal-header border-0 px-4 pt-4 pb-3 position-relative d-flex align-items-start justify-content-between z-1"
               >
                 <div class="d-flex align-items-center gap-3">
-                  <div class="emp-modal-avatar-wrap">
+                  <div class="app-modal-avatar-wrap">
                     <img id="detailAvatar" src="" alt="Candidate Avatar" />
                   </div>
                   <div>
@@ -816,7 +816,7 @@
                     ></h5>
                     <div class="d-flex align-items-center flex-wrap gap-2 mt-1">
                       <span class="text-muted small fw-medium" id="detailRole"></span>
-                      <div class="emp-modal-hero-badges d-inline-flex align-items-center gap-2 ms-1">
+                      <div class="app-modal-hero-badges d-inline-flex align-items-center gap-2 ms-1">
                         <span id="detailMatchBadge" class="match-score-pill match-high">88% Match</span>
                         <span id="detailStageBadge" class="emp-badge status-active">Stage</span>
                       </div>
@@ -836,78 +836,78 @@
               </div>
 
               <!-- Scrollable Body -->
-              <div class="modal-body px-4 py-3 position-relative z-1 emp-modal-body">
+              <div class="modal-body px-4 py-3 position-relative z-1 app-modal-body">
 
                 <!-- Section 1: Candidate Contact & Application -->
-                <p class="emp-modal-section-title">Contact &amp; Application Details</p>
-                <div class="emp-modal-info-grid">
-                  <div class="emp-modal-info-item">
-                    <div class="emp-modal-info-icon blue"><i class="fa-solid fa-envelope"></i></div>
-                    <div class="emp-modal-info-text">
-                      <div class="emp-modal-info-label">Email Address</div>
-                      <div class="emp-modal-info-value" id="detailEmail">—</div>
+                <p class="app-modal-section-title">Contact &amp; Application Details</p>
+                <div class="app-modal-info-grid">
+                  <div class="app-modal-info-item">
+                    <div class="app-modal-info-icon blue"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="app-modal-info-text">
+                      <div class="app-modal-info-label">Email Address</div>
+                      <div class="app-modal-info-value" id="detailEmail">—</div>
                     </div>
                   </div>
-                  <div class="emp-modal-info-item">
-                    <div class="emp-modal-info-icon green"><i class="fa-solid fa-phone"></i></div>
-                    <div class="emp-modal-info-text">
-                      <div class="emp-modal-info-label">Phone Number</div>
-                      <div class="emp-modal-info-value" id="detailPhone">—</div>
+                  <div class="app-modal-info-item">
+                    <div class="app-modal-info-icon green"><i class="fa-solid fa-phone"></i></div>
+                    <div class="app-modal-info-text">
+                      <div class="app-modal-info-label">Phone Number</div>
+                      <div class="app-modal-info-value" id="detailPhone">—</div>
                     </div>
                   </div>
-                  <div class="emp-modal-info-item">
-                    <div class="emp-modal-info-icon purple"><i class="fa-solid fa-building"></i></div>
-                    <div class="emp-modal-info-text">
-                      <div class="emp-modal-info-label">Department</div>
-                      <div class="emp-modal-info-value" id="detailDept">—</div>
+                  <div class="app-modal-info-item">
+                    <div class="app-modal-info-icon purple"><i class="fa-solid fa-building"></i></div>
+                    <div class="app-modal-info-text">
+                      <div class="app-modal-info-label">Department</div>
+                      <div class="app-modal-info-value" id="detailDept">—</div>
                     </div>
                   </div>
-                  <div class="emp-modal-info-item">
-                    <div class="emp-modal-info-icon rose"><i class="fa-solid fa-location-dot"></i></div>
-                    <div class="emp-modal-info-text">
-                      <div class="emp-modal-info-label">Work Location</div>
-                      <div class="emp-modal-info-value" id="detailLocation">—</div>
+                  <div class="app-modal-info-item">
+                    <div class="app-modal-info-icon rose"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="app-modal-info-text">
+                      <div class="app-modal-info-label">Work Location</div>
+                      <div class="app-modal-info-value" id="detailLocation">—</div>
                     </div>
                   </div>
-                  <div class="emp-modal-info-item">
-                    <div class="emp-modal-info-icon amber"><i class="fa-solid fa-money-bill-wave"></i></div>
-                    <div class="emp-modal-info-text">
-                      <div class="emp-modal-info-label">Expected Salary</div>
-                      <div class="emp-modal-info-value" id="detailSalary">—</div>
+                  <div class="app-modal-info-item">
+                    <div class="app-modal-info-icon amber"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <div class="app-modal-info-text">
+                      <div class="app-modal-info-label">Expected Salary</div>
+                      <div class="app-modal-info-value" id="detailSalary">—</div>
                     </div>
                   </div>
-                  <div class="emp-modal-info-item">
-                    <div class="emp-modal-info-icon teal"><i class="fa-solid fa-calendar-check"></i></div>
-                    <div class="emp-modal-info-text">
-                      <div class="emp-modal-info-label">Applied Date</div>
-                      <div class="emp-modal-info-value" id="detailAppliedDate">—</div>
+                  <div class="app-modal-info-item">
+                    <div class="app-modal-info-icon teal"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="app-modal-info-text">
+                      <div class="app-modal-info-label">Applied Date</div>
+                      <div class="app-modal-info-value" id="detailAppliedDate">—</div>
                     </div>
                   </div>
                 </div>
 
                 <!-- Section 2: AI Match Score & Insights -->
-                <p class="emp-modal-section-title">AI Matching &amp; Candidate Metrics</p>
-                <div class="emp-modal-stat-row">
-                  <div class="emp-modal-stat-card">
-                    <div class="emp-modal-stat-val text-primary" id="detailStatMatch">88%</div>
-                    <div class="emp-modal-stat-lbl">Match Score</div>
+                <p class="app-modal-section-title">AI Matching &amp; Candidate Metrics</p>
+                <div class="app-modal-stat-row">
+                  <div class="app-modal-stat-card">
+                    <div class="app-modal-stat-val text-primary" id="detailStatMatch">88%</div>
+                    <div class="app-modal-stat-lbl">Match Score</div>
                   </div>
-                  <div class="emp-modal-stat-card">
-                    <div class="emp-modal-stat-val" id="detailStatExp">4 Yrs</div>
-                    <div class="emp-modal-stat-lbl">Experience</div>
+                  <div class="app-modal-stat-card">
+                    <div class="app-modal-stat-val" id="detailStatExp">4 Yrs</div>
+                    <div class="app-modal-stat-lbl">Experience</div>
                   </div>
-                  <div class="emp-modal-stat-card">
-                    <div class="emp-modal-stat-val" id="detailStatSkills">6</div>
-                    <div class="emp-modal-stat-lbl">Matched Skills</div>
+                  <div class="app-modal-stat-card">
+                    <div class="app-modal-stat-val" id="detailStatSkills">6</div>
+                    <div class="app-modal-stat-lbl">Matched Skills</div>
                   </div>
                 </div>
 
                 <!-- Section 3: Skills -->
-                <p class="emp-modal-section-title">Skills &amp; Qualifications</p>
-                <div class="emp-modal-skills mb-4" id="detailSkillsContainer"></div>
+                <p class="app-modal-section-title">Skills &amp; Qualifications</p>
+                <div class="app-modal-skills mb-4" id="detailSkillsContainer"></div>
 
                 <!-- Section 4: Interviewer Notes & Attachment -->
-                <p class="emp-modal-section-title">Interviewer Notes &amp; Resume Attachment</p>
+                <p class="app-modal-section-title">Interviewer Notes &amp; Resume Attachment</p>
                 <div class="p-3 bg-light rounded-3 border mb-3">
                   <p id="detailNotes" class="small text-muted mb-0">Candidate evaluation notes...</p>
                 </div>
@@ -1081,7 +1081,7 @@
               <!-- Modal Header (Identical to Candidate Profile Modal) -->
               <div class="modal-header border-0 px-4 pt-4 pb-3 position-relative d-flex align-items-start justify-content-between z-1">
                 <div class="d-flex align-items-center gap-3">
-                  <div class="emp-modal-avatar-wrap d-flex align-items-center justify-content-center bg-primary-subtle text-primary rounded-circle" style="width: 56px; height: 56px; background: var(--bg-hover);">
+                  <div class="app-modal-avatar-wrap d-flex align-items-center justify-content-center bg-primary-subtle text-primary rounded-circle" style="width: 56px; height: 56px; background: var(--bg-hover);">
                     <i class="fa-solid fa-users fs-4 text-primary"></i>
                   </div>
                   <div>
@@ -1093,7 +1093,7 @@
                     </h5>
                     <div class="d-flex align-items-center flex-wrap gap-2 mt-1">
                       <span class="text-muted small fw-medium">All candidates in this recruitment pipeline stage</span>
-                      <div class="emp-modal-hero-badges d-inline-flex align-items-center gap-2 ms-1">
+                      <div class="app-modal-hero-badges d-inline-flex align-items-center gap-2 ms-1">
                         <span id="stageModalCountBadge" class="match-score-pill match-high">126 Candidates</span>
                       </div>
                     </div>
@@ -1118,7 +1118,7 @@
               </div>
 
               <!-- Scrollable Body containing candidate list -->
-              <div class="modal-body px-4.5 py-4 position-relative z-1 emp-modal-body">
+              <div class="modal-body px-4.5 py-4 position-relative z-1 app-modal-body">
                 <div id="stageModalCandidateList" class="d-flex flex-column gap-2">
                   <!-- Dynamic Candidate List Cards -->
                 </div>

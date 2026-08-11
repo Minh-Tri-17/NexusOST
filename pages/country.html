@@ -221,8 +221,8 @@
           <div class="mb-4">
             <h2 class="h3 fw-bold text-dark mb-1">Country Management</h2>
             <p class="text-muted mb-0">
-              Manage and look up the country list with an interactive data grid (supports sorting,
-              filtering, and column resizing).
+              Manage country master records, geographic codes, interactive data grids, and regional
+              settings.
             </p>
           </div>
 
@@ -238,7 +238,9 @@
                     <i class="fa-solid fa-layer-group me-1 text-primary"></i>Đồng bộ dữ liệu
                   </div>
                 </div>
-                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                <div
+                  class="d-flex flex-column justify-content-between align-items-end flex-shrink-0"
+                >
                   <span class="metric-tag-pill">100% Global</span>
                   <div class="metric-pastel-icon-floating">
                     <i class="fa-solid fa-earth-americas"></i>
@@ -257,7 +259,9 @@
                     <i class="fa-solid fa-shield-halved me-1 text-success"></i>Tuân thủ vận hành
                   </div>
                 </div>
-                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                <div
+                  class="d-flex flex-column justify-content-between align-items-end flex-shrink-0"
+                >
                   <span class="metric-tag-pill">85.8% Active</span>
                   <div class="metric-pastel-icon-floating">
                     <i class="fa-solid fa-circle-check"></i>
@@ -276,7 +280,9 @@
                     <i class="fa-solid fa-fire me-1 text-danger"></i>Ưu tiên mở rộng
                   </div>
                 </div>
-                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                <div
+                  class="d-flex flex-column justify-content-between align-items-end flex-shrink-0"
+                >
                   <span class="metric-tag-pill">40.0% Priority</span>
                   <div class="metric-pastel-icon-floating">
                     <i class="fa-solid fa-star"></i>
@@ -295,7 +301,9 @@
                     <i class="fa-solid fa-compass me-1 text-warning"></i>Phân bổ địa lý
                   </div>
                 </div>
-                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                <div
+                  class="d-flex flex-column justify-content-between align-items-end flex-shrink-0"
+                >
                   <span class="metric-tag-pill">4 Regions</span>
                   <div class="metric-pastel-icon-floating">
                     <i class="fa-solid fa-map-location-dot"></i>
@@ -465,16 +473,20 @@
                 <div
                   class="d-flex align-items-center justify-content-end gap-2 mt-3 pt-2 border-top"
                 >
-                  <button class="btn btn-sm btn-pastel-cyan px-4 rounded-3" type="button" id="applyCountryFilterBtn">
-                    <i class="fa-solid fa-check me-1"></i> Apply
+                  <button
+                    class="btn btn-sm btn-pastel-cyan px-4 rounded-3"
+                    type="button"
+                    id="applyCountryFilterBtn"
+                  >
+                    <i class="fa-solid fa-check me-1"></i> Apply Filter
                   </button>
                 </div>
               </div>
             </div>
 
             <!-- Enterprise Native Data Table -->
-            <div class="table-responsive rounded-3 mb-3 country-table-scroll">
-              <table class="emp-list-table" id="countryListTable">
+            <div class="table-responsive rounded-3 mb-3 app-table-scroll">
+              <table class="app-list-table" id="countryListTable">
                 <thead>
                   <tr>
                     <th style="width: 36px">
@@ -501,20 +513,20 @@
             </div>
 
             <!-- Enterprise Table Footer & Pagination -->
-            <div class="emp-table-footer" role="region" aria-label="Table pagination footer">
+            <div class="app-table-footer" role="region" aria-label="Table pagination footer">
               <!-- Left Zone: Counter & Rows per page -->
-              <div class="emp-footer-left">
-                <div class="emp-footer-counter">
+              <div class="app-footer-left">
+                <div class="app-footer-counter">
                   <span id="countryResultCount"
-                    >Showing <strong>1 – 20</strong> of <strong>120</strong> countries</span
+                    >Showing <strong>1 – 20</strong> of <strong>120</strong> items</span
                   >
                 </div>
-                <div class="emp-footer-divider"></div>
-                <div class="emp-page-size-picker">
+                <div class="app-footer-divider"></div>
+                <div class="app-page-size-picker">
                   <span>Rows per page:</span>
                   <select
                     id="countryPageSizeSelect"
-                    class="emp-size-select"
+                    class="app-size-select"
                     aria-label="Rows per page"
                   >
                     <option value="10">10</option>
@@ -526,24 +538,24 @@
               </div>
 
               <!-- Center Zone: Quick Jump Widget -->
-              <div class="emp-footer-center">
-                <span class="emp-jump-label"
+              <div class="app-footer-center">
+                <span class="app-jump-label"
                   ><i class="fa-solid fa-arrow-right-to-line me-1"></i>Go to page:</span
                 >
-                <form id="countryPageJumpForm" class="emp-jump-form" onsubmit="return false;">
+                <form id="countryPageJumpForm" class="app-jump-form" onsubmit="return false;">
                   <input
                     type="number"
                     id="countryJumpInput"
-                    class="emp-jump-input"
+                    class="app-jump-input"
                     value="1"
                     min="1"
                     max="6"
                     aria-label="Target page number"
                   />
-                  <span class="emp-jump-total">/ <span id="countryTotalPages">6</span></span>
+                  <span class="app-jump-total">/ <span id="countryTotalPages">6</span></span>
                   <button
                     type="submit"
-                    class="emp-jump-btn"
+                    class="app-jump-btn"
                     id="countryJumpGoBtn"
                     title="Jump to page"
                   >
@@ -553,9 +565,9 @@
               </div>
 
               <!-- Right Zone: Page Control Buttons -->
-              <div class="emp-footer-right" role="navigation" aria-label="Pagination Navigation">
+              <div class="app-footer-right" role="navigation" aria-label="Pagination Navigation">
                 <button
-                  class="emp-page-btn"
+                  class="app-page-btn"
                   id="countryFirstBtn"
                   disabled
                   title="First page"
@@ -564,7 +576,7 @@
                   <i class="fa-solid fa-angles-left"></i>
                 </button>
                 <button
-                  class="emp-page-btn"
+                  class="app-page-btn"
                   id="countryPrevBtn"
                   disabled
                   title="Previous page"
@@ -578,7 +590,7 @@
                 </div>
 
                 <button
-                  class="emp-page-btn"
+                  class="app-page-btn"
                   id="countryNextBtn"
                   title="Next page"
                   aria-label="Next page"
@@ -586,7 +598,7 @@
                   <i class="fa-solid fa-chevron-right"></i>
                 </button>
                 <button
-                  class="emp-page-btn"
+                  class="app-page-btn"
                   id="countryLastBtn"
                   title="Last page"
                   aria-label="Last page"
@@ -595,7 +607,7 @@
                 </button>
               </div>
             </div>
-            <!-- /emp-table-footer -->
+            <!-- /app-table-footer -->
           </div>
         </div>
       </main>
@@ -1276,7 +1288,7 @@
 
           // Update Counter UI
           if (countryResultCount) {
-            countryResultCount.innerHTML = `Showing <strong>${startIdx + 1} – ${endIdx}</strong> of <strong>${totalRecords}</strong> countries`;
+            countryResultCount.innerHTML = `Showing <strong>${startIdx + 1} – ${endIdx}</strong> of <strong>${totalRecords}</strong> items`;
           }
           if (countryTotalPages) countryTotalPages.textContent = totalPages;
           if (countryJumpInput) {
@@ -1312,16 +1324,16 @@
 
           pages.forEach((p) => {
             if (p === "...") {
-              html += `<span class="emp-page-ellipsis">…</span>`;
+              html += `<span class="app-page-ellipsis">…</span>`;
             } else {
               const isActive = p === currentPage ? "active" : "";
-              html += `<button type="button" class="emp-page-btn ${isActive}" data-page="${p}">${p}</button>`;
+              html += `<button type="button" class="app-page-btn ${isActive}" data-page="${p}">${p}</button>`;
             }
           });
 
           countryPageNumbersGroup.innerHTML = html;
 
-          countryPageNumbersGroup.querySelectorAll(".emp-page-btn").forEach((btn) => {
+          countryPageNumbersGroup.querySelectorAll(".app-page-btn").forEach((btn) => {
             btn.addEventListener("click", (e) => {
               const pageNum = parseInt(e.currentTarget.getAttribute("data-page"), 10);
               if (pageNum && pageNum !== currentPage) {

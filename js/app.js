@@ -54,6 +54,11 @@ document.addEventListener("DOMContentLoaded", () => {
   ) {
     initRecruitmentPage();
   }
+
+  // Settings Page Logic
+  if (document.getElementById("settingsTab") || document.getElementById("generalOrgForm")) {
+    initSettingsPage();
+  }
 });
 
 /* 1. Sidebar Active Link matching current path */
@@ -2013,7 +2018,7 @@ function openEmpModal(empId) {
   if (skillsEl) {
     const skillsHtml = (d.skills || [])
       .map(
-        (sk) => `<span class="emp-modal-skill-chip"><i class="fa-solid fa-tag"></i> ${sk}</span>`,
+        (sk) => `<span class="app-modal-skill-chip"><i class="fa-solid fa-tag"></i> ${sk}</span>`,
       )
       .join("");
     skillsEl.innerHTML =
@@ -2090,7 +2095,7 @@ function initEmployeesPage() {
       const endItem = Math.min(currentPage * pageSize, totalEmployees);
 
       if (empResultCount) {
-        empResultCount.innerHTML = `Showing <strong>${startItem} – ${endItem}</strong> of <strong>${totalEmployees}</strong> employees`;
+        empResultCount.innerHTML = `Showing <strong>${startItem} – ${endItem}</strong> of <strong>${totalEmployees}</strong> items`;
       }
       if (empTotalPages) empTotalPages.textContent = totalPages;
       if (empJumpInput) {
@@ -2126,17 +2131,17 @@ function initEmployeesPage() {
 
       pages.forEach((p) => {
         if (p === "...") {
-          html += `<span class="emp-page-ellipsis">…</span>`;
+          html += `<span class="app-page-ellipsis">…</span>`;
         } else {
           const isActive = p === currentPage ? "active" : "";
-          html += `<button type="button" class="emp-page-btn ${isActive}" data-page="${p}">${p}</button>`;
+          html += `<button type="button" class="app-page-btn ${isActive}" data-page="${p}">${p}</button>`;
         }
       });
 
       empPageNumbersGroup.innerHTML = html;
 
       // Attach listeners to newly rendered page buttons
-      empPageNumbersGroup.querySelectorAll(".emp-page-btn").forEach((btn) => {
+      empPageNumbersGroup.querySelectorAll(".app-page-btn").forEach((btn) => {
         btn.addEventListener("click", (e) => {
           const pageNum = parseInt(e.currentTarget.getAttribute("data-page"), 10);
           if (pageNum && pageNum !== currentPage) {
@@ -3103,12 +3108,12 @@ function renderCandidateTable() {
   };
 
   const stageBadgeMap = {
-    applied: `<span class="emp-badge status-active" style="background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe;"><i class="fa-solid fa-circle"></i> Applied</span>`,
-    screening: `<span class="emp-badge status-maternity" style="background:#ecfeff;color:#0e7490;border-color:#a5f3fc;"><i class="fa-solid fa-circle"></i> Screening</span>`,
-    interview: `<span class="emp-badge status-remote" style="background:#f5f3ff;color:#6d28d9;border-color:#ddd6fe;"><i class="fa-solid fa-circle"></i> Interview</span>`,
-    offer: `<span class="emp-badge status-probation" style="background:#fffbeb;color:#b45309;border-color:#fde68a;"><i class="fa-solid fa-circle"></i> Offer</span>`,
-    hired: `<span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Hired</span>`,
-    rejected: `<span class="emp-badge status-resigned"><i class="fa-solid fa-circle"></i> Rejected</span>`,
+    applied: `<span class="emp-badge status-applied"><i class="fa-solid fa-circle"></i> Applied</span>`,
+    screening: `<span class="emp-badge status-screening"><i class="fa-solid fa-circle"></i> Screening</span>`,
+    interview: `<span class="emp-badge status-interview"><i class="fa-solid fa-circle"></i> Interview</span>`,
+    offer: `<span class="emp-badge status-offer"><i class="fa-solid fa-circle"></i> Offer</span>`,
+    hired: `<span class="emp-badge status-hired"><i class="fa-solid fa-circle"></i> Hired</span>`,
+    rejected: `<span class="emp-badge status-rejected"><i class="fa-solid fa-circle"></i> Rejected</span>`,
   };
 
   tbody.innerHTML = filtered
@@ -3348,7 +3353,7 @@ function openCandidateDetailModal(id) {
   if (!modalEl) return;
 
   // Eyebrow tag title (View-only profile)
-  const eyebrowTag = modalEl.querySelector(".emp-modal-eyebrow-tag span");
+  const eyebrowTag = modalEl.querySelector(".app-modal-eyebrow-tag span");
   if (eyebrowTag) {
     eyebrowTag.textContent = "CANDIDATE RECRUITMENT PROFILE (VIEW ONLY)";
   }
@@ -3393,7 +3398,7 @@ function openCandidateDetailModal(id) {
     skillsContainer.innerHTML = (c.skills || ["JavaScript", "Problem Solving", "Teamwork"])
       .map(
         (s) =>
-          `<span class="emp-modal-skill-chip"><i class="fa-solid fa-check text-primary"></i> ${s}</span>`,
+          `<span class="app-modal-skill-chip"><i class="fa-solid fa-check text-primary"></i> ${s}</span>`,
       )
       .join("");
   }
@@ -3577,3 +3582,126 @@ window.openStageCandidatesModal = openStageCandidatesModal;
 window.filterStageCandidatesModal = filterStageCandidatesModal;
 window.clearStageModalSearch = clearStageModalSearch;
 window.openCandidateDetailFromStageModal = openCandidateDetailFromStageModal;
+
+/* Settings Page Interactivity */
+function initSettingsPage() {
+  // 1. Save All Settings button
+  const saveAllBtn = document.getElementById("saveAllSettingsBtn");
+  if (saveAllBtn) {
+    saveAllBtn.addEventListener("click", () => {
+      saveAllBtn.disabled = true;
+      saveAllBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin me-1"></i> Saving...`;
+
+      setTimeout(() => {
+        saveAllBtn.disabled = false;
+        saveAllBtn.innerHTML = `<i class="fa-solid fa-floppy-disk me-1"></i> Save All Changes`;
+
+        showToast({
+          title: "Settings Saved",
+          message: "System preferences and configurations have been successfully updated.",
+          type: "success",
+          duration: 4000,
+        });
+      }, 600);
+    });
+  }
+
+  // 2. Organization Profile Form
+  const orgForm = document.getElementById("generalOrgForm");
+  if (orgForm) {
+    orgForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      showToast({
+        title: "Profile Updated",
+        message: "Organization profile details updated successfully.",
+        type: "success",
+        duration: 3500,
+      });
+    });
+  }
+
+  // 3. Control Center Toggle Switches
+  const maintSwitch = document.getElementById("switchMaintenanceMode");
+  if (maintSwitch) {
+    maintSwitch.addEventListener("change", (e) => {
+      if (e.target.checked) {
+        showToast({
+          title: "Maintenance Mode Enabled",
+          message: "System access is now restricted to Administrators only.",
+          type: "warning",
+          duration: 5000,
+        });
+      } else {
+        showToast({
+          title: "Maintenance Mode Disabled",
+          message: "Normal system operations resumed for all users.",
+          type: "info",
+          duration: 4000,
+        });
+      }
+    });
+  }
+
+  const backupSwitch = document.getElementById("switchAutoBackups");
+  if (backupSwitch) {
+    backupSwitch.addEventListener("change", (e) => {
+      showToast({
+        title: e.target.checked ? "Auto Backups Activated" : "Auto Backups Paused",
+        message: e.target.checked
+          ? "Automated daily database snapshots are enabled."
+          : "Automated backup schedule paused.",
+        type: e.target.checked ? "success" : "warning",
+        duration: 3500,
+      });
+    });
+  }
+
+
+  // 5. Danger Zone Confirmation
+  const confirmDangerBtn = document.getElementById("confirmDangerActionBtn");
+  if (confirmDangerBtn) {
+    confirmDangerBtn.addEventListener("click", () => {
+      const dangerInput = document.getElementById("dangerConfirmInput");
+      const actionType = confirmDangerBtn.getAttribute("data-action-type") || "reset";
+      
+      if (dangerInput && dangerInput.value.trim().toUpperCase() !== "CONFIRM") {
+        showToast({
+          title: "Confirmation Required",
+          message: 'Please type "CONFIRM" to proceed with this sensitive action.',
+          type: "danger",
+          duration: 4000,
+        });
+        return;
+      }
+
+      const modalEl = document.getElementById("dangerZoneModal");
+      const bsModal = modalEl && typeof bootstrap !== "undefined" ? bootstrap.Modal.getInstance(modalEl) : null;
+      if (bsModal) bsModal.hide();
+
+      showToast({
+        title: actionType === "reset" ? "System Reset Initiated" : "Portal Deactivated",
+        message: actionType === "reset"
+          ? "System preferences have been restored to initial defaults."
+          : "Employee self-service portal has been temporarily deactivated.",
+        type: "danger",
+        duration: 5000,
+      });
+    });
+  }
+
+  // 6. Reset Defaults Button
+  const resetDefaultsBtn = document.getElementById("resetDefaultsBtn");
+  if (resetDefaultsBtn) {
+    resetDefaultsBtn.addEventListener("click", () => {
+      showToast({
+        title: "Defaults Restored",
+        message: "Default system values loaded. Click 'Save All Changes' to commit.",
+        type: "info",
+        duration: 3500,
+      });
+    });
+  }
+}
+
+window.initSettingsPage = initSettingsPage;
+
