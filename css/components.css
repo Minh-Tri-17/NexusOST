@@ -100,12 +100,6 @@
   border: 1px solid var(--badge-teal-border) !important;
 }
 
-.badge-emerald {
-  background-color: var(--badge-emerald-bg) !important;
-  color: var(--badge-emerald-text) !important;
-  border: 1px solid var(--badge-emerald-border) !important;
-}
-
 /* --------------------------------------------------------------------------
    3. SOFT PASTEL CARDS & METRIC COMPONENTS
    -------------------------------------------------------------------------- */
@@ -162,6 +156,14 @@
 .card-pastel-slate {
   background: var(--grad-card-slate);
   border: 1px solid var(--badge-slate-border);
+}
+.card-pastel-indigo {
+  background: var(--grad-card-indigo, var(--soft-indigo-grad));
+  border: 1px solid var(--badge-indigo-border);
+}
+.card-pastel-red {
+  background: var(--grad-card-red, var(--soft-red-grad));
+  border: 1px solid var(--badge-red-border);
 }
 
 /* Card Pastel Typography & Elements */
@@ -227,6 +229,12 @@
 .card-pastel-teal .metric-pastel-icon-floating {
   color: var(--badge-teal-text);
 }
+.card-pastel-indigo .metric-pastel-icon-floating {
+  color: var(--badge-indigo-text);
+}
+.card-pastel-red .metric-pastel-icon-floating {
+  color: var(--badge-red-text);
+}
 
 /* Card Tag Pills */
 .card-pastel-blue .metric-tag-pill {
@@ -270,6 +278,18 @@
   color: var(--badge-orange-text);
   border: 1px solid var(--badge-orange-border);
   box-shadow: 0 1px 3px rgba(249, 115, 22, 0.1);
+}
+.card-pastel-indigo .metric-tag-pill {
+  background: var(--badge-indigo-bg);
+  color: var(--badge-indigo-text);
+  border: 1px solid var(--badge-indigo-border);
+  box-shadow: 0 1px 3px rgba(79, 70, 229, 0.1);
+}
+.card-pastel-red .metric-tag-pill {
+  background: var(--badge-red-bg);
+  color: var(--badge-red-text);
+  border: 1px solid var(--badge-red-border);
+  box-shadow: 0 1px 3px rgba(220, 38, 38, 0.1);
 }
 
 /* --------------------------------------------------------------------------
@@ -484,20 +504,6 @@
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25) !important;
 }
 
-.btn-pastel-blue {
-  background-color: var(--badge-blue-bg, #eff6ff) !important;
-  color: var(--badge-blue-text, #2563eb) !important;
-  border: 1px solid var(--badge-blue-border, #bfdbfe) !important;
-  font-weight: 600;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-.btn-pastel-blue:hover {
-  background-color: var(--badge-blue-text, #2563eb) !important;
-  color: #ffffff !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important;
-}
-
 .btn-pastel-orange {
   background-color: var(--badge-orange-bg, #fff7ed) !important;
   color: var(--badge-orange-text, #ea580c) !important;
@@ -580,16 +586,6 @@
   color: #ffffff !important;
 }
 
-[data-theme="dark"] .btn-pastel-blue {
-  background-color: rgba(37, 99, 235, 0.15) !important;
-  color: #93c5fd !important;
-  border-color: rgba(37, 99, 235, 0.35) !important;
-}
-[data-theme="dark"] .btn-pastel-blue:hover {
-  background-color: #2563eb !important;
-  color: #ffffff !important;
-}
-
 [data-theme="dark"] .btn-pastel-orange {
   background-color: rgba(234, 88, 12, 0.15) !important;
   color: #fdba74 !important;
@@ -639,5 +635,3 @@
   background-color: rgba(255, 255, 255, 0.15) !important;
   color: #ffffff !important;
 }
-
-

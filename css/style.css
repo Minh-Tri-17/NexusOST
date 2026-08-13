@@ -269,6 +269,8 @@
   --grad-card-orange: var(--soft-orange-grad);
   --grad-card-teal: var(--soft-teal-grad);
   --grad-card-slate: var(--soft-slate-grad);
+  --grad-card-indigo: var(--soft-indigo-grad);
+  --grad-card-red: var(--soft-red-grad);
 
   /* Soft Badge Color Aliases */
   --badge-purple-bg: var(--soft-purple-bg);
@@ -314,10 +316,6 @@
   --badge-teal-bg: var(--soft-teal-bg);
   --badge-teal-text: var(--soft-teal-text);
   --badge-teal-border: var(--soft-teal-border);
-
-  --badge-emerald-bg: var(--soft-green-bg);
-  --badge-emerald-text: var(--palette-green-700);
-  --badge-emerald-border: var(--palette-green-200);
 
   /* Button Pastel Token Aliases */
   --btn-pastel-success-bg: var(--soft-green-grad);
@@ -718,7 +716,7 @@ body {
   color: var(--text-main);
   margin: 0;
   padding: 0;
-  /* overflow-x removed — would block apex-grid horizontal scroll */
+  /* overflow-x removed — would block apex-grid horizontal scroll */
   font-size: 0.925rem;
   -webkit-font-smoothing: antialiased;
 }
@@ -757,40 +755,48 @@ a {
 }
 
 /* Collapsed Sidebar Mode (Icon-Only) */
+.sidebar-collapsed .app-sidebar,
 .app-wrapper.sidebar-collapsed .app-sidebar {
   width: var(--sidebar-collapsed-width);
   overflow: hidden !important;
 }
 
+.sidebar-collapsed .app-main,
 .app-wrapper.sidebar-collapsed .app-main {
   margin-left: var(--sidebar-collapsed-width);
 }
 
+.sidebar-collapsed .sidebar-header,
 .app-wrapper.sidebar-collapsed .sidebar-header {
   padding: 0;
   justify-content: center;
 }
 
+.sidebar-collapsed .sidebar-header > div:last-child,
 .app-wrapper.sidebar-collapsed .sidebar-header > div:last-child {
   display: none;
 }
 
+.sidebar-collapsed .sidebar-nav,
 .app-wrapper.sidebar-collapsed .sidebar-nav {
   padding: 1.25rem 0.5rem;
   overflow-y: auto !important;
   overflow-x: hidden !important;
 }
 
+.sidebar-collapsed .sidebar-nav .nav-link,
 .app-wrapper.sidebar-collapsed .sidebar-nav .nav-link {
   justify-content: center;
   padding: 0.75rem 0;
   gap: 0;
 }
 
+.sidebar-collapsed .sidebar-nav .nav-link span,
 .app-wrapper.sidebar-collapsed .sidebar-nav .nav-link span {
   display: none;
 }
 
+.sidebar-collapsed .sidebar-nav .nav-link i:not(.toggle-chevron),
 .app-wrapper.sidebar-collapsed .sidebar-nav .nav-link i:not(.toggle-chevron) {
   font-size: 1.25rem;
   margin: 0;
@@ -798,11 +804,13 @@ a {
 }
 
 /* Vertical Icon Submenu Accordion under Category in Collapsed Mode */
+.sidebar-collapsed .sidebar-nav .toggle-chevron,
 .app-wrapper.sidebar-collapsed .sidebar-nav .toggle-chevron {
   display: none !important;
 }
 
 /* Option: Tree Connector Rail + Squircle Node Icons in Collapsed Mode */
+.sidebar-collapsed .sidebar-nav .submenu-list,
 .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-list {
   position: relative;
   margin: 0.25rem 0 0.5rem 0;
@@ -816,6 +824,7 @@ a {
 }
 
 /* Vertical Connecting Branch Rail Line down the center */
+.sidebar-collapsed .sidebar-nav .submenu-list::before,
 .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-list::before {
   content: "";
   position: absolute;
@@ -829,11 +838,13 @@ a {
   border-radius: 1px;
 }
 
+.sidebar-collapsed .sidebar-nav .submenu-header,
 .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-header {
   display: none !important;
 }
 
 /* Submenu Icon Nodes sitting on top of the rail line */
+.sidebar-collapsed .sidebar-nav .submenu-link,
 .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link {
   width: 30px;
   height: 30px;
@@ -851,11 +862,13 @@ a {
   color: var(--text-muted);
 }
 
+.sidebar-collapsed .sidebar-nav .submenu-link span,
 .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link span {
   display: none !important;
 }
 
 /* Hierarchy Icon Size (13px vs 20px) */
+.sidebar-collapsed .sidebar-nav .submenu-link i,
 .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link i {
   font-size: 0.8rem !important;
   margin: 0 !important;
@@ -865,6 +878,7 @@ a {
 }
 
 /* Hover State - Soft lift */
+.sidebar-collapsed .sidebar-nav .submenu-link:hover,
 .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link:hover {
   background-color: var(--bg-surface, #ffffff);
   color: var(--primary-600);
@@ -873,11 +887,13 @@ a {
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
+.sidebar-collapsed .sidebar-nav .submenu-link:hover i,
 .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link:hover i {
   color: var(--primary-600) !important;
 }
 
 /* Active State - Solid primary blue node + white icon */
+.sidebar-collapsed .sidebar-nav .submenu-link.active,
 .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link.active {
   background-color: var(--primary-600) !important;
   color: #ffffff !important;
@@ -885,15 +901,18 @@ a {
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
 }
 
+.sidebar-collapsed .sidebar-nav .submenu-link.active i,
 .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link.active i {
   color: #ffffff !important;
 }
 
 /* Dark Mode Specific Overrides for Collapsed Submenu Icons */
+[data-theme="dark"] .sidebar-collapsed .sidebar-nav .submenu-list::before,
 [data-theme="dark"] .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-list::before {
   background: #334155;
 }
 
+[data-theme="dark"] .sidebar-collapsed .sidebar-nav .submenu-link,
 [data-theme="dark"] .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link {
   background: #1e293b;
   border-color: #334155;
@@ -901,20 +920,24 @@ a {
   color: #94a3b8;
 }
 
+[data-theme="dark"] .sidebar-collapsed .sidebar-nav .submenu-link i,
 [data-theme="dark"] .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link i {
   color: #94a3b8;
 }
 
+[data-theme="dark"] .sidebar-collapsed .sidebar-nav .submenu-link:hover,
 [data-theme="dark"] .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link:hover {
   background-color: #334155;
   border-color: #60a5fa;
   box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
 }
 
+[data-theme="dark"] .sidebar-collapsed .sidebar-nav .submenu-link:hover i,
 [data-theme="dark"] .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link:hover i {
   color: #60a5fa !important;
 }
 
+[data-theme="dark"] .sidebar-collapsed .sidebar-nav .submenu-link.active,
 [data-theme="dark"] .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link.active {
   background-color: #2563eb !important;
   border-color: #3b82f6 !important;
@@ -922,10 +945,12 @@ a {
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.5);
 }
 
+[data-theme="dark"] .sidebar-collapsed .sidebar-nav .submenu-link.active i,
 [data-theme="dark"] .app-wrapper.sidebar-collapsed .sidebar-nav .submenu-link.active i {
   color: #ffffff !important;
 }
 
+.sidebar-collapsed .sidebar-footer-graphic,
 .app-wrapper.sidebar-collapsed .sidebar-footer-graphic {
   display: none;
 }
@@ -1180,17 +1205,6 @@ a {
   border-top: 1px solid var(--border-light);
 }
 
-.security-badge-box {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(8px);
-  border: 1px solid #dbeafe;
-  border-radius: var(--radius-md);
-  padding: 0.875rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.05);
-}
 
 .security-badge-box i {
   color: var(--primary-600);
@@ -2064,10 +2078,7 @@ a {
   [style*="min-width: 280px"],
   [style*="min-width: 300px"],
   .position-relative:has(> .fa-magnifying-glass),
-  .position-relative:has(> .filter-search-icon),
-  .filter-search-box,
-  .search-input-wrapper,
-  .modal-search-input-box {
+  .position-relative:has(> .filter-search-icon) {
     width: 100% !important;
     min-width: 100% !important;
     max-width: 100% !important;
@@ -2347,20 +2358,17 @@ a {
   border-color: var(--border-color);
 }
 
-[data-theme="dark"] .bg-body-tertiary,
-[data-theme="dark"] .bg-tertiary {
+[data-theme="dark"] .bg-body-tertiary {
   background-color: var(--bg-hover, rgba(255, 255, 255, 0.04)) !important;
   border-color: var(--border-color, rgba(255, 255, 255, 0.1)) !important;
   color: var(--text-main, #f8fafc) !important;
 }
 
-[data-theme="dark"] .bg-body-tertiary .text-dark,
-[data-theme="dark"] .bg-tertiary .text-dark {
+[data-theme="dark"] .bg-body-tertiary .text-dark .text-dark {
   color: var(--text-main, #f8fafc) !important;
 }
 
-[data-theme="dark"] .bg-body-tertiary .text-muted,
-[data-theme="dark"] .bg-tertiary .text-muted {
+[data-theme="dark"] .bg-body-tertiary .text-muted .text-muted {
   color: var(--text-muted, #94a3b8) !important;
 }
 
@@ -2476,12 +2484,7 @@ a {
   color: #ffffff !important;
 }
 
-[data-theme="dark"] .security-badge-box {
-  background: var(--bg-surface);
-  border-color: var(--border-color);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
+[data-theme="dark"] 
 [data-theme="dark"] .sidebar-footer-graphic {
   background: linear-gradient(180deg, rgba(14, 14, 16, 0) 0%, var(--bg-sidebar) 100%);
   border-top-color: var(--border-color);
@@ -2805,7 +2808,7 @@ svg g.apextree-selected .apextree-sleek-card {
 }
 
 /* ==========================================================================
-   Master Synchronized Action Buttons — Color-Based Naming Convention
+   Master Synchronized Action Buttons — Color-Based Naming Convention
    green | orange | red | slate | cyan | purple | indigo
    ========================================================================== */
 
@@ -3254,7 +3257,7 @@ svg g.apextree-selected .apextree-sleek-card {
   max-width: 760px;
 }
 
-/* Unified fade entrance — same as Bootstrap default (dangerZoneModal reference) */
+/* Unified fade entrance — same as Bootstrap default (dangerZoneModal reference) */
 .custom-nexus-modal.show .modal-dialog {
   animation: none;
 }
@@ -3922,22 +3925,17 @@ svg g.apextree-selected .apextree-sleek-card {
   background: var(--primary-50);
   transform: translateY(-1px);
 }
-[data-theme="dark"] .app-page-btn:hover:not(:disabled):not(.active),
-[data-theme="dark"] .emp-page-btn:hover:not(:disabled):not(.active) {
+[data-theme="dark"] .app-page-btn:hover:not(:disabled):not(.active) {
   background: rgba(59, 130, 246, 0.15);
 }
-.app-page-btn.active,
-.emp-page-btn.active,
-.app-page-btn.emp-page-btn--active,
-.emp-page-btn.emp-page-btn--active {
+.app-page-btn.active {
   background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
   border-color: var(--primary-600);
   color: #ffffff;
   font-weight: 700;
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
-.app-page-btn:disabled,
-.emp-page-btn:disabled {
+.app-page-btn:disabled {
   opacity: 0.35;
   cursor: not-allowed;
   background: var(--bg-hover);
@@ -4036,51 +4034,6 @@ svg g.apextree-selected .apextree-sleek-card {
     height: 24px;
     font-size: 0.75rem;
   }
-}
-
-/* Global App Footer */
-.app-global-footer {
-  margin-top: 32px;
-  padding: 16px 24px;
-  border-top: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  font-size: 0.78rem;
-  color: var(--text-muted);
-}
-.app-footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-}
-.app-footer-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: rgba(16, 185, 129, 0.08);
-  color: var(--color-success);
-  font-weight: 600;
-  font-size: 0.73rem;
-  border: 1px solid rgba(16, 185, 129, 0.2);
-}
-.app-footer-links {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.app-footer-link {
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-.app-footer-link:hover {
-  color: var(--primary-600);
 }
 
 /* Hide default apex-grid paginator */
@@ -4218,131 +4171,131 @@ apex-grid::part(paginator) {
 /* ======================================================
    EMPLOYEE CARD DEPARTMENT HOVER THEMES
    ====================================================== */
-.emp-card:has(.dept-design):hover,
+.emp-card:has(.badge-amber):hover,
 .emp-card[data-dept="Design"]:hover {
   border-top-color: #f59e0b !important;
 }
-.emp-card:has(.dept-design):hover::before,
+.emp-card:has(.badge-amber):hover::before,
 .emp-card[data-dept="Design"]:hover::before {
   background: #f59e0b !important;
   opacity: 1;
 }
-.emp-card:has(.dept-design):hover .emp-card-avatar-ring,
+.emp-card:has(.badge-amber):hover .emp-card-avatar-ring,
 .emp-card[data-dept="Design"]:hover .emp-card-avatar-ring {
   border-color: #f59e0b !important;
 }
 
-.emp-card:has(.dept-engineering):hover,
+.emp-card:has(.badge-blue):hover,
 .emp-card[data-dept="Engineering"]:hover {
   border-top-color: #3b82f6 !important;
 }
-.emp-card:has(.dept-engineering):hover::before,
+.emp-card:has(.badge-blue):hover::before,
 .emp-card[data-dept="Engineering"]:hover::before {
   background: #3b82f6 !important;
   opacity: 1;
 }
-.emp-card:has(.dept-engineering):hover .emp-card-avatar-ring,
+.emp-card:has(.badge-blue):hover .emp-card-avatar-ring,
 .emp-card[data-dept="Engineering"]:hover .emp-card-avatar-ring {
   border-color: #3b82f6 !important;
 }
 
-.emp-card:has(.dept-hr):hover,
+.emp-card:has(.badge-teal):hover,
 .emp-card[data-dept="Human Resources"]:hover,
 .emp-card[data-dept="HR"]:hover {
   border-top-color: #0d9488 !important;
 }
-.emp-card:has(.dept-hr):hover::before,
+.emp-card:has(.badge-teal):hover::before,
 .emp-card[data-dept="Human Resources"]:hover::before,
 .emp-card[data-dept="HR"]:hover::before {
   background: #0d9488 !important;
   opacity: 1;
 }
-.emp-card:has(.dept-hr):hover .emp-card-avatar-ring,
+.emp-card:has(.badge-teal):hover .emp-card-avatar-ring,
 .emp-card[data-dept="Human Resources"]:hover .emp-card-avatar-ring,
 .emp-card[data-dept="HR"]:hover .emp-card-avatar-ring {
   border-color: #0d9488 !important;
 }
 
-.emp-card:has(.dept-sales):hover,
+.emp-card:has(.badge-rose):hover,
 .emp-card[data-dept="Sales"]:hover {
   border-top-color: #f43f5e !important;
 }
-.emp-card:has(.dept-sales):hover::before,
+.emp-card:has(.badge-rose):hover::before,
 .emp-card[data-dept="Sales"]:hover::before {
   background: #f43f5e !important;
   opacity: 1;
 }
-.emp-card:has(.dept-sales):hover .emp-card-avatar-ring,
+.emp-card:has(.badge-rose):hover .emp-card-avatar-ring,
 .emp-card[data-dept="Sales"]:hover .emp-card-avatar-ring {
   border-color: #f43f5e !important;
 }
 
-.emp-card:has(.dept-marketing):hover,
+.emp-card:has(.badge-purple):hover,
 .emp-card[data-dept="Marketing"]:hover {
   border-top-color: #8b5cf6 !important;
 }
-.emp-card:has(.dept-marketing):hover::before,
+.emp-card:has(.badge-purple):hover::before,
 .emp-card[data-dept="Marketing"]:hover::before {
   background: #8b5cf6 !important;
   opacity: 1;
 }
-.emp-card:has(.dept-marketing):hover .emp-card-avatar-ring,
+.emp-card:has(.badge-purple):hover .emp-card-avatar-ring,
 .emp-card[data-dept="Marketing"]:hover .emp-card-avatar-ring {
   border-color: #8b5cf6 !important;
 }
 
-.emp-card:has(.dept-finance):hover,
+.emp-card:has(.badge-green):hover,
 .emp-card[data-dept="Finance"]:hover {
   border-top-color: #10b981 !important;
 }
-.emp-card:has(.dept-finance):hover::before,
+.emp-card:has(.badge-green):hover::before,
 .emp-card[data-dept="Finance"]:hover::before {
   background: #10b981 !important;
   opacity: 1;
 }
-.emp-card:has(.dept-finance):hover .emp-card-avatar-ring,
+.emp-card:has(.badge-green):hover .emp-card-avatar-ring,
 .emp-card[data-dept="Finance"]:hover .emp-card-avatar-ring {
   border-color: #10b981 !important;
 }
 
-.emp-card:has(.dept-operations):hover,
+.emp-card:has(.badge-orange):hover,
 .emp-card[data-dept="Operations"]:hover {
   border-top-color: #f97316 !important;
 }
-.emp-card:has(.dept-operations):hover::before,
+.emp-card:has(.badge-orange):hover::before,
 .emp-card[data-dept="Operations"]:hover::before {
   background: #f97316 !important;
   opacity: 1;
 }
-.emp-card:has(.dept-operations):hover .emp-card-avatar-ring,
+.emp-card:has(.badge-orange):hover .emp-card-avatar-ring,
 .emp-card[data-dept="Operations"]:hover .emp-card-avatar-ring {
   border-color: #f97316 !important;
 }
 
-.emp-card:has(.dept-management):hover,
+.emp-card:has(.badge-slate):hover,
 .emp-card[data-dept="Management"]:hover {
   border-top-color: #64748b !important;
 }
-.emp-card:has(.dept-management):hover::before,
+.emp-card:has(.badge-slate):hover::before,
 .emp-card[data-dept="Management"]:hover::before {
   background: #64748b !important;
   opacity: 1;
 }
-.emp-card:has(.dept-management):hover .emp-card-avatar-ring,
+.emp-card:has(.badge-slate):hover .emp-card-avatar-ring,
 .emp-card[data-dept="Management"]:hover .emp-card-avatar-ring {
   border-color: #64748b !important;
 }
 
-.emp-card:has(.dept-product):hover,
+.emp-card:has(.badge-indigo):hover,
 .emp-card[data-dept="Product"]:hover {
   border-top-color: #6366f1 !important;
 }
-.emp-card:has(.dept-product):hover::before,
+.emp-card:has(.badge-indigo):hover::before,
 .emp-card[data-dept="Product"]:hover::before {
   background: #6366f1 !important;
   opacity: 1;
 }
-.emp-card:has(.dept-product):hover .emp-card-avatar-ring,
+.emp-card:has(.badge-indigo):hover .emp-card-avatar-ring,
 .emp-card[data-dept="Product"]:hover .emp-card-avatar-ring {
   border-color: #6366f1 !important;
 }
@@ -4415,7 +4368,7 @@ apex-grid::part(paginator) {
     0 6px 16px -4px rgba(0, 0, 0, 0.3);
 }
 
-/* Top accent line — Default Always Visible & Department Themed */
+/* Top accent line — Default Always Visible & Department Themed */
 .emp-card::before {
   content: "";
   position: absolute;
@@ -4429,68 +4382,68 @@ apex-grid::part(paginator) {
 }
 
 /* Department Specific Accent Colors for Card Top Line & Avatar Ring */
-.emp-card:has(.dept-engineering)::before {
+.emp-card:has(.badge-blue)::before {
   background: #3b82f6;
 }
-.emp-card:has(.dept-engineering) .emp-card-avatar-ring {
+.emp-card:has(.badge-blue) .emp-card-avatar-ring {
   border-color: #60a5fa;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
-.emp-card:has(.dept-marketing)::before {
+.emp-card:has(.badge-purple)::before {
   background: #8b5cf6;
 }
-.emp-card:has(.dept-marketing) .emp-card-avatar-ring {
+.emp-card:has(.badge-purple) .emp-card-avatar-ring {
   border-color: #a78bfa;
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
 }
 
-.emp-card:has(.dept-hr)::before {
+.emp-card:has(.badge-teal)::before {
   background: #14b8a6;
 }
-.emp-card:has(.dept-hr) .emp-card-avatar-ring {
+.emp-card:has(.badge-teal) .emp-card-avatar-ring {
   border-color: #2dd4bf;
   box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
 }
 
-.emp-card:has(.dept-finance)::before {
+.emp-card:has(.badge-green)::before {
   background: #10b981;
 }
-.emp-card:has(.dept-finance) .emp-card-avatar-ring {
+.emp-card:has(.badge-green) .emp-card-avatar-ring {
   border-color: #34d399;
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
 }
 
-.emp-card:has(.dept-operations)::before,
-.emp-card:has(.dept-ops)::before {
+.emp-card:has(.badge-orange)::before,
+.emp-card:has(.badge-orange)::before {
   background: #f97316;
 }
-.emp-card:has(.dept-operations) .emp-card-avatar-ring,
-.emp-card:has(.dept-ops) .emp-card-avatar-ring {
+.emp-card:has(.badge-orange) .emp-card-avatar-ring,
+.emp-card:has(.badge-orange) .emp-card-avatar-ring {
   border-color: #fb923c;
   box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
 }
 
-.emp-card:has(.dept-sales)::before {
+.emp-card:has(.badge-rose)::before {
   background: #f43f5e;
 }
-.emp-card:has(.dept-sales) .emp-card-avatar-ring {
+.emp-card:has(.badge-rose) .emp-card-avatar-ring {
   border-color: #fb7185;
   box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.15);
 }
 
-.emp-card:has(.dept-design)::before {
+.emp-card:has(.badge-amber)::before {
   background: #f59e0b;
 }
-.emp-card:has(.dept-design) .emp-card-avatar-ring {
+.emp-card:has(.badge-amber) .emp-card-avatar-ring {
   border-color: #fbbf24;
   box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
 }
 
-.emp-card:has(.dept-management)::before {
+.emp-card:has(.badge-slate)::before {
   background: #6366f1;
 }
-.emp-card:has(.dept-management) .emp-card-avatar-ring {
+.emp-card:has(.badge-slate) .emp-card-avatar-ring {
   border-color: #818cf8;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
@@ -4520,7 +4473,7 @@ apex-grid::part(paginator) {
   gap: 8px !important;
 }
 
-.emp-card-top-bar .emp-badge {
+.emp-card-top-bar .badge-soft {
   order: 1;
 }
 
@@ -4679,16 +4632,6 @@ apex-grid::part(paginator) {
   margin-bottom: 14px;
   width: 100%;
 }
-.emp-badge {
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  transition: all 0.2s ease;
-}
 
 /* Contact Info Section - Clean, Frameless Layout */
 .emp-card-contact {
@@ -4743,8 +4686,7 @@ apex-grid::part(paginator) {
    ====================================================== */
 #empListView .table-responsive,
 #recruitmentListView .table-responsive,
-.app-table-scroll,
-.country-table-scroll {
+.app-table-scroll {
   max-height: 640px;
   overflow: auto;
   padding-right: 2px;
@@ -4752,75 +4694,30 @@ apex-grid::part(paginator) {
 }
 #empListView .table-responsive::-webkit-scrollbar,
 #recruitmentListView .table-responsive::-webkit-scrollbar,
-.app-table-scroll::-webkit-scrollbar,
-.country-table-scroll::-webkit-scrollbar {
+.app-table-scroll::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 #empListView .table-responsive::-webkit-scrollbar-track,
 #recruitmentListView .table-responsive::-webkit-scrollbar-track,
-.app-table-scroll::-webkit-scrollbar-track,
-.country-table-scroll::-webkit-scrollbar-track {
+.app-table-scroll::-webkit-scrollbar-track {
   background: transparent;
 }
 #empListView .table-responsive::-webkit-scrollbar-thumb,
 #recruitmentListView .table-responsive::-webkit-scrollbar-thumb,
-.app-table-scroll::-webkit-scrollbar-thumb,
-.country-table-scroll::-webkit-scrollbar-thumb {
+.app-table-scroll::-webkit-scrollbar-thumb {
   background: var(--border-color, rgba(203, 213, 225, 0.8));
   border-radius: 10px;
 }
 #empListView .table-responsive::-webkit-scrollbar-thumb:hover,
 #recruitmentListView .table-responsive::-webkit-scrollbar-thumb:hover,
-.app-table-scroll::-webkit-scrollbar-thumb:hover,
-.country-table-scroll::-webkit-scrollbar-thumb:hover {
+.app-table-scroll::-webkit-scrollbar-thumb:hover {
   background: var(--primary-500, #3b82f6);
 }
 
 /* ======================================================
-         EMPLOYEES PAGE — SCOPED STYLES
+         EMPLOYEES PAGE — SCOPED STYLES
          ====================================================== */
-
-/* --- Summary Stats Row --- */
-.emp-stat-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 14px;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  border: 1px solid transparent;
-  transition: box-shadow 0.18s;
-}
-.emp-stat-pill i {
-  font-size: 0.72rem;
-}
-.emp-stat-pill.blue {
-  background: var(--badge-blue-bg);
-  color: var(--badge-blue-text);
-  border-color: var(--badge-blue-border);
-}
-.emp-stat-pill.green {
-  background: var(--badge-green-bg);
-  color: var(--badge-green-text);
-  border-color: var(--badge-green-border);
-}
-.emp-stat-pill.amber {
-  background: var(--badge-amber-bg);
-  color: var(--badge-amber-text);
-  border-color: var(--badge-amber-border);
-}
-.emp-stat-pill.red {
-  background: var(--badge-red-bg);
-  color: var(--badge-red-text);
-  border-color: var(--badge-red-border);
-}
-.emp-stat-pill.slate {
-  background: var(--badge-slate-bg);
-  color: var(--badge-slate-text);
-  border-color: var(--badge-slate-border);
-}
 
 /* --- View Toggle Group --- */
 .view-toggle-group {
@@ -4948,180 +4845,11 @@ apex-grid::part(paginator) {
   color: var(--text-muted);
 }
 
-/* Badge shared */
-.emp-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 3px 9px;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  line-height: 1;
-  align-self: center;
-  box-sizing: border-box;
-}
-.emp-badge i {
-  font-size: 0.6rem;
-}
-
-/* Status colours */
-.emp-badge.status-active,
-.emp-badge.status-hired {
-  background: var(--badge-green-bg);
-  color: var(--badge-green-text);
-  border-color: var(--badge-green-border);
-}
-.emp-badge.status-probation,
-.emp-badge.status-offer {
-  background: var(--badge-amber-bg);
-  color: var(--badge-amber-text);
-  border-color: var(--badge-amber-border);
-}
-.emp-badge.status-maternity,
-.emp-badge.status-screening {
-  background: var(--badge-cyan-bg);
-  color: var(--badge-cyan-text);
-  border-color: var(--badge-cyan-border);
-}
-.emp-badge.status-resigned,
-.emp-badge.status-rejected {
-  background: var(--badge-red-bg);
-  color: var(--badge-red-text);
-  border-color: var(--badge-red-border);
-}
-.emp-badge.status-remote,
-.emp-badge.status-interview {
-  background: var(--badge-purple-bg);
-  color: var(--badge-purple-text);
-  border-color: var(--badge-purple-border);
-}
-.emp-badge.status-applied {
-  background: var(--badge-blue-bg);
-  color: var(--badge-blue-text);
-  border-color: var(--badge-blue-border);
-}
-
-/* Department colours */
-.emp-badge.dept-engineering {
-  background: var(--badge-blue-bg);
-  color: var(--badge-blue-text);
-  border-color: var(--badge-blue-border);
-}
-.emp-badge.dept-marketing {
-  background: var(--badge-purple-bg);
-  color: var(--badge-purple-text);
-  border-color: var(--badge-purple-border);
-}
-.emp-badge.dept-hr {
-  background: var(--badge-teal-bg);
-  color: var(--badge-teal-text);
-  border-color: var(--badge-teal-border);
-}
-.emp-badge.dept-finance {
-  background: var(--badge-emerald-bg);
-  color: var(--badge-emerald-text);
-  border-color: var(--badge-emerald-border);
-}
-.emp-badge.dept-operations,
-.emp-badge.dept-ops {
-  background: var(--badge-orange-bg);
-  color: var(--badge-orange-text);
-  border-color: var(--badge-orange-border);
-}
-.emp-badge.dept-sales {
-  background: var(--badge-rose-bg);
-  color: var(--badge-rose-text);
-  border-color: var(--badge-rose-border);
-}
-.emp-badge.dept-design {
-  background: var(--badge-amber-bg);
-  color: var(--badge-amber-text);
-  border-color: var(--badge-amber-border);
-}
-.emp-badge.dept-management {
-  background: var(--badge-slate-bg);
-  color: var(--badge-slate-text);
-  border-color: var(--badge-slate-border);
-}
-.emp-badge.dept-product {
-  background: var(--badge-indigo-bg);
-  color: var(--badge-indigo-text);
-  border-color: var(--badge-indigo-border);
-}
-
-/* Contract colours */
-.emp-badge.contract-fulltime {
-  background: var(--badge-blue-bg);
-  color: var(--badge-blue-text);
-  border-color: var(--badge-blue-border);
-}
-.emp-badge.contract-parttime {
-  background: var(--badge-amber-bg);
-  color: var(--badge-amber-text);
-  border-color: var(--badge-amber-border);
-}
-.emp-badge.contract-contract {
-  background: var(--badge-purple-bg);
-  color: var(--badge-purple-text);
-  border-color: var(--badge-purple-border);
-}
-.emp-badge.contract-internship {
-  background: var(--badge-cyan-bg);
-  color: var(--badge-cyan-text);
-  border-color: var(--badge-cyan-border);
-}
-.emp-badge.contract-freelance {
-  background: var(--badge-orange-bg);
-  color: var(--badge-orange-text);
-  border-color: var(--badge-orange-border);
-}
-
-/* Row action buttons */
-.emp-row-actions {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  opacity: 0;
-  transition: opacity 0.15s;
-}
-.app-list-table tbody tr:hover .emp-row-actions,
-.emp-list-table tbody tr:hover .emp-row-actions {
-  opacity: 1;
-}
-.emp-row-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 7px;
-  border: 1px solid var(--border-color);
-  background: var(--bg-surface);
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.emp-row-btn:hover {
-  border-color: var(--primary-600);
-  color: var(--primary-600);
-  background: var(--primary-50);
-}
-.emp-row-btn.danger:hover {
-  border-color: #ef4444;
-  color: #ef4444;
-  background: #fff1f2;
-}
-
 /* ======================================================
          EMPLOYEE / APP DETAIL MODAL
          ====================================================== */
 
-/* ── Avatar Wrap Styling inside Modal Header ── */
+/* -- Avatar Wrap Styling inside Modal Header -- */
 .app-modal-avatar-wrap,
 .emp-modal-avatar-wrap {
   flex-shrink: 0;
@@ -5149,44 +4877,6 @@ apex-grid::part(paginator) {
   font-size: 1.5rem;
   font-weight: 700;
   color: #fff;
-}
-.app-modal-hero-info,
-.emp-modal-hero-info {
-  flex: 1;
-  min-width: 0;
-}
-.app-modal-name,
-.emp-modal-name {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: var(--text-main, #1e293b);
-  line-height: 1.2;
-  margin: 0 0 2px;
-}
-.app-modal-role,
-.emp-modal-role {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  font-weight: 500;
-  margin: 0 0 10px;
-}
-.app-modal-hero-badges,
-.emp-modal-hero-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
-}
-.app-modal-id-chip,
-.emp-modal-id-chip {
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 2px 10px;
-  border-radius: 999px;
-  background: var(--primary-100, #dbeafe);
-  color: var(--primary-700, #1d4ed8);
-  border: 1px solid var(--primary-200, #bfdbfe);
-  letter-spacing: 0.03em;
 }
 
 /* Info body */
@@ -5313,67 +5003,6 @@ apex-grid::part(paginator) {
   font-weight: 500;
 }
 
-/* Quick actions footer */
-.app-modal-actions,
-.emp-modal-actions {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-  padding: 14px 28px 18px;
-  border-top: 1px solid var(--border-color);
-}
-.app-modal-action-btn,
-.emp-modal-action-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 18px;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.18s;
-  border: 1px solid transparent;
-}
-.app-modal-action-btn.secondary,
-.emp-modal-action-btn.secondary {
-  background: var(--bg-surface, #f8fafc);
-  color: var(--text-muted);
-  border-color: var(--border-color);
-}
-.app-modal-action-btn.secondary:hover,
-.emp-modal-action-btn.secondary:hover {
-  background: var(--bg-hover);
-  color: var(--text-main);
-  border-color: var(--border-color);
-}
-.app-modal-action-btn.primary,
-.emp-modal-action-btn.primary {
-  background: linear-gradient(
-    135deg,
-    var(--primary-600, #2563eb) 0%,
-    var(--primary-700, #1d4ed8) 100%
-  );
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
-}
-.app-modal-action-btn.primary:hover,
-.emp-modal-action-btn.primary:hover {
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
-  transform: translateY(-1px);
-}
-.app-modal-action-btn.danger,
-.emp-modal-action-btn.danger {
-  background: var(--bg-surface);
-  color: #ef4444;
-  border-color: #fca5a5;
-}
-.app-modal-action-btn.danger:hover,
-.emp-modal-action-btn.danger:hover {
-  background: #fff1f2;
-}
-
 /* Dark mode tweaks */
 [data-theme="dark"] .app-modal-hero,
 [data-theme="dark"] .emp-modal-hero {
@@ -5397,21 +5026,29 @@ apex-grid::part(paginator) {
 .emp-modal-skill-chip {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 4px 11px;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 600;
-  border-radius: 999px;
-  background: var(--bg-surface, #f8fafc);
-  border: 1px solid var(--border-color);
-  color: var(--text-muted);
-  transition: all 0.15s;
+  line-height: 1;
+  background: var(--badge-blue-bg, #eff6ff);
+  color: var(--badge-blue-text, #1d4ed8);
+  border: 1px solid var(--badge-blue-border, #bfdbfe);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .app-modal-skill-chip:hover,
 .emp-modal-skill-chip:hover {
-  background: var(--primary-50, #eff6ff);
-  border-color: var(--primary-300, #93c5fd);
-  color: var(--primary-700, #1d4ed8);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.15);
+}
+
+[data-theme="dark"] .app-modal-skill-chip,
+[data-theme="dark"] .emp-modal-skill-chip {
+  background: rgba(37, 99, 235, 0.15) !important;
+  color: #93c5fd !important;
+  border-color: rgba(37, 99, 235, 0.35) !important;
 }
 
 /* Stat mini-row */
@@ -5473,84 +5110,6 @@ apex-grid::part(paginator) {
    RECRUITMENT HIRING PIPELINE (KANBAN BOARD) STYLES
    ========================================================================== */
 
-.pipeline-header-wrapper {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
-  padding: 1.25rem 1.5rem;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.2s ease;
-}
-
-.pipeline-main-title {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text-main);
-  letter-spacing: -0.02em;
-}
-
-.pipeline-search-box {
-  position: relative;
-  min-width: 220px;
-}
-
-.pipeline-search-box .search-icon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-light);
-  font-size: 0.85rem;
-  pointer-events: none;
-}
-
-.pipeline-search-box input {
-  padding-left: 34px;
-  padding-right: 30px;
-  border-radius: 9999px;
-  border: 1px solid var(--border-color);
-  background: var(--bg-hover);
-  color: var(--text-main);
-  font-size: 0.85rem;
-  transition: all 0.2s ease;
-}
-
-.pipeline-search-box input:focus {
-  background: var(--bg-surface);
-  border-color: var(--primary-500);
-  box-shadow: var(--shadow-focus);
-}
-
-.btn-clear-search {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background: transparent;
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  cursor: pointer;
-  padding: 2px 5px;
-}
-
-.pipeline-filter-select {
-  border-radius: 9999px;
-  border: 1px solid var(--border-color);
-  background-color: var(--bg-hover);
-  color: var(--text-main);
-  font-size: 0.85rem;
-  font-weight: 500;
-  padding: 0.375rem 2rem 0.375rem 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.pipeline-filter-select:focus {
-  border-color: var(--primary-500);
-  box-shadow: var(--shadow-focus);
-  background-color: var(--bg-surface);
-}
 
 /* Kanban Board Layout */
 .pipeline-board-container {
@@ -6160,7 +5719,7 @@ apex-grid::part(paginator) {
 /* ==========================================================================
    SETTINGS PAGE STYLES - NexusOST
    ========================================================================== */
-.settings-nav-tabs {
+.app-nav-tabs {
   border-bottom: 1px solid var(--border-color, #e2e8f0);
   gap: 0.35rem;
   background: var(--bg-surface, #ffffff);
@@ -6170,7 +5729,7 @@ apex-grid::part(paginator) {
   position: relative;
 }
 
-.settings-nav-tabs .nav-link {
+.app-nav-tabs .nav-link {
   border: none;
   color: var(--text-muted, #64748b);
   font-weight: 600;
@@ -6188,7 +5747,7 @@ apex-grid::part(paginator) {
 }
 
 /* Animated Glowing Bottom Indicator Line */
-.settings-nav-tabs .nav-link::after {
+.app-nav-tabs .nav-link::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -6203,21 +5762,23 @@ apex-grid::part(paginator) {
   box-shadow: 0 -2px 8px rgba(37, 99, 235, 0.4);
 }
 
-.settings-nav-tabs .nav-link i {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+.app-nav-tabs .nav-link i {
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.25s ease;
 }
 
-.settings-nav-tabs .nav-link:hover {
+.app-nav-tabs .nav-link:hover {
   color: var(--color-primary, #2563eb);
   background: rgba(37, 99, 235, 0.05);
   transform: translateY(-1px);
 }
 
-.settings-nav-tabs .nav-link:hover i {
+.app-nav-tabs .nav-link:hover i {
   transform: scale(1.18) rotate(-4deg);
 }
 
-.settings-nav-tabs .nav-link.active {
+.app-nav-tabs .nav-link.active {
   color: var(--color-primary, #2563eb);
   background: linear-gradient(180deg, rgba(37, 99, 235, 0.04) 0%, rgba(37, 99, 235, 0.1) 100%);
   font-weight: 700;
@@ -6225,41 +5786,14 @@ apex-grid::part(paginator) {
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.06);
 }
 
-.settings-nav-tabs .nav-link.active::after {
+.app-nav-tabs .nav-link.active::after {
   transform: scaleX(1);
   animation: tabLinePulse 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.settings-nav-tabs .nav-link.active i {
+.app-nav-tabs .nav-link.active i {
   transform: scale(1.22);
   animation: tabIconBounce 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes tabLinePulse {
-  0% {
-    transform: scaleX(0);
-    opacity: 0.5;
-  }
-  60% {
-    transform: scaleX(1.08);
-    opacity: 1;
-  }
-  100% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-}
-
-@keyframes tabIconBounce {
-  0% {
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    transform: scale(1.32) rotate(-8deg);
-  }
-  100% {
-    transform: scale(1.22) rotate(0deg);
-  }
 }
 
 /* --------------------------------------------------------------------------
@@ -6269,8 +5803,9 @@ apex-grid::part(paginator) {
   display: none;
   opacity: 0;
   transform: translateY(14px) scale(0.985);
-  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -6282,21 +5817,6 @@ apex-grid::part(paginator) {
   opacity: 1;
   transform: translateY(0) scale(1);
   animation: tabPaneEntrance 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes tabPaneEntrance {
-  0% {
-    opacity: 0;
-    transform: translateY(16px) scale(0.98);
-  }
-  65% {
-    opacity: 0.9;
-    transform: translateY(-2px) scale(1.002);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
 }
 
 .control-center-banner {
@@ -6361,27 +5881,6 @@ apex-grid::part(paginator) {
   border-color: rgba(255, 255, 255, 0.08);
 }
 
-.permission-matrix-table {
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-.permission-matrix-table th {
-  background: var(--bg-hover, #f8fafc);
-  font-weight: 700;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--border-color);
-  padding: 0.95rem 1.1rem;
-}
-
-.permission-matrix-table td {
-  padding: 0.95rem 1.1rem;
-  border-bottom: 1px solid var(--border-color);
-  vertical-align: middle;
-}
 
 .integration-app-card {
   border: 1px solid var(--border-color, #e2e8f0);
@@ -6432,18 +5931,6 @@ apex-grid::part(paginator) {
   transition: all 0.2s ease;
 }
 
-.health-status-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--border-color, #f1f5f9);
-  font-size: 0.85rem;
-}
-
-.health-status-row:last-child {
-  border-bottom: none;
-}
 
 /* --------------------------------------------------------------------------
    DARK MODE OVERRIDES FOR SETTINGS & CARDS
@@ -6458,9 +5945,6 @@ apex-grid::part(paginator) {
   border-color: rgba(239, 68, 68, 0.35) !important;
 }
 
-[data-theme="dark"] .border-danger-subtle {
-  border-color: rgba(239, 68, 68, 0.35) !important;
-}
 
 [data-theme="dark"] .bg-white {
   background-color: var(--bg-card, #1e1e24) !important;
@@ -6524,7 +6008,10 @@ apex-grid::part(paginator) {
   border-radius: 12px;
   border: 1px solid var(--border-color, #e2e8f0);
   background: var(--bg-card, #ffffff);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .integration-app-card:hover {
@@ -6568,20 +6055,6 @@ apex-grid::part(paginator) {
   animation: livePulse 1.6s infinite;
 }
 
-@keyframes livePulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-  }
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
-  }
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-  }
-}
 
 
 

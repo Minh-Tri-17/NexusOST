@@ -3,6 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("nexus_sidebar_collapsed") === "true" && window.innerWidth >= 992) {
+            document.documentElement.classList.add("sidebar-collapsed");
+          }
+          var theme = localStorage.getItem("nexus_theme");
+          if (theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
     <title>Settings - Nexus Enterprise ERP & HRM</title>
 
@@ -17,7 +30,6 @@
       rel="stylesheet"
     />
     <!-- Custom Stylesheets -->
-    <link rel="stylesheet" href="../css/components.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <!-- Apex CSS CDN -->
     <link
@@ -141,7 +153,7 @@
 
           <div class="topbar-actions">
             <div class="topbar-action-group">
-              <button class="btn-icon-action" id="langTranslateBtn" title="Language / Ngôn ngữ">
+              <button class="btn-icon-action" id="langTranslateBtn" title="Language / NgÃ´n ngá»¯">
                 <i class="fa-solid fa-language"></i>
               </button>
 
@@ -239,7 +251,7 @@
           </div>
 
           <!-- Navigation Sub-Tabs -->
-          <ul class="nav nav-tabs settings-nav-tabs mb-4" id="settingsTab" role="tablist">
+          <ul class="nav nav-tabs app-nav-tabs mb-4" id="settingsTab" role="tablist">
             <li class="nav-item" role="presentation">
               <button
                 class="nav-link active"
@@ -677,7 +689,7 @@
                               ></span>
                               <select class="form-select custom-form-select">
                                 <option selected>English (US)</option>
-                                <option>Vietnamese (Tiếng Việt)</option>
+                                <option>Vietnamese (Tiáº¿ng Viá»‡t)</option>
                               </select>
                             </div>
                           </div>
@@ -1567,7 +1579,7 @@
                   <div class="app-footer-left">
                     <div class="app-footer-counter">
                       <span id="rolesResultCount"
-                        >Showing <strong>1 – 4</strong> of <strong>4</strong> items</span
+                        >Showing <strong>1 - 4</strong> of <strong>4</strong> items</span
                       >
                     </div>
                     <div class="app-footer-divider"></div>
@@ -2203,7 +2215,7 @@
                       <div class="app-footer-left">
                         <div class="app-footer-counter">
                           <span id="notifTplResultCount"
-                            >Showing <strong>1 – 10</strong> of <strong>10</strong> items</span
+                            >Showing <strong>1 - 10</strong> of <strong>10</strong> items</span
                           >
                         </div>
                         <div class="app-footer-divider"></div>
@@ -2771,7 +2783,7 @@
                       <div class="app-footer-left">
                         <div class="app-footer-counter">
                           <span id="emailTplResultCount"
-                            >Showing <strong>1 – 6</strong> of <strong>6</strong> items</span
+                            >Showing <strong>1 - 6</strong> of <strong>6</strong> items</span
                           >
                         </div>
                         <div class="app-footer-divider"></div>

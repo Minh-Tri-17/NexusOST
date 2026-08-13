@@ -3,6 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("nexus_sidebar_collapsed") === "true" && window.innerWidth >= 992) {
+            document.documentElement.classList.add("sidebar-collapsed");
+          }
+          var theme = localStorage.getItem("nexus_theme");
+          if (theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
     <title>Country - Nexus Enterprise ERP & HRM</title>
 
@@ -272,7 +285,7 @@
 
             <!-- Card 3: Thị Trường Trọng Điểm -->
             <div class="col">
-              <div class="metric-card-pastel card-pastel-blue">
+              <div class="metric-card-pastel card-pastel-indigo">
                 <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
                   <span class="metric-pastel-title d-block mb-1">TRỌNG ĐIỂM</span>
                   <h3 class="metric-pastel-val mb-1" id="statHighPriority">60</h3>

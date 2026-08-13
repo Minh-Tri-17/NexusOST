@@ -222,4 +222,68 @@
   }
 }
 
+/* --------------------------------------------------------------------------
+   6. TAB & NAVIGATION ANIMATIONS
+   -------------------------------------------------------------------------- */
+@keyframes tabLinePulse {
+  0% {
+    transform: scaleX(0);
+    opacity: 0.5;
+  }
+  60% {
+    transform: scaleX(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes tabIconBounce {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.32) rotate(-8deg);
+  }
+  100% {
+    transform: scale(1.22) rotate(0deg);
+  }
+}
+
+@keyframes tabPaneEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  65% {
+    opacity: 0.9;
+    transform: translateY(-2px) scale(1.002);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. LIVE STATUS ANIMATIONS
+   -------------------------------------------------------------------------- */
+@keyframes livePulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+
 

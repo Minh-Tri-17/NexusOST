@@ -135,8 +135,12 @@ function initMobileSidebarToggle() {
 
   // Apply saved collapsed preference on desktop
   const isCollapsed = localStorage.getItem("nexus_sidebar_collapsed") === "true";
-  if (isCollapsed && appWrapper && window.innerWidth >= 992) {
-    appWrapper.classList.add("sidebar-collapsed");
+  if (isCollapsed && window.innerWidth >= 992) {
+    if (appWrapper) appWrapper.classList.add("sidebar-collapsed");
+    document.documentElement.classList.add("sidebar-collapsed");
+  } else if (window.innerWidth >= 992) {
+    if (appWrapper) appWrapper.classList.remove("sidebar-collapsed");
+    document.documentElement.classList.remove("sidebar-collapsed");
   }
 
   // Toggle button click handler
@@ -152,6 +156,7 @@ function initMobileSidebarToggle() {
       } else {
         if (appWrapper) {
           appWrapper.classList.toggle("sidebar-collapsed");
+          document.documentElement.classList.toggle("sidebar-collapsed");
           const nowCollapsed = appWrapper.classList.contains("sidebar-collapsed");
           localStorage.setItem("nexus_sidebar_collapsed", nowCollapsed);
         }
@@ -1058,7 +1063,7 @@ function renderCountryTableRows(data) {
         icon: "fa-circle-info",
         label: item.priority,
       };
-      const statusClass = item.active ? "status-active" : "status-resigned";
+      const statusClass = item.active ? "badge-green" : "badge-red";
       const statusIcon = item.active ? "fa-circle" : "fa-circle-xmark";
       const statusLabel = item.active ? "Active" : "Inactive";
 
@@ -1102,7 +1107,7 @@ function renderCountryTableRows(data) {
             </span>
           </td>
           <td>
-            <span class="emp-badge ${statusClass}">
+            <span class="badge-soft ${statusClass}">
               <i class="fa-solid ${statusIcon}"></i> ${statusLabel}
             </span>
           </td>
@@ -1141,11 +1146,11 @@ const EMP_DATA = {
     avatarGrad: null,
     dept: "Design",
     deptIcon: "fa-paintbrush",
-    deptClass: "dept-design",
+    deptClass: "badge-amber",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Active",
-    statusClass: "status-active",
+    statusClass: "badge-green",
     manager: "Lan Hoang",
     email: "linh.tran@nexusost.com",
     location: "Ho Chi Minh City",
@@ -1180,11 +1185,11 @@ const EMP_DATA = {
     avatarGrad: null,
     dept: "Engineering",
     deptIcon: "fa-code",
-    deptClass: "dept-engineering",
+    deptClass: "badge-blue",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Remote",
-    statusClass: "status-remote",
+    statusClass: "badge-purple",
     manager: "Phuong Vo",
     email: "minh.nguyen@nexusost.com",
     location: "Ha Noi (Remote)",
@@ -1219,11 +1224,11 @@ const EMP_DATA = {
     avatarGrad: "linear-gradient(135deg,#8b5cf6,#6366f1)",
     dept: "Human Resources",
     deptIcon: "fa-people-roof",
-    deptClass: "dept-hr",
+    deptClass: "badge-teal",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Maternity Leave",
-    statusClass: "status-maternity",
+    statusClass: "badge-cyan",
     manager: "CEO Board",
     email: "thu.pham@nexusost.com",
     location: "Ho Chi Minh City",
@@ -1258,11 +1263,11 @@ const EMP_DATA = {
     avatarGrad: null,
     dept: "Engineering",
     deptIcon: "fa-code",
-    deptClass: "dept-engineering",
+    deptClass: "badge-blue",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Active",
-    statusClass: "status-active",
+    statusClass: "badge-green",
     manager: "Phuong Vo",
     email: "tuan.le@nexusost.com",
     location: "Ho Chi Minh City",
@@ -1297,11 +1302,11 @@ const EMP_DATA = {
     avatarGrad: "linear-gradient(135deg,#f59e0b,#ef4444)",
     dept: "Product",
     deptIcon: "fa-cubes",
-    deptClass: "dept-product",
+    deptClass: "badge-indigo",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Active",
-    statusClass: "status-active",
+    statusClass: "badge-green",
     manager: "CEO Board",
     email: "ha.vo@nexusost.com",
     location: "Ho Chi Minh City",
@@ -1336,11 +1341,11 @@ const EMP_DATA = {
     avatarGrad: null,
     dept: "Engineering",
     deptIcon: "fa-code",
-    deptClass: "dept-engineering",
+    deptClass: "badge-blue",
     contract: "Part-time",
-    contractClass: "contract-parttime",
+    contractClass: "badge-amber",
     status: "Active",
-    statusClass: "status-active",
+    statusClass: "badge-green",
     manager: "Phuong Vo",
     email: "duc.hoang@nexusost.com",
     location: "Da Nang",
@@ -1375,11 +1380,11 @@ const EMP_DATA = {
     avatarGrad: null,
     dept: "Finance",
     deptIcon: "fa-coins",
-    deptClass: "dept-finance",
+    deptClass: "badge-green",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Probation",
-    statusClass: "status-probation",
+    statusClass: "badge-amber",
     manager: "Long Truong",
     email: "mai.dang@nexusost.com",
     location: "Ho Chi Minh City",
@@ -1414,11 +1419,11 @@ const EMP_DATA = {
     avatarGrad: "linear-gradient(135deg,#10b981,#059669)",
     dept: "Sales",
     deptIcon: "fa-chart-line",
-    deptClass: "dept-sales",
+    deptClass: "badge-rose",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Active",
-    statusClass: "status-active",
+    statusClass: "badge-green",
     manager: "Trinh Do",
     email: "nam.bui@nexusost.com",
     location: "Ho Chi Minh City",
@@ -1453,11 +1458,11 @@ const EMP_DATA = {
     avatarGrad: null,
     dept: "Engineering",
     deptIcon: "fa-code",
-    deptClass: "dept-engineering",
+    deptClass: "badge-blue",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Active",
-    statusClass: "status-active",
+    statusClass: "badge-green",
     manager: "Phuong Vo",
     email: "khoa.tran@nexusost.com",
     location: "Ho Chi Minh City",
@@ -1499,11 +1504,11 @@ const EMP_DATA = {
     avatarGrad: null,
     dept: "Design",
     deptIcon: "fa-paintbrush",
-    deptClass: "dept-design",
+    deptClass: "badge-amber",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Active",
-    statusClass: "status-active",
+    statusClass: "badge-green",
     manager: "Khoa Tran",
     email: "lan.hoang@nexusost.com",
     location: "Ho Chi Minh City",
@@ -1538,11 +1543,11 @@ const EMP_DATA = {
     avatarGrad: null,
     dept: "Engineering",
     deptIcon: "fa-code",
-    deptClass: "dept-engineering",
+    deptClass: "badge-blue",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Remote",
-    statusClass: "status-remote",
+    statusClass: "badge-purple",
     manager: "Khoa Tran",
     email: "phuong.vo@nexusost.com",
     location: "Da Nang (Remote)",
@@ -1577,11 +1582,11 @@ const EMP_DATA = {
     avatarGrad: "linear-gradient(135deg,#06b6d4,#3b82f6)",
     dept: "Design",
     deptIcon: "fa-paintbrush",
-    deptClass: "dept-design",
+    deptClass: "badge-amber",
     contract: "Freelance",
-    contractClass: "contract-freelance",
+    contractClass: "badge-orange",
     status: "Resigned",
-    statusClass: "status-resigned",
+    statusClass: "badge-red",
     manager: "Lan Hoang",
     email: "hung.dao@nexusost.com",
     location: "Ho Chi Minh City",
@@ -1616,11 +1621,11 @@ const EMP_DATA = {
     avatarGrad: null,
     dept: "Product",
     deptIcon: "fa-cubes",
-    deptClass: "dept-product",
+    deptClass: "badge-indigo",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Active",
-    statusClass: "status-active",
+    statusClass: "badge-green",
     manager: "Ha Vo",
     email: "ngan.le@nexusost.com",
     location: "Ho Chi Minh City",
@@ -1655,11 +1660,11 @@ const EMP_DATA = {
     avatarGrad: "linear-gradient(135deg,#84cc16,#10b981)",
     dept: "Engineering",
     deptIcon: "fa-code",
-    deptClass: "dept-engineering",
+    deptClass: "badge-blue",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Active",
-    statusClass: "status-active",
+    statusClass: "badge-green",
     manager: "Phuong Vo",
     email: "son.hoang@nexusost.com",
     location: "Ha Noi",
@@ -1694,11 +1699,11 @@ const EMP_DATA = {
     avatarGrad: null,
     dept: "Marketing",
     deptIcon: "fa-bullhorn",
-    deptClass: "dept-marketing",
+    deptClass: "badge-purple",
     contract: "Contract",
-    contractClass: "contract-contract",
+    contractClass: "badge-purple",
     status: "Remote",
-    statusClass: "status-remote",
+    statusClass: "badge-purple",
     manager: "Trinh Do",
     email: "thao.vu@nexusost.com",
     location: "Da Nang (Remote)",
@@ -1733,11 +1738,11 @@ const EMP_DATA = {
     avatarGrad: "linear-gradient(135deg,#ec4899,#be185d)",
     dept: "Human Resources",
     deptIcon: "fa-people-roof",
-    deptClass: "dept-hr",
+    deptClass: "badge-teal",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Active",
-    statusClass: "status-active",
+    statusClass: "badge-green",
     manager: "Thu Pham",
     email: "vy.ngo@nexusost.com",
     location: "Ho Chi Minh City",
@@ -1772,11 +1777,11 @@ const EMP_DATA = {
     avatarGrad: null,
     dept: "Finance",
     deptIcon: "fa-coins",
-    deptClass: "dept-finance",
+    deptClass: "badge-green",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Active",
-    statusClass: "status-active",
+    statusClass: "badge-green",
     manager: "CEO Board",
     email: "long.truong@nexusost.com",
     location: "Ha Noi",
@@ -1817,11 +1822,11 @@ const EMP_DATA = {
     avatarGrad: null,
     dept: "Design",
     deptIcon: "fa-paintbrush",
-    deptClass: "dept-design",
+    deptClass: "badge-amber",
     contract: "Internship",
-    contractClass: "contract-internship",
+    contractClass: "badge-cyan",
     status: "Probation",
-    statusClass: "status-probation",
+    statusClass: "badge-amber",
     manager: "Lan Hoang",
     email: "quynh.nguyen@nexusost.com",
     location: "Da Nang",
@@ -1856,11 +1861,11 @@ const EMP_DATA = {
     avatarGrad: "linear-gradient(135deg,#0ea5e9,#22d3ee)",
     dept: "Operations",
     deptIcon: "fa-gears",
-    deptClass: "dept-ops",
+    deptClass: "badge-orange",
     contract: "Part-time",
-    contractClass: "contract-parttime",
+    contractClass: "badge-amber",
     status: "Active",
-    statusClass: "status-active",
+    statusClass: "badge-green",
     manager: "Trang Nguyen",
     email: "kien.pham@nexusost.com",
     location: "Ho Chi Minh City",
@@ -1895,11 +1900,11 @@ const EMP_DATA = {
     avatarGrad: null,
     dept: "Sales",
     deptIcon: "fa-chart-line",
-    deptClass: "dept-sales",
+    deptClass: "badge-rose",
     contract: "Full-time",
-    contractClass: "contract-fulltime",
+    contractClass: "badge-blue",
     status: "Active",
-    statusClass: "status-active",
+    statusClass: "badge-green",
     manager: "Nam Bui",
     email: "trinh.do@nexusost.com",
     location: "Ho Chi Minh City",
@@ -1967,9 +1972,9 @@ function openEmpModal(empId) {
   const badgesEl = document.getElementById("empModalBadges");
   if (badgesEl) {
     badgesEl.innerHTML = `
-      <span class="emp-badge ${d.deptClass}"><i class="fa-solid ${d.deptIcon}"></i> ${d.dept}</span>
-      <span class="emp-badge ${d.contractClass}"><i class="fa-solid fa-file-contract"></i> ${d.contract}</span>
-      <span class="emp-badge ${d.statusClass}"><i class="fa-solid ${STATUS_ICON[d.status] || "fa-circle"}"></i> ${d.status}</span>
+      <span class="badge-soft ${d.deptClass}"><i class="fa-solid ${d.deptIcon}"></i> ${d.dept}</span>
+      <span class="badge-soft ${d.contractClass}"><i class="fa-solid fa-file-contract"></i> ${d.contract}</span>
+      <span class="badge-soft ${d.statusClass}"><i class="fa-solid ${STATUS_ICON[d.status] || "fa-circle"}"></i> ${d.status}</span>
     `;
   }
 
@@ -2898,7 +2903,7 @@ function renderStageModalList(list) {
         <div>
           <div class="d-flex align-items-center gap-2 mb-1">
             <h6 class="fw-bold text-main mb-0 fs-6 cursor-pointer text-hover-primary" onclick="openCandidateDetailFromStageModal('${c.id}')">${c.name}</h6>
-            <span class="emp-badge dept-engineering text-2xs px-2.5 py-0.5">${c.department}</span>
+            <span class="badge-soft badge-blue">${c.department}</span>
           </div>
           <div class="text-muted small d-flex align-items-center gap-2">
             <span><i class="fa-solid fa-briefcase me-1 text-muted"></i>${c.role}</span>
@@ -3099,21 +3104,21 @@ function renderCandidateTable() {
   }
 
   const deptBadgeMap = {
-    Engineering: `<span class="emp-badge dept-engineering"><i class="fa-solid fa-code"></i> Engineering</span>`,
-    Marketing: `<span class="emp-badge dept-marketing"><i class="fa-solid fa-bullhorn"></i> Marketing</span>`,
-    Design: `<span class="emp-badge dept-design"><i class="fa-solid fa-paintbrush"></i> Design</span>`,
-    Product: `<span class="emp-badge dept-product"><i class="fa-solid fa-cubes"></i> Product</span>`,
-    Sales: `<span class="emp-badge dept-sales"><i class="fa-solid fa-handshake"></i> Sales</span>`,
-    "HR Specialist": `<span class="emp-badge dept-hr"><i class="fa-solid fa-user-group"></i> HR Specialist</span>`,
+    Engineering: `<span class="badge-soft badge-blue"><i class="fa-solid fa-code"></i> Engineering</span>`,
+    Marketing: `<span class="badge-soft badge-purple"><i class="fa-solid fa-bullhorn"></i> Marketing</span>`,
+    Design: `<span class="badge-soft badge-amber"><i class="fa-solid fa-paintbrush"></i> Design</span>`,
+    Product: `<span class="badge-soft badge-indigo"><i class="fa-solid fa-cubes"></i> Product</span>`,
+    Sales: `<span class="badge-soft badge-rose"><i class="fa-solid fa-handshake"></i> Sales</span>`,
+    "HR Specialist": `<span class="badge-soft badge-teal"><i class="fa-solid fa-user-group"></i> HR Specialist</span>`,
   };
 
   const stageBadgeMap = {
-    applied: `<span class="emp-badge status-applied"><i class="fa-solid fa-circle"></i> Applied</span>`,
-    screening: `<span class="emp-badge status-screening"><i class="fa-solid fa-circle"></i> Screening</span>`,
-    interview: `<span class="emp-badge status-interview"><i class="fa-solid fa-circle"></i> Interview</span>`,
-    offer: `<span class="emp-badge status-offer"><i class="fa-solid fa-circle"></i> Offer</span>`,
-    hired: `<span class="emp-badge status-hired"><i class="fa-solid fa-circle"></i> Hired</span>`,
-    rejected: `<span class="emp-badge status-rejected"><i class="fa-solid fa-circle"></i> Rejected</span>`,
+    applied: `<span class="badge-soft badge-blue"><i class="fa-solid fa-circle"></i> Applied</span>`,
+    screening: `<span class="badge-soft badge-cyan"><i class="fa-solid fa-circle"></i> Screening</span>`,
+    interview: `<span class="badge-soft badge-purple"><i class="fa-solid fa-circle"></i> Interview</span>`,
+    offer: `<span class="badge-soft badge-amber"><i class="fa-solid fa-circle"></i> Offer</span>`,
+    hired: `<span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Hired</span>`,
+    rejected: `<span class="badge-soft badge-red"><i class="fa-solid fa-circle"></i> Rejected</span>`,
   };
 
   tbody.innerHTML = filtered
@@ -3121,9 +3126,9 @@ function renderCandidateTable() {
       const code = `#CAND${String(idx + 1).padStart(3, "0")}`;
       const deptBadge =
         deptBadgeMap[c.department] ||
-        `<span class="emp-badge dept-management">${c.department}</span>`;
+        `<span class="badge-soft badge-slate">${c.department}</span>`;
       const stageBadge =
-        stageBadgeMap[c.stage] || `<span class="emp-badge status-active">${c.stage}</span>`;
+        stageBadgeMap[c.stage] || `<span class="badge-soft badge-green">${c.stage}</span>`;
 
       return `
       <tr>
@@ -3388,7 +3393,7 @@ function openCandidateDetailModal(id) {
 
   const stageBadge = document.getElementById("detailStageBadge");
   if (stageBadge) {
-    stageBadge.className = `emp-badge status-active`;
+    stageBadge.className = `badge-soft badge-green`;
     stageBadge.innerHTML = `<i class="fa-solid fa-circle"></i> ${c.stage.toUpperCase()}`;
   }
 
@@ -3704,4 +3709,5 @@ function initSettingsPage() {
 }
 
 window.initSettingsPage = initSettingsPage;
+
 

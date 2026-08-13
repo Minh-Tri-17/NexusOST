@@ -3,6 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("nexus_sidebar_collapsed") === "true" && window.innerWidth >= 992) {
+            document.documentElement.classList.add("sidebar-collapsed");
+          }
+          var theme = localStorage.getItem("nexus_theme");
+          if (theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <meta
       name="description"
       content="Manage employees with department, contract type, and work status filters. Switch between card and list views."
@@ -533,7 +546,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Linh Tran" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Active</span>
+                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP001');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -550,10 +563,10 @@
                   <div class="emp-card-role">Senior UX Designer</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-design"
+                  <span class="badge-soft badge-amber"
                     ><i class="fa-solid fa-paintbrush"></i> Design</span
                   >
-                  <span class="emp-badge contract-fulltime"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
                 </div>
@@ -583,7 +596,7 @@
                     aria-label="Select Minh Nguyen"
                   />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-remote"><i class="fa-solid fa-laptop-house"></i> Remote</span>
+                    <span class="badge-soft badge-purple"><i class="fa-solid fa-laptop-house"></i> Remote</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP002');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -600,10 +613,10 @@
                   <div class="emp-card-role">Backend Engineer</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-engineering"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-code"></i> Engineering</span
                   >
-                  <span class="emp-badge contract-fulltime"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
                 </div>
@@ -629,7 +642,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Thu Pham" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-maternity"><i class="fa-solid fa-baby"></i> Mat. Leave</span>
+                    <span class="badge-soft badge-cyan"><i class="fa-solid fa-baby"></i> Mat. Leave</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP003');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -651,8 +664,8 @@
                   <div class="emp-card-role">HR Manager</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-hr"><i class="fa-solid fa-people-roof"></i> HR</span>
-                  <span class="emp-badge contract-fulltime"
+                  <span class="badge-soft badge-teal"><i class="fa-solid fa-people-roof"></i> HR</span>
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
                 </div>
@@ -678,7 +691,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Duc Le" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-probation"><i class="fa-solid fa-hourglass-half"></i> Probation</span>
+                    <span class="badge-soft badge-amber"><i class="fa-solid fa-hourglass-half"></i> Probation</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP004');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -695,10 +708,10 @@
                   <div class="emp-card-role">Sales Executive</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-sales"
+                  <span class="badge-soft badge-rose"
                     ><i class="fa-solid fa-handshake"></i> Sales</span
                   >
-                  <span class="emp-badge contract-contract"
+                  <span class="badge-soft badge-purple"
                     ><i class="fa-solid fa-file-signature"></i> Contract</span
                   >
                 </div>
@@ -724,7 +737,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Hoa Vo" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Active</span>
+                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP005');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -741,10 +754,10 @@
                   <div class="emp-card-role">Marketing Lead</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-marketing"
+                  <span class="badge-soft badge-purple"
                     ><i class="fa-solid fa-bullhorn"></i> Marketing</span
                   >
-                  <span class="emp-badge contract-fulltime"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
                 </div>
@@ -770,7 +783,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Khoa Dinh" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Active</span>
+                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP006');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -792,10 +805,10 @@
                   <div class="emp-card-role">Finance Analyst</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-finance"
+                  <span class="badge-soft badge-green"
                     ><i class="fa-solid fa-coins"></i> Finance</span
                   >
-                  <span class="emp-badge contract-fulltime"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
                 </div>
@@ -821,7 +834,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select An Nguyen" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Active</span>
+                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP007');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -838,10 +851,10 @@
                   <div class="emp-card-role">Ops Coordinator</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-operations"
+                  <span class="badge-soft badge-orange"
                     ><i class="fa-solid fa-gears"></i> Operations</span
                   >
-                  <span class="emp-badge contract-parttime"
+                  <span class="badge-soft badge-amber"
                     ><i class="fa-solid fa-clock"></i> Part-time</span
                   >
                 </div>
@@ -867,7 +880,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Bao Tran" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-probation"><i class="fa-solid fa-hourglass-half"></i> Probation</span>
+                    <span class="badge-soft badge-amber"><i class="fa-solid fa-hourglass-half"></i> Probation</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP008');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -889,10 +902,10 @@
                   <div class="emp-card-role">Frontend Dev Intern</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-engineering"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-code"></i> Engineering</span
                   >
-                  <span class="emp-badge contract-internship"
+                  <span class="badge-soft badge-cyan"
                     ><i class="fa-solid fa-graduation-cap"></i> Intern</span
                   >
                 </div>
@@ -918,7 +931,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Lan Hoang" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Active</span>
+                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP009');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -935,10 +948,10 @@
                   <div class="emp-card-role">Chief Marketing Officer</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-management"
+                  <span class="badge-soft badge-slate"
                     ><i class="fa-solid fa-crown"></i> Management</span
                   >
-                  <span class="emp-badge contract-fulltime"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
                 </div>
@@ -964,7 +977,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Tuan Bui" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Active</span>
+                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP010');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -981,10 +994,10 @@
                   <div class="emp-card-role">Full-stack Developer</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-engineering"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-code"></i> Engineering</span
                   >
-                  <span class="emp-badge contract-freelance"
+                  <span class="badge-soft badge-orange"
                     ><i class="fa-solid fa-briefcase"></i> Freelance</span
                   >
                 </div>
@@ -1010,7 +1023,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Mai Nguyen" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-resigned"><i class="fa-solid fa-circle-xmark"></i> Resigned</span>
+                    <span class="badge-soft badge-red"><i class="fa-solid fa-circle-xmark"></i> Resigned</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP011');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -1032,10 +1045,10 @@
                   <div class="emp-card-role">Account Manager</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-sales"
+                  <span class="badge-soft badge-rose"
                     ><i class="fa-solid fa-handshake"></i> Sales</span
                   >
-                  <span class="emp-badge contract-fulltime"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
                 </div>
@@ -1061,7 +1074,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Phat Do" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-remote"><i class="fa-solid fa-laptop-house"></i> Remote</span>
+                    <span class="badge-soft badge-purple"><i class="fa-solid fa-laptop-house"></i> Remote</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP012');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -1078,10 +1091,10 @@
                   <div class="emp-card-role">DevOps Engineer</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-engineering"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-code"></i> Engineering</span
                   >
-                  <span class="emp-badge contract-fulltime"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
                 </div>
@@ -1107,7 +1120,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Hoang Vu" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Active</span>
+                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP013');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -1124,10 +1137,10 @@
                   <div class="emp-card-role">Product Manager</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-management"
+                  <span class="badge-soft badge-slate"
                     ><i class="fa-solid fa-crown"></i> Management</span
                   >
-                  <span class="emp-badge contract-fulltime"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
                 </div>
@@ -1153,7 +1166,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Nhung Dang" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Active</span>
+                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP014');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -1170,10 +1183,10 @@
                   <div class="emp-card-role">QA Automation Lead</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-engineering"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-code"></i> Engineering</span
                   >
-                  <span class="emp-badge contract-fulltime"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
                 </div>
@@ -1199,7 +1212,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Thanh Bui" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-remote"><i class="fa-solid fa-laptop-house"></i> Remote</span>
+                    <span class="badge-soft badge-purple"><i class="fa-solid fa-laptop-house"></i> Remote</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP015');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -1216,10 +1229,10 @@
                   <div class="emp-card-role">Content Strategist</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-marketing"
+                  <span class="badge-soft badge-purple"
                     ><i class="fa-solid fa-bullhorn"></i> Marketing</span
                   >
-                  <span class="emp-badge contract-contract"
+                  <span class="badge-soft badge-purple"
                     ><i class="fa-solid fa-file-signature"></i> Contract</span
                   >
                 </div>
@@ -1245,7 +1258,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Vy Ngo" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Active</span>
+                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP016');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -1267,8 +1280,8 @@
                   <div class="emp-card-role">Talent Acquisition Lead</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-hr"><i class="fa-solid fa-people-roof"></i> HR</span>
-                  <span class="emp-badge contract-fulltime"
+                  <span class="badge-soft badge-teal"><i class="fa-solid fa-people-roof"></i> HR</span>
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
                 </div>
@@ -1298,7 +1311,7 @@
                     aria-label="Select Long Truong"
                   />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Active</span>
+                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP017');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -1315,10 +1328,10 @@
                   <div class="emp-card-role">Financial Controller</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-finance"
+                  <span class="badge-soft badge-green"
                     ><i class="fa-solid fa-coins"></i> Finance</span
                   >
-                  <span class="emp-badge contract-fulltime"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
                 </div>
@@ -1348,7 +1361,7 @@
                     aria-label="Select Quynh Nguyen"
                   />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-probation"><i class="fa-solid fa-hourglass-half"></i> Probation</span>
+                    <span class="badge-soft badge-amber"><i class="fa-solid fa-hourglass-half"></i> Probation</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP018');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -1365,10 +1378,10 @@
                   <div class="emp-card-role">UI Designer Intern</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-design"
+                  <span class="badge-soft badge-amber"
                     ><i class="fa-solid fa-paintbrush"></i> Design</span
                   >
-                  <span class="emp-badge contract-internship"
+                  <span class="badge-soft badge-cyan"
                     ><i class="fa-solid fa-graduation-cap"></i> Intern</span
                   >
                 </div>
@@ -1394,7 +1407,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Kien Pham" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Active</span>
+                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP019');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -1416,10 +1429,10 @@
                   <div class="emp-card-role">System Admin</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-operations"
+                  <span class="badge-soft badge-orange"
                     ><i class="fa-solid fa-gears"></i> Operations</span
                   >
-                  <span class="emp-badge contract-parttime"
+                  <span class="badge-soft badge-amber"
                     ><i class="fa-solid fa-clock"></i> Part-time</span
                   >
                 </div>
@@ -1445,7 +1458,7 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Trinh Do" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="emp-badge status-active"><i class="fa-solid fa-circle"></i> Active</span>
+                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
                     <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP020');">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -1462,10 +1475,10 @@
                   <div class="emp-card-role">Sales Director</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="emp-badge dept-sales"
+                  <span class="badge-soft badge-rose"
                     ><i class="fa-solid fa-handshake"></i> Sales</span
                   >
-                  <span class="emp-badge contract-fulltime"
+                  <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
                 </div>
@@ -1537,18 +1550,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-design"
+                        <span class="badge-soft badge-amber"
                           ><i class="fa-solid fa-paintbrush"></i> Design</span
                         >
                       </td>
                       <td>Senior UX Designer</td>
                       <td>
-                        <span class="emp-badge contract-fulltime"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-file-contract"></i> Full-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-active"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-circle"></i> Active</span
                         >
                       </td>
@@ -1585,18 +1598,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-engineering"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-code"></i> Engineering</span
                         >
                       </td>
                       <td>Backend Engineer</td>
                       <td>
-                        <span class="emp-badge contract-fulltime"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-file-contract"></i> Full-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-remote"
+                        <span class="badge-soft badge-purple"
                           ><i class="fa-solid fa-laptop-house"></i> Remote</span
                         >
                       </td>
@@ -1634,18 +1647,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-hr"
+                        <span class="badge-soft badge-teal"
                           ><i class="fa-solid fa-people-roof"></i> HR</span
                         >
                       </td>
                       <td>HR Manager</td>
                       <td>
-                        <span class="emp-badge contract-fulltime"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-file-contract"></i> Full-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-maternity"
+                        <span class="badge-soft badge-cyan"
                           ><i class="fa-solid fa-baby"></i> Mat. Leave</span
                         >
                       </td>
@@ -1682,18 +1695,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-sales"
+                        <span class="badge-soft badge-rose"
                           ><i class="fa-solid fa-handshake"></i> Sales</span
                         >
                       </td>
                       <td>Sales Executive</td>
                       <td>
-                        <span class="emp-badge contract-contract"
+                        <span class="badge-soft badge-purple"
                           ><i class="fa-solid fa-file-signature"></i> Contract</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-probation"
+                        <span class="badge-soft badge-amber"
                           ><i class="fa-solid fa-hourglass-half"></i> Probation</span
                         >
                       </td>
@@ -1730,18 +1743,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-marketing"
+                        <span class="badge-soft badge-purple"
                           ><i class="fa-solid fa-bullhorn"></i> Marketing</span
                         >
                       </td>
                       <td>Marketing Lead</td>
                       <td>
-                        <span class="emp-badge contract-fulltime"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-file-contract"></i> Full-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-active"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-circle"></i> Active</span
                         >
                       </td>
@@ -1779,18 +1792,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-finance"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-coins"></i> Finance</span
                         >
                       </td>
                       <td>Finance Analyst</td>
                       <td>
-                        <span class="emp-badge contract-fulltime"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-file-contract"></i> Full-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-active"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-circle"></i> Active</span
                         >
                       </td>
@@ -1827,18 +1840,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-operations"
+                        <span class="badge-soft badge-orange"
                           ><i class="fa-solid fa-gears"></i> Operations</span
                         >
                       </td>
                       <td>Ops Coordinator</td>
                       <td>
-                        <span class="emp-badge contract-parttime"
+                        <span class="badge-soft badge-amber"
                           ><i class="fa-solid fa-clock"></i> Part-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-active"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-circle"></i> Active</span
                         >
                       </td>
@@ -1876,18 +1889,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-engineering"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-code"></i> Engineering</span
                         >
                       </td>
                       <td>Frontend Dev Intern</td>
                       <td>
-                        <span class="emp-badge contract-internship"
+                        <span class="badge-soft badge-cyan"
                           ><i class="fa-solid fa-graduation-cap"></i> Internship</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-probation"
+                        <span class="badge-soft badge-amber"
                           ><i class="fa-solid fa-hourglass-half"></i> Probation</span
                         >
                       </td>
@@ -1924,18 +1937,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-management"
+                        <span class="badge-soft badge-slate"
                           ><i class="fa-solid fa-crown"></i> Management</span
                         >
                       </td>
                       <td>Chief Marketing Officer</td>
                       <td>
-                        <span class="emp-badge contract-fulltime"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-file-contract"></i> Full-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-active"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-circle"></i> Active</span
                         >
                       </td>
@@ -1972,18 +1985,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-engineering"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-code"></i> Engineering</span
                         >
                       </td>
                       <td>Full-stack Developer</td>
                       <td>
-                        <span class="emp-badge contract-freelance"
+                        <span class="badge-soft badge-orange"
                           ><i class="fa-solid fa-briefcase"></i> Freelance</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-active"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-circle"></i> Active</span
                         >
                       </td>
@@ -2021,18 +2034,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-sales"
+                        <span class="badge-soft badge-rose"
                           ><i class="fa-solid fa-handshake"></i> Sales</span
                         >
                       </td>
                       <td>Account Manager</td>
                       <td>
-                        <span class="emp-badge contract-fulltime"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-file-contract"></i> Full-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-resigned"
+                        <span class="badge-soft badge-red"
                           ><i class="fa-solid fa-circle-xmark"></i> Resigned</span
                         >
                       </td>
@@ -2069,18 +2082,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-engineering"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-code"></i> Engineering</span
                         >
                       </td>
                       <td>DevOps Engineer</td>
                       <td>
-                        <span class="emp-badge contract-fulltime"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-file-contract"></i> Full-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-remote"
+                        <span class="badge-soft badge-purple"
                           ><i class="fa-solid fa-laptop-house"></i> Remote</span
                         >
                       </td>
@@ -2117,18 +2130,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-management"
+                        <span class="badge-soft badge-slate"
                           ><i class="fa-solid fa-crown"></i> Management</span
                         >
                       </td>
                       <td>Product Manager</td>
                       <td>
-                        <span class="emp-badge contract-fulltime"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-file-contract"></i> Full-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-active"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-circle"></i> Active</span
                         >
                       </td>
@@ -2165,18 +2178,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-engineering"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-code"></i> Engineering</span
                         >
                       </td>
                       <td>QA Automation Lead</td>
                       <td>
-                        <span class="emp-badge contract-fulltime"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-file-contract"></i> Full-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-active"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-circle"></i> Active</span
                         >
                       </td>
@@ -2213,18 +2226,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-marketing"
+                        <span class="badge-soft badge-purple"
                           ><i class="fa-solid fa-bullhorn"></i> Marketing</span
                         >
                       </td>
                       <td>Content Strategist</td>
                       <td>
-                        <span class="emp-badge contract-contract"
+                        <span class="badge-soft badge-purple"
                           ><i class="fa-solid fa-file-signature"></i> Contract</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-remote"
+                        <span class="badge-soft badge-purple"
                           ><i class="fa-solid fa-laptop-house"></i> Remote</span
                         >
                       </td>
@@ -2262,18 +2275,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-hr"
+                        <span class="badge-soft badge-teal"
                           ><i class="fa-solid fa-people-roof"></i> HR</span
                         >
                       </td>
                       <td>Talent Acquisition Lead</td>
                       <td>
-                        <span class="emp-badge contract-fulltime"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-file-contract"></i> Full-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-active"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-circle"></i> Active</span
                         >
                       </td>
@@ -2310,18 +2323,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-finance"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-coins"></i> Finance</span
                         >
                       </td>
                       <td>Financial Controller</td>
                       <td>
-                        <span class="emp-badge contract-fulltime"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-file-contract"></i> Full-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-active"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-circle"></i> Active</span
                         >
                       </td>
@@ -2358,18 +2371,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-design"
+                        <span class="badge-soft badge-amber"
                           ><i class="fa-solid fa-paintbrush"></i> Design</span
                         >
                       </td>
                       <td>UI Designer Intern</td>
                       <td>
-                        <span class="emp-badge contract-internship"
+                        <span class="badge-soft badge-cyan"
                           ><i class="fa-solid fa-graduation-cap"></i> Intern</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-probation"
+                        <span class="badge-soft badge-amber"
                           ><i class="fa-solid fa-hourglass-half"></i> Probation</span
                         >
                       </td>
@@ -2407,18 +2420,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-operations"
+                        <span class="badge-soft badge-orange"
                           ><i class="fa-solid fa-gears"></i> Operations</span
                         >
                       </td>
                       <td>System Admin</td>
                       <td>
-                        <span class="emp-badge contract-parttime"
+                        <span class="badge-soft badge-amber"
                           ><i class="fa-solid fa-clock"></i> Part-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-active"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-circle"></i> Active</span
                         >
                       </td>
@@ -2455,18 +2468,18 @@
                         </div>
                       </td>
                       <td>
-                        <span class="emp-badge dept-sales"
+                        <span class="badge-soft badge-rose"
                           ><i class="fa-solid fa-handshake"></i> Sales</span
                         >
                       </td>
                       <td>Sales Director</td>
                       <td>
-                        <span class="emp-badge contract-fulltime"
+                        <span class="badge-soft badge-blue"
                           ><i class="fa-solid fa-file-contract"></i> Full-time</span
                         >
                       </td>
                       <td>
-                        <span class="emp-badge status-active"
+                        <span class="badge-soft badge-green"
                           ><i class="fa-solid fa-circle"></i> Active</span
                         >
                       </td>
@@ -2886,3 +2899,4 @@
 
   </body>
 </html>
+

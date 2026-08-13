@@ -3,6 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("nexus_sidebar_collapsed") === "true" && window.innerWidth >= 992) {
+            document.documentElement.classList.add("sidebar-collapsed");
+          }
+          var theme = localStorage.getItem("nexus_theme");
+          if (theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
     <title>Recruitment - Nexus Enterprise ERP & HRM</title>
 
@@ -818,7 +831,7 @@
                       <span class="text-muted small fw-medium" id="detailRole"></span>
                       <div class="app-modal-hero-badges d-inline-flex align-items-center gap-2 ms-1">
                         <span id="detailMatchBadge" class="match-score-pill match-high">88% Match</span>
-                        <span id="detailStageBadge" class="emp-badge status-active">Stage</span>
+                        <span id="detailStageBadge" class="badge-soft badge-green">Stage</span>
                       </div>
                     </div>
                   </div>
@@ -1162,3 +1175,4 @@
     <script src="../js/app.js"></script>
   </body>
 </html>
+
