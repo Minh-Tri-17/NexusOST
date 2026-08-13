@@ -5882,31 +5882,7 @@ apex-grid::part(paginator) {
 }
 
 
-.integration-app-card {
-  border: 1px solid var(--border-color, #e2e8f0);
-  border-radius: 14px;
-  padding: 1.15rem 1.25rem;
-  background: var(--bg-surface, #ffffff);
-  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-  height: 100%;
-}
 
-.integration-app-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  border-color: var(--color-primary, #2563eb);
-}
-
-.integration-icon-box {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.35rem;
-  flex-shrink: 0;
-}
 
 .danger-zone-card {
   border: 1px dashed rgba(239, 68, 68, 0.4) !important;
@@ -6002,47 +5978,7 @@ apex-grid::part(paginator) {
   background: rgba(129, 140, 248, 0.3);
 }
 
-/* ERP Integration Cards (Tab 5) */
-.integration-app-card {
-  padding: 1.15rem;
-  border-radius: 12px;
-  border: 1px solid var(--border-color, #e2e8f0);
-  background: var(--bg-card, #ffffff);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-}
 
-.integration-app-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.06);
-  border-color: rgba(99, 102, 241, 0.3);
-}
-
-.integration-icon-box {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-[data-theme="dark"] .integration-app-card {
-  background: var(--bg-card, #1e1e24);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .integration-app-card:hover {
-  border-color: rgba(129, 140, 248, 0.4);
-  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .integration-icon-box.bg-light {
-  background-color: rgba(255, 255, 255, 0.06) !important;
-}
 
 /* Live Pulse Indicator (Tab 6) */
 .live-pulse-dot {
