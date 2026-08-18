@@ -71,7 +71,7 @@
             <i class="fa-solid fa-user-plus"></i>
             <span>Recruitment</span>
           </a>
-          <a href="leave-management.html" class="nav-link">
+          <a href="leave-request.html" class="nav-link">
             <i class="fa-solid fa-calendar-minus"></i>
             <span>Leave Management</span>
           </a>
@@ -503,7 +503,7 @@
                 <thead>
                   <tr>
                     <th style="width: 36px">
-                      <input type="checkbox" id="selectAllCountry" aria-label="Select all" />
+                      <input type="checkbox" id="selectAllList" aria-label="Select all" />
                     </th>
                     <th>Code</th>
                     <th>Country Name</th>
@@ -531,7 +531,7 @@
               <div class="app-footer-left">
                 <div class="app-footer-counter">
                   <span id="countryResultCount"
-                    >Showing <strong>1 – 20</strong> of <strong>120</strong> items</span
+                    >Showing <strong>1 – 20</strong> of <strong>248</strong> items</span
                   >
                 </div>
                 <div class="app-footer-divider"></div>
@@ -542,10 +542,11 @@
                     class="app-size-select"
                     aria-label="Rows per page"
                   >
-                    <option value="10">10</option>
                     <option value="20" selected>20</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="500">500</option>
                   </select>
                 </div>
               </div>
@@ -553,7 +554,7 @@
               <!-- Center Zone: Quick Jump Widget -->
               <div class="app-footer-center">
                 <span class="app-jump-label"
-                  ><i class="fa-solid fa-arrow-right-to-line me-1"></i>Go to page:</span
+                  >Go to page:</span
                 >
                 <form id="countryPageJumpForm" class="app-jump-form" onsubmit="return false;">
                   <input
@@ -562,10 +563,10 @@
                     class="app-jump-input"
                     value="1"
                     min="1"
-                    max="6"
+                    max="21"
                     aria-label="Target page number"
                   />
-                  <span class="app-jump-total">/ <span id="countryTotalPages">6</span></span>
+                  <span class="app-jump-total">/ <span id="countryTotalPages">21</span></span>
                   <button
                     type="submit"
                     class="app-jump-btn"
@@ -599,7 +600,11 @@
                 </button>
 
                 <div class="d-flex align-items-center gap-1" id="countryPageNumbersGroup">
-                  <!-- Dynamically rendered -->
+                  <button class="app-page-btn active" data-page="1">1</button>
+                    <button class="app-page-btn" data-page="2">2</button>
+                    <button class="app-page-btn" data-page="3">3</button>
+                    <span class="app-page-ellipsis">…</span>
+                    <button class="app-page-btn" data-page="21">21</button>
                 </div>
 
                 <button
@@ -1259,165 +1264,5 @@
     <!-- Main Application JS -->
     <script src="../js/app.js"></script>
 
-    <script>
-      // ── Custom Country Grid Pagination Controller ──
-      document.addEventListener("DOMContentLoaded", () => {
-        const grid = document.getElementById("grid");
-        let currentPage = 1;
-        let pageSize = 20;
-
-        const countryResultCount = document.getElementById("countryResultCount");
-        const countryPageSizeSelect = document.getElementById("countryPageSizeSelect");
-        const countryJumpInput = document.getElementById("countryJumpInput");
-        const countryTotalPages = document.getElementById("countryTotalPages");
-        const countryPageJumpForm = document.getElementById("countryPageJumpForm");
-
-        const countryFirstBtn = document.getElementById("countryFirstBtn");
-        const countryPrevBtn = document.getElementById("countryPrevBtn");
-        const countryNextBtn = document.getElementById("countryNextBtn");
-        const countryLastBtn = document.getElementById("countryLastBtn");
-        const countryPageNumbersGroup = document.getElementById("countryPageNumbersGroup");
-
-        function getFullData() {
-          return window.allCountryData || [];
-        }
-
-        function updateGridPageData() {
-          const allData = getFullData();
-          const totalRecords = allData.length;
-          if (totalRecords === 0) return;
-
-          const totalPages = Math.max(1, Math.ceil(totalRecords / pageSize));
-          if (currentPage > totalPages) currentPage = totalPages;
-          if (currentPage < 1) currentPage = 1;
-
-          const startIdx = (currentPage - 1) * pageSize;
-          const endIdx = Math.min(startIdx + pageSize, totalRecords);
-
-          // Update table view with sliced dataset
-          if (typeof renderCountryTableRows === "function") {
-            renderCountryTableRows(allData.slice(startIdx, endIdx));
-          }
-
-          // Update Counter UI
-          if (countryResultCount) {
-            countryResultCount.innerHTML = `Showing <strong>${startIdx + 1} – ${endIdx}</strong> of <strong>${totalRecords}</strong> items`;
-          }
-          if (countryTotalPages) countryTotalPages.textContent = totalPages;
-          if (countryJumpInput) {
-            countryJumpInput.value = currentPage;
-            countryJumpInput.max = totalPages;
-          }
-
-          // Button Disabled States
-          if (countryFirstBtn) countryFirstBtn.disabled = currentPage === 1;
-          if (countryPrevBtn) countryPrevBtn.disabled = currentPage === 1;
-          if (countryNextBtn) countryNextBtn.disabled = currentPage === totalPages;
-          if (countryLastBtn) countryLastBtn.disabled = currentPage === totalPages;
-
-          renderPageNumbers(totalPages);
-        }
-
-        function renderPageNumbers(totalPages) {
-          if (!countryPageNumbersGroup) return;
-          let html = "";
-          let pages = [];
-
-          if (totalPages <= 5) {
-            for (let i = 1; i <= totalPages; i++) pages.push(i);
-          } else {
-            if (currentPage <= 3) {
-              pages = [1, 2, 3, "...", totalPages];
-            } else if (currentPage >= totalPages - 2) {
-              pages = [1, "...", totalPages - 2, totalPages - 1, totalPages];
-            } else {
-              pages = [1, "...", currentPage, "...", totalPages];
-            }
-          }
-
-          pages.forEach((p) => {
-            if (p === "...") {
-              html += `<span class="app-page-ellipsis">…</span>`;
-            } else {
-              const isActive = p === currentPage ? "active" : "";
-              html += `<button type="button" class="app-page-btn ${isActive}" data-page="${p}">${p}</button>`;
-            }
-          });
-
-          countryPageNumbersGroup.innerHTML = html;
-
-          countryPageNumbersGroup.querySelectorAll(".app-page-btn").forEach((btn) => {
-            btn.addEventListener("click", (e) => {
-              const pageNum = parseInt(e.currentTarget.getAttribute("data-page"), 10);
-              if (pageNum && pageNum !== currentPage) {
-                currentPage = pageNum;
-                updateGridPageData();
-              }
-            });
-          });
-        }
-
-        // Rows per page change listener
-        if (countryPageSizeSelect) {
-          countryPageSizeSelect.addEventListener("change", (e) => {
-            pageSize = parseInt(e.target.value, 10) || 20;
-            currentPage = 1;
-            updateGridPageData();
-          });
-        }
-
-        // Quick Jump Form submit
-        if (countryPageJumpForm) {
-          countryPageJumpForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const allData = getFullData();
-            const totalPages = Math.max(1, Math.ceil(allData.length / pageSize));
-            const target = parseInt(countryJumpInput.value, 10);
-            if (target && target >= 1 && target <= totalPages) {
-              currentPage = target;
-              updateGridPageData();
-            } else {
-              countryJumpInput.value = currentPage;
-            }
-          });
-        }
-
-        // Nav buttons events
-        if (countryFirstBtn)
-          countryFirstBtn.addEventListener("click", () => {
-            if (currentPage > 1) {
-              currentPage = 1;
-              updateGridPageData();
-            }
-          });
-        if (countryPrevBtn)
-          countryPrevBtn.addEventListener("click", () => {
-            if (currentPage > 1) {
-              currentPage--;
-              updateGridPageData();
-            }
-          });
-        if (countryNextBtn)
-          countryNextBtn.addEventListener("click", () => {
-            const totalPages = Math.max(1, Math.ceil(getFullData().length / pageSize));
-            if (currentPage < totalPages) {
-              currentPage++;
-              updateGridPageData();
-            }
-          });
-        if (countryLastBtn)
-          countryLastBtn.addEventListener("click", () => {
-            const totalPages = Math.max(1, Math.ceil(getFullData().length / pageSize));
-            if (currentPage < totalPages) {
-              currentPage = totalPages;
-              updateGridPageData();
-            }
-          });
-
-        // Initialize after grid data is populated
-        setTimeout(updateGridPageData, 100);
-        setTimeout(updateGridPageData, 400);
-      });
-    </script>
   </body>
 </html>

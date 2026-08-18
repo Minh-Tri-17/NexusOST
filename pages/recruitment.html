@@ -71,7 +71,7 @@
             <i class="fa-solid fa-user-plus"></i>
             <span>Recruitment</span>
           </a>
-          <a href="leave-management.html" class="nav-link">
+          <a href="leave-request.html" class="nav-link">
             <i class="fa-solid fa-calendar-minus"></i>
             <span>Leave Management</span>
           </a>
@@ -406,7 +406,7 @@
                     type="button"
                     id="updateCandidateBtn"
                   >
-                    <i class="fa-solid fa-pen-to-square"></i> Update
+                    <i class="fa-solid fa-pen-to-square"></i> Edit
                   </button>
                   <button
                     class="btn btn-sm btn-pastel-red d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
@@ -674,7 +674,7 @@
                   <thead>
                     <tr>
                       <th style="width: 36px">
-                        <input type="checkbox" id="selectAllCandidates" aria-label="Select all" />
+                        <input type="checkbox" id="selectAllList" aria-label="Select all" />
                       </th>
                       <th style="width: 44px" class="text-center">Action</th>
                       <th>Code</th>
@@ -705,17 +705,18 @@
               <div class="app-footer-left">
                 <div class="app-footer-counter">
                   <span id="recruitmentResultCount"
-                    >Showing <strong>1 – 17</strong> of <strong>348</strong> items</span
+                    >Showing <strong>1 – 20</strong> of <strong>348</strong> items</span
                   >
                 </div>
                 <div class="app-footer-divider"></div>
                 <div class="app-page-size-picker">
                   <span>Rows per page:</span>
                   <select id="recruitmentPageSizeSelect" class="app-size-select" aria-label="Rows per page">
-                    <option value="12">12</option>
-                    <option value="25" selected>25</option>
+                    <option value="20" selected>20</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="500">500</option>
                   </select>
                 </div>
               </div>
@@ -732,10 +733,10 @@
                     class="app-jump-input"
                     value="1"
                     min="1"
-                    max="14"
+                    max="21"
                     aria-label="Target page number"
                   />
-                  <span class="app-jump-total">/ <span id="recruitmentTotalPages">14</span></span>
+                  <span class="app-jump-total">/ <span id="recruitmentTotalPages">21</span></span>
                   <button type="submit" class="app-jump-btn" id="recruitmentJumpGoBtn" title="Jump to page">
                     <i class="fa-solid fa-arrow-right"></i>
                   </button>
@@ -768,7 +769,7 @@
                   <button class="app-page-btn" data-page="2">2</button>
                   <button class="app-page-btn" data-page="3">3</button>
                   <span class="app-page-ellipsis">…</span>
-                  <button class="app-page-btn" data-page="14">14</button>
+                  <button class="app-page-btn" data-page="21">21</button>
                 </div>
 
                 <button
@@ -954,131 +955,6 @@
                   </button>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Add Candidate Modal -->
-        <div class="modal fade" id="addCandidateModal" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
-              <div class="modal-header bg-primary text-white p-3">
-                <h5 class="modal-title font-bold text-white mb-0"><i class="fa-solid fa-user-plus me-2"></i>Add New Candidate</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <form id="addCandidateForm">
-                <div class="modal-body p-4">
-                  <div class="row g-3">
-                    <div class="col-12">
-                      <label class="form-label font-semibold small">Full Name <span class="text-danger">*</span></label>
-                      <input type="text" id="addCandName" class="form-control form-control-sm" placeholder="e.g. Linh Nguyen" required />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label font-semibold small">Target Role <span class="text-danger">*</span></label>
-                      <input type="text" id="addCandRole" class="form-control form-control-sm" placeholder="e.g. Software Engineer" required />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label font-semibold small">Department</label>
-                      <select id="addCandDept" class="form-select form-select-sm">
-                        <option value="Engineering">Engineering</option>
-                        <option value="Product">Product</option>
-                        <option value="Design">Design</option>
-                        <option value="Marketing">Marketing</option>
-                        <option value="Sales">Sales</option>
-                        <option value="HR Specialist">HR Specialist</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label font-semibold small">Email Address</label>
-                      <input type="email" id="addCandEmail" class="form-control form-control-sm" placeholder="cand@example.com" />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label font-semibold small">Phone Number</label>
-                      <input type="tel" id="addCandPhone" class="form-control form-control-sm" placeholder="+84 900 000 000" />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label font-semibold small">Match Score (%)</label>
-                      <input type="number" id="addCandMatch" class="form-control form-control-sm" min="40" max="100" value="85" />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label font-semibold small">Pipeline Stage</label>
-                      <select id="addCandStage" class="form-select form-select-sm">
-                        <option value="applied">Applied</option>
-                        <option value="screening">Screening</option>
-                        <option value="interview">Interview</option>
-                        <option value="offer">Offer</option>
-                        <option value="hired">Hired</option>
-                        <option value="rejected">Rejected</option>
-                      </select>
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label font-semibold small">Interviewer / Initial Notes</label>
-                      <textarea id="addCandNotes" class="form-control form-control-sm" rows="2" placeholder="Brief candidate background or interview feedback..."></textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer bg-light p-3">
-                  <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 primary-gradient-btn font-semibold"><i class="fa-solid fa-check me-1"></i>Save Candidate</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3. New Job Post Modal -->
-        <div class="modal fade" id="newJobPostModal" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
-              <div class="modal-header bg-dark text-white p-3">
-                <h5 class="modal-title font-bold text-white mb-0"><i class="fa-solid fa-briefcase me-2 text-primary"></i>Create New Job Post</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <form id="newJobPostForm">
-                <div class="modal-body p-4">
-                  <div class="row g-3">
-                    <div class="col-12">
-                      <label class="form-label font-semibold small">Job Title <span class="text-danger">*</span></label>
-                      <input type="text" id="jobTitleInput" class="form-control form-control-sm" placeholder="e.g. Senior Frontend Architect" required />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label font-semibold small">Department</label>
-                      <select id="jobDeptInput" class="form-select form-select-sm">
-                        <option value="Engineering">Engineering</option>
-                        <option value="Product">Product</option>
-                        <option value="Design">Design</option>
-                        <option value="Marketing">Marketing</option>
-                        <option value="Sales">Sales</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label font-semibold small">Job Type</label>
-                      <select id="jobTypeInput" class="form-select form-select-sm">
-                        <option value="Full-time">Full-time</option>
-                        <option value="Part-time">Part-time</option>
-                        <option value="Contract">Contract</option>
-                        <option value="Remote">Remote</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label font-semibold small">Salary Range</label>
-                      <input type="text" id="jobSalaryInput" class="form-control form-control-sm" placeholder="e.g. $2,000 - $3,500 / mo" />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label font-semibold small">Location</label>
-                      <input type="text" id="jobLocInput" class="form-control form-control-sm" placeholder="e.g. Ho Chi Minh City" />
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label font-semibold small">Description & Requirements</label>
-                      <textarea id="jobDescInput" class="form-control form-control-sm" rows="3" placeholder="Key responsibilities, skills required..."></textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer bg-light p-3">
-                  <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 primary-gradient-btn font-semibold"><i class="fa-solid fa-paper-plane me-1"></i>Publish Job Post</button>
-                </div>
-              </form>
             </div>
           </div>
         </div>

@@ -1,7 +1,3 @@
-/* 
-  Nexus ERP + HRM - Core JavaScript Logic
-*/
-
 document.addEventListener("DOMContentLoaded", () => {
   initThemeToggle();
   initSidebarActiveState();
@@ -58,6 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Settings Page Logic
   if (document.getElementById("settingsTab") || document.getElementById("generalOrgForm")) {
     initSettingsPage();
+  }
+
+  // Leave Management Page Logic
+  if (
+    document.getElementById("leavePlannerTable") ||
+    document.getElementById("requestLeaveModal")
+  ) {
+    initLeaveManagementPage();
   }
 });
 
@@ -256,22 +260,6 @@ function initTopbarInteractiveControls() {
       const badge = notifBtn.querySelector(".badge-dot");
       if (badge) {
         badge.style.display = "none";
-      }
-    });
-  }
-
-  const searchInput = document.getElementById("topbarSearchInput");
-  if (searchInput) {
-    searchInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && searchInput.value.trim() !== "") {
-        if (typeof showToast === "function") {
-          showToast({
-            title: "Global Search",
-            message: `Searching system records for "${searchInput.value.trim()}"...`,
-            type: "info",
-            duration: 3000,
-          });
-        }
       }
     });
   }
@@ -780,204 +768,158 @@ window.initCountryExportModal = initCountryExportModal;
 
 /* Country Management Dataset & HTML Table Renderer */
 function generateCountryDataset() {
-  const seedCountries = [
+  return [
     {
+      id: "0001",
       code: "VN",
       countryName: "Việt Nam",
       capital: "Hà Nội",
       region: "Asia",
-      basePop: 98186856,
+      population: 98186856,
       priority: "High",
+      active: true,
+      createdBy: "Admin User",
+      createdAt: "2024-01-15",
+      updatedBy: "Tristan Nguyen",
+      updatedAt: "2025-03-10",
+      note: "Strategic key market",
     },
     {
+      id: "0002",
       code: "US",
       countryName: "United States",
       capital: "Washington, D.C.",
       region: "Americas",
-      basePop: 331893745,
+      population: 331893745,
       priority: "High",
+      active: true,
+      createdBy: "Tristan Nguyen",
+      createdAt: "2024-02-08",
+      updatedBy: "Admin User",
+      updatedAt: "2025-04-01",
+      note: "High growth potential",
     },
     {
+      id: "0003",
       code: "JP",
       countryName: "Japan",
       capital: "Tokyo",
       region: "Asia",
-      basePop: 125507472,
+      population: 125507472,
       priority: "High",
+      active: true,
+      createdBy: "System Bot",
+      createdAt: "2024-03-20",
+      updatedBy: "Sarah Jenkins",
+      updatedAt: "2025-02-14",
+      note: "Regional office center",
     },
     {
+      id: "0004",
       code: "DE",
       countryName: "Germany",
       capital: "Berlin",
       region: "Europe",
-      basePop: 83190556,
+      population: 83190556,
       priority: "Standard",
+      active: true,
+      createdBy: "Sarah Jenkins",
+      createdAt: "2024-04-05",
+      updatedBy: "Alex Rivera",
+      updatedAt: "2025-01-22",
+      note: "Trade agreement active",
     },
     {
+      id: "0005",
       code: "GB",
       countryName: "United Kingdom",
       capital: "London",
       region: "Europe",
-      basePop: 67326569,
+      population: 67326569,
       priority: "High",
+      active: true,
+      createdBy: "Alex Rivera",
+      createdAt: "2024-05-11",
+      updatedBy: "Admin User",
+      updatedAt: "2025-05-03",
+      note: "Standard operational hub",
     },
     {
-      code: "FR",
-      countryName: "France",
-      capital: "Paris",
-      region: "Europe",
-      basePop: 67749632,
-      priority: "Standard",
-    },
-    {
-      code: "KR",
-      countryName: "South Korea",
-      capital: "Seoul",
-      region: "Asia",
-      basePop: 51744876,
-      priority: "High",
-    },
-    {
+      id: "0006",
       code: "SG",
       countryName: "Singapore",
       capital: "Singapore",
       region: "Asia",
-      basePop: 5453600,
+      population: 5453600,
       priority: "High",
+      active: true,
+      createdBy: "Admin User",
+      createdAt: "2024-06-18",
+      updatedBy: "Tristan Nguyen",
+      updatedAt: "2025-06-01",
+      note: "Strategic key market",
     },
     {
+      id: "0007",
       code: "AU",
       countryName: "Australia",
       capital: "Canberra",
       region: "Oceania",
-      basePop: 25688079,
+      population: 25688079,
       priority: "Standard",
+      active: false,
+      createdBy: "Tristan Nguyen",
+      createdAt: "2024-07-22",
+      updatedBy: "System Bot",
+      updatedAt: "2025-07-10",
+      note: "Compliance review pending",
     },
     {
-      code: "CA",
-      countryName: "Canada",
-      capital: "Ottawa",
-      region: "Americas",
-      basePop: 38246108,
+      id: "0008",
+      code: "FR",
+      countryName: "France",
+      capital: "Paris",
+      region: "Europe",
+      population: 67749632,
       priority: "Standard",
+      active: true,
+      createdBy: "System Bot",
+      createdAt: "2024-08-30",
+      updatedBy: "Sarah Jenkins",
+      updatedAt: "2025-03-28",
+      note: "High growth potential",
     },
     {
-      code: "TH",
-      countryName: "Thailand",
-      capital: "Bangkok",
+      id: "0009",
+      code: "KR",
+      countryName: "South Korea",
+      capital: "Seoul",
       region: "Asia",
-      basePop: 71601103,
-      priority: "Standard",
-    },
-    {
-      code: "CN",
-      countryName: "China",
-      capital: "Beijing",
-      region: "Asia",
-      basePop: 1412360000,
+      population: 51744876,
       priority: "High",
+      active: true,
+      createdBy: "Sarah Jenkins",
+      createdAt: "2024-09-14",
+      updatedBy: "Alex Rivera",
+      updatedAt: "2025-04-17",
+      note: "Trade agreement active",
     },
     {
-      code: "IN",
-      countryName: "India",
-      capital: "New Delhi",
-      region: "Asia",
-      basePop: 1408044253,
-      priority: "High",
-    },
-    {
-      code: "BR",
-      countryName: "Brazil",
-      capital: "Brasília",
-      region: "Americas",
-      basePop: 214326223,
-      priority: "Low",
-    },
-    {
-      code: "IT",
-      countryName: "Italy",
-      capital: "Rome",
-      region: "Europe",
-      basePop: 59066225,
-      priority: "Standard",
-    },
-    {
-      code: "ES",
-      countryName: "Spain",
-      capital: "Madrid",
-      region: "Europe",
-      basePop: 47415750,
-      priority: "Standard",
-    },
-    {
-      code: "NL",
-      countryName: "Netherlands",
-      capital: "Amsterdam",
-      region: "Europe",
-      basePop: 17530000,
-      priority: "Standard",
-    },
-    {
-      code: "SE",
-      countryName: "Sweden",
-      capital: "Stockholm",
-      region: "Europe",
-      basePop: 10420000,
-      priority: "Low",
-    },
-    {
-      code: "CH",
-      countryName: "Switzerland",
-      capital: "Bern",
-      region: "Europe",
-      basePop: 8700000,
-      priority: "High",
-    },
-    {
+      id: "0010",
       code: "AE",
       countryName: "United Arab Emirates",
       capital: "Abu Dhabi",
       region: "Asia",
-      basePop: 9890400,
+      population: 9890400,
       priority: "High",
+      active: true,
+      createdBy: "Alex Rivera",
+      createdAt: "2024-10-03",
+      updatedBy: "Admin User",
+      updatedAt: "2025-05-22",
+      note: "Regional office center",
     },
   ];
-  const usersSeed = ["Admin User", "Tristan Nguyen", "System Bot", "Sarah Jenkins", "Alex Rivera"];
-  const notesSeed = [
-    "Strategic key market",
-    "Standard operational hub",
-    "Compliance review pending",
-    "High growth potential",
-    "Regional office center",
-    "Trade agreement active",
-  ];
-  const countryData = [];
-  for (let i = 1; i <= 120; i++) {
-    const item = seedCountries[(i - 1) % seedCountries.length];
-    const suffix = Math.ceil(i / seedCountries.length);
-    const creator = usersSeed[(i - 1) % usersSeed.length];
-    const updater = usersSeed[(i + 1) % usersSeed.length];
-    const createdDate = `2024-${String((i % 12) + 1).padStart(2, "0")}-${String((i % 28) + 1).padStart(2, "0")}`;
-    const updatedDate = `2025-${String((i % 12) + 1).padStart(2, "0")}-${String((i % 28) + 1).padStart(2, "0")}`;
-    const rowNote = notesSeed[(i - 1) % notesSeed.length];
-    countryData.push({
-      select: false,
-      id: String(i).padStart(4, "0"),
-      code: `${item.code}${suffix > 1 ? suffix : ""}`,
-      countryName: `${item.countryName}${suffix > 1 ? " (" + suffix + ")" : ""}`,
-      capital: item.capital,
-      region: item.region,
-      population: Math.round(item.basePop * (1 + (i % 5) * 0.05)),
-      priority: item.priority,
-      active: i % 7 !== 0,
-      createdBy: creator,
-      createdAt: createdDate,
-      updatedBy: updater,
-      updatedAt: updatedDate,
-      note: rowNote,
-    });
-  }
-  return countryData;
 }
 
 function initCountryGrid() {
@@ -1002,8 +944,11 @@ function initCountryGrid() {
   if (elPriority) elPriority.textContent = highPriorityCount;
   if (elRegions) elRegions.textContent = uniqueRegionsCount;
 
+  // Render Table Rows
+  renderCountryTableRows(countryData);
+
   // Handle select all checkbox
-  const selectAll = document.getElementById("selectAllCountry");
+  const selectAll = document.getElementById("selectAllList");
   if (selectAll) {
     selectAll.addEventListener("change", (e) => {
       document
@@ -2072,148 +2017,6 @@ function initEmployeesPage() {
     });
   }
 
-  // ── Interactive Pagination Logic ──
-  (function initPagination() {
-    let currentPage = 1;
-    let pageSize = 12;
-    const totalEmployees = 248;
-    let totalPages = 1;
-
-    const empResultCount = document.getElementById("empResultCount");
-    const empPageSizeSelect = document.getElementById("empPageSizeSelect");
-    const empJumpInput = document.getElementById("empJumpInput");
-    const empTotalPages = document.getElementById("empTotalPages");
-    const empPageJumpForm = document.getElementById("empPageJumpForm");
-
-    const empFirstBtn = document.getElementById("empFirstBtn");
-    const empPrevBtn = document.getElementById("empPrevBtn");
-    const empNextBtn = document.getElementById("empNextBtn");
-    const empLastBtn = document.getElementById("empLastBtn");
-    const empPageNumbersGroup = document.getElementById("empPageNumbersGroup");
-
-    function updatePaginationUI() {
-      totalPages = Math.max(1, Math.ceil(totalEmployees / pageSize));
-      if (currentPage > totalPages) currentPage = totalPages;
-      if (currentPage < 1) currentPage = 1;
-
-      const startItem = (currentPage - 1) * pageSize + 1;
-      const endItem = Math.min(currentPage * pageSize, totalEmployees);
-
-      if (empResultCount) {
-        empResultCount.innerHTML = `Showing <strong>${startItem} – ${endItem}</strong> of <strong>${totalEmployees}</strong> items`;
-      }
-      if (empTotalPages) empTotalPages.textContent = totalPages;
-      if (empJumpInput) {
-        empJumpInput.value = currentPage;
-        empJumpInput.max = totalPages;
-      }
-
-      // Toggle disabled state on nav buttons
-      if (empFirstBtn) empFirstBtn.disabled = currentPage === 1;
-      if (empPrevBtn) empPrevBtn.disabled = currentPage === 1;
-      if (empNextBtn) empNextBtn.disabled = currentPage === totalPages;
-      if (empLastBtn) empLastBtn.disabled = currentPage === totalPages;
-
-      renderPageNumbers();
-    }
-
-    function renderPageNumbers() {
-      if (!empPageNumbersGroup) return;
-      let html = "";
-      let pages = [];
-
-      if (totalPages <= 5) {
-        for (let i = 1; i <= totalPages; i++) pages.push(i);
-      } else {
-        if (currentPage <= 3) {
-          pages = [1, 2, 3, "...", totalPages];
-        } else if (currentPage >= totalPages - 2) {
-          pages = [1, "...", totalPages - 2, totalPages - 1, totalPages];
-        } else {
-          pages = [1, "...", currentPage, "...", totalPages];
-        }
-      }
-
-      pages.forEach((p) => {
-        if (p === "...") {
-          html += `<span class="app-page-ellipsis">…</span>`;
-        } else {
-          const isActive = p === currentPage ? "active" : "";
-          html += `<button type="button" class="app-page-btn ${isActive}" data-page="${p}">${p}</button>`;
-        }
-      });
-
-      empPageNumbersGroup.innerHTML = html;
-
-      // Attach listeners to newly rendered page buttons
-      empPageNumbersGroup.querySelectorAll(".app-page-btn").forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          const pageNum = parseInt(e.currentTarget.getAttribute("data-page"), 10);
-          if (pageNum && pageNum !== currentPage) {
-            currentPage = pageNum;
-            updatePaginationUI();
-          }
-        });
-      });
-    }
-
-    // Rows per page change
-    if (empPageSizeSelect) {
-      empPageSizeSelect.addEventListener("change", (e) => {
-        pageSize = parseInt(e.target.value, 10) || 12;
-        currentPage = 1;
-        updatePaginationUI();
-      });
-    }
-
-    // Jump form submit
-    if (empPageJumpForm) {
-      empPageJumpForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const target = parseInt(empJumpInput.value, 10);
-        if (target && target >= 1 && target <= totalPages) {
-          currentPage = target;
-          updatePaginationUI();
-        } else {
-          empJumpInput.value = currentPage;
-        }
-      });
-    }
-
-    // Navigation button events
-    if (empFirstBtn)
-      empFirstBtn.addEventListener("click", () => {
-        if (currentPage > 1) {
-          currentPage = 1;
-          updatePaginationUI();
-        }
-      });
-    if (empPrevBtn)
-      empPrevBtn.addEventListener("click", () => {
-        if (currentPage > 1) {
-          currentPage--;
-          updatePaginationUI();
-        }
-      });
-    if (empNextBtn)
-      empNextBtn.addEventListener("click", () => {
-        if (currentPage < totalPages) {
-          currentPage++;
-          updatePaginationUI();
-        }
-      });
-    if (empLastBtn)
-      empLastBtn.addEventListener("click", () => {
-        if (currentPage < totalPages) {
-          currentPage = totalPages;
-          updatePaginationUI();
-        }
-      });
-
-    // Initial render
-    updatePaginationUI();
-  })();
-
   // Card click delegation (Only view icon button opens modal)
   const cardViewContainer = document.getElementById("empCardView");
   if (cardViewContainer) {
@@ -2819,10 +2622,10 @@ function initViewToggle() {
 }
 
 function initSelectAllCandidatesCheckbox() {
-  const selectAll = document.getElementById("selectAllCandidates");
+  const selectAll = document.getElementById("selectAllList");
   if (selectAll) {
     selectAll.addEventListener("change", () => {
-      const checkboxes = document.querySelectorAll(".candidate-checkbox");
+      const checkboxes = document.querySelectorAll('.app-list-table tbody input[type="checkbox"]');
       checkboxes.forEach((cb) => (cb.checked = selectAll.checked));
     });
   }
@@ -3125,14 +2928,13 @@ function renderCandidateTable() {
     .map((c, idx) => {
       const code = `#CAND${String(idx + 1).padStart(3, "0")}`;
       const deptBadge =
-        deptBadgeMap[c.department] ||
-        `<span class="badge-soft badge-slate">${c.department}</span>`;
+        deptBadgeMap[c.department] || `<span class="badge-soft badge-slate">${c.department}</span>`;
       const stageBadge =
         stageBadgeMap[c.stage] || `<span class="badge-soft badge-green">${c.stage}</span>`;
 
       return `
       <tr>
-        <td><input type="checkbox" class="candidate-checkbox" value="${c.id}" /></td>
+        <td><input type="checkbox" value="${c.id}" /></td>
         <td class="text-center">
           <button class="btn-action-eye" title="View Profile" onclick="openCandidateDetailModal('${c.id}')">
             <i class="fa-regular fa-eye"></i>
@@ -3171,6 +2973,15 @@ function renderCandidateTable() {
     `;
     })
     .join("");
+
+  const selectAll = document.getElementById("selectAllList");
+  if (selectAll) {
+    selectAll.onclick = function (e) {
+      tbody
+        .querySelectorAll('input[type="checkbox"]')
+        .forEach((cb) => (cb.checked = e.target.checked));
+    };
+  }
 }
 
 function createCandidateCardHTML(c) {
@@ -3190,7 +3001,7 @@ function createCandidateCardHTML(c) {
   return `
     <div class="candidate-card" draggable="true" data-id="${c.id}" data-stage="${c.stage}">
       <div class="candidate-card-header d-flex align-items-center justify-content-between mb-2">
-        <input type="checkbox" class="form-check-input candidate-checkbox m-0" value="${c.id}" onclick="event.stopPropagation()" aria-label="Select ${c.name}" />
+        <input type="checkbox" class="form-check-input m-0" value="${c.id}" onclick="event.stopPropagation()" aria-label="Select ${c.name}" />
         <div class="d-flex align-items-center gap-1 ms-auto">
           <button class="btn-star-candidate ${isStarredClass}" title="Star candidate" onclick="toggleStarCandidate(event, '${c.id}')">
             <i class="${starIconClass}"></i>
@@ -3423,158 +3234,8 @@ function openCandidateDetailModal(id) {
   bsModal.show();
 }
 
-function promptUpdateCandidate() {
-  const selectedCbs = document.querySelectorAll(".candidate-checkbox:checked");
-  if (selectedCbs.length === 1) {
-    openCandidateDetailModal(selectedCbs[0].value);
-  } else if (selectedCbs.length > 1) {
-    showToast({
-      title: "Select Single Candidate",
-      message: "Please select a single candidate to view.",
-      type: "warning",
-    });
-  } else {
-    if (RECRUITMENT_DATA.length > 0) {
-      openCandidateDetailModal(RECRUITMENT_DATA[0].id);
-    } else {
-      showToast({
-        title: "No Candidate Available",
-        message: "There are no candidates available to view.",
-        type: "warning",
-      });
-    }
-  }
-}
-
-function advanceCandidateFromModal() {
-  if (!activeCandidateIdForModal) return;
-  const stageSelect = document.getElementById("modalStageSelect");
-  if (stageSelect) {
-    moveCandidateToStage(activeCandidateIdForModal, stageSelect.value);
-    const modalEl = document.getElementById("candidateDetailModal");
-    const bsModal = bootstrap.Modal.getInstance(modalEl);
-    if (bsModal) bsModal.hide();
-  }
-}
-
-function rejectCandidateFromModal() {
-  if (!activeCandidateIdForModal) return;
-  moveCandidateToStage(activeCandidateIdForModal, "rejected");
-  const modalEl = document.getElementById("candidateDetailModal");
-  const bsModal = bootstrap.Modal.getInstance(modalEl);
-  if (bsModal) bsModal.hide();
-}
-
-function promptMoveCandidateStage(id) {
-  openCandidateDetailModal(id);
-}
-
-function deleteCandidate(id) {
-  const index = RECRUITMENT_DATA.findIndex((c) => c.id === id);
-  if (index !== -1) {
-    const deletedName = RECRUITMENT_DATA[index].name;
-    RECRUITMENT_DATA.splice(index, 1);
-    renderPipelineBoard();
-    showToast({
-      title: "Candidate Removed",
-      message: `${deletedName} has been removed from the pipeline.`,
-      type: "info",
-      duration: 3000,
-    });
-  }
-}
-
 function initRecruitmentForms() {
-  // Add Candidate Form Submit
-  const addForm = document.getElementById("addCandidateForm");
-  if (addForm) {
-    addForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = document.getElementById("addCandName")?.value || "New Candidate";
-      const role = document.getElementById("addCandRole")?.value || "Software Engineer";
-      const dept = document.getElementById("addCandDept")?.value || "Engineering";
-      const email = document.getElementById("addCandEmail")?.value || "candidate@example.com";
-      const phone = document.getElementById("addCandPhone")?.value || "+84 912 345 678";
-      const match = parseInt(document.getElementById("addCandMatch")?.value || "85");
-      const stage = document.getElementById("addCandStage")?.value || "applied";
-      const notes = document.getElementById("addCandNotes")?.value || "Newly added candidate.";
-
-      let matchClass = "match-high";
-      if (match < 70) matchClass = "match-fair";
-      else if (match < 80) matchClass = "match-medium";
-
-      const newCand = {
-        id: `cand-${Date.now()}`,
-        name,
-        role,
-        department: dept,
-        matchScore: match,
-        matchClass,
-        avatar: `https://images.unsplash.com/photo-${1535713875002 + Math.floor(Math.random() * 100)}?w=150&auto=format&fit=crop&q=80`,
-        stage,
-        starred: false,
-        subtext: "Just added",
-        dateTag: "Just added",
-        email,
-        phone,
-        experience: "3+ years",
-        location: "Ho Chi Minh City",
-        expectedSalary: "$2,000 / mo",
-        appliedDate: "Today",
-        skills: ["Problem Solving", "Communication", role],
-        notes,
-      };
-
-      RECRUITMENT_DATA.unshift(newCand);
-      renderPipelineBoard();
-
-      const modalEl = document.getElementById("addCandidateModal");
-      const bsModal = bootstrap.Modal.getInstance(modalEl);
-      if (bsModal) bsModal.hide();
-      addForm.reset();
-
-      showToast({
-        title: "Candidate Added",
-        message: `${name} has been added to ${stage.toUpperCase()} stage!`,
-        type: "success",
-        duration: 3500,
-      });
-    });
-  }
-
-  // New Job Post Form Submit
-  const jobForm = document.getElementById("newJobPostForm");
-  if (jobForm) {
-    jobForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const title = document.getElementById("jobTitleInput")?.value || "New Job";
-      const dept = document.getElementById("jobDeptInput")?.value || "Engineering";
-
-      // Dynamically add role option to filter dropdown if new
-      const roleFilter = document.getElementById("filterRole");
-      if (roleFilter) {
-        const exists = Array.from(roleFilter.options).some((opt) => opt.value === title);
-        if (!exists) {
-          const opt = document.createElement("option");
-          opt.value = title;
-          opt.textContent = title;
-          roleFilter.appendChild(opt);
-        }
-      }
-
-      const modalEl = document.getElementById("newJobPostModal");
-      const bsModal = bootstrap.Modal.getInstance(modalEl);
-      if (bsModal) bsModal.hide();
-      jobForm.reset();
-
-      showToast({
-        title: "Job Post Created",
-        message: `New job opening for "${title}" (${dept}) is now live!`,
-        type: "success",
-        duration: 4000,
-      });
-    });
-  }
+  // No active modal form listeners needed
 }
 
 // Expose globally
@@ -3590,124 +3251,62 @@ window.openCandidateDetailFromStageModal = openCandidateDetailFromStageModal;
 
 /* Settings Page Interactivity */
 function initSettingsPage() {
-  // 1. Save All Settings button
-  const saveAllBtn = document.getElementById("saveAllSettingsBtn");
-  if (saveAllBtn) {
-    saveAllBtn.addEventListener("click", () => {
-      saveAllBtn.disabled = true;
-      saveAllBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin me-1"></i> Saving...`;
+  // No active settings page form listeners
+}
 
-      setTimeout(() => {
-        saveAllBtn.disabled = false;
-        saveAllBtn.innerHTML = `<i class="fa-solid fa-floppy-disk me-1"></i> Save All Changes`;
+window.initSettingsPage = initSettingsPage;
 
-        showToast({
-          title: "Settings Saved",
-          message: "System preferences and configurations have been successfully updated.",
-          type: "success",
-          duration: 4000,
-        });
-      }, 600);
+/* ==========================================================================
+   LEAVE MANAGEMENT & PLANNER PAGE LOGIC
+   ========================================================================== */
+
+function initLeaveManagementPage() {
+  // Render Chart
+  if (typeof window.renderLeaveDistributionChart === "function") {
+    window.renderLeaveDistributionChart();
+  }
+
+  // 0. View Mode Toggle (Schedule vs List)
+  const scheduleViewBtn =
+    document.getElementById("scheduleViewBtn") || document.getElementById("calendarViewBtn");
+  const listViewBtn =
+    document.getElementById("listViewBtn") || document.getElementById("tableViewBtn");
+  const leaveScheduleView =
+    document.getElementById("leaveScheduleView") || document.getElementById("leaveCalendarView");
+  const leaveListView =
+    document.getElementById("leaveListView") || document.getElementById("leaveTableView");
+
+  if (scheduleViewBtn && listViewBtn && leaveScheduleView && leaveListView) {
+    scheduleViewBtn.addEventListener("click", () => {
+      scheduleViewBtn.classList.add("active");
+      listViewBtn.classList.remove("active");
+      leaveScheduleView.classList.remove("d-none");
+      leaveScheduleView.style.display = "block";
+      leaveListView.classList.add("d-none");
+      leaveListView.style.display = "none";
+    });
+
+    listViewBtn.addEventListener("click", () => {
+      listViewBtn.classList.add("active");
+      scheduleViewBtn.classList.remove("active");
+      leaveScheduleView.classList.add("d-none");
+      leaveScheduleView.style.display = "none";
+      leaveListView.classList.remove("d-none");
+      leaveListView.style.display = "block";
     });
   }
 
-  // 2. Organization Profile Form
-  const orgForm = document.getElementById("generalOrgForm");
-  if (orgForm) {
-    orgForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      showToast({
-        title: "Profile Updated",
-        message: "Organization profile details updated successfully.",
-        type: "success",
-        duration: 3500,
-      });
-    });
-  }
-
-  // 3. Control Center Toggle Switches
-  const maintSwitch = document.getElementById("switchMaintenanceMode");
-  if (maintSwitch) {
-    maintSwitch.addEventListener("change", (e) => {
-      if (e.target.checked) {
-        showToast({
-          title: "Maintenance Mode Enabled",
-          message: "System access is now restricted to Administrators only.",
-          type: "warning",
-          duration: 5000,
-        });
-      } else {
-        showToast({
-          title: "Maintenance Mode Disabled",
-          message: "Normal system operations resumed for all users.",
-          type: "info",
-          duration: 4000,
-        });
-      }
-    });
-  }
-
-  const backupSwitch = document.getElementById("switchAutoBackups");
-  if (backupSwitch) {
-    backupSwitch.addEventListener("change", (e) => {
-      showToast({
-        title: e.target.checked ? "Auto Backups Activated" : "Auto Backups Paused",
-        message: e.target.checked
-          ? "Automated daily database snapshots are enabled."
-          : "Automated backup schedule paused.",
-        type: e.target.checked ? "success" : "warning",
-        duration: 3500,
-      });
-    });
-  }
-
-
-  // 5. Danger Zone Confirmation
-  const confirmDangerBtn = document.getElementById("confirmDangerActionBtn");
-  if (confirmDangerBtn) {
-    confirmDangerBtn.addEventListener("click", () => {
-      const dangerInput = document.getElementById("dangerConfirmInput");
-      const actionType = confirmDangerBtn.getAttribute("data-action-type") || "reset";
-      
-      if (dangerInput && dangerInput.value.trim().toUpperCase() !== "CONFIRM") {
-        showToast({
-          title: "Confirmation Required",
-          message: 'Please type "CONFIRM" to proceed with this sensitive action.',
-          type: "danger",
-          duration: 4000,
-        });
-        return;
-      }
-
-      const modalEl = document.getElementById("dangerZoneModal");
-      const bsModal = modalEl && typeof bootstrap !== "undefined" ? bootstrap.Modal.getInstance(modalEl) : null;
-      if (bsModal) bsModal.hide();
-
-      showToast({
-        title: actionType === "reset" ? "System Reset Initiated" : "Portal Deactivated",
-        message: actionType === "reset"
-          ? "System preferences have been restored to initial defaults."
-          : "Employee self-service portal has been temporarily deactivated.",
-        type: "danger",
-        duration: 5000,
-      });
-    });
-  }
-
-  // 6. Reset Defaults Button
-  const resetDefaultsBtn = document.getElementById("resetDefaultsBtn");
-  if (resetDefaultsBtn) {
-    resetDefaultsBtn.addEventListener("click", () => {
-      showToast({
-        title: "Defaults Restored",
-        message: "Default system values loaded. Click 'Save All Changes' to commit.",
-        type: "info",
-        duration: 3500,
+  // 9. Select All Checkbox Handler in List Table
+  const selectAllList = document.getElementById("selectAllList");
+  const leaveListTable = document.getElementById("leaveListTable");
+  if (selectAllList && leaveListTable) {
+    selectAllList.addEventListener("change", (e) => {
+      const rowCheckboxes = leaveListTable.querySelectorAll("tbody input[type='checkbox']");
+      rowCheckboxes.forEach((cb) => {
+        cb.checked = e.target.checked;
       });
     });
   }
 }
 
-window.initSettingsPage = initSettingsPage;
-
-
+window.initLeaveManagementPage = initLeaveManagementPage;

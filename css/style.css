@@ -617,6 +617,28 @@
   border: 1px solid var(--border-color);
 }
 
+.leave-emp-name {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-main);
+  line-height: 1.2;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.leave-emp-role {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
 .modal-header,
 .modal-footer {
   background-color: var(--bg-surface);
@@ -1203,25 +1225,6 @@ a {
   position: relative;
   background: linear-gradient(180deg, rgba(245, 247, 252, 0) 0%, #eef2ff 100%);
   border-top: 1px solid var(--border-light);
-}
-
-
-.security-badge-box i {
-  color: var(--primary-600);
-  font-size: 1.25rem;
-  margin-top: 2px;
-}
-
-.security-badge-box p {
-  margin: 0;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  line-height: 1.35;
-}
-
-.security-badge-box p strong {
-  color: var(--text-main);
-  display: block;
 }
 
 /* Main Content Area */
@@ -2484,8 +2487,7 @@ a {
   color: #ffffff !important;
 }
 
-[data-theme="dark"] 
-[data-theme="dark"] .sidebar-footer-graphic {
+[data-theme="dark"] [data-theme="dark"] .sidebar-footer-graphic {
   background: linear-gradient(180deg, rgba(14, 14, 16, 0) 0%, var(--bg-sidebar) 100%);
   border-top-color: var(--border-color);
 }
@@ -2497,14 +2499,6 @@ a {
 
 [data-theme="dark"] .sidebar-header {
   border-bottom-color: var(--border-light);
-}
-
-[data-theme="dark"] .security-badge-box i {
-  color: #60a5fa;
-}
-
-[data-theme="dark"] .security-badge-box p {
-  color: var(--text-muted);
 }
 
 [data-theme="dark"] .btn-icon-action {
@@ -3730,8 +3724,7 @@ svg g.apextree-selected .apextree-sleek-card {
 /* ======================================================
    ENTERPRISE TABLE FOOTER & PAGINATION (SHARED COMPONENT)
    ====================================================== */
-.app-table-footer,
-.emp-table-footer {
+.app-table-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -3748,22 +3741,19 @@ svg g.apextree-selected .apextree-sleek-card {
     border-color 0.2s,
     box-shadow 0.2s;
 }
-.app-table-footer:hover,
-.emp-table-footer:hover {
+.app-table-footer:hover:hover {
   border-color: rgba(59, 130, 246, 0.25);
   box-shadow: var(--shadow-card);
 }
 
 /* Left Zone: Counter & Page Size Picker */
-.app-footer-left,
-.emp-footer-left {
+.app-footer-left {
   display: flex;
   align-items: center;
   gap: 14px;
   flex-wrap: wrap;
 }
-.app-footer-counter,
-.emp-footer-counter {
+.app-footer-counter {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -3771,20 +3761,17 @@ svg g.apextree-selected .apextree-sleek-card {
   color: var(--text-muted);
   font-weight: 500;
 }
-.app-footer-counter strong,
-.emp-footer-counter strong {
+.app-footer-counter strong strong {
   color: var(--text-main);
   font-weight: 700;
 }
-.app-footer-divider,
-.emp-footer-divider {
+.app-footer-divider {
   width: 1px;
   height: 18px;
   background-color: var(--border-color);
   display: inline-block;
 }
-.app-page-size-picker,
-.emp-page-size-picker {
+.app-page-size-picker {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -3792,8 +3779,7 @@ svg g.apextree-selected .apextree-sleek-card {
   color: var(--text-muted);
   font-weight: 500;
 }
-.app-size-select,
-.emp-size-select {
+.app-size-select {
   padding: 4px 28px 4px 10px;
   font-size: 0.78rem;
   font-weight: 600;
@@ -3810,20 +3796,17 @@ svg g.apextree-selected .apextree-sleek-card {
   background-position: right 8px center;
   background-size: 12px;
 }
-.app-size-select:hover,
-.emp-size-select:hover {
+.app-size-select:hover:hover {
   border-color: var(--primary-500);
   color: var(--primary-600);
 }
-.app-size-select:focus,
-.emp-size-select:focus {
+.app-size-select:focus:focus {
   border-color: var(--primary-600);
   box-shadow: var(--shadow-focus);
 }
 
 /* Center Zone: Quick Jump Widget */
-.app-footer-center,
-.emp-footer-center {
+.app-footer-center {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -3832,21 +3815,18 @@ svg g.apextree-selected .apextree-sleek-card {
   border-radius: 999px;
   border: 1px solid var(--border-light);
 }
-.app-jump-label,
-.emp-jump-label {
+.app-jump-label {
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-muted);
   white-space: nowrap;
 }
-.app-jump-form,
-.emp-jump-form {
+.app-jump-form {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-.app-jump-input,
-.emp-jump-input {
+.app-jump-input {
   width: 40px;
   height: 26px;
   text-align: center;
@@ -3859,19 +3839,16 @@ svg g.apextree-selected .apextree-sleek-card {
   outline: none;
   transition: all 0.15s;
 }
-.app-jump-input:focus,
-.emp-jump-input:focus {
+.app-jump-input:focus:focus {
   border-color: var(--primary-600);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
-.app-jump-total,
-.emp-jump-total {
+.app-jump-total {
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-muted);
 }
-.app-jump-btn,
-.emp-jump-btn {
+.app-jump-btn {
   width: 26px;
   height: 26px;
   border-radius: 6px;
@@ -3887,21 +3864,18 @@ svg g.apextree-selected .apextree-sleek-card {
     background 0.15s,
     transform 0.15s;
 }
-.app-jump-btn:hover,
-.emp-jump-btn:hover {
+.app-jump-btn:hover:hover {
   background: var(--primary-700);
   transform: translateX(1px);
 }
 
 /* Right Zone: Kinetic Pagination Controls */
-.app-footer-right,
-.emp-footer-right {
+.app-footer-right {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-.app-page-btn,
-.emp-page-btn {
+.app-page-btn {
   min-width: 34px;
   height: 34px;
   padding: 0 8px;
@@ -3918,8 +3892,7 @@ svg g.apextree-selected .apextree-sleek-card {
   transition: all 0.18s cubic-bezier(0.32, 0.72, 0, 1);
   user-select: none;
 }
-.app-page-btn:hover:not(:disabled):not(.active),
-.emp-page-btn:hover:not(:disabled):not(.active) {
+.app-page-btn:hover:not(:disabled):not(.active):hover:not(:disabled):not(.active) {
   border-color: var(--primary-500);
   color: var(--primary-600);
   background: var(--primary-50);
@@ -3941,8 +3914,7 @@ svg g.apextree-selected .apextree-sleek-card {
   background: var(--bg-hover);
   border-color: var(--border-light);
 }
-.app-page-ellipsis,
-.emp-page-ellipsis {
+.app-page-ellipsis {
   min-width: 24px;
   height: 34px;
   display: inline-flex;
@@ -3955,8 +3927,7 @@ svg g.apextree-selected .apextree-sleek-card {
 
 /* Mobile Responsive Optimization for Enterprise Table Footer */
 @media (max-width: 767.98px) {
-  .app-table-footer,
-  .emp-table-footer {
+  .app-table-footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -3964,34 +3935,29 @@ svg g.apextree-selected .apextree-sleek-card {
     gap: 12px;
   }
 
-  .app-footer-left,
-  .emp-footer-left {
+  .app-footer-left {
     width: 100%;
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
   }
 
-  .app-footer-counter,
-  .emp-footer-counter {
+  .app-footer-counter {
     font-size: 0.76rem;
     text-align: center;
   }
 
-  .app-page-size-picker,
-  .emp-page-size-picker {
+  .app-page-size-picker {
     font-size: 0.75rem;
   }
 
-  .app-footer-center,
-  .emp-footer-center {
+  .app-footer-center {
     width: 100%;
     justify-content: center;
     padding: 4px 8px;
   }
 
-  .app-footer-right,
-  .emp-footer-right {
+  .app-footer-right {
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
@@ -4001,8 +3967,7 @@ svg g.apextree-selected .apextree-sleek-card {
     -webkit-overflow-scrolling: touch;
   }
 
-  .app-page-btn,
-  .emp-page-btn {
+  .app-page-btn {
     min-width: 30px;
     height: 32px;
     padding: 0 6px;
@@ -4012,24 +3977,20 @@ svg g.apextree-selected .apextree-sleek-card {
 }
 
 @media (max-width: 575.98px) {
-  .app-footer-divider,
-  .emp-footer-divider {
+  .app-footer-divider {
     display: none !important;
   }
 
-  .app-footer-left,
-  .emp-footer-left {
+  .app-footer-left {
     flex-direction: column;
     gap: 6px;
   }
 
-  .app-jump-label,
-  .emp-jump-label {
+  .app-jump-label {
     font-size: 0.72rem;
   }
 
-  .app-jump-input,
-  .emp-jump-input {
+  .app-jump-input {
     width: 36px;
     height: 24px;
     font-size: 0.75rem;
@@ -4414,11 +4375,9 @@ apex-grid::part(paginator) {
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
 }
 
-.emp-card:has(.badge-orange)::before,
 .emp-card:has(.badge-orange)::before {
   background: #f97316;
 }
-.emp-card:has(.badge-orange) .emp-card-avatar-ring,
 .emp-card:has(.badge-orange) .emp-card-avatar-ring {
   border-color: #fb923c;
   box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
@@ -4682,54 +4641,66 @@ apex-grid::part(paginator) {
 }
 
 /* ======================================================
-   ENTERPRISE DATA TABLE SCROLLABLE CONTAINER (Country, Employee & Recruitment List)
+   ENTERPRISE DATA TABLE SCROLLABLE CONTAINER
+   (Employee, Leave Request, Recruitment, Country, Settings Roles)
    ====================================================== */
 #empListView .table-responsive,
+#leaveListView .table-responsive,
 #recruitmentListView .table-responsive,
 .app-table-scroll {
-  max-height: 640px;
+  max-height: 480px;
   overflow: auto;
   padding-right: 2px;
   border-radius: 12px;
 }
 #empListView .table-responsive::-webkit-scrollbar,
+#leaveListView .table-responsive::-webkit-scrollbar,
 #recruitmentListView .table-responsive::-webkit-scrollbar,
 .app-table-scroll::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 #empListView .table-responsive::-webkit-scrollbar-track,
+#leaveListView .table-responsive::-webkit-scrollbar-track,
 #recruitmentListView .table-responsive::-webkit-scrollbar-track,
 .app-table-scroll::-webkit-scrollbar-track {
   background: transparent;
 }
 #empListView .table-responsive::-webkit-scrollbar-thumb,
+#leaveListView .table-responsive::-webkit-scrollbar-thumb,
 #recruitmentListView .table-responsive::-webkit-scrollbar-thumb,
 .app-table-scroll::-webkit-scrollbar-thumb {
   background: var(--border-color, rgba(203, 213, 225, 0.8));
   border-radius: 10px;
 }
 #empListView .table-responsive::-webkit-scrollbar-thumb:hover,
+#leaveListView .table-responsive::-webkit-scrollbar-thumb:hover,
 #recruitmentListView .table-responsive::-webkit-scrollbar-thumb:hover,
 .app-table-scroll::-webkit-scrollbar-thumb:hover {
   background: var(--primary-500, #3b82f6);
 }
 
 /* ======================================================
-         EMPLOYEES PAGE — SCOPED STYLES
+         EMPLOYEES PAGE —  SCOPED STYLES
          ====================================================== */
 
 /* --- View Toggle Group --- */
 .view-toggle-group {
-  display: inline-flex;
+  display: inline-flex !important;
+  align-items: center;
   border: 1px solid var(--border-color);
   border-radius: 10px;
   overflow: hidden;
   background: var(--bg-surface);
+  flex-shrink: 0 !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  max-width: fit-content !important;
 }
 .view-toggle-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   padding: 7px 14px;
   font-size: 0.8rem;
@@ -4738,9 +4709,11 @@ apex-grid::part(paginator) {
   background: transparent;
   border: none;
   cursor: pointer;
+  white-space: nowrap;
   transition:
     background 0.18s,
     color 0.18s;
+  flex: 0 0 auto;
 }
 .view-toggle-btn:hover {
   background: var(--bg-hover);
@@ -4754,15 +4727,22 @@ apex-grid::part(paginator) {
   background: #3b82f6;
 }
 
-.app-list-table,
-.emp-list-table {
+@media (max-width: 576px) {
+  .view-toggle-group {
+    margin-right: auto;
+  }
+  .view-toggle-btn {
+    padding: 6px 12px;
+  }
+}
+
+.app-list-table {
   width: 100%;
   min-width: 1400px;
   border-collapse: separate;
   border-spacing: 0;
 }
-.app-list-table thead th,
-.emp-list-table thead th {
+.app-list-table thead th {
   background: var(--bg-header-table);
   color: var(--text-muted);
   font-size: 0.72rem;
@@ -4776,32 +4756,26 @@ apex-grid::part(paginator) {
   top: 0;
   z-index: 1;
 }
-.app-list-table thead th:first-child,
-.emp-list-table thead th:first-child {
+.app-list-table thead th:first-child {
   border-radius: 10px 0 0 0;
 }
-.app-list-table thead th:last-child,
-.emp-list-table thead th:last-child {
+.app-list-table thead th:last-child {
   border-radius: 0 10px 0 0;
 }
 
-.app-list-table tbody tr,
-.emp-list-table tbody tr {
+.app-list-table tbody tr {
   border-bottom: 1px solid var(--border-light);
   transition: background 0.15s;
   cursor: pointer;
 }
-.app-list-table tbody tr:hover,
-.emp-list-table tbody tr:hover {
+.app-list-table tbody tr:hover {
   background: var(--bg-hover);
 }
-.app-list-table tbody tr:last-child td,
-.emp-list-table tbody tr:last-child td {
+.app-list-table tbody tr:last-child td {
   border-bottom: none;
 }
 
-.app-list-table td,
-.emp-list-table td {
+.app-list-table td {
   padding: 12px 14px;
   font-size: 0.83rem;
   color: var(--text-main);
@@ -5022,8 +4996,7 @@ apex-grid::part(paginator) {
   gap: 6px;
   margin-bottom: 24px;
 }
-.app-modal-skill-chip,
-.emp-modal-skill-chip {
+.app-modal-skill-chip {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -5038,14 +5011,12 @@ apex-grid::part(paginator) {
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.app-modal-skill-chip:hover,
-.emp-modal-skill-chip:hover {
+.app-modal-skill-chip:hover {
   transform: translateY(-1px);
   box-shadow: 0 3px 8px rgba(37, 99, 235, 0.15);
 }
 
-[data-theme="dark"] .app-modal-skill-chip,
-[data-theme="dark"] .emp-modal-skill-chip {
+[data-theme="dark"] .app-modal-skill-chip {
   background: rgba(37, 99, 235, 0.15) !important;
   color: #93c5fd !important;
   border-color: rgba(37, 99, 235, 0.35) !important;
@@ -5109,7 +5080,6 @@ apex-grid::part(paginator) {
 /* ==========================================================================
    RECRUITMENT HIRING PIPELINE (KANBAN BOARD) STYLES
    ========================================================================== */
-
 
 /* Kanban Board Layout */
 .pipeline-board-container {
@@ -5455,14 +5425,16 @@ apex-grid::part(paginator) {
   margin-bottom: 0.5rem;
 }
 
-.candidate-checkbox {
+.app-list-table th input[type="checkbox"],
+.app-list-table td input[type="checkbox"] {
   margin: 0 !important;
   vertical-align: middle;
-  width: 16px;
-  height: 16px;
+  width: 16px !important;
+  height: 16px !important;
   cursor: pointer;
   flex-shrink: 0;
   align-self: center;
+  accent-color: var(--primary-600, #2563eb);
 }
 
 /* Star button */
@@ -5881,47 +5853,6 @@ apex-grid::part(paginator) {
   border-color: rgba(255, 255, 255, 0.08);
 }
 
-
-
-
-.danger-zone-card {
-  border: 1px dashed rgba(239, 68, 68, 0.4) !important;
-  background: rgba(239, 68, 68, 0.02) !important;
-  border-radius: 16px;
-}
-
-.danger-zone-card:hover {
-  border-color: var(--color-danger, #ef4444) !important;
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.08);
-}
-
-.danger-item-box {
-  padding: 1rem 1.15rem;
-  background-color: var(--bg-surface, #ffffff);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-  border-radius: 12px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: all 0.2s ease;
-}
-
-
-/* --------------------------------------------------------------------------
-   DARK MODE OVERRIDES FOR SETTINGS & CARDS
-   -------------------------------------------------------------------------- */
-[data-theme="dark"] .danger-zone-card {
-  background: rgba(239, 68, 68, 0.05) !important;
-  border-color: rgba(239, 68, 68, 0.35) !important;
-}
-
-[data-theme="dark"] .danger-item-box {
-  background-color: var(--bg-card, #1e1e24) !important;
-  border-color: rgba(239, 68, 68, 0.35) !important;
-}
-
-
 [data-theme="dark"] .bg-white {
   background-color: var(--bg-card, #1e1e24) !important;
   color: var(--text-main) !important;
@@ -5943,43 +5874,6 @@ apex-grid::part(paginator) {
   border-color: var(--border-color) !important;
 }
 
-/* ERP Template Scrollable Grid Container (Max 3 rows high ~ 440px) */
-.template-scroll-grid {
-  max-height: 440px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-right: 6px;
-  margin-right: -6px;
-}
-
-.template-scroll-grid::-webkit-scrollbar {
-  width: 6px;
-}
-
-.template-scroll-grid::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.03);
-  border-radius: 4px;
-}
-
-.template-scroll-grid::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.25);
-  border-radius: 4px;
-}
-
-.template-scroll-grid::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-color, #6366f1);
-}
-
-[data-theme="dark"] .template-scroll-grid::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-[data-theme="dark"] .template-scroll-grid::-webkit-scrollbar-thumb {
-  background: rgba(129, 140, 248, 0.3);
-}
-
-
-
 /* Live Pulse Indicator (Tab 6) */
 .live-pulse-dot {
   display: inline-block;
@@ -5991,8 +5885,349 @@ apex-grid::part(paginator) {
   animation: livePulse 1.6s infinite;
 }
 
+/* ══════════════════════════════════════════════════════════════
+   SCHEDULE PLANNER GRID SCROLLABLE & STICKY 2D MATRIX STYLES
+   ══════════════════════════════════════════════════════════════ */
+.leave-planner-grid-wrapper {
+  max-height: 520px;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--border-light, #e2e8f0);
+  background: var(--bg-card, #ffffff);
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.05));
+  position: relative;
+}
 
+.leave-planner-grid-wrapper::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.leave-planner-grid-wrapper::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+.leave-planner-grid-wrapper::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.leave-planner-grid-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
 
+.leave-planner-table {
+  width: 100% !important;
+  min-width: 1250px !important;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 0;
+  table-layout: fixed;
+}
 
+/* 2D Matrix Sticky Layering */
+.leave-planner-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 20 !important;
+  background: #f8fafc !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
 
+.leave-planner-table tbody td.col-employee {
+  position: sticky;
+  left: 0;
+  z-index: 10 !important;
+  background: #ffffff !important;
+  box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.06);
+}
 
+.leave-planner-table thead th.col-employee {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 30 !important;
+  background: #f8fafc !important;
+  box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.08);
+}
+
+.leave-planner-table .col-employee {
+  width: 220px !important;
+  min-width: 220px !important;
+  max-width: 220px !important;
+  overflow: hidden !important;
+}
+
+.leave-planner-table th:not(.col-employee),
+.leave-planner-table td:not(.col-employee) {
+  min-width: 35px !important;
+  width: 35px !important;
+  text-align: center;
+}
+
+@media (min-width: 1400px) {
+  .leave-planner-table {
+    min-width: 100% !important;
+  }
+  .leave-planner-table th:not(.col-employee),
+  .leave-planner-table td:not(.col-employee) {
+    width: calc((100% - 220px) / 31) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .leave-planner-table {
+    min-width: 1200px !important;
+  }
+  .leave-planner-table .col-employee {
+    width: 150px !important;
+    min-width: 150px !important;
+    max-width: 150px !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+  .leave-emp-avatar {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  .leave-emp-name {
+    font-size: 0.75rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .leave-emp-role {
+    font-size: 0.65rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .leave-planner-table th:not(.col-employee),
+  .leave-planner-table td:not(.col-employee) {
+    min-width: 34px !important;
+    width: 34px !important;
+  }
+}
+
+[data-theme="dark"] .leave-planner-table thead th,
+[data-theme="dark"] .leave-planner-table thead th.col-employee {
+  background: #1e1e24 !important;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .leave-planner-table tbody td.col-employee {
+  background: #1e1e24 !important;
+  color: #f1f5f9;
+  box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.3);
+}
+
+.leave-planner-table th {
+  background: var(--bg-header-table, #f8fafc);
+  padding: 0.65rem 0.5rem;
+  text-align: center;
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-light);
+  vertical-align: middle;
+  user-select: none;
+}
+
+.leave-planner-table th.col-employee {
+  text-align: left;
+  padding-left: 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.leave-planner-table th.is-weekend {
+  background-color: var(--bg-app, #f1f5f9);
+  color: var(--text-light);
+}
+
+.leave-planner-table th.is-today {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.date-day-num {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: block;
+  line-height: 1.2;
+}
+
+.date-day-name {
+  font-size: 0.725rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.leave-planner-table td {
+  height: 64px;
+  border-bottom: 1px solid var(--border-light);
+  border-right: 1px solid var(--border-light);
+  position: relative;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.leave-planner-table td.col-employee {
+  padding: 0.6rem 1.25rem;
+}
+
+.leave-planner-table td.is-weekend {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+.leave-planner-table td.is-today {
+  background-color: rgba(59, 130, 246, 0.03);
+}
+
+.leave-planner-table tbody tr:hover td:not(.col-employee) {
+  background-color: rgba(59, 130, 246, 0.02);
+}
+
+.leave-employee-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.leave-employee-profile > div {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.leave-emp-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.leave-emp-name {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-main);
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.leave-emp-role {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+/* Leave Timeline Block Bar */
+.leave-pill-block {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 4px;
+  right: 4px;
+  border-radius: 12px;
+  padding: 4px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 8;
+  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(4px);
+  user-select: none;
+}
+
+.leave-pill-block:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  z-index: 20;
+}
+
+.leave-pill-title {
+  font-size: 0.775rem;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.leave-pill-subtitle {
+  font-size: 0.7rem;
+  font-weight: 500;
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Leave Types Themes */
+.leave-pill-annual {
+  background: #e0f2fe;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+.leave-pill-sick {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+.leave-pill-personal {
+  background: #f3e8ff;
+  color: #6b21a8;
+  border: 1px solid #e9d5ff;
+}
+.leave-pill-maternity {
+  background: #fce7f3;
+  color: #9f1239;
+  border: 1px solid #f9a8d4;
+}
+.leave-pill-remote {
+  background: #ffedd5;
+  color: #9a3412;
+  border: 1px solid #fdba74;
+}
+
+/* Dark Mode Leave Pills */
+[data-theme="dark"] .leave-pill-annual {
+  background: rgba(30, 64, 175, 0.35);
+  color: #93c5fd;
+  border: 1px solid rgba(147, 197, 253, 0.3);
+}
+[data-theme="dark"] .leave-pill-sick {
+  background: rgba(22, 101, 52, 0.35);
+  color: #86efac;
+  border: 1px solid rgba(134, 239, 172, 0.3);
+}
+[data-theme="dark"] .leave-pill-personal {
+  background: rgba(107, 33, 168, 0.35);
+  color: #d8b4fe;
+  border: 1px solid rgba(216, 180, 254, 0.3);
+}
+[data-theme="dark"] .leave-pill-maternity {
+  background: rgba(159, 18, 57, 0.35);
+  color: #f472b6;
+  border: 1px solid rgba(244, 114, 182, 0.3);
+}
+[data-theme="dark"] .leave-pill-remote {
+  background: rgba(154, 52, 18, 0.35);
+  color: #fdba74;
+  border: 1px solid rgba(253, 186, 116, 0.3);
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}

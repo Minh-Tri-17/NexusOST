@@ -73,7 +73,7 @@
             <i class="fa-solid fa-user-plus"></i>
             <span>Recruitment</span>
           </a>
-          <a href="leave-management.html" class="nav-link">
+          <a href="leave-request.html" class="nav-link">
             <i class="fa-solid fa-calendar-minus"></i>
             <span>Leave Management</span>
           </a>
@@ -528,7 +528,7 @@
                     type="button"
                     id="applyEmpFilterBtn"
                   >
-                    <i class="fa-solid fa-check me-1"></i> Apply
+                    <i class="fa-solid fa-check me-1"></i> Apply Filter
                   </button>
                 </div>
               </div>
@@ -1506,7 +1506,7 @@
             ══════════════════════════ -->
             <div id="empListView" class="d-none">
               <div class="table-responsive rounded-3">
-                <table class="emp-list-table" id="empListTable">
+                <table class="app-list-table" id="empListTable">
                   <thead>
                     <tr>
                       <th style="width: 36px">
@@ -2502,52 +2502,53 @@
             <!-- /empListView -->
 
             <!-- Enterprise Table Footer & Pagination -->
-            <div class="emp-table-footer" role="region" aria-label="Table pagination footer">
+            <div class="app-table-footer" role="region" aria-label="Table pagination footer">
               <!-- Left Zone: Counter & Rows per page -->
-              <div class="emp-footer-left">
-                <div class="emp-footer-counter">
+              <div class="app-footer-left">
+                <div class="app-footer-counter">
                   <span id="empResultCount"
-                    >Showing <strong>1 – 12</strong> of <strong>248</strong> employees</span
+                    >Showing <strong>1 – 20</strong> of <strong>248</strong> items</span
                   >
                 </div>
-                <div class="emp-footer-divider"></div>
-                <div class="emp-page-size-picker">
+                <div class="app-footer-divider"></div>
+                <div class="app-page-size-picker">
                   <span>Rows per page:</span>
-                  <select id="empPageSizeSelect" class="emp-size-select" aria-label="Rows per page">
-                    <option value="12" selected>12</option>
-                    <option value="24">24</option>
-                    <option value="48">48</option>
+                  <select id="empPageSizeSelect" class="app-size-select" aria-label="Rows per page">
+                    <option value="20" selected>20</option>
+                    <option value="50">50</option>
                     <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="500">500</option>
                   </select>
                 </div>
               </div>
 
               <!-- Center Zone: Quick Jump Widget -->
-              <div class="emp-footer-center">
-                <span class="emp-jump-label"
-                  ><i class="fa-solid fa-arrow-right-to-line me-1"></i>Go to page:</span
+              <div class="app-footer-center">
+                <span class="app-jump-label"
+                  >Go to page:</span
                 >
-                <form id="empPageJumpForm" class="emp-jump-form" onsubmit="return false;">
+                <form id="empPageJumpForm" class="app-jump-form" onsubmit="return false;">
                   <input
                     type="number"
                     id="empJumpInput"
-                    class="emp-jump-input"
+                    class="app-jump-input"
                     value="1"
                     min="1"
                     max="21"
                     aria-label="Target page number"
                   />
-                  <span class="emp-jump-total">/ <span id="empTotalPages">21</span></span>
-                  <button type="submit" class="emp-jump-btn" id="empJumpGoBtn" title="Jump to page">
+                  <span class="app-jump-total">/ <span id="empTotalPages">21</span></span>
+                  <button type="submit" class="app-jump-btn" id="empJumpGoBtn" title="Jump to page">
                     <i class="fa-solid fa-arrow-right"></i>
                   </button>
                 </form>
               </div>
 
               <!-- Right Zone: Page Control Buttons -->
-              <div class="emp-footer-right" role="navigation" aria-label="Pagination Navigation">
+              <div class="app-footer-right" role="navigation" aria-label="Pagination Navigation">
                 <button
-                  class="emp-page-btn"
+                  class="app-page-btn"
                   id="empFirstBtn"
                   disabled
                   title="First page"
@@ -2556,7 +2557,7 @@
                   <i class="fa-solid fa-angles-left"></i>
                 </button>
                 <button
-                  class="emp-page-btn"
+                  class="app-page-btn"
                   id="empPrevBtn"
                   disabled
                   title="Previous page"
@@ -2566,15 +2567,15 @@
                 </button>
 
                 <div class="d-flex align-items-center gap-1" id="empPageNumbersGroup">
-                  <button class="emp-page-btn active" data-page="1">1</button>
-                  <button class="emp-page-btn" data-page="2">2</button>
-                  <button class="emp-page-btn" data-page="3">3</button>
-                  <span class="emp-page-ellipsis">…</span>
-                  <button class="emp-page-btn" data-page="21">21</button>
+                  <button class="app-page-btn active" data-page="1">1</button>
+                  <button class="app-page-btn" data-page="2">2</button>
+                  <button class="app-page-btn" data-page="3">3</button>
+                  <span class="app-page-ellipsis">…</span>
+                  <button class="app-page-btn" data-page="21">21</button>
                 </div>
 
                 <button
-                  class="emp-page-btn"
+                  class="app-page-btn"
                   id="empNextBtn"
                   title="Next page"
                   aria-label="Next page"
@@ -2582,7 +2583,7 @@
                   <i class="fa-solid fa-chevron-right"></i>
                 </button>
                 <button
-                  class="emp-page-btn"
+                  class="app-page-btn"
                   id="empLastBtn"
                   title="Last page"
                   aria-label="Last page"
@@ -2591,7 +2592,7 @@
                 </button>
               </div>
             </div>
-            <!-- /emp-table-footer -->
+            <!-- /app-table-footer -->
           </div>
           <!-- /erp-card -->
         </div>

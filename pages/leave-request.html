@@ -1446,7 +1446,7 @@
                   <thead>
                     <tr>
                       <th style="width: 36px">
-                        <input type="checkbox" id="selectAllLeaveList" aria-label="Select all" />
+                        <input type="checkbox" id="selectAllList" aria-label="Select all" />
                       </th>
                       <th>Leave Code</th>
                       <th>Employee</th>
@@ -2097,6 +2097,52 @@
                     id="leavePrevBtn"
                     disabled
                     title="Previous page"
+                    aria-label="Previous page"
+                  >
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </button>
+
+                  <div class="d-flex align-items-center gap-1" id="leavePageNumbersGroup">
+                    <button class="app-page-btn active" data-page="1">1</button>
+                    <button class="app-page-btn" data-page="2">2</button>
+                    <button class="app-page-btn" data-page="3">3</button>
+                    <span class="app-page-ellipsis">…</span>
+                    <button class="app-page-btn" data-page="21">21</button>
+                  </div>
+
+                  <button
+                    class="app-page-btn"
+                    id="leaveNextBtn"
+                    title="Next page"
+                    aria-label="Next page"
+                  >
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                  <button
+                    class="app-page-btn"
+                    id="leaveLastBtn"
+                    title="Last page"
+                    aria-label="Last page"
+                  >
+                    <i class="fa-solid fa-angles-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- End List View -->
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Apex CDN Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.45.1/dist/apexcharts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apextree@1.14.0/apextree.min.js"></script>
+    <!-- Apex Custom Modules -->
+    <script src="../js/apex-chart.js"></script>
+    <script src="../js/apex-tree.js"></script>
 
     <!-- Main Application JS -->
     <script src="../js/app.js"></script>

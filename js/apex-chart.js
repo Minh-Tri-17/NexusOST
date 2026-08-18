@@ -187,6 +187,83 @@ function renderDepartmentCategoriesDonutChart() {
   chart.render();
 }
 
+/* 3. Leave Management Distribution Donut Chart */
+function renderLeaveDistributionChart() {
+  const container = document.querySelector("#chartLeaveDistribution");
+  if (!container || typeof ApexCharts === "undefined") return;
+
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+
+  const options = {
+    series: [45, 20, 15, 12, 8],
+    chart: {
+      type: "donut",
+      height: 230,
+      width: "100%",
+      fontFamily: "Plus Jakarta Sans, sans-serif",
+    },
+    labels: ["Annual Leave", "Sick Leave", "Personal Leave", "Remote Leave", "Maternity Leave"],
+    colors: ["#3B82F6", "#10B981", "#A855F7", "#F97316", "#F43F5E"],
+    legend: {
+      show: true,
+      position: "bottom",
+      fontSize: "12px",
+      fontWeight: 500,
+      labels: {
+        colors: isDark ? "#94A3B8" : "#475569",
+      },
+      markers: {
+        width: 10,
+        height: 10,
+        radius: 12,
+      },
+      itemMargin: {
+        horizontal: 8,
+        vertical: 4,
+      },
+    },
+    dataLabels: { enabled: false },
+    stroke: { width: 2, colors: [isDark ? "#1E293B" : "#FFFFFF"] },
+    plotOptions: {
+      pie: {
+        donut: {
+          size: "72%",
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              label: "Total Taken",
+              fontSize: "11px",
+              fontWeight: 600,
+              color: isDark ? "#94A3B8" : "#64748B",
+              formatter: () => "100 Days",
+            },
+            value: {
+              fontSize: "20px",
+              fontWeight: 800,
+              color: isDark ? "#F8FAFC" : "#0F172A",
+              offsetY: 2,
+              formatter: (val) => val + "%",
+            },
+          },
+        },
+      },
+    },
+    tooltip: {
+      theme: isDark ? "dark" : "light",
+      y: {
+        formatter: (val) => val + "% of total leaves",
+      },
+    },
+  };
+
+  container.innerHTML = "";
+  const chart = new ApexCharts(container, options);
+  chart.render();
+}
+
 // Expose on window object
 window.renderMonthlyWorkforceOverviewChart = renderMonthlyWorkforceOverviewChart;
 window.renderDepartmentCategoriesDonutChart = renderDepartmentCategoriesDonutChart;
+window.renderLeaveDistributionChart = renderLeaveDistributionChart;
+
