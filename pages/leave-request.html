@@ -1,0 +1,2104 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          if (
+            localStorage.getItem("nexus_sidebar_collapsed") === "true" &&
+            window.innerWidth >= 992
+          ) {
+            document.documentElement.classList.add("sidebar-collapsed");
+          }
+          var theme = localStorage.getItem("nexus_theme");
+          if (theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <title>Leave Management - Nexus Enterprise ERP & HRM</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome 6 -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <!-- Apex CSS & Web Component CDN Libraries -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/apexcharts@3.45.1/dist/apexcharts.css"
+    />
+  </head>
+  <body>
+    <div class="app-wrapper">
+      <!-- Sidebar -->
+      <aside class="app-sidebar">
+        <div class="sidebar-header">
+          <img src="../assets/logo.png" alt="Nexus Logo" class="brand-logo-img" />
+          <div>
+            <h1 class="brand-title">Nexus</h1>
+            <div class="brand-subtitle">Human Resource & Sales</div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="nav-link">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="employees.html" class="nav-link">
+            <i class="fa-solid fa-user-group"></i>
+            <span>Employees</span>
+          </a>
+          <a href="attendance.html" class="nav-link">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Attendance</span>
+          </a>
+          <a href="payroll.html" class="nav-link">
+            <i class="fa-solid fa-sack-dollar"></i>
+            <span>Payroll</span>
+          </a>
+          <a href="recruitment.html" class="nav-link">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Recruitment</span>
+          </a>
+          <a href="leave-request.html" class="nav-link active">
+            <i class="fa-solid fa-calendar-minus"></i>
+            <span>Leave Management</span>
+          </a>
+          <div class="nav-item-collapsible">
+            <a
+              class="nav-link collapse-toggle collapsed"
+              data-bs-toggle="collapse"
+              href="#collapseCategories"
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseCategories"
+            >
+              <i class="fa-solid fa-layer-group"></i>
+              <span>Categories</span>
+              <i class="fa-solid fa-plus toggle-chevron ms-auto"></i>
+            </a>
+            <div class="collapse" id="collapseCategories">
+              <div class="submenu-list">
+                <div class="submenu-header">Geography</div>
+                <a href="country.html" class="submenu-link">
+                  <i class="fa-solid fa-globe"></i>
+                  <span>Country</span>
+                </a>
+                <a href="province.html" class="submenu-link">
+                  <i class="fa-solid fa-map"></i>
+                  <span>Province</span>
+                </a>
+                <a href="ward.html" class="submenu-link">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <span>Ward</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <a href="settings.html" class="nav-link">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer-graphic">
+          <div class="sidebar-system-status-card">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div class="status-indicator-pill">
+                <span class="live-pulse-dot"></span>
+                <span class="status-text">Operational</span>
+              </div>
+              <span class="version-badge">v2.4.0</span>
+            </div>
+            <div class="status-brand-title">
+              <i class="fa-solid fa-cube brand-icon"></i>
+              <span>NexusOST Enterprise</span>
+            </div>
+            <div class="status-footer-sub">
+              <span>&copy; 2026 Suite</span>
+              <span class="status-dot-sep">&bull;</span>
+              <span class="uptime-tag"><i class="fa-solid fa-bolt me-1"></i>99.9% Uptime</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="app-main">
+        <!-- Top Navbar -->
+        <header class="app-topbar">
+          <div class="d-flex align-items-center gap-3">
+            <button class="btn btn-sm btn-light" id="sidebarToggleBtn" title="Toggle Sidebar">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="topbar-search-box d-none d-sm-block">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input
+                type="text"
+                id="topbarSearchInput"
+                placeholder="Search employees, sales deals, reports..."
+              />
+            </div>
+          </div>
+
+          <div class="topbar-actions">
+            <div class="topbar-action-group">
+              <button class="btn-icon-action" id="langTranslateBtn" title="Language / Ngôn ngữ">
+                <i class="fa-solid fa-language"></i>
+              </button>
+
+              <button class="btn-icon-action" id="themeToggleBtn" title="Switch to Dark Mode">
+                <i class="fa-regular fa-moon"></i>
+              </button>
+
+              <button class="btn-icon-action" id="notifBellBtn" title="Notifications">
+                <i class="fa-regular fa-bell"></i>
+                <span class="badge-dot">3</span>
+              </button>
+            </div>
+
+            <div class="dropdown">
+              <div
+                class="user-profile-menu dropdown-toggle"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                aria-expanded="false"
+              >
+                <div class="avatar-wrapper">
+                  <img
+                    src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
+                    alt="Tristan Nguyen Avatar"
+                    class="user-avatar-img"
+                  />
+                  <span class="avatar-status-online" title="Online"></span>
+                </div>
+                <div class="user-info-text d-none d-md-block">
+                  <p class="user-name">Tristan Nguyen</p>
+                  <p class="user-role">Administrator</p>
+                </div>
+                <i class="fa-solid fa-chevron-down dropdown-chevron ms-1 text-muted"></i>
+              </div>
+              <ul class="dropdown-menu dropdown-menu-end user-dropdown-menu">
+                <li class="dropdown-header-info">
+                  <img
+                    src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
+                    alt="Tristan Nguyen"
+                    class="header-avatar"
+                  />
+                  <div class="header-details">
+                    <div class="header-name">Tristan Nguyen</div>
+                    <div class="header-email">tristan.nguyen@nexusost.com</div>
+                  </div>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="settings.html">
+                    <span class="dropdown-icon-box"><i class="fa-regular fa-user"></i></span>
+                    <span class="flex-grow-1">Profile</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="settings.html">
+                    <span class="dropdown-icon-box"><i class="fa-solid fa-sliders"></i></span>
+                    <span class="flex-grow-1">Preferences</span>
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item dropdown-item-danger text-danger" href="dashboard.html">
+                    <span class="dropdown-icon-box danger"
+                      ><i class="fa-solid fa-right-from-bracket"></i
+                    ></span>
+                    <span class="flex-grow-1">Log out</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <!-- Page Content Container -->
+        <div class="page-container p-4">
+          <!-- Page Header -->
+          <div class="mb-4">
+            <h2 class="h3 fw-bold text-dark mb-1">Leave Management</h2>
+            <p class="text-muted mb-0">
+              Manage employee leave requests, leave quotas, approval workflows, and time-off
+              schedules.
+            </p>
+          </div>
+
+          <!-- Quick Stat Summary Cards Row (4 Cards Layout) -->
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-4 g-3 mb-4">
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-blue">
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">ON LEAVE TODAY</span>
+                  <h3 class="metric-pastel-val mb-1">3 Staff</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-user-clock text-primary me-1"></i>Emma, Olivia, Noah
+                  </div>
+                </div>
+                <div
+                  class="d-flex flex-column justify-content-between align-items-end flex-shrink-0"
+                >
+                  <span class="metric-tag-pill">Today</span>
+                  <div class="metric-pastel-icon-floating"><i class="fa-solid fa-bed"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-amber">
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">PENDING APPROVALS</span>
+                  <h3 class="metric-pastel-val mb-1" id="pendingCountBadge">5 Requests</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-clock text-warning me-1"></i>Requires HR Review
+                  </div>
+                </div>
+                <div
+                  class="d-flex flex-column justify-content-between align-items-end flex-shrink-0"
+                >
+                  <span class="metric-tag-pill">Action Required</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-hourglass-half"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-mint">
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">APPROVED THIS MONTH</span>
+                  <h3 class="metric-pastel-val mb-1">18 Leaves</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-arrow-up text-success me-1"></i>+12% vs last month
+                  </div>
+                </div>
+                <div
+                  class="d-flex flex-column justify-content-between align-items-end flex-shrink-0"
+                >
+                  <span class="metric-tag-pill">May 2024</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-circle-check"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="metric-card-pastel card-pastel-purple">
+                <div class="flex-grow-1 min-w-0 me-2 d-flex flex-column justify-content-between">
+                  <span class="metric-pastel-title d-block mb-1">TEAM AVAILABILITY</span>
+                  <h3 class="metric-pastel-val mb-1">94.2%</h3>
+                  <div class="metric-pastel-sub text-truncate">
+                    <i class="fa-solid fa-shield-halved text-purple me-1"></i>Optimal workforce
+                    level
+                  </div>
+                </div>
+                <div
+                  class="d-flex flex-column justify-content-between align-items-end flex-shrink-0"
+                >
+                  <span class="metric-tag-pill">Normal</span>
+                  <div class="metric-pastel-icon-floating">
+                    <i class="fa-solid fa-user-shield"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main ERP Card Wrapper -->
+          <div class="erp-card p-4 shadow-sm rounded-4">
+            <!-- Linear-Tier Unified Command Dock: Search, Smart Filter Toggle & Action Buttons -->
+            <div
+              class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3 pb-3 filter-toolbar-border"
+            >
+              <!-- Left Controls: Global Search, Filter Matrix Toggle -->
+              <div class="d-flex flex-wrap align-items-center gap-2">
+                <!-- Search Input Box -->
+                <div class="position-relative" style="min-width: 240px">
+                  <i
+                    class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 filter-search-icon"
+                  ></i>
+                  <input
+                    type="text"
+                    id="leaveSearchInput"
+                    class="form-control form-control-sm ps-5 pe-3 rounded-3 filter-input"
+                    placeholder="Search name, ID, category..."
+                  />
+                </div>
+
+                <!-- Filter Matrix Toggle Button -->
+                <button
+                  class="btn btn-sm btn-pastel-slate d-inline-flex align-items-center gap-2 px-3 rounded-3"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#leaveFilterCollapse"
+                  aria-expanded="false"
+                  aria-controls="leaveFilterCollapse"
+                  id="leaveFilterToggleBtn"
+                >
+                  <i class="fa-solid fa-sliders text-primary"></i> Filter
+                  <span class="badge-soft badge-blue ms-1" id="leaveActiveFilterCount">3</span>
+                </button>
+              </div>
+
+              <!-- Right: Quick Action Buttons (CRUD & Data IO) -->
+              <div class="d-flex align-items-center gap-2 flex-wrap ms-auto">
+                <!-- View Mode Toggle Group (Schedule vs List) -->
+                <div class="view-toggle-group" role="group" aria-label="View mode">
+                  <button
+                    class="view-toggle-btn active"
+                    id="scheduleViewBtn"
+                    title="Schedule Planner View"
+                  >
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span class="d-none d-md-inline">Schedule</span>
+                  </button>
+                  <button class="view-toggle-btn" id="listViewBtn" title="List View">
+                    <i class="fa-solid fa-list"></i>
+                    <span class="d-none d-md-inline">List</span>
+                  </button>
+                </div>
+
+                <!-- Group Divider -->
+                <div class="action-bar-divider mx-1"></div>
+
+                <!-- Record CRUD Group -->
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    class="btn btn-sm btn-pastel-green d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="addLeaveBtn"
+                  >
+                    <i class="fa-solid fa-plus"></i> Create
+                  </button>
+                  <button
+                    class="btn btn-sm btn-pastel-orange d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="editLeaveBtn"
+                  >
+                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                  </button>
+                  <button
+                    class="btn btn-sm btn-pastel-red d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="deleteLeaveBtn"
+                  >
+                    <i class="fa-solid fa-trash-can"></i> Delete
+                  </button>
+                </div>
+
+                <!-- Group Divider -->
+                <div class="action-bar-divider mx-1"></div>
+
+                <!-- Data IO Group -->
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="importLeaveBtn"
+                  >
+                    <i class="fa-solid fa-file-import"></i> Import
+                  </button>
+                  <button
+                    class="btn btn-sm btn-pastel-indigo d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3 shadow-xs"
+                    id="exportLeaveBtn"
+                  >
+                    <i class="fa-solid fa-file-export"></i> Export
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Active Filter Chips Bar (Linear Tag Chips) -->
+            <div class="active-filter-chips-bar mb-3">
+              <span class="text-muted small fw-semibold me-1">Active Filters:</span>
+
+              <span class="filter-chip">
+                <i class="fa-solid fa-layer-group chip-icon"></i> Category:
+                <strong>Annual Leave</strong>
+                <i class="fa-solid fa-xmark chip-remove-btn"></i>
+              </span>
+
+              <span class="filter-chip">
+                <i class="fa-solid fa-circle-check chip-icon"></i> Status:
+                <strong>Approved</strong>
+                <i class="fa-solid fa-xmark chip-remove-btn"></i>
+              </span>
+
+              <span class="filter-chip">
+                <i class="fa-solid fa-building chip-icon"></i> Department:
+                <strong>Engineering</strong>
+                <i class="fa-solid fa-xmark chip-remove-btn"></i>
+              </span>
+
+              <button class="btn btn-link text-muted p-0 border-0 btn-clear-all-chips ms-auto">
+                <i class="fa-solid fa-trash-can me-1"></i> Clear All
+              </button>
+            </div>
+
+            <!-- Expandable Smart Filter Matrix (Scalable Dropdowns Panel) -->
+            <div class="collapse" id="leaveFilterCollapse">
+              <div class="smart-filter-matrix mb-3">
+                <div
+                  class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom"
+                >
+                  <span class="fw-bold small text-muted text-uppercase tracking-wider">
+                    <i class="fa-solid fa-sliders text-primary me-2"></i>Filter Criteria Matrix
+                  </span>
+                  <span class="text-muted small">Select criteria to refine results</span>
+                </div>
+                <div class="row g-3">
+                  <!-- Leave Category Filter -->
+                  <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted">Leave Category</label>
+                    <select
+                      class="form-select form-select-sm rounded-3 filter-select w-100"
+                      id="filterLeaveCategory"
+                    >
+                      <option selected value="">All Categories</option>
+                      <option value="Annual Leave">Annual Leave</option>
+                      <option value="Sick Leave">Sick Leave</option>
+                      <option value="Personal Leave">Personal Leave</option>
+                      <option value="Maternity Leave">Maternity Leave</option>
+                      <option value="Remote Leave">Remote Leave</option>
+                    </select>
+                  </div>
+
+                  <!-- Leave Status Filter -->
+                  <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted">Status</label>
+                    <select
+                      class="form-select form-select-sm rounded-3 filter-select w-100"
+                      id="filterLeaveStatus"
+                    >
+                      <option selected value="">All Statuses</option>
+                      <option value="Approved">Approved</option>
+                      <option value="Pending">Pending</option>
+                      <option value="Rejected">Rejected</option>
+                    </select>
+                  </div>
+
+                  <!-- Department Filter -->
+                  <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted">Department</label>
+                    <select
+                      class="form-select form-select-sm rounded-3 filter-select w-100"
+                      id="filterLeaveDept"
+                    >
+                      <option selected value="">All Departments</option>
+                      <option value="Engineering">Engineering</option>
+                      <option value="Marketing">Marketing</option>
+                      <option value="Human Resources">Human Resources</option>
+                      <option value="Finance">Finance</option>
+                      <option value="Operations">Operations</option>
+                      <option value="Sales">Sales</option>
+                      <option value="Design">Design</option>
+                    </select>
+                  </div>
+
+                  <!-- Month & Year Filter (Calendar Month Picker) -->
+                  <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted">Month & Year</label>
+                    <input
+                      type="month"
+                      class="form-control form-control-sm rounded-3 filter-input w-100 cursor-pointer"
+                      id="filterLeaveMonthYear"
+                      value="2024-05"
+                      onclick="
+                        try {
+                          this.showPicker();
+                        } catch (e) {}
+                      "
+                      aria-label="Select month and year"
+                    />
+                  </div>
+                </div>
+
+                <div
+                  class="d-flex align-items-center justify-content-end gap-2 mt-3 pt-2 border-top"
+                >
+                  <button
+                    class="btn btn-sm btn-pastel-cyan px-4 rounded-3"
+                    type="button"
+                    id="applyLeaveFilterBtn"
+                  >
+                    <i class="fa-solid fa-check me-1"></i> Apply Filter
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ══════════════════════════════════════════════════════════════
+                 VIEW 1: SCHEDULE PLANNER VIEW (Default)
+            ══════════════════════════════════════════════════════════════ -->
+            <div id="leaveScheduleView">
+              <!-- Gantt / Timeline Scrollable Grid Table -->
+              <div class="leave-planner-grid-wrapper mb-3">
+                <table class="leave-planner-table" id="leavePlannerTable">
+                  <thead>
+                    <tr>
+                      <th class="col-employee">Employee</th>
+                      <th>
+                        <span class="date-day-num">1</span><span class="date-day-name">Wed</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">2</span><span class="date-day-name">Thu</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">3</span><span class="date-day-name">Fri</span>
+                      </th>
+                      <th class="is-weekend">
+                        <span class="date-day-num">4</span><span class="date-day-name">Sat</span>
+                      </th>
+                      <th class="is-weekend">
+                        <span class="date-day-num">5</span><span class="date-day-name">Sun</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">6</span><span class="date-day-name">Mon</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">7</span><span class="date-day-name">Tue</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">8</span><span class="date-day-name">Wed</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">9</span><span class="date-day-name">Thu</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">10</span><span class="date-day-name">Fri</span>
+                      </th>
+                      <th class="is-weekend">
+                        <span class="date-day-num">11</span><span class="date-day-name">Sat</span>
+                      </th>
+                      <th class="is-weekend">
+                        <span class="date-day-num">12</span><span class="date-day-name">Sun</span>
+                      </th>
+                      <th class="is-today">
+                        <span class="date-day-num">13</span><span class="date-day-name">Mon</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">14</span><span class="date-day-name">Tue</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">15</span><span class="date-day-name">Wed</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">16</span><span class="date-day-name">Thu</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">17</span><span class="date-day-name">Fri</span>
+                      </th>
+                      <th class="is-weekend">
+                        <span class="date-day-num">18</span><span class="date-day-name">Sat</span>
+                      </th>
+                      <th class="is-weekend">
+                        <span class="date-day-num">19</span><span class="date-day-name">Sun</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">20</span><span class="date-day-name">Mon</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">21</span><span class="date-day-name">Tue</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">22</span><span class="date-day-name">Wed</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">23</span><span class="date-day-name">Thu</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">24</span><span class="date-day-name">Fri</span>
+                      </th>
+                      <th class="is-weekend">
+                        <span class="date-day-num">25</span><span class="date-day-name">Sat</span>
+                      </th>
+                      <th class="is-weekend">
+                        <span class="date-day-num">26</span><span class="date-day-name">Sun</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">27</span><span class="date-day-name">Mon</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">28</span><span class="date-day-name">Tue</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">29</span><span class="date-day-name">Wed</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">30</span><span class="date-day-name">Thu</span>
+                      </th>
+                      <th>
+                        <span class="date-day-num">31</span><span class="date-day-name">Fri</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Employee 1: Emma Johnson -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80"
+                            alt="Emma Johnson"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Emma Johnson</div>
+                            <div class="leave-emp-role">Software Engineer</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td colspan="5">
+                        <div class="leave-pill-block leave-pill-annual">
+                          <div class="leave-pill-title">Annual Leave</div>
+                          <div class="leave-pill-subtitle">May 2 &ndash; May 6</div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-today"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+
+                    <!-- Employee 2: Liam Smith -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80"
+                            alt="Liam Smith"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Liam Smith</div>
+                            <div class="leave-emp-role">Sales Manager</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td colspan="3">
+                        <div class="leave-pill-block leave-pill-sick">
+                          <div class="leave-pill-title">Sick Leave</div>
+                          <div class="leave-pill-subtitle">May 7 &ndash; May 9</div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-today"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+
+                    <!-- Employee 3: Olivia Brown -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80"
+                            alt="Olivia Brown"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Olivia Brown</div>
+                            <div class="leave-emp-role">HR Specialist</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td colspan="12">
+                        <div class="leave-pill-block leave-pill-maternity">
+                          <div class="leave-pill-title">Maternity Leave</div>
+                          <div class="leave-pill-subtitle">May 5 &ndash; May 16</div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+
+                    <!-- Employee 4: Ava Davis -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=120&auto=format&fit=crop&q=80"
+                            alt="Ava Davis"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Ava Davis</div>
+                            <div class="leave-emp-role">Marketing Specialist</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td colspan="3">
+                        <div class="leave-pill-block leave-pill-personal">
+                          <div class="leave-pill-title">Personal Leave</div>
+                          <div class="leave-pill-subtitle">May 10 &ndash; May 12</div>
+                        </div>
+                      </td>
+                      <td class="is-today"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+
+                    <!-- Employee 5: Noah Williams -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80"
+                            alt="Noah Williams"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Noah Williams</div>
+                            <div class="leave-emp-role">Financial Analyst</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td colspan="5">
+                        <div class="leave-pill-block leave-pill-remote">
+                          <div class="leave-pill-title">Remote Leave</div>
+                          <div class="leave-pill-subtitle">May 13 &ndash; May 17</div>
+                        </div>
+                      </td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+
+                    <!-- Employee 6: Ethan Taylor -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
+                            alt="Ethan Taylor"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Ethan Taylor</div>
+                            <div class="leave-emp-role">Sr. Frontend Developer</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-today"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td colspan="5">
+                        <div class="leave-pill-block leave-pill-annual">
+                          <div class="leave-pill-title">Annual Leave</div>
+                          <div class="leave-pill-subtitle">May 20 &ndash; May 24</div>
+                        </div>
+                      </td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+
+                    <!-- Employee 7: Sophia Martinez -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=120&auto=format&fit=crop&q=80"
+                            alt="Sophia Martinez"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Sophia Martinez</div>
+                            <div class="leave-emp-role">UI/UX Designer</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-today"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td colspan="2">
+                        <div class="leave-pill-block leave-pill-sick">
+                          <div class="leave-pill-title">Sick Leave</div>
+                          <div class="leave-pill-subtitle">May 18 &ndash; May 19</div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+
+                    <!-- Employee 8: Benjamin Clark -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&auto=format&fit=crop&q=80"
+                            alt="Benjamin Clark"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Benjamin Clark</div>
+                            <div class="leave-emp-role">DevOps Lead</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-today"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td colspan="5">
+                        <div class="leave-pill-block leave-pill-remote">
+                          <div class="leave-pill-title">Remote Leave</div>
+                          <div class="leave-pill-subtitle">May 26 &ndash; May 30</div>
+                        </div>
+                      </td>
+                      <td></td>
+                    </tr>
+
+                    <!-- Employee 9: Lucas Miller -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=120&auto=format&fit=crop&q=80"
+                            alt="Lucas Miller"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Lucas Miller</div>
+                            <div class="leave-emp-role">Sr. Backend Engineer</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-today"></td>
+                      <td></td>
+                      <td colspan="7">
+                        <div class="leave-pill-block leave-pill-annual">
+                          <div class="leave-pill-title">Annual Leave</div>
+                          <div class="leave-pill-subtitle">May 15 &ndash; May 21</div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+
+                    <!-- Employee 10: Mia Garcia -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&auto=format&fit=crop&q=80"
+                            alt="Mia Garcia"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Mia Garcia</div>
+                            <div class="leave-emp-role">QA Lead</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-today"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td colspan="3">
+                        <div class="leave-pill-block leave-pill-sick">
+                          <div class="leave-pill-title">Sick Leave</div>
+                          <div class="leave-pill-subtitle">May 22 &ndash; May 24</div>
+                        </div>
+                      </td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+
+                    <!-- Employee 11: Alexander Wright -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80"
+                            alt="Alexander Wright"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Alexander Wright</div>
+                            <div class="leave-emp-role">Product Manager</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td colspan="7">
+                        <div class="leave-pill-block leave-pill-remote">
+                          <div class="leave-pill-title">Remote Leave</div>
+                          <div class="leave-pill-subtitle">May 8 &ndash; May 14</div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+
+                    <!-- Employee 12: Charlotte Lee -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80"
+                            alt="Charlotte Lee"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Charlotte Lee</div>
+                            <div class="leave-emp-role">Data Analyst</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-today"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td colspan="3">
+                        <div class="leave-pill-block leave-pill-personal">
+                          <div class="leave-pill-title">Personal Leave</div>
+                          <div class="leave-pill-subtitle">May 27 &ndash; May 29</div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+
+                    <!-- Employee 13: Daniel Kim -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80"
+                            alt="Daniel Kim"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Daniel Kim</div>
+                            <div class="leave-emp-role">Security Architect</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td colspan="4">
+                        <div class="leave-pill-block leave-pill-annual">
+                          <div class="leave-pill-title">Annual Leave</div>
+                          <div class="leave-pill-subtitle">May 10 &ndash; May 13</div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+
+                    <!-- Employee 14: Harper Davis -->
+                    <tr>
+                      <td class="col-employee">
+                        <div class="leave-employee-profile">
+                          <img
+                            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=120&auto=format&fit=crop&q=80"
+                            alt="Harper Davis"
+                            class="leave-emp-avatar"
+                          />
+                          <div>
+                            <div class="leave-emp-name">Harper Davis</div>
+                            <div class="leave-emp-role">HR Business Partner</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-today"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td colspan="4">
+                        <div class="leave-pill-block leave-pill-remote">
+                          <div class="leave-pill-title">Remote Leave</div>
+                          <div class="leave-pill-subtitle">May 20 &ndash; May 23</div>
+                        </div>
+                      </td>
+                      <td></td>
+                      <td class="is-weekend"></td>
+                      <td class="is-weekend"></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Schedule Planner Footer & Pagination -->
+              <div class="app-table-footer mt-3" role="region" aria-label="Schedule planner pagination footer">
+                <!-- Left Zone: Counter & Rows per page -->
+                <div class="app-footer-left">
+                  <div class="app-footer-counter">
+                    <span id="schedulePlannerResultCount">Showing <strong>1 – 20</strong> of <strong>248</strong> items</span>
+                  </div>
+                  <div class="app-footer-divider"></div>
+                  <div class="app-page-size-picker">
+                    <span>Rows per page:</span>
+                    <select
+                      id="schedulePlannerPageSizeSelect"
+                      class="app-size-select"
+                      aria-label="Rows per page"
+                    >
+                    <option value="20" selected>20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="500">500</option>
+                  </select>
+                  </div>
+                </div>
+
+                <!-- Center Zone: Quick Jump Widget -->
+                <div class="app-footer-center">
+                  <span class="app-jump-label">Go to page:</span>
+                  <form id="schedulePlannerPageJumpForm" class="app-jump-form" onsubmit="return false;">
+                    <input
+                      type="number"
+                      id="schedulePlannerPageJumpInput"
+                      class="app-jump-input"
+                      min="1"
+                      max="21"
+                      value="1"
+                    />
+                    <span class="app-jump-total">/ <span id="schedulePlannerTotalPages">21</span></span>
+                    <button
+                      type="submit"
+                      class="app-jump-btn"
+                      id="schedulePlannerJumpGoBtn"
+                      title="Jump to page"
+                    >
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                  </form>
+                </div>
+
+                <!-- Right Zone: Pagination Controls -->
+                <div class="app-footer-right" role="navigation" aria-label="Schedule pagination navigation">
+                  <button
+                    class="app-page-btn"
+                    id="schedulePlannerFirstBtn"
+                    disabled
+                    title="First page"
+                    aria-label="First page"
+                  >
+                    <i class="fa-solid fa-angles-left"></i>
+                  </button>
+                  <button
+                    class="app-page-btn"
+                    id="schedulePlannerPrevBtn"
+                    disabled
+                    title="Previous page"
+                    aria-label="Previous page"
+                  >
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </button>
+
+                  <div class="d-flex align-items-center gap-1" id="schedulePlannerPageNumbersGroup">
+                    <button class="app-page-btn active" data-page="1">1</button>
+                    <button class="app-page-btn" data-page="2">2</button>
+                    <button class="app-page-btn" data-page="3">3</button>
+                    <span class="app-page-ellipsis">…</span>
+                    <button class="app-page-btn" data-page="21">21</button>
+                  </div>
+
+                  <button
+                    class="app-page-btn"
+                    id="schedulePlannerNextBtn"
+                    title="Next page"
+                    aria-label="Next page"
+                  >
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                  <button
+                    class="app-page-btn"
+                    id="schedulePlannerLastBtn"
+                    title="Last page"
+                    aria-label="Last page"
+                  >
+                    <i class="fa-solid fa-angles-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- End Schedule View -->
+
+            <!-- ══════════════════════════════════════════════════════════════
+                 VIEW 2: LIST VIEW (Hidden by Default)
+            ══════════════════════════════════════════════════════════════ -->
+            <div id="leaveListView" style="display: none">
+              <div class="table-responsive rounded-3">
+                <table class="app-list-table" id="leaveListTable">
+                  <thead>
+                    <tr>
+                      <th style="width: 36px">
+                        <input type="checkbox" id="selectAllLeaveList" aria-label="Select all" />
+                      </th>
+                      <th>Leave Code</th>
+                      <th>Employee</th>
+                      <th>Category</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Duration</th>
+                      <th>Status</th>
+                      <th>Approver</th>
+                      <th>Note</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Row 1: Emma Johnson -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Emma Johnson" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-001</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Emma Johnson"
+                          />
+                          <div>
+                            <div class="emp-list-name">Emma Johnson</div>
+                            <div class="text-muted small">emma.j@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-blue"
+                          ><i class="fa-solid fa-umbrella-beach"></i> Annual Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 02, 2024</span></td>
+                      <td><span class="text-muted small">May 06, 2024</span></td>
+                      <td><strong class="text-main">5 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-circle-check"></i> Approved</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small fst-italic">Annual family vacation</span>
+                      </td>
+                    </tr>
+
+                    <!-- Row 2: Liam Smith -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Liam Smith" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-002</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Liam Smith"
+                          />
+                          <div>
+                            <div class="emp-list-name">Liam Smith</div>
+                            <div class="text-muted small">liam.s@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-stethoscope"></i> Sick Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 07, 2024</span></td>
+                      <td><span class="text-muted small">May 09, 2024</span></td>
+                      <td><strong class="text-main">3 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-circle-check"></i> Approved</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small fst-italic">Medical doctor rest note</span>
+                      </td>
+                    </tr>
+
+                    <!-- Row 3: Olivia Brown -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Olivia Brown" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-003</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Olivia Brown"
+                          />
+                          <div>
+                            <div class="emp-list-name">Olivia Brown</div>
+                            <div class="text-muted small">olivia.b@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-rose"
+                          ><i class="fa-solid fa-baby"></i> Maternity Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 05, 2024</span></td>
+                      <td><span class="text-muted small">May 16, 2024</span></td>
+                      <td><strong class="text-main">12 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-circle-check"></i> Approved</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small fst-italic">Maternity statutory leave</span>
+                      </td>
+                    </tr>
+
+                    <!-- Row 4: Ava Davis -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Ava Davis" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-004</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Ava Davis"
+                          />
+                          <div>
+                            <div class="emp-list-name">Ava Davis</div>
+                            <div class="text-muted small">ava.d@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-purple"
+                          ><i class="fa-solid fa-user-clock"></i> Personal Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 10, 2024</span></td>
+                      <td><span class="text-muted small">May 12, 2024</span></td>
+                      <td><strong class="text-main">3 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-circle-check"></i> Approved</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small fst-italic">Personal family business</span>
+                      </td>
+                    </tr>
+
+                    <!-- Row 5: Noah Williams -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Noah Williams" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-005</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Noah Williams"
+                          />
+                          <div>
+                            <div class="emp-list-name">Noah Williams</div>
+                            <div class="text-muted small">noah.w@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-orange"
+                          ><i class="fa-solid fa-laptop-house"></i> Remote Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 13, 2024</span></td>
+                      <td><span class="text-muted small">May 17, 2024</span></td>
+                      <td><strong class="text-main">5 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-circle-check"></i> Approved</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small fst-italic">Working remotely from home</span>
+                      </td>
+                    </tr>
+
+                    <!-- Row 6: Ethan Taylor -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Ethan Taylor" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-006</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Ethan Taylor"
+                          />
+                          <div>
+                            <div class="emp-list-name">Ethan Taylor</div>
+                            <div class="text-muted small">ethan.t@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-blue"
+                          ><i class="fa-solid fa-umbrella-beach"></i> Annual Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 20, 2024</span></td>
+                      <td><span class="text-muted small">May 24, 2024</span></td>
+                      <td><strong class="text-main">5 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-circle-check"></i> Approved</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small fst-italic">Annual paid leave balance</span>
+                      </td>
+                    </tr>
+
+                    <!-- Row 7: Sophia Martinez -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Sophia Martinez" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-007</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Sophia Martinez"
+                          />
+                          <div>
+                            <div class="emp-list-name">Sophia Martinez</div>
+                            <div class="text-muted small">sophia.m@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-stethoscope"></i> Sick Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 18, 2024</span></td>
+                      <td><span class="text-muted small">May 19, 2024</span></td>
+                      <td><strong class="text-main">2 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-amber"
+                          ><i class="fa-solid fa-clock"></i> Pending</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Pending Review</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small fst-italic"
+                          >Doctor appointment & recovery</span
+                        >
+                      </td>
+                    </tr>
+
+                    <!-- Row 8: Benjamin Clark -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Benjamin Clark" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-008</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Benjamin Clark"
+                          />
+                          <div>
+                            <div class="emp-list-name">Benjamin Clark</div>
+                            <div class="text-muted small">benjamin.c@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-orange"
+                          ><i class="fa-solid fa-laptop-house"></i> Remote Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 26, 2024</span></td>
+                      <td><span class="text-muted small">May 30, 2024</span></td>
+                      <td><strong class="text-main">5 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-circle-check"></i> Approved</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small fst-italic">Remote deployment sprint</span>
+                      </td>
+                    </tr>
+
+                    <!-- Row 9: Lucas Miller -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Lucas Miller" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-009</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Lucas Miller"
+                          />
+                          <div>
+                            <div class="emp-list-name">Lucas Miller</div>
+                            <div class="text-muted small">lucas.m@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-blue"
+                          ><i class="fa-solid fa-umbrella-beach"></i> Annual Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 15, 2024</span></td>
+                      <td><span class="text-muted small">May 21, 2024</span></td>
+                      <td><strong class="text-main">7 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-circle-check"></i> Approved</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small fst-italic">Family vacation to Da Nang</span>
+                      </td>
+                    </tr>
+
+                    <!-- Row 10: Mia Garcia -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Mia Garcia" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-010</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Mia Garcia"
+                          />
+                          <div>
+                            <div class="emp-list-name">Mia Garcia</div>
+                            <div class="text-muted small">mia.g@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-stethoscope"></i> Sick Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 22, 2024</span></td>
+                      <td><span class="text-muted small">May 24, 2024</span></td>
+                      <td><strong class="text-main">3 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-circle-check"></i> Approved</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small fst-italic"
+                          >Medical checkup & doctor rest note</span
+                        >
+                      </td>
+                    </tr>
+
+                    <!-- Row 11: Alexander Wright -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Alexander Wright" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-011</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Alexander Wright"
+                          />
+                          <div>
+                            <div class="emp-list-name">Alexander Wright</div>
+                            <div class="text-muted small">alexander.w@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-orange"
+                          ><i class="fa-solid fa-laptop-house"></i> Remote Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 08, 2024</span></td>
+                      <td><span class="text-muted small">May 14, 2024</span></td>
+                      <td><strong class="text-main">7 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-circle-check"></i> Approved</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small fst-italic"
+                          >Working remotely from Hanoi office</span
+                        >
+                      </td>
+                    </tr>
+
+                    <!-- Row 12: Charlotte Lee -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Charlotte Lee" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-012</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Charlotte Lee"
+                          />
+                          <div>
+                            <div class="emp-list-name">Charlotte Lee</div>
+                            <div class="text-muted small">charlotte.l@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-purple"
+                          ><i class="fa-solid fa-user-clock"></i> Personal Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 27, 2024</span></td>
+                      <td><span class="text-muted small">May 29, 2024</span></td>
+                      <td><strong class="text-main">3 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-amber"
+                          ><i class="fa-solid fa-clock"></i> Pending</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Pending Review</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small fst-italic"
+                          >Attending AI & Data Summit 2024</span
+                        >
+                      </td>
+                    </tr>
+
+                    <!-- Row 13: Daniel Kim -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Daniel Kim" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-013</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Daniel Kim"
+                          />
+                          <div>
+                            <div class="emp-list-name">Daniel Kim</div>
+                            <div class="text-muted small">daniel.k@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-blue"
+                          ><i class="fa-solid fa-umbrella-beach"></i> Annual Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 10, 2024</span></td>
+                      <td><span class="text-muted small">May 13, 2024</span></td>
+                      <td><strong class="text-main">4 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-green"
+                          ><i class="fa-solid fa-circle-check"></i> Approved</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
+                      <td><span class="text-muted small fst-italic">Annual spring break</span></td>
+                    </tr>
+
+                    <!-- Row 14: Harper Davis -->
+                    <tr>
+                      <td><input type="checkbox" aria-label="Select Harper Davis" /></td>
+                      <td><span class="badge-soft badge-blue emp-list-id">#LV-2024-014</span></td>
+                      <td>
+                        <div class="emp-list-identity">
+                          <img
+                            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=120&auto=format&fit=crop&q=80"
+                            class="emp-list-avatar"
+                            alt="Harper Davis"
+                          />
+                          <div>
+                            <div class="emp-list-name">Harper Davis</div>
+                            <div class="text-muted small">harper.d@nexusost.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge-soft badge-orange"
+                          ><i class="fa-solid fa-laptop-house"></i> Remote Leave</span
+                        >
+                      </td>
+                      <td><span class="text-muted small">May 20, 2024</span></td>
+                      <td><span class="text-muted small">May 23, 2024</span></td>
+                      <td><strong class="text-main">4 Days</strong></td>
+                      <td>
+                        <span class="badge-soft badge-amber"
+                          ><i class="fa-solid fa-clock"></i> Pending</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Pending Review</span
+                        >
+                      </td>
+                      <td>
+                        <span class="text-muted small fst-italic"
+                          >Remote work during home renovation</span
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Enterprise Table Footer & Pagination -->
+              <div class="app-table-footer mt-3" role="region" aria-label="Table pagination footer">
+                <!-- Left Zone: Counter & Rows per page -->
+                <div class="app-footer-left">
+                  <div class="app-footer-counter">
+                    <span id="leaveResultCount"
+                      >Showing <strong>1 – 20</strong> of <strong>248</strong> items</span
+                    >
+                  </div>
+                  <div class="app-footer-divider"></div>
+                  <div class="app-page-size-picker">
+                    <span>Rows per page:</span>
+                    <select
+                      id="leavePageSizeSelect"
+                      class="app-size-select"
+                      aria-label="Rows per page"
+                    >
+                    <option value="20" selected>20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="500">500</option>
+                  </select>
+                  </div>
+                </div>
+
+                <!-- Center Zone: Quick Jump Widget -->
+                <div class="app-footer-center">
+                  <span class="app-jump-label">Go to page:</span>
+                  <form id="leavePageJumpForm" class="app-jump-form" onsubmit="return false;">
+                    <input
+                      type="number"
+                      id="leavePageJumpInput"
+                      class="app-jump-input"
+                      min="1"
+                      max="21"
+                      value="1"
+                    />
+                    <span class="app-jump-total">/ <span id="leaveTotalPages">21</span></span>
+                    <button
+                      type="submit"
+                      class="app-jump-btn"
+                      id="leaveJumpGoBtn"
+                      title="Jump to page"
+                    >
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                  </form>
+                </div>
+
+                <!-- Right Zone: Pagination Controls -->
+                <div class="app-footer-right" role="navigation" aria-label="Pagination Navigation">
+                  <button
+                    class="app-page-btn"
+                    id="leaveFirstBtn"
+                    disabled
+                    title="First page"
+                    aria-label="First page"
+                  >
+                    <i class="fa-solid fa-angles-left"></i>
+                  </button>
+                  <button
+                    class="app-page-btn"
+                    id="leavePrevBtn"
+                    disabled
+                    title="Previous page"
+
+    <!-- Main Application JS -->
+    <script src="../js/app.js"></script>
+  </body>
+</html>
