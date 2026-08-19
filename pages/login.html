@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem("nexus_theme");
+          if (theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <meta name="description" content="Nexus Enterprise ERP & HRM Workspace Portal Login Page" />
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <title>Login - Nexus Enterprise ERP & HRM</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome 6 -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body class="nexus-auth-body">
+    <!-- Ambient Background Texture & Floating Kinetic Orbs -->
+    <div class="nexus-auth-bg-gradient"></div>
+    <div class="nexus-auth-glow-orb nexus-auth-glow-orb-1"></div>
+    <div class="nexus-auth-glow-orb nexus-auth-glow-orb-2"></div>
+
+    <!-- Fixed Top Control Actions (Theme Toggle & Language Switcher) -->
+    <div class="nexus-auth-topbar topbar-action-group">
+      <button class="btn-icon-action" id="langTranslateBtn" title="Language / Ngôn ngữ">
+        <i class="fa-solid fa-language"></i>
+      </button>
+
+      <button class="btn-icon-action" id="themeToggleBtn" title="Toggle Light/Dark Theme">
+        <i class="fa-regular fa-moon" id="themeToggleIcon"></i>
+      </button>
+    </div>
+
+    <!-- Main Authentication Container -->
+    <div class="nexus-auth-wrapper">
+      <div class="nexus-auth-card">
+        <!-- Left Side: NexusOST System Brand Side -->
+        <div class="nexus-auth-brand-side">
+          <div>
+            <!-- Brand Logo Header (Matching App Sidebar Header) -->
+            <div class="d-flex align-items-center gap-3 mb-4 nexus-animate-item nexus-delay-1">
+              <img
+                src="../assets/logo.png"
+                alt="Nexus Logo"
+                class="brand-logo-img"
+                style="height: 48px; width: auto"
+              />
+              <div>
+                <h1 class="brand-title m-0 fs-3">Nexus</h1>
+                <div
+                  class="brand-subtitle text-uppercase font-mono text-muted"
+                  style="font-size: 0.72rem; letter-spacing: 0.12em"
+                >
+                  Human Resource & Sales
+                </div>
+              </div>
+            </div>
+
+            <!-- Portal Badge -->
+            <div class="nexus-brand-badge-pill nexus-animate-item nexus-delay-2">
+              <i class="fa-solid fa-cube"></i> Enterprise Portal v2.4.0
+            </div>
+
+            <h2 class="nexus-auth-title nexus-animate-item nexus-delay-2">
+              Enterprise Resource & Workforce Platform
+            </h2>
+
+            <!-- Topic Showcase Image -->
+            <div class="nexus-topic-showcase mb-0">
+              <img
+                src="../assets/topic.png"
+                alt="Nexus Enterprise Overview"
+                class="nexus-topic-img"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Interactive Login Form -->
+        <div class="nexus-auth-form-side">
+          <div class="mb-4 nexus-animate-item nexus-delay-1">
+            <h2 class="fw-bold fs-3 text-main mb-0" style="letter-spacing: -0.02em">
+              Sign in to Workspace
+            </h2>
+          </div>
+
+          <!-- Quick Demo Accounts Selection Box -->
+          <div class="nexus-demo-box nexus-animate-item nexus-delay-2">
+            <div
+              class="d-flex align-items-center gap-2 mb-2 text-muted fw-bold text-uppercase"
+              style="font-size: 0.72rem; letter-spacing: 0.08em"
+            >
+              <i class="fa-solid fa-bolt text-warning"></i> Quick Demo Login:
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button
+                type="button"
+                class="nexus-demo-pill demo-pill-director"
+                onclick="fillDemoAccount('director')"
+              >
+                <i class="fa-solid fa-user-tie text-primary"></i> Director
+              </button>
+              <button
+                type="button"
+                class="nexus-demo-pill demo-pill-hr"
+                onclick="fillDemoAccount('hr')"
+              >
+                <i class="fa-solid fa-user-gear text-success"></i> HR Manager
+              </button>
+              <button
+                type="button"
+                class="nexus-demo-pill demo-pill-employee"
+                onclick="fillDemoAccount('employee')"
+              >
+                <i class="fa-solid fa-user text-info"></i> Employee
+              </button>
+            </div>
+          </div>
+
+          <!-- Auth Mode Tab Switcher -->
+          <div class="nexus-auth-tabs nexus-animate-item nexus-delay-3">
+            <button
+              type="button"
+              class="nexus-tab-btn active"
+              id="tabEmail"
+              onclick="switchLoginTab('email')"
+            >
+              <i class="fa-regular fa-envelope me-1"></i> Email
+            </button>
+            <button
+              type="button"
+              class="nexus-tab-btn"
+              id="tabEmpId"
+              onclick="switchLoginTab('empid')"
+            >
+              <i class="fa-solid fa-id-card me-1"></i> Employee ID
+            </button>
+            <button type="button" class="nexus-tab-btn" id="tabSso" onclick="switchLoginTab('sso')">
+              <i class="fa-solid fa-key me-1"></i> SSO
+            </button>
+          </div>
+
+          <!-- Login Form -->
+          <form id="loginForm" onsubmit="handleLoginSubmit(event)" novalidate>
+            <!-- Email / ID Input -->
+            <div class="nexus-field">
+              <label for="userIdentifier" class="nexus-label" id="identifierLabel"
+                >Work Email</label
+              >
+              <div class="nexus-input-wrapper">
+                <input
+                  type="email"
+                  id="userIdentifier"
+                  class="nexus-input"
+                  placeholder="name@nexusost.com"
+                  required
+                />
+                <i class="fa-regular fa-envelope nexus-input-icon" id="identifierIcon"></i>
+              </div>
+            </div>
+
+            <!-- Password Input -->
+            <div class="nexus-field" id="passwordGroup">
+              <label for="userPassword" class="nexus-label">Password</label>
+              <div class="nexus-input-wrapper">
+                <input
+                  type="password"
+                  id="userPassword"
+                  class="nexus-input"
+                  placeholder="••••••••••••"
+                  required
+                />
+                <i class="fa-solid fa-lock nexus-input-icon"></i>
+                <button
+                  type="button"
+                  class="nexus-toggle-pwd"
+                  onclick="togglePasswordVisibility('userPassword', 'pwdEyeIcon')"
+                  title="Toggle Password Visibility"
+                >
+                  <i class="fa-regular fa-eye" id="pwdEyeIcon"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Remember Me & Forgot Password Row -->
+            <div class="d-flex align-items-center justify-content-between mb-4 small">
+              <label
+                class="d-flex align-items-center gap-2 cursor-pointer text-muted font-weight-medium"
+              >
+                <input type="checkbox" id="rememberMe" checked class="form-check-input mt-0" />
+                <span>Keep me signed in</span>
+              </label>
+              <a
+                href="#"
+                class="text-primary fw-bold text-decoration-none"
+                data-bs-toggle="modal"
+                data-bs-target="#forgotPasswordModal"
+                onclick="openForgotPasswordModal()"
+              >
+                Forgot password?
+              </a>
+            </div>
+
+            <!-- Submit CTA Button -->
+            <button
+              type="submit"
+              class="btn btn-pastel-purple w-100 py-2.5 rounded-3 fw-bold shadow-sm d-flex align-items-center justify-content-center gap-2"
+              id="loginSubmitBtn"
+            >
+              Sign In to Dashboard <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+          </form>
+
+          <!-- SSO Divider -->
+          <div class="nexus-divider">
+            <span>or sign in with</span>
+          </div>
+
+          <!-- Social / Enterprise SSO Grid -->
+          <div class="nexus-sso-grid">
+            <button type="button" class="nexus-sso-btn" onclick="simulateSSOLogin('Microsoft 365')">
+              <i class="fa-brands fa-microsoft text-primary"></i>
+              <span>Microsoft</span>
+            </button>
+            <button
+              type="button"
+              class="nexus-sso-btn"
+              onclick="simulateSSOLogin('Google Workspace')"
+            >
+              <i class="fa-brands fa-google text-danger"></i>
+              <span>Google</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-Step Password Reset OTP Wizard Modal -->
+    <div
+      class="modal fade"
+      id="forgotPasswordModal"
+      tabindex="-1"
+      aria-labelledby="forgotPasswordModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 1.25rem">
+          <div class="modal-header border-0 pb-0">
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge-soft badge-purple p-2 rounded-circle">
+                <i class="fa-solid fa-key"></i>
+              </span>
+              <h5 class="modal-title font-weight-bold mb-0" id="forgotPasswordModalLabel">
+                Reset Password
+              </h5>
+            </div>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="modal-body p-4">
+            <!-- Step Wizard Progress Indicator Bar -->
+            <div class="wizard-progress">
+              <div class="wizard-step-dot active" id="resetStepDot1">1</div>
+              <div class="wizard-step-line" id="resetStepLine1"></div>
+              <div class="wizard-step-dot" id="resetStepDot2">2</div>
+              <div class="wizard-step-line" id="resetStepLine2"></div>
+              <div class="wizard-step-dot" id="resetStepDot3">3</div>
+            </div>
+
+            <!-- STEP 1: ENTER EMAIL -->
+            <div id="forgotStep1">
+              <p class="text-muted small mb-3">
+                Enter your registered work email address. We will send a 6-digit OTP verification
+                code to your inbox.
+              </p>
+              <form id="forgotEmailForm" onsubmit="handleForgotEmailSubmit(event)">
+                <div class="mb-3">
+                  <label for="resetEmail" class="form-label small fw-bold">Work Email</label>
+                  <div class="input-group custom-input-group">
+                    <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
+                    <input
+                      type="email"
+                      id="resetEmail"
+                      class="form-control"
+                      placeholder="name@nexusost.com"
+                      required
+                    />
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-pastel-purple w-100 py-2.5 rounded-3 fw-bold"
+                  id="sendOtpBtn"
+                >
+                  Send Verification Code <i class="fa-solid fa-paper-plane ms-1"></i>
+                </button>
+              </form>
+            </div>
+
+            <!-- STEP 2: ENTER OTP CODE -->
+            <div id="forgotStep2" class="d-none">
+              <p class="text-muted small mb-2">
+                We sent a 6-digit code to
+                <span id="otpTargetEmail" class="fw-bold text-primary"></span>.
+              </p>
+
+              <div class="mb-2">
+                <span class="small text-muted">Enter 6-digit OTP:</span>
+              </div>
+
+              <!-- OTP 6-Box Grid -->
+              <form id="forgotOtpForm" onsubmit="handleOtpVerifySubmit(event)">
+                <div class="otp-grid">
+                  <input type="text" maxlength="1" class="otp-box" id="otp1" autocomplete="off" />
+                  <input type="text" maxlength="1" class="otp-box" id="otp2" autocomplete="off" />
+                  <input type="text" maxlength="1" class="otp-box" id="otp3" autocomplete="off" />
+                  <input type="text" maxlength="1" class="otp-box" id="otp4" autocomplete="off" />
+                  <input type="text" maxlength="1" class="otp-box" id="otp5" autocomplete="off" />
+                  <input type="text" maxlength="1" class="otp-box" id="otp6" autocomplete="off" />
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between mb-3 text-xs">
+                  <span class="text-muted">Didn't receive code?</span>
+                  <button
+                    type="button"
+                    class="btn btn-link text-primary p-0 text-decoration-none small fw-bold"
+                    id="resendOtpBtn"
+                    onclick="resendOtpCode()"
+                  >
+                    Resend in <span id="otpCountdown">45</span>s
+                  </button>
+                </div>
+
+                <div class="d-flex gap-2">
+                  <button
+                    type="button"
+                    class="btn btn-light border px-3 py-2 rounded-3 small fw-bold"
+                    onclick="goToResetStep(1)"
+                  >
+                    <i class="fa-solid fa-arrow-left"></i>
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-pastel-purple flex-grow-1 py-2.5 rounded-3 fw-bold"
+                    id="verifyOtpBtn"
+                  >
+                    Verify Code <i class="fa-solid fa-check ms-1"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- STEP 3: CREATE NEW PASSWORD -->
+            <div id="forgotStep3" class="d-none">
+              <p class="text-muted small mb-3">
+                Create a strong new password for your NexusOST account.
+              </p>
+              <form id="forgotNewPasswordForm" onsubmit="handleNewPasswordSubmit(event)">
+                <div class="mb-3">
+                  <label for="newResetPassword" class="form-label small fw-bold"
+                    >New Password</label
+                  >
+                  <div class="nexus-input-wrapper">
+                    <input
+                      type="password"
+                      id="newResetPassword"
+                      class="nexus-input"
+                      placeholder="••••••••••••"
+                      oninput="onPasswordInput(this.value)"
+                      required
+                    />
+                    <i class="fa-solid fa-lock nexus-input-icon"></i>
+                    <button
+                      type="button"
+                      class="nexus-toggle-pwd"
+                      onclick="togglePasswordVisibility('newResetPassword', 'toggleNewPwdIcon')"
+                    >
+                      <i class="fa-regular fa-eye" id="toggleNewPwdIcon"></i>
+                    </button>
+                  </div>
+                  <!-- Password Strength Meter -->
+                  <div class="pwd-strength-wrapper">
+                    <div class="pwd-strength-bar">
+                      <div class="pwd-strength-fill" id="pwdStrengthFill"></div>
+                    </div>
+                    <span class="pwd-strength-label" id="pwdStrengthLabel"
+                      >Enter password strength</span
+                    >
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="confirmResetPassword" class="form-label small fw-bold"
+                    >Confirm Password</label
+                  >
+                  <div class="nexus-input-wrapper">
+                    <input
+                      type="password"
+                      id="confirmResetPassword"
+                      class="nexus-input"
+                      placeholder="••••••••••••"
+                      required
+                    />
+                    <i class="fa-solid fa-shield-halved nexus-input-icon"></i>
+                  </div>
+                  <div class="text-danger small mt-1 d-none" id="pwdMismatchAlert">
+                    <i class="fa-solid fa-circle-exclamation me-1"></i>Passwords do not match!
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-pastel-purple w-100 py-2.5 rounded-3 fw-bold"
+                  id="updatePasswordBtn"
+                >
+                  Update Password & Sign In <i class="fa-solid fa-lock-open ms-1"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- NexusOST Auth Logic Script -->
+    <script>
+      // Demo Accounts Data matching NexusOST User Profiles
+      const DEMO_ACCOUNTS = {
+        director: {
+          email: "tristan.nguyen@nexusost.com",
+          id: "NEX-1001",
+          pwd: "Director2026!#",
+        },
+        hr: {
+          email: "hr.manager@nexusost.com",
+          id: "NEX-2005",
+          pwd: "HRManagerPass!2026",
+        },
+        employee: {
+          email: "emp.john@nexusost.com",
+          id: "NEX-3042",
+          pwd: "EmployeePass2026!",
+        },
+      };
+
+      let currentTab = "email";
+      let countdownTimer = null;
+      let countdownSeconds = 45;
+
+      // Theme toggle implementation synchronized with localStorage.getItem("nexus_theme")
+      const themeBtn = document.getElementById("themeToggleBtn");
+      const themeIcon = document.getElementById("themeToggleIcon");
+
+      function updateThemeUI() {
+        const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+        if (currentTheme === "dark") {
+          themeIcon.className = "fa-regular fa-sun text-warning";
+        } else {
+          themeIcon.className = "fa-regular fa-moon";
+        }
+      }
+
+      themeBtn.addEventListener("click", function () {
+        const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("nexus_theme", newTheme);
+        updateThemeUI();
+      });
+
+      updateThemeUI();
+
+      // Quick Demo Credentials Handler
+      function fillDemoAccount(role) {
+        const acc = DEMO_ACCOUNTS[role];
+        if (!acc) return;
+
+        const identifierInput = document.getElementById("userIdentifier");
+        const passwordInput = document.getElementById("userPassword");
+
+        if (currentTab === "empid") {
+          identifierInput.value = acc.id;
+        } else {
+          identifierInput.value = acc.email;
+        }
+        passwordInput.value = acc.pwd;
+
+        // Visual flash effect on input
+        identifierInput.style.borderColor = "var(--primary-color)";
+        passwordInput.style.borderColor = "var(--primary-color)";
+        setTimeout(() => {
+          identifierInput.style.borderColor = "";
+          passwordInput.style.borderColor = "";
+        }, 800);
+      }
+
+      // Tab Switcher
+      function switchLoginTab(tab) {
+        currentTab = tab;
+        document.getElementById("tabEmail").classList.toggle("active", tab === "email");
+        document.getElementById("tabEmpId").classList.toggle("active", tab === "empid");
+        document.getElementById("tabSso").classList.toggle("active", tab === "sso");
+
+        const identifierLabel = document.getElementById("identifierLabel");
+        const identifierInput = document.getElementById("userIdentifier");
+        const identifierIcon = document.getElementById("identifierIcon");
+        const pwdGroup = document.getElementById("passwordGroup");
+
+        if (tab === "empid") {
+          identifierLabel.textContent = "Employee ID";
+          identifierInput.placeholder = "e.g. NEX-1001";
+          identifierInput.type = "text";
+          identifierIcon.className = "fa-solid fa-id-card nexus-input-icon";
+          pwdGroup.style.display = "block";
+        } else if (tab === "sso") {
+          identifierLabel.textContent = "Corporate SSO Email";
+          identifierInput.placeholder = "username@company-sso.com";
+          identifierInput.type = "email";
+          identifierIcon.className = "fa-solid fa-key nexus-input-icon";
+          pwdGroup.style.display = "none";
+        } else {
+          identifierLabel.textContent = "Work Email";
+          identifierInput.placeholder = "name@nexusost.com";
+          identifierInput.type = "email";
+          identifierIcon.className = "fa-regular fa-envelope nexus-input-icon";
+          pwdGroup.style.display = "block";
+        }
+      }
+
+      // Password Eye Toggle
+      function togglePasswordVisibility(inputId, iconId) {
+        const pwdInput = document.getElementById(inputId);
+        const pwdIcon = document.getElementById(iconId);
+        if (!pwdInput || !pwdIcon) return;
+        if (pwdInput.type === "password") {
+          pwdInput.type = "text";
+          pwdIcon.className = "fa-regular fa-eye-slash";
+        } else {
+          pwdInput.type = "password";
+          pwdIcon.className = "fa-regular fa-eye";
+        }
+      }
+
+      // Toast Feedback (Disabled)
+      function showToast(msg) {}
+
+      // Handle Login Form Submit
+      function handleLoginSubmit(e) {
+        e.preventDefault();
+        const submitBtn = document.getElementById("loginSubmitBtn");
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i> Authenticating...';
+
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 1000);
+      }
+
+      // Handle SSO Login
+      function simulateSSOLogin(provider) {
+        const submitBtn = document.getElementById("loginSubmitBtn");
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin me-1"></i> Connecting to ${provider}...`;
+        showToast(`Connecting to ${provider} SSO Provider...`);
+
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 1100);
+      }
+
+      /* 3-Step Password Reset Logic */
+      function openForgotPasswordModal() {
+        goToResetStep(1);
+        const resetEmailInput = document.getElementById("resetEmail");
+        const userEmailInput = document.getElementById("userIdentifier");
+        if (resetEmailInput && userEmailInput && userEmailInput.value.includes("@")) {
+          resetEmailInput.value = userEmailInput.value;
+        }
+      }
+
+      function goToResetStep(step) {
+        document.getElementById("forgotStep1").classList.toggle("d-none", step !== 1);
+        document.getElementById("forgotStep2").classList.toggle("d-none", step !== 2);
+        document.getElementById("forgotStep3").classList.toggle("d-none", step !== 3);
+
+        const dot1 = document.getElementById("resetStepDot1");
+        const dot2 = document.getElementById("resetStepDot2");
+        const dot3 = document.getElementById("resetStepDot3");
+
+        const line1 = document.getElementById("resetStepLine1");
+        const line2 = document.getElementById("resetStepLine2");
+
+        dot1.className = "wizard-step-dot " + (step === 1 ? "active" : "completed");
+        dot2.className = "wizard-step-dot " + (step === 2 ? "active" : step > 2 ? "completed" : "");
+        dot3.className = "wizard-step-dot " + (step === 3 ? "active" : "");
+
+        line1.className = "wizard-step-line " + (step >= 2 ? "active" : "");
+        line2.className = "wizard-step-line " + (step >= 3 ? "active" : "");
+      }
+
+      function handleForgotEmailSubmit(e) {
+        e.preventDefault();
+        const email = document.getElementById("resetEmail").value;
+        document.getElementById("otpTargetEmail").textContent = email;
+
+        const btn = document.getElementById("sendOtpBtn");
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i> Sending OTP Code...';
+
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerHTML = 'Send Verification Code <i class="fa-solid fa-paper-plane ms-1"></i>';
+          goToResetStep(2);
+          startOtpCountdown();
+          setupOtpListeners();
+          document.getElementById("otp1").focus();
+        }, 800);
+      }
+
+      function setupOtpListeners() {
+        const boxes = document.querySelectorAll(".otp-box");
+        boxes.forEach((box, idx) => {
+          box.value = "";
+          box.classList.remove("filled");
+
+          box.onkeyup = function (e) {
+            if (e.key >= "0" && e.key <= "9") {
+              box.classList.add("filled");
+              if (idx < boxes.length - 1) {
+                boxes[idx + 1].focus();
+              }
+            } else if (e.key === "Backspace") {
+              box.classList.remove("filled");
+              if (idx > 0) {
+                boxes[idx - 1].focus();
+              }
+            }
+          };
+
+          box.onpaste = function (e) {
+            e.preventDefault();
+            const data = (e.clipboardData || window.clipboardData).getData("text").trim();
+            if (data.length >= 6 && /^\d+$/.test(data)) {
+              for (let i = 0; i < 6; i++) {
+                boxes[i].value = data[i];
+                boxes[i].classList.add("filled");
+              }
+              boxes[5].focus();
+            }
+          };
+        });
+      }
+
+      function startOtpCountdown() {
+        clearInterval(countdownTimer);
+        countdownSeconds = 45;
+        const resendBtn = document.getElementById("resendOtpBtn");
+        resendBtn.disabled = true;
+
+        countdownTimer = setInterval(() => {
+          countdownSeconds--;
+          document.getElementById("otpCountdown").textContent = countdownSeconds;
+          if (countdownSeconds <= 0) {
+            clearInterval(countdownTimer);
+            resendBtn.disabled = false;
+            resendBtn.innerHTML = '<i class="fa-solid fa-rotate-right me-1"></i>Resend Code Now';
+          }
+        }, 1000);
+      }
+
+      function resendOtpCode() {
+        showToast("A new OTP code has been dispatched to your email!");
+        startOtpCountdown();
+      }
+
+      function handleOtpVerifySubmit(e) {
+        e.preventDefault();
+        const boxes = document.querySelectorAll(".otp-box");
+        let otpCode = "";
+        boxes.forEach((b) => (otpCode += b.value));
+
+        if (otpCode.length < 6) {
+          showToast("Please enter the complete 6-digit OTP code!");
+          return;
+        }
+
+        const btn = document.getElementById("verifyOtpBtn");
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i> Verifying OTP...';
+
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerHTML = 'Verify Code <i class="fa-solid fa-check ms-1"></i>';
+          goToResetStep(3);
+          document.getElementById("newResetPassword").focus();
+        }, 800);
+      }
+
+      function onPasswordInput(val) {
+        const fill = document.getElementById("pwdStrengthFill");
+        const label = document.getElementById("pwdStrengthLabel");
+
+        let score = 0;
+        if (val.length >= 8) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+
+        if (val.length === 0) {
+          fill.style.width = "0%";
+          fill.style.backgroundColor = "transparent";
+          label.textContent = "Enter password strength";
+        } else if (score <= 1) {
+          fill.style.width = "25%";
+          fill.style.backgroundColor = "#ef4444";
+          label.textContent = "Weak Password";
+          label.style.color = "#ef4444";
+        } else if (score === 2) {
+          fill.style.width = "50%";
+          fill.style.backgroundColor = "#f59e0b";
+          label.textContent = "Fair Password";
+          label.style.color = "#f59e0b";
+        } else if (score === 3) {
+          fill.style.width = "75%";
+          fill.style.backgroundColor = "#3b82f6";
+          label.textContent = "Good Password";
+          label.style.color = "#3b82f6";
+        } else {
+          fill.style.width = "100%";
+          fill.style.backgroundColor = "#10b981";
+          label.textContent = "Strong Password!";
+          label.style.color = "#10b981";
+        }
+      }
+
+      function handleNewPasswordSubmit(e) {
+        e.preventDefault();
+        const pwd = document.getElementById("newResetPassword").value;
+        const confirmPwd = document.getElementById("confirmResetPassword").value;
+        const mismatchAlert = document.getElementById("pwdMismatchAlert");
+
+        if (pwd !== confirmPwd) {
+          mismatchAlert.classList.remove("d-none");
+          return;
+        }
+        mismatchAlert.classList.add("d-none");
+
+        const btn = document.getElementById("updatePasswordBtn");
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i> Updating Password...';
+
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerHTML = 'Update Password & Sign In <i class="fa-solid fa-lock-open ms-1"></i>';
+
+          const userPwdInput = document.getElementById("userPassword");
+          if (userPwdInput) userPwdInput.value = pwd;
+
+          const modalEl = document.getElementById("forgotPasswordModal");
+          const modal = bootstrap.Modal.getInstance(modalEl);
+          if (modal) modal.hide();
+
+          showToast("Password updated successfully! You can now sign in.");
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
