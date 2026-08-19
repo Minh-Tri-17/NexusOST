@@ -246,11 +246,7 @@ function initTopbarScrollEffect() {
 function initTopbarInteractiveControls() {
   const langBtn = document.getElementById("langTranslateBtn");
   if (langBtn) {
-    langBtn.addEventListener("click", () => {
-      const currentLang = document.documentElement.getAttribute("lang") || "vi";
-      const newLang = currentLang === "vi" ? "en" : "vi";
-      document.documentElement.setAttribute("lang", newLang);
-    });
+    initLanguageDropdown(langBtn);
   }
 
   const notifBtn = document.getElementById("notifBellBtn");
@@ -264,6 +260,105 @@ function initTopbarInteractiveControls() {
     });
   }
 }
+
+function initLanguageDropdown(langBtn) {
+  if (!langBtn || langBtn.dataset.langDropdownInit === "true") return;
+  langBtn.dataset.langDropdownInit = "true";
+
+  // Ensure relative wrapper for precise dropdown positioning
+  let wrapper = langBtn.closest(".nexus-lang-wrapper");
+  if (!wrapper) {
+    wrapper = document.createElement("div");
+    wrapper.className = "nexus-lang-wrapper position-relative d-inline-flex align-items-center";
+    langBtn.parentNode.insertBefore(wrapper, langBtn);
+    wrapper.appendChild(langBtn);
+  }
+
+  const currentPath = window.location.pathname;
+  const assetsPrefix = currentPath.includes("/pages/") ? "../assets/" : "assets/";
+  const savedLang = localStorage.getItem("nexus_lang") || "vi";
+
+  // Create dropdown menu
+  const dropdown = document.createElement("div");
+  dropdown.id = "nexusLangDropdownMenu";
+  dropdown.className = "nexus-lang-dropdown";
+
+  const languages = [
+    { code: "en", name: "English", short: "Anh", flag: "flag-us.png" },
+    { code: "vi", name: "Tiếng Việt", short: "Việt", flag: "flag-vn.png" },
+    { code: "jp", name: "日本語", short: "Nhật", flag: "flag-jp.png" },
+    { code: "cn", name: "中文", short: "Trung", flag: "flag-cn.png" },
+    { code: "fr", name: "Français", short: "Pháp", flag: "flag-fr.png" },
+  ];
+
+  let itemsHtml = `
+    <div class="nexus-lang-header">
+      <i class="fa-solid fa-globe me-1"></i> Ngôn ngữ / Language
+    </div>
+    <ul class="nexus-lang-list">
+  `;
+
+  languages.forEach((lang) => {
+    const isActive = savedLang === lang.code ? "active" : "";
+    itemsHtml += `
+      <li class="nexus-lang-item ${isActive}" data-lang="${lang.code}">
+        <img src="${assetsPrefix}${lang.flag}" alt="${lang.name}" class="nexus-lang-flag" />
+        <div class="nexus-lang-info">
+          <span class="nexus-lang-name">${lang.name}</span>
+          <span class="nexus-lang-short">${lang.short}</span>
+        </div>
+        <i class="fa-solid fa-check nexus-lang-check"></i>
+      </li>
+    `;
+  });
+
+  itemsHtml += `</ul>`;
+  dropdown.innerHTML = itemsHtml;
+  wrapper.appendChild(dropdown);
+
+  // Toggle dropdown menu on button click
+  langBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle("show");
+  });
+
+  // Close dropdown menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!wrapper.contains(e.target)) {
+      dropdown.classList.remove("show");
+    }
+  });
+
+  // Handle language selection click
+  const items = dropdown.querySelectorAll(".nexus-lang-item");
+  items.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const selectedCode = item.getAttribute("data-lang");
+      const selectedLangObj = languages.find((l) => l.code === selectedCode);
+
+      items.forEach((el) => el.classList.remove("active"));
+      item.classList.add("active");
+
+      localStorage.setItem("nexus_lang", selectedCode);
+      document.documentElement.setAttribute("lang", selectedCode);
+
+      if (typeof showToast === "function") {
+        showToast({
+          title: "Ngôn ngữ đã thay đổi",
+          message: `Hệ thống đã chuyển sang ${selectedLangObj.name} (${selectedLangObj.short})`,
+          type: "info",
+        });
+      }
+
+      dropdown.classList.remove("show");
+    });
+  });
+
+  // Apply active language code to HTML tag
+  document.documentElement.setAttribute("lang", savedLang);
+}
+
 
 /* 6. Nexus Enterprise Toast Notification System */
 function showToast({
