@@ -6,13 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initTopbarInteractiveControls();
   initFilterChipsSystem();
 
-  if (
-    (document.getElementById("countryTableBody") || document.getElementById("countryFormModal")) &&
-    typeof initCountryGrid === "function"
-  ) {
-    initCountryGrid();
-  }
-
   // Render Dashboard Charts
   if (
     document.getElementById("chartMonthlyOverview") &&
@@ -49,11 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("candidateDetailModal")
   ) {
     initRecruitmentPage();
-  }
-
-  // Settings Page Logic
-  if (document.getElementById("settingsTab") || document.getElementById("generalOrgForm")) {
-    initSettingsPage();
   }
 
   // Leave Management Page Logic
@@ -358,7 +346,6 @@ function initLanguageDropdown(langBtn) {
   // Apply active language code to HTML tag
   document.documentElement.setAttribute("lang", savedLang);
 }
-
 
 /* 6. Nexus Enterprise Toast Notification System */
 function showToast({
@@ -860,318 +847,6 @@ window.showToast = showToast;
 window.initCountryPageModal = initCountryPageModal;
 window.initCountryImportModal = initCountryImportModal;
 window.initCountryExportModal = initCountryExportModal;
-
-/* Country Management Dataset & HTML Table Renderer */
-function generateCountryDataset() {
-  return [
-    {
-      id: "0001",
-      code: "VN",
-      countryName: "Việt Nam",
-      capital: "Hà Nội",
-      region: "Asia",
-      population: 98186856,
-      priority: "High",
-      active: true,
-      createdBy: "Admin User",
-      createdAt: "2024-01-15",
-      updatedBy: "Tristan Nguyen",
-      updatedAt: "2025-03-10",
-      note: "Strategic key market",
-    },
-    {
-      id: "0002",
-      code: "US",
-      countryName: "United States",
-      capital: "Washington, D.C.",
-      region: "Americas",
-      population: 331893745,
-      priority: "High",
-      active: true,
-      createdBy: "Tristan Nguyen",
-      createdAt: "2024-02-08",
-      updatedBy: "Admin User",
-      updatedAt: "2025-04-01",
-      note: "High growth potential",
-    },
-    {
-      id: "0003",
-      code: "JP",
-      countryName: "Japan",
-      capital: "Tokyo",
-      region: "Asia",
-      population: 125507472,
-      priority: "High",
-      active: true,
-      createdBy: "System Bot",
-      createdAt: "2024-03-20",
-      updatedBy: "Sarah Jenkins",
-      updatedAt: "2025-02-14",
-      note: "Regional office center",
-    },
-    {
-      id: "0004",
-      code: "DE",
-      countryName: "Germany",
-      capital: "Berlin",
-      region: "Europe",
-      population: 83190556,
-      priority: "Standard",
-      active: true,
-      createdBy: "Sarah Jenkins",
-      createdAt: "2024-04-05",
-      updatedBy: "Alex Rivera",
-      updatedAt: "2025-01-22",
-      note: "Trade agreement active",
-    },
-    {
-      id: "0005",
-      code: "GB",
-      countryName: "United Kingdom",
-      capital: "London",
-      region: "Europe",
-      population: 67326569,
-      priority: "High",
-      active: true,
-      createdBy: "Alex Rivera",
-      createdAt: "2024-05-11",
-      updatedBy: "Admin User",
-      updatedAt: "2025-05-03",
-      note: "Standard operational hub",
-    },
-    {
-      id: "0006",
-      code: "SG",
-      countryName: "Singapore",
-      capital: "Singapore",
-      region: "Asia",
-      population: 5453600,
-      priority: "High",
-      active: true,
-      createdBy: "Admin User",
-      createdAt: "2024-06-18",
-      updatedBy: "Tristan Nguyen",
-      updatedAt: "2025-06-01",
-      note: "Strategic key market",
-    },
-    {
-      id: "0007",
-      code: "AU",
-      countryName: "Australia",
-      capital: "Canberra",
-      region: "Oceania",
-      population: 25688079,
-      priority: "Standard",
-      active: false,
-      createdBy: "Tristan Nguyen",
-      createdAt: "2024-07-22",
-      updatedBy: "System Bot",
-      updatedAt: "2025-07-10",
-      note: "Compliance review pending",
-    },
-    {
-      id: "0008",
-      code: "FR",
-      countryName: "France",
-      capital: "Paris",
-      region: "Europe",
-      population: 67749632,
-      priority: "Standard",
-      active: true,
-      createdBy: "System Bot",
-      createdAt: "2024-08-30",
-      updatedBy: "Sarah Jenkins",
-      updatedAt: "2025-03-28",
-      note: "High growth potential",
-    },
-    {
-      id: "0009",
-      code: "KR",
-      countryName: "South Korea",
-      capital: "Seoul",
-      region: "Asia",
-      population: 51744876,
-      priority: "High",
-      active: true,
-      createdBy: "Sarah Jenkins",
-      createdAt: "2024-09-14",
-      updatedBy: "Alex Rivera",
-      updatedAt: "2025-04-17",
-      note: "Trade agreement active",
-    },
-    {
-      id: "0010",
-      code: "AE",
-      countryName: "United Arab Emirates",
-      capital: "Abu Dhabi",
-      region: "Asia",
-      population: 9890400,
-      priority: "High",
-      active: true,
-      createdBy: "Alex Rivera",
-      createdAt: "2024-10-03",
-      updatedBy: "Admin User",
-      updatedAt: "2025-05-22",
-      note: "Regional office center",
-    },
-  ];
-}
-
-function initCountryGrid() {
-  if (!window.allCountryData || window.allCountryData.length === 0) {
-    window.allCountryData = generateCountryDataset();
-  }
-  const countryData = window.allCountryData;
-  const totalCount = countryData.length;
-  const activeCount = countryData.filter((c) => c.active).length;
-  const totalPop = countryData.reduce((acc, c) => acc + c.population, 0);
-  const highPriorityCount = countryData.filter((c) => c.priority === "High").length;
-  const uniqueRegionsCount = new Set(countryData.map((c) => c.region)).size;
-
-  const elTotal = document.getElementById("statTotalCountries");
-  const elActive = document.getElementById("statActiveMarkets");
-  const elPop = document.getElementById("statTotalPopulation");
-  const elPriority = document.getElementById("statHighPriority");
-  const elRegions = document.getElementById("statTotalRegions");
-  if (elTotal) elTotal.textContent = totalCount;
-  if (elActive) elActive.textContent = activeCount;
-  if (elPop) elPop.textContent = (totalPop / 1e9).toFixed(2) + "B";
-  if (elPriority) elPriority.textContent = highPriorityCount;
-  if (elRegions) elRegions.textContent = uniqueRegionsCount;
-
-  // Render Table Rows
-  renderCountryTableRows(countryData);
-
-  // Handle select all checkbox
-  const selectAll = document.getElementById("selectAllList");
-  if (selectAll) {
-    selectAll.addEventListener("change", (e) => {
-      document
-        .querySelectorAll('#countryListTable tbody input[type="checkbox"]')
-        .forEach((cb) => (cb.checked = e.target.checked));
-    });
-  }
-}
-
-function renderCountryTableRows(data) {
-  const tbody = document.getElementById("countryTableBody");
-  if (!tbody) return;
-
-  if (!data || data.length === 0) {
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="13" class="text-center py-4 text-muted">
-          <i class="fa-solid fa-folder-open me-2"></i>No country records found.
-        </td>
-      </tr>
-    `;
-    return;
-  }
-
-  const gradientMap = [
-    "linear-gradient(135deg, #3b82f6, #1d4ed8)",
-    "linear-gradient(135deg, #10b981, #047857)",
-    "linear-gradient(135deg, #8b5cf6, #6d28d9)",
-    "linear-gradient(135deg, #f59e0b, #b45309)",
-    "linear-gradient(135deg, #ec4899, #be185d)",
-    "linear-gradient(135deg, #06b6d4, #0e7490)",
-  ];
-
-  const REGION_BADGES = {
-    Asia: { bg: "badge-blue", icon: "fa-globe-asia" },
-    Europe: { bg: "badge-purple", icon: "fa-earth-europe" },
-    Americas: { bg: "badge-orange", icon: "fa-earth-americas" },
-    Oceania: { bg: "badge-cyan", icon: "fa-earth-oceania" },
-    Africa: { bg: "badge-rose", icon: "fa-earth-africa" },
-  };
-
-  const PRIORITY_BADGES = {
-    High: { class: "badge-red", icon: "fa-fire", label: "High Priority" },
-    Standard: { class: "badge-indigo", icon: "fa-layer-group", label: "Standard" },
-    Low: { class: "badge-slate", icon: "fa-arrow-down-short-wide", label: "Low" },
-  };
-
-  tbody.innerHTML = data
-    .map((item) => {
-      const code = item.code || "VN";
-      const initials = code.substring(0, 2).toUpperCase();
-      const charSum = (code.charCodeAt(0) || 0) + (code.charCodeAt(1) || 0);
-      const bgGrad = gradientMap[charSum % gradientMap.length];
-      const reg = REGION_BADGES[item.region] || { bg: "badge-slate", icon: "fa-globe" };
-      const prio = PRIORITY_BADGES[item.priority] || {
-        class: "badge-slate",
-        icon: "fa-circle-info",
-        label: item.priority,
-      };
-      const statusClass = item.active ? "badge-green" : "badge-red";
-      const statusIcon = item.active ? "fa-circle" : "fa-circle-xmark";
-      const statusLabel = item.active ? "Active" : "Inactive";
-
-      return `
-        <tr>
-          <td>
-            <input type="checkbox" class="country-row-cb" aria-label="Select ${item.countryName}" />
-          </td>
-          <td>
-            <span class="badge-soft badge-blue">#${code}</span>
-          </td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div style="background:${bgGrad}; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:#fff; flex-shrink:0;">
-                ${initials}
-              </div>
-              <div>
-                <div class="fw-semibold text-main">${item.countryName}</div>
-                <div class="text-muted small">${item.capital ? "Capital: " + item.capital : ""}</div>
-              </div>
-            </div>
-          </td>
-          <td>
-            <span class="text-muted small">
-              <i class="fa-solid fa-location-dot text-primary me-1"></i>${item.capital || "—"}
-            </span>
-          </td>
-          <td>
-            <span class="badge-soft ${reg.bg}">
-              <i class="fa-solid ${reg.icon} me-1"></i>${item.region}
-            </span>
-          </td>
-          <td>
-            <span class="fw-semibold text-main">
-              <i class="fa-solid fa-users text-muted me-1 small"></i>${Number(item.population).toLocaleString()}
-            </span>
-          </td>
-          <td>
-            <span class="badge-soft ${prio.class}">
-              <i class="fa-solid ${prio.icon} me-1"></i>${prio.label}
-            </span>
-          </td>
-          <td>
-            <span class="badge-soft ${statusClass}">
-              <i class="fa-solid ${statusIcon}"></i> ${statusLabel}
-            </span>
-          </td>
-          <td>
-            <span class="text-muted small">
-              <i class="fa-regular fa-user me-1"></i>${item.createdBy}
-            </span>
-          </td>
-          <td><span class="text-muted small">${item.createdAt}</span></td>
-          <td>
-            <span class="text-muted small">
-              <i class="fa-regular fa-user me-1"></i>${item.updatedBy}
-            </span>
-          </td>
-          <td><span class="text-muted small">${item.updatedAt}</span></td>
-          <td><span class="text-muted small fst-italic">${item.note || "—"}</span></td>
-        </tr>
-      `;
-    })
-    .join("");
-}
-
-window.initCountryGrid = initCountryGrid;
-window.renderCountryTableRows = renderCountryTableRows;
 
 /* ======================================================
    10. EMPLOYEE DIRECTORY — DATA & CONTROLLER LOGIC
@@ -2102,16 +1777,6 @@ function initEmployeesPage() {
     });
   }
 
-  // ── Select All in List View ──
-  const selectAll = document.getElementById("selectAllList");
-  if (selectAll) {
-    selectAll.addEventListener("change", (e) => {
-      document
-        .querySelectorAll('#empListTable tbody input[type="checkbox"]')
-        .forEach((cb) => (cb.checked = e.target.checked));
-    });
-  }
-
   // Card click delegation (Only view icon button opens modal)
   const cardViewContainer = document.getElementById("empCardView");
   if (cardViewContainer) {
@@ -2688,9 +2353,7 @@ function initRecruitmentPage() {
   renderPipelineBoard();
   initRecruitmentDragAndDrop();
   initRecruitmentFilters();
-  initRecruitmentForms();
   initViewToggle();
-  initSelectAllCandidatesCheckbox();
 }
 
 function initViewToggle() {
@@ -2712,16 +2375,6 @@ function initViewToggle() {
       kanbanBtn.classList.remove("active");
       listView.classList.remove("d-none");
       kanbanBoard.classList.add("d-none");
-    });
-  }
-}
-
-function initSelectAllCandidatesCheckbox() {
-  const selectAll = document.getElementById("selectAllList");
-  if (selectAll) {
-    selectAll.addEventListener("change", () => {
-      const checkboxes = document.querySelectorAll('.app-list-table tbody input[type="checkbox"]');
-      checkboxes.forEach((cb) => (cb.checked = selectAll.checked));
     });
   }
 }
@@ -2972,111 +2625,20 @@ function renderCandidateTable() {
   const searchVal = (document.getElementById("recruitmentSearchInput")?.value || "")
     .toLowerCase()
     .trim();
-  const deptVal = document.getElementById("filterDepartment")?.value || "all";
-  const roleVal = document.getElementById("filterRole")?.value || "all";
-  const stageVal = document.getElementById("filterStage")?.value || "all";
-  const matchVal = document.getElementById("filterMatchLevel")?.value || "all";
+  const deptVal = (document.getElementById("filterDepartment")?.value || "all").toLowerCase();
+  const roleVal = (document.getElementById("filterRole")?.value || "all").toLowerCase();
+  const stageVal = (document.getElementById("filterStage")?.value || "all").toLowerCase();
 
-  let filtered = [...RECRUITMENT_DATA];
+  const rows = tbody.querySelectorAll("tr");
+  rows.forEach((row) => {
+    const text = row.textContent.toLowerCase();
+    const matchSearch = !searchVal || text.includes(searchVal);
+    const matchDept = deptVal === "all" || text.includes(deptVal);
+    const matchRole = roleVal === "all" || text.includes(roleVal);
+    const matchStage = stageVal === "all" || text.includes(stageVal);
 
-  if (deptVal !== "all") filtered = filtered.filter((c) => c.department === deptVal);
-  if (roleVal !== "all") filtered = filtered.filter((c) => c.role === roleVal);
-  if (stageVal !== "all") filtered = filtered.filter((c) => c.stage === stageVal);
-  if (matchVal === "high") filtered = filtered.filter((c) => c.matchScore >= 80);
-  if (matchVal === "medium")
-    filtered = filtered.filter((c) => c.matchScore >= 70 && c.matchScore < 80);
-  if (matchVal === "fair") filtered = filtered.filter((c) => c.matchScore < 70);
-
-  if (searchVal) {
-    filtered = filtered.filter(
-      (c) =>
-        c.name.toLowerCase().includes(searchVal) ||
-        c.role.toLowerCase().includes(searchVal) ||
-        c.department.toLowerCase().includes(searchVal),
-    );
-  }
-
-  if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="15" class="text-center py-4 text-muted">No candidate records matching criteria.</td></tr>`;
-    return;
-  }
-
-  const deptBadgeMap = {
-    Engineering: `<span class="badge-soft badge-blue"><i class="fa-solid fa-code"></i> Engineering</span>`,
-    Marketing: `<span class="badge-soft badge-purple"><i class="fa-solid fa-bullhorn"></i> Marketing</span>`,
-    Design: `<span class="badge-soft badge-amber"><i class="fa-solid fa-paintbrush"></i> Design</span>`,
-    Product: `<span class="badge-soft badge-indigo"><i class="fa-solid fa-cubes"></i> Product</span>`,
-    Sales: `<span class="badge-soft badge-rose"><i class="fa-solid fa-handshake"></i> Sales</span>`,
-    "HR Specialist": `<span class="badge-soft badge-teal"><i class="fa-solid fa-user-group"></i> HR Specialist</span>`,
-  };
-
-  const stageBadgeMap = {
-    applied: `<span class="badge-soft badge-blue"><i class="fa-solid fa-circle"></i> Applied</span>`,
-    screening: `<span class="badge-soft badge-cyan"><i class="fa-solid fa-circle"></i> Screening</span>`,
-    interview: `<span class="badge-soft badge-purple"><i class="fa-solid fa-circle"></i> Interview</span>`,
-    offer: `<span class="badge-soft badge-amber"><i class="fa-solid fa-circle"></i> Offer</span>`,
-    hired: `<span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Hired</span>`,
-    rejected: `<span class="badge-soft badge-red"><i class="fa-solid fa-circle"></i> Rejected</span>`,
-  };
-
-  tbody.innerHTML = filtered
-    .map((c, idx) => {
-      const code = `#CAND${String(idx + 1).padStart(3, "0")}`;
-      const deptBadge =
-        deptBadgeMap[c.department] || `<span class="badge-soft badge-slate">${c.department}</span>`;
-      const stageBadge =
-        stageBadgeMap[c.stage] || `<span class="badge-soft badge-green">${c.stage}</span>`;
-
-      return `
-      <tr>
-        <td><input type="checkbox" value="${c.id}" /></td>
-        <td class="text-center">
-          <button class="btn-action-eye" title="View Profile" onclick="openCandidateDetailModal('${c.id}')">
-            <i class="fa-regular fa-eye"></i>
-          </button>
-        </td>
-        <td><span class="badge-soft badge-blue emp-list-id">${code}</span></td>
-        <td>
-          <div class="emp-list-identity">
-            <img src="${c.avatar}" class="emp-list-avatar" alt="${c.name}" />
-            <div>
-              <div class="emp-list-name">${c.name}</div>
-            </div>
-          </div>
-        </td>
-        <td>${deptBadge}</td>
-        <td><span class="fw-semibold text-dark">${c.role}</span></td>
-        <td>
-          <div class="match-score-pill ${c.matchClass}">
-            <i class="fa-solid fa-sparkles"></i> <span>${c.matchScore}%</span>
-          </div>
-        </td>
-        <td>${stageBadge}</td>
-        <td>
-          <div class="small text-muted">
-            <div><i class="fa-regular fa-envelope me-1"></i>${c.email}</div>
-            <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>${c.phone || "+84 900 000 000"}</div>
-          </div>
-        </td>
-        <td><span class="text-muted small">${c.appliedDate || "May 20, 2024"}</span></td>
-        <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>HR Recruiter</span></td>
-        <td><span class="text-muted small">2024-05-20</span></td>
-        <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
-        <td><span class="text-muted small">2026-08-07</span></td>
-        <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">${c.notes || "Candidate evaluation notes"}</span></td>
-      </tr>
-    `;
-    })
-    .join("");
-
-  const selectAll = document.getElementById("selectAllList");
-  if (selectAll) {
-    selectAll.onclick = function (e) {
-      tbody
-        .querySelectorAll('input[type="checkbox"]')
-        .forEach((cb) => (cb.checked = e.target.checked));
-    };
-  }
+    row.style.display = matchSearch && matchDept && matchRole && matchStage ? "" : "none";
+  });
 }
 
 function createCandidateCardHTML(c) {
@@ -3329,10 +2891,6 @@ function openCandidateDetailModal(id) {
   bsModal.show();
 }
 
-function initRecruitmentForms() {
-  // No active modal form listeners needed
-}
-
 // Expose globally
 window.RECRUITMENT_DATA = RECRUITMENT_DATA;
 window.initRecruitmentPage = initRecruitmentPage;
@@ -3343,13 +2901,6 @@ window.openStageCandidatesModal = openStageCandidatesModal;
 window.filterStageCandidatesModal = filterStageCandidatesModal;
 window.clearStageModalSearch = clearStageModalSearch;
 window.openCandidateDetailFromStageModal = openCandidateDetailFromStageModal;
-
-/* Settings Page Interactivity */
-function initSettingsPage() {
-  // No active settings page form listeners
-}
-
-window.initSettingsPage = initSettingsPage;
 
 /* ==========================================================================
    LEAVE MANAGEMENT & PLANNER PAGE LOGIC
@@ -3388,18 +2939,6 @@ function initLeaveManagementPage() {
       leaveScheduleView.style.display = "none";
       leaveListView.classList.remove("d-none");
       leaveListView.style.display = "block";
-    });
-  }
-
-  // 9. Select All Checkbox Handler in List Table
-  const selectAllList = document.getElementById("selectAllList");
-  const leaveListTable = document.getElementById("leaveListTable");
-  if (selectAllList && leaveListTable) {
-    selectAllList.addEventListener("change", (e) => {
-      const rowCheckboxes = leaveListTable.querySelectorAll("tbody input[type='checkbox']");
-      rowCheckboxes.forEach((cb) => {
-        cb.checked = e.target.checked;
-      });
     });
   }
 }

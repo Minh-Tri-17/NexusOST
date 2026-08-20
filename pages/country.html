@@ -490,29 +490,307 @@
             </div>
 
             <!-- Enterprise Native Data Table -->
-            <div class="table-responsive rounded-3 mb-3 app-table-scroll">
-              <table class="app-list-table" id="countryListTable">
+            <div class="table-responsive rounded-3 mb-3 app-table-scroll" style="overflow-x: auto; max-width: 100%;">
+              <table class="app-list-table" id="countryListTable" style="min-width: 1600px; width: 100%;">
                 <thead>
                   <tr>
-                    <th style="width: 36px">
+                    <th class="col-pin" style="width: 36px; min-width: 36px;">
                       <input type="checkbox" id="selectAllList" aria-label="Select all" />
                     </th>
-                    <th>Code</th>
-                    <th>Country Name</th>
-                    <th>Capital</th>
-                    <th>Region</th>
-                    <th>Population</th>
-                    <th>Priority</th>
-                    <th>Status</th>
-                    <th>Created By</th>
-                    <th>Created At</th>
-                    <th>Updated By</th>
-                    <th>Updated At</th>
-                    <th>Note</th>
+                    <th style="min-width: 90px;">Code</th>
+                    <th style="min-width: 190px;">Country Name</th>
+                    <th style="min-width: 130px;">Capital</th>
+                    <th style="min-width: 120px;">Region</th>
+                    <th style="min-width: 140px;">Population</th>
+                    <th style="min-width: 110px;">Priority</th>
+                    <th style="min-width: 110px;">Status</th>
+                    <th style="min-width: 150px;">Created By</th>
+                    <th style="min-width: 130px;">Created At</th>
+                    <th style="min-width: 150px;">Updated By</th>
+                    <th style="min-width: 130px;">Updated At</th>
+                    <th style="min-width: 220px;">Note</th>
                   </tr>
                 </thead>
                 <tbody id="countryTableBody">
-                  <!-- Dynamically rendered via JS -->
+                  <!-- Row 1: Vietnam -->
+                  <tr>
+                    <td class="col-pin">
+                      <input type="checkbox" class="country-row-cb" aria-label="Select Vietnam" />
+                    </td>
+                    <td><span class="badge-soft badge-blue">#VN</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0;">
+                          VN
+                        </div>
+                        <div>
+                          <div class="fw-semibold text-main">Vietnam</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small"><i class="fa-solid fa-location-dot text-primary me-1"></i>Hanoi</span></td>
+                    <td><span class="badge-soft badge-blue"><i class="fa-solid fa-globe-asia me-1"></i>Asia</span></td>
+                    <td><span class="fw-semibold text-main"><i class="fa-solid fa-users text-muted me-1 small"></i>98,858,950</span></td>
+                    <td><span class="badge-soft badge-red"><i class="fa-solid fa-fire me-1"></i>High Priority</span></td>
+                    <td><span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2024-01-15</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Alex Morgan</span></td>
+                    <td><span class="text-muted small">2026-08-01</span></td>
+                    <td><span class="text-muted small fst-italic">Primary headquarters regional node</span></td>
+                  </tr>
+
+                  <!-- Row 2: United States -->
+                  <tr>
+                    <td class="col-pin">
+                      <input type="checkbox" class="country-row-cb" aria-label="Select United States" />
+                    </td>
+                    <td><span class="badge-soft badge-blue">#US</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div style="background: linear-gradient(135deg, #10b981, #047857); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0;">
+                          US
+                        </div>
+                        <div>
+                          <div class="fw-semibold text-main">United States</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small"><i class="fa-solid fa-location-dot text-primary me-1"></i>Washington D.C.</span></td>
+                    <td><span class="badge-soft badge-orange"><i class="fa-solid fa-earth-americas me-1"></i>Americas</span></td>
+                    <td><span class="fw-semibold text-main"><i class="fa-solid fa-users text-muted me-1 small"></i>334,914,895</span></td>
+                    <td><span class="badge-soft badge-red"><i class="fa-solid fa-fire me-1"></i>High Priority</span></td>
+                    <td><span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                    <td><span class="text-muted small">2024-02-10</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2026-07-20</span></td>
+                    <td><span class="text-muted small fst-italic">Strategic North America hub</span></td>
+                  </tr>
+
+                  <!-- Row 3: Japan -->
+                  <tr>
+                    <td class="col-pin">
+                      <input type="checkbox" class="country-row-cb" aria-label="Select Japan" />
+                    </td>
+                    <td><span class="badge-soft badge-blue">#JP</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div style="background: linear-gradient(135deg, #8b5cf6, #6d28d9); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0;">
+                          JP
+                        </div>
+                        <div>
+                          <div class="fw-semibold text-main">Japan</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small"><i class="fa-solid fa-location-dot text-primary me-1"></i>Tokyo</span></td>
+                    <td><span class="badge-soft badge-blue"><i class="fa-solid fa-globe-asia me-1"></i>Asia</span></td>
+                    <td><span class="fw-semibold text-main"><i class="fa-solid fa-users text-muted me-1 small"></i>125,124,000</span></td>
+                    <td><span class="badge-soft badge-red"><i class="fa-solid fa-fire me-1"></i>High Priority</span></td>
+                    <td><span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                    <td><span class="text-muted small">2024-03-05</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                    <td><span class="text-muted small">2026-06-15</span></td>
+                    <td><span class="text-muted small fst-italic">High R&D investment market</span></td>
+                  </tr>
+
+                  <!-- Row 4: Germany -->
+                  <tr>
+                    <td class="col-pin">
+                      <input type="checkbox" class="country-row-cb" aria-label="Select Germany" />
+                    </td>
+                    <td><span class="badge-soft badge-blue">#DE</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div style="background: linear-gradient(135deg, #f59e0b, #b45309); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0;">
+                          DE
+                        </div>
+                        <div>
+                          <div class="fw-semibold text-main">Germany</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small"><i class="fa-solid fa-location-dot text-primary me-1"></i>Berlin</span></td>
+                    <td><span class="badge-soft badge-purple"><i class="fa-solid fa-earth-europe me-1"></i>Europe</span></td>
+                    <td><span class="fw-semibold text-main"><i class="fa-solid fa-users text-muted me-1 small"></i>84,358,845</span></td>
+                    <td><span class="badge-soft badge-indigo"><i class="fa-solid fa-layer-group me-1"></i>Standard</span></td>
+                    <td><span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Alex Rivera</span></td>
+                    <td><span class="text-muted small">2024-04-12</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Elena Rostova</span></td>
+                    <td><span class="text-muted small">2026-05-10</span></td>
+                    <td><span class="text-muted small fst-italic">EU central operation office</span></td>
+                  </tr>
+
+                  <!-- Row 5: Singapore -->
+                  <tr>
+                    <td class="col-pin">
+                      <input type="checkbox" class="country-row-cb" aria-label="Select Singapore" />
+                    </td>
+                    <td><span class="badge-soft badge-blue">#SG</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div style="background: linear-gradient(135deg, #ec4899, #be185d); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0;">
+                          SG
+                        </div>
+                        <div>
+                          <div class="fw-semibold text-main">Singapore</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small"><i class="fa-solid fa-location-dot text-primary me-1"></i>Singapore</span></td>
+                    <td><span class="badge-soft badge-blue"><i class="fa-solid fa-globe-asia me-1"></i>Asia</span></td>
+                    <td><span class="fw-semibold text-main"><i class="fa-solid fa-users text-muted me-1 small"></i>5,917,600</span></td>
+                    <td><span class="badge-soft badge-red"><i class="fa-solid fa-fire me-1"></i>High Priority</span></td>
+                    <td><span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2024-05-01</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                    <td><span class="text-muted small">2026-08-05</span></td>
+                    <td><span class="text-muted small fst-italic">Financial technology APAC center</span></td>
+                  </tr>
+
+                  <!-- Row 6: United Kingdom -->
+                  <tr>
+                    <td class="col-pin">
+                      <input type="checkbox" class="country-row-cb" aria-label="Select United Kingdom" />
+                    </td>
+                    <td><span class="badge-soft badge-blue">#GB</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div style="background: linear-gradient(135deg, #06b6d4, #0e7490); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0;">
+                          GB
+                        </div>
+                        <div>
+                          <div class="fw-semibold text-main">United Kingdom</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small"><i class="fa-solid fa-location-dot text-primary me-1"></i>London</span></td>
+                    <td><span class="badge-soft badge-purple"><i class="fa-solid fa-earth-europe me-1"></i>Europe</span></td>
+                    <td><span class="fw-semibold text-main"><i class="fa-solid fa-users text-muted me-1 small"></i>67,081,000</span></td>
+                    <td><span class="badge-soft badge-indigo"><i class="fa-solid fa-layer-group me-1"></i>Standard</span></td>
+                    <td><span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                    <td><span class="text-muted small">2024-06-18</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Marcus Vance</span></td>
+                    <td><span class="text-muted small">2026-04-22</span></td>
+                    <td><span class="text-muted small fst-italic">London regional subsidiary</span></td>
+                  </tr>
+
+                  <!-- Row 7: Australia -->
+                  <tr>
+                    <td class="col-pin">
+                      <input type="checkbox" class="country-row-cb" aria-label="Select Australia" />
+                    </td>
+                    <td><span class="badge-soft badge-blue">#AU</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0;">
+                          AU
+                        </div>
+                        <div>
+                          <div class="fw-semibold text-main">Australia</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small"><i class="fa-solid fa-location-dot text-primary me-1"></i>Canberra</span></td>
+                    <td><span class="badge-soft badge-cyan"><i class="fa-solid fa-earth-oceania me-1"></i>Oceania</span></td>
+                    <td><span class="fw-semibold text-main"><i class="fa-solid fa-users text-muted me-1 small"></i>26,010,000</span></td>
+                    <td><span class="badge-soft badge-slate"><i class="fa-solid fa-arrow-down-short-wide me-1"></i>Low</span></td>
+                    <td><span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                    <td><span class="text-muted small">2024-07-20</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2026-03-14</span></td>
+                    <td><span class="text-muted small fst-italic">Expansion phase 2 target</span></td>
+                  </tr>
+
+                  <!-- Row 8: Brazil -->
+                  <tr>
+                    <td class="col-pin">
+                      <input type="checkbox" class="country-row-cb" aria-label="Select Brazil" />
+                    </td>
+                    <td><span class="badge-soft badge-blue">#BR</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div style="background: linear-gradient(135deg, #10b981, #047857); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0;">
+                          BR
+                        </div>
+                        <div>
+                          <div class="fw-semibold text-main">Brazil</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small"><i class="fa-solid fa-location-dot text-primary me-1"></i>Brasilia</span></td>
+                    <td><span class="badge-soft badge-orange"><i class="fa-solid fa-earth-americas me-1"></i>Americas</span></td>
+                    <td><span class="fw-semibold text-main"><i class="fa-solid fa-users text-muted me-1 small"></i>214,300,000</span></td>
+                    <td><span class="badge-soft badge-indigo"><i class="fa-solid fa-layer-group me-1"></i>Standard</span></td>
+                    <td><span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                    <td><span class="text-muted small">2024-08-30</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                    <td><span class="text-muted small">2025-03-28</span></td>
+                    <td><span class="text-muted small fst-italic">High growth potential market</span></td>
+                  </tr>
+
+                  <!-- Row 9: South Korea -->
+                  <tr>
+                    <td class="col-pin">
+                      <input type="checkbox" class="country-row-cb" aria-label="Select South Korea" />
+                    </td>
+                    <td><span class="badge-soft badge-blue">#KR</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div style="background: linear-gradient(135deg, #8b5cf6, #6d28d9); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0;">
+                          KR
+                        </div>
+                        <div>
+                          <div class="fw-semibold text-main">South Korea</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small"><i class="fa-solid fa-location-dot text-primary me-1"></i>Seoul</span></td>
+                    <td><span class="badge-soft badge-blue"><i class="fa-solid fa-globe-asia me-1"></i>Asia</span></td>
+                    <td><span class="fw-semibold text-main"><i class="fa-solid fa-users text-muted me-1 small"></i>51,744,876</span></td>
+                    <td><span class="badge-soft badge-red"><i class="fa-solid fa-fire me-1"></i>High Priority</span></td>
+                    <td><span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                    <td><span class="text-muted small">2024-09-14</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Alex Rivera</span></td>
+                    <td><span class="text-muted small">2025-04-17</span></td>
+                    <td><span class="text-muted small fst-italic">Trade agreement active</span></td>
+                  </tr>
+
+                  <!-- Row 10: United Arab Emirates -->
+                  <tr>
+                    <td class="col-pin">
+                      <input type="checkbox" class="country-row-cb" aria-label="Select United Arab Emirates" />
+                    </td>
+                    <td><span class="badge-soft badge-blue">#AE</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div style="background: linear-gradient(135deg, #f59e0b, #b45309); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0;">
+                          AE
+                        </div>
+                        <div>
+                          <div class="fw-semibold text-main">United Arab Emirates</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small"><i class="fa-solid fa-location-dot text-primary me-1"></i>Abu Dhabi</span></td>
+                    <td><span class="badge-soft badge-blue"><i class="fa-solid fa-globe-asia me-1"></i>Asia</span></td>
+                    <td><span class="fw-semibold text-main"><i class="fa-solid fa-users text-muted me-1 small"></i>9,890,400</span></td>
+                    <td><span class="badge-soft badge-red"><i class="fa-solid fa-fire me-1"></i>High Priority</span></td>
+                    <td><span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Alex Rivera</span></td>
+                    <td><span class="text-muted small">2024-10-03</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                    <td><span class="text-muted small">2025-05-22</span></td>
+                    <td><span class="text-muted small fst-italic">Regional office center</span></td>
+                  </tr>
                 </tbody>
               </table>
             </div>

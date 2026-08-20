@@ -665,33 +665,418 @@
                 <table class="app-list-table" id="recruitmentListTable">
                   <thead>
                     <tr>
-                      <th style="width: 36px">
+                      <th class="col-pin" style="width: 36px">
                         <input type="checkbox" id="selectAllList" aria-label="Select all" />
                       </th>
                       <th style="width: 44px" class="text-center">Action</th>
                       <th>Code</th>
                       <th>Candidate</th>
                       <th>Department</th>
-                      <th>Target Role</th>
+                      <th style="min-width: 180px;">Target Role</th>
                       <th>Match Score</th>
                       <th>Stage</th>
                       <th>Contact</th>
                       <th>Applied Date</th>
-                      <th>Created By</th>
+                      <th style="min-width: 150px;">Created By</th>
                       <th>Created At</th>
-                      <th>Updated By</th>
+                      <th style="min-width: 150px;">Updated By</th>
                       <th>Updated At</th>
-                      <th>Note</th>
+                      <th style="min-width: 220px;">Note</th>
                     </tr>
                   </thead>
                   <tbody id="recruitmentTableBody">
-                    <!-- Rendered dynamically by JS -->
-                  </tbody>
+                  <!-- Row 1: Linh Tran -->
+                  <tr>
+                    <td class="col-pin"><input type="checkbox" value="1" /></td>
+                    <td class="text-center">
+                      <button class="btn-action-eye" title="View Profile" onclick="openCandidateDetailModal('1')">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                    </td>
+                    <td><span class="badge-soft badge-blue emp-list-id">#CAND001</span></td>
+                    <td>
+                      <div class="emp-list-identity">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80" class="emp-list-avatar" alt="Linh Tran" />
+                        <div>
+                          <div class="emp-list-name">Linh Tran</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-blue"><i class="fa-solid fa-code me-1"></i>Engineering</span></td>
+                    <td><span class="fw-semibold text-dark">Senior Frontend Developer</span></td>
+                    <td>
+                      <div class="match-score-pill score-high">
+                        <i class="fa-solid fa-sparkles"></i> <span>96%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-blue"><i class="fa-solid fa-circle"></i> Applied</span></td>
+                    <td>
+                      <div class="small text-muted">
+                        <div><i class="fa-regular fa-envelope me-1"></i>linh.tran@example.com</div>
+                        <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>+84 901 234 567</div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small">May 20, 2024</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>HR Recruiter</span></td>
+                    <td><span class="text-muted small">2024-05-20</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2026-08-07</span></td>
+                    <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">Strong Vue/React background</span></td>
+                  </tr>
+
+                  <!-- Row 2: Minh Nguyen -->
+                  <tr>
+                    <td class="col-pin"><input type="checkbox" value="2" /></td>
+                    <td class="text-center">
+                      <button class="btn-action-eye" title="View Profile" onclick="openCandidateDetailModal('2')">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                    </td>
+                    <td><span class="badge-soft badge-blue emp-list-id">#CAND002</span></td>
+                    <td>
+                      <div class="emp-list-identity">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80" class="emp-list-avatar" alt="Minh Nguyen" />
+                        <div>
+                          <div class="emp-list-name">Minh Nguyen</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-purple"><i class="fa-solid fa-pen-nib me-1"></i>Design</span></td>
+                    <td><span class="fw-semibold text-dark">Lead Product Designer</span></td>
+                    <td>
+                      <div class="match-score-pill score-high">
+                        <i class="fa-solid fa-sparkles"></i> <span>92%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-purple"><i class="fa-solid fa-circle"></i> Screening</span></td>
+                    <td>
+                      <div class="small text-muted">
+                        <div><i class="fa-regular fa-envelope me-1"></i>minh.nguyen@example.com</div>
+                        <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>+84 902 345 678</div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small">May 18, 2024</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>HR Recruiter</span></td>
+                    <td><span class="text-muted small">2024-05-18</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2026-08-06</span></td>
+                    <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">Outstanding Figma portfolio</span></td>
+                  </tr>
+
+                  <!-- Row 3: Thu Pham -->
+                  <tr>
+                    <td class="col-pin"><input type="checkbox" value="3" /></td>
+                    <td class="text-center">
+                      <button class="btn-action-eye" title="View Profile" onclick="openCandidateDetailModal('3')">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                    </td>
+                    <td><span class="badge-soft badge-blue emp-list-id">#CAND003</span></td>
+                    <td>
+                      <div class="emp-list-identity">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80" class="emp-list-avatar" alt="Thu Pham" />
+                        <div>
+                          <div class="emp-list-name">Thu Pham</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-indigo"><i class="fa-solid fa-cubes me-1"></i>Product</span></td>
+                    <td><span class="fw-semibold text-dark">Senior Product Manager</span></td>
+                    <td>
+                      <div class="match-score-pill score-mid">
+                        <i class="fa-solid fa-sparkles"></i> <span>88%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-cyan"><i class="fa-solid fa-circle"></i> Interview</span></td>
+                    <td>
+                      <div class="small text-muted">
+                        <div><i class="fa-regular fa-envelope me-1"></i>thu.pham@example.com</div>
+                        <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>+84 903 456 789</div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small">May 15, 2024</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>HR Recruiter</span></td>
+                    <td><span class="text-muted small">2024-05-15</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2026-08-05</span></td>
+                    <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">Scheduled for round 2</span></td>
+                  </tr>
+
+                  <!-- Row 4: Duc Le -->
+                  <tr>
+                    <td class="col-pin"><input type="checkbox" value="4" /></td>
+                    <td class="text-center">
+                      <button class="btn-action-eye" title="View Profile" onclick="openCandidateDetailModal('4')">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                    </td>
+                    <td><span class="badge-soft badge-blue emp-list-id">#CAND004</span></td>
+                    <td>
+                      <div class="emp-list-identity">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80" class="emp-list-avatar" alt="Duc Le" />
+                        <div>
+                          <div class="emp-list-name">Duc Le</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-blue"><i class="fa-solid fa-code me-1"></i>Engineering</span></td>
+                    <td><span class="fw-semibold text-dark">DevOps Engineer</span></td>
+                    <td>
+                      <div class="match-score-pill score-high">
+                        <i class="fa-solid fa-sparkles"></i> <span>94%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-amber"><i class="fa-solid fa-circle"></i> Offer</span></td>
+                    <td>
+                      <div class="small text-muted">
+                        <div><i class="fa-regular fa-envelope me-1"></i>duc.le@example.com</div>
+                        <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>+84 904 567 890</div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small">May 12, 2024</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>HR Recruiter</span></td>
+                    <td><span class="text-muted small">2024-05-12</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2026-08-04</span></td>
+                    <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">Offer letter dispatched</span></td>
+                  </tr>
+
+                  <!-- Row 5: Hoa Vo -->
+                  <tr>
+                    <td class="col-pin"><input type="checkbox" value="5" /></td>
+                    <td class="text-center">
+                      <button class="btn-action-eye" title="View Profile" onclick="openCandidateDetailModal('5')">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                    </td>
+                    <td><span class="badge-soft badge-blue emp-list-id">#CAND005</span></td>
+                    <td>
+                      <div class="emp-list-identity">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&auto=format&fit=crop&q=80" class="emp-list-avatar" alt="Hoa Vo" />
+                        <div>
+                          <div class="emp-list-name">Hoa Vo</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-orange"><i class="fa-solid fa-bullhorn me-1"></i>Marketing</span></td>
+                    <td><span class="fw-semibold text-dark">Marketing Specialist</span></td>
+                    <td>
+                      <div class="match-score-pill score-mid">
+                        <i class="fa-solid fa-sparkles"></i> <span>85%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Hired</span></td>
+                    <td>
+                      <div class="small text-muted">
+                        <div><i class="fa-regular fa-envelope me-1"></i>hoa.vo@example.com</div>
+                        <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>+84 905 678 901</div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small">May 10, 2024</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>HR Recruiter</span></td>
+                    <td><span class="text-muted small">2024-05-10</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2026-08-03</span></td>
+                    <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">Onboarding scheduled</span></td>
+                  </tr>
+
+                  <!-- Row 6: Khoa Dinh -->
+                  <tr>
+                    <td class="col-pin"><input type="checkbox" value="6" /></td>
+                    <td class="text-center">
+                      <button class="btn-action-eye" title="View Profile" onclick="openCandidateDetailModal('6')">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                    </td>
+                    <td><span class="badge-soft badge-blue emp-list-id">#CAND006</span></td>
+                    <td>
+                      <div class="emp-list-identity">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=120&auto=format&fit=crop&q=80" class="emp-list-avatar" alt="Khoa Dinh" />
+                        <div>
+                          <div class="emp-list-name">Khoa Dinh</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-blue"><i class="fa-solid fa-code me-1"></i>Engineering</span></td>
+                    <td><span class="fw-semibold text-dark">Backend Architect</span></td>
+                    <td>
+                      <div class="match-score-pill score-high">
+                        <i class="fa-solid fa-sparkles"></i> <span>91%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-purple"><i class="fa-solid fa-circle"></i> Screening</span></td>
+                    <td>
+                      <div class="small text-muted">
+                        <div><i class="fa-regular fa-envelope me-1"></i>khoa.dinh@example.com</div>
+                        <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>+84 906 789 012</div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small">May 08, 2024</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>HR Recruiter</span></td>
+                    <td><span class="text-muted small">2024-05-08</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2026-08-02</span></td>
+                    <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">System design test passed</span></td>
+                  </tr>
+
+                  <!-- Row 7: An Nguyen -->
+                  <tr>
+                    <td class="col-pin"><input type="checkbox" value="7" /></td>
+                    <td class="text-center">
+                      <button class="btn-action-eye" title="View Profile" onclick="openCandidateDetailModal('7')">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                    </td>
+                    <td><span class="badge-soft badge-blue emp-list-id">#CAND007</span></td>
+                    <td>
+                      <div class="emp-list-identity">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&auto=format&fit=crop&q=80" class="emp-list-avatar" alt="An Nguyen" />
+                        <div>
+                          <div class="emp-list-name">An Nguyen</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-rose"><i class="fa-solid fa-chart-pie me-1"></i>Finance</span></td>
+                    <td><span class="fw-semibold text-dark">Financial Analyst</span></td>
+                    <td>
+                      <div class="match-score-pill score-mid">
+                        <i class="fa-solid fa-sparkles"></i> <span>87%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-blue"><i class="fa-solid fa-circle"></i> Applied</span></td>
+                    <td>
+                      <div class="small text-muted">
+                        <div><i class="fa-regular fa-envelope me-1"></i>an.nguyen@example.com</div>
+                        <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>+84 907 890 123</div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small">May 05, 2024</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>HR Recruiter</span></td>
+                    <td><span class="text-muted small">2024-05-05</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2026-08-01</span></td>
+                    <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">Resume under review</span></td>
+                  </tr>
+
+                  <!-- Row 8: Bao Tran -->
+                  <tr>
+                    <td class="col-pin"><input type="checkbox" value="8" /></td>
+                    <td class="text-center">
+                      <button class="btn-action-eye" title="View Profile" onclick="openCandidateDetailModal('8')">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                    </td>
+                    <td><span class="badge-soft badge-blue emp-list-id">#CAND008</span></td>
+                    <td>
+                      <div class="emp-list-identity">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&auto=format&fit=crop&q=80" class="emp-list-avatar" alt="Bao Tran" />
+                        <div>
+                          <div class="emp-list-name">Bao Tran</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-teal"><i class="fa-solid fa-users-gear me-1"></i>HR</span></td>
+                    <td><span class="fw-semibold text-dark">Talent Acquisition Lead</span></td>
+                    <td>
+                      <div class="match-score-pill score-high">
+                        <i class="fa-solid fa-sparkles"></i> <span>95%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-cyan"><i class="fa-solid fa-circle"></i> Interview</span></td>
+                    <td>
+                      <div class="small text-muted">
+                        <div><i class="fa-regular fa-envelope me-1"></i>bao.tran@example.com</div>
+                        <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>+84 908 901 234</div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small">May 02, 2024</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>HR Recruiter</span></td>
+                    <td><span class="text-muted small">2024-05-02</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2026-07-31</span></td>
+                    <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">Final round interview</span></td>
+                  </tr>
+
+                  <!-- Row 9: Lan Hoang -->
+                  <tr>
+                    <td class="col-pin"><input type="checkbox" value="9" /></td>
+                    <td class="text-center">
+                      <button class="btn-action-eye" title="View Profile" onclick="openCandidateDetailModal('9')">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                    </td>
+                    <td><span class="badge-soft badge-blue emp-list-id">#CAND009</span></td>
+                    <td>
+                      <div class="emp-list-identity">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&auto=format&fit=crop&q=80" class="emp-list-avatar" alt="Lan Hoang" />
+                        <div>
+                          <div class="emp-list-name">Lan Hoang</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-cyan"><i class="fa-solid fa-handshake me-1"></i>Sales</span></td>
+                    <td><span class="fw-semibold text-dark">Enterprise Account Exec</span></td>
+                    <td>
+                      <div class="match-score-pill score-mid">
+                        <i class="fa-solid fa-sparkles"></i> <span>89%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-amber"><i class="fa-solid fa-circle"></i> Offer</span></td>
+                    <td>
+                      <div class="small text-muted">
+                        <div><i class="fa-regular fa-envelope me-1"></i>lan.hoang@example.com</div>
+                        <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>+84 909 012 345</div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small">Apr 28, 2024</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>HR Recruiter</span></td>
+                    <td><span class="text-muted small">2024-04-28</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2026-07-30</span></td>
+                    <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">Salary negotiation stage</span></td>
+                  </tr>
+
+                  <!-- Row 10: Tuan Bui -->
+                  <tr>
+                    <td class="col-pin"><input type="checkbox" value="10" /></td>
+                    <td class="text-center">
+                      <button class="btn-action-eye" title="View Profile" onclick="openCandidateDetailModal('10')">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                    </td>
+                    <td><span class="badge-soft badge-blue emp-list-id">#CAND010</span></td>
+                    <td>
+                      <div class="emp-list-identity">
+                        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=120&auto=format&fit=crop&q=80" class="emp-list-avatar" alt="Tuan Bui" />
+                        <div>
+                          <div class="emp-list-name">Tuan Bui</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-slate"><i class="fa-solid fa-gears me-1"></i>Operations</span></td>
+                    <td><span class="fw-semibold text-dark">Operations Manager</span></td>
+                    <td>
+                      <div class="match-score-pill score-mid">
+                        <i class="fa-solid fa-sparkles"></i> <span>86%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-soft badge-red"><i class="fa-solid fa-circle"></i> Rejected</span></td>
+                    <td>
+                      <div class="small text-muted">
+                        <div><i class="fa-regular fa-envelope me-1"></i>tuan.bui@example.com</div>
+                        <div class="text-xs text-light"><i class="fa-solid fa-phone me-1"></i>+84 910 123 456</div>
+                      </div>
+                    </td>
+                    <td><span class="text-muted small">Apr 25, 2024</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>HR Recruiter</span></td>
+                    <td><span class="text-muted small">2024-04-25</span></td>
+                    <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                    <td><span class="text-muted small">2026-07-29</span></td>
+                    <td><span class="text-muted small fst-italic text-truncate d-inline-block" style="max-width: 130px;">Not aligned with requirements</span></td>
+                  </tr>
+                </tbody>
                 </table>
               </div>
-            </div>
-
-            <!-- Enterprise Table Footer & Pagination -->
             <div class="app-table-footer" role="region" aria-label="Table pagination footer">
               <!-- Left Zone: Counter & Rows per page -->
               <div class="app-footer-left">
