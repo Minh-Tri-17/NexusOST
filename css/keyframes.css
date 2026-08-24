@@ -235,50 +235,45 @@
 /* --------------------------------------------------------------------------
    8. AUTHENTICATION ANIMATIONS & KINETIC MOTION SYSTEM
    -------------------------------------------------------------------------- */
-@keyframes nexusOrbFloat1 {
-  0%,
-  100% {
+@keyframes orbFloat1 {
+  0%, 100% {
     transform: translate(0, 0) scale(1);
   }
   50% {
-    transform: translate(45px, 35px) scale(1.12);
+    transform: translate(30px, 40px) scale(1.1);
   }
 }
 
-@keyframes nexusOrbFloat2 {
-  0%,
-  100% {
+@keyframes orbFloat2 {
+  0%, 100% {
     transform: translate(0, 0) scale(1);
   }
   50% {
-    transform: translate(-40px, -45px) scale(1.08);
+    transform: translate(-35px, -25px) scale(1.08);
   }
 }
 
-@keyframes nexusCardEntrance {
-  from {
+@keyframes cardEntrance {
+  0% {
     opacity: 0;
-    transform: translateY(28px) scale(0.97);
-    filter: blur(8px);
+    transform: translateY(24px) scale(0.98);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0) scale(1);
-    filter: blur(0);
   }
 }
 
-@keyframes nexusImageLevitate {
-  0%,
-  100% {
+@keyframes imageLevitate {
+  0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-7px);
+    transform: translateY(-8px);
   }
 }
 
-@keyframes nexusShimmerSweep {
+@keyframes shimmerSweep {
   0% {
     transform: translateX(-100%) rotate(25deg);
   }

@@ -30,14 +30,14 @@
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="../css/style.css" />
   </head>
-  <body class="nexus-auth-body">
+  <body class="auth-body">
     <!-- Ambient Background Texture & Floating Kinetic Orbs -->
-    <div class="nexus-auth-bg-gradient"></div>
-    <div class="nexus-auth-glow-orb nexus-auth-glow-orb-1"></div>
-    <div class="nexus-auth-glow-orb nexus-auth-glow-orb-2"></div>
+    <div class="auth-bg-gradient"></div>
+    <div class="auth-glow-orb auth-glow-orb-1"></div>
+    <div class="auth-glow-orb auth-glow-orb-2"></div>
 
     <!-- Fixed Top Control Actions (Theme Toggle & Language Switcher) -->
-    <div class="nexus-auth-topbar topbar-action-group">
+    <div class="auth-topbar topbar-action-group">
       <button class="btn-icon-action" id="langTranslateBtn" title="Language / Ngôn ngữ">
         <i class="fa-solid fa-language"></i>
       </button>
@@ -48,13 +48,13 @@
     </div>
 
     <!-- Main Authentication Container -->
-    <div class="nexus-auth-wrapper">
-      <div class="nexus-auth-card">
+    <div class="auth-wrapper">
+      <div class="auth-card">
         <!-- Left Side: NexusOST System Brand Side -->
-        <div class="nexus-auth-brand-side">
+        <div class="auth-brand-side">
           <div>
             <!-- Brand Logo Header (Matching App Sidebar Header) -->
-            <div class="d-flex align-items-center gap-3 mb-4 nexus-animate-item nexus-delay-1">
+            <div class="d-flex align-items-center gap-3 mb-4 animate-item delay-1">
               <img
                 src="../assets/logo.png"
                 alt="Nexus Logo"
@@ -73,35 +73,35 @@
             </div>
 
             <!-- Portal Badge -->
-            <div class="nexus-brand-badge-pill nexus-animate-item nexus-delay-2">
+            <div class="brand-badge-pill animate-item delay-2">
               <i class="fa-solid fa-cube"></i> Enterprise Portal v2.4.0
             </div>
 
-            <h2 class="nexus-auth-title nexus-animate-item nexus-delay-2">
+            <h2 class="auth-title animate-item delay-2">
               Enterprise Resource & Workforce Platform
             </h2>
 
             <!-- Topic Showcase Image -->
-            <div class="nexus-topic-showcase mb-0">
+            <div class="topic-showcase mb-0">
               <img
                 src="../assets/topic.png"
                 alt="Nexus Enterprise Overview"
-                class="nexus-topic-img"
+                class="topic-img"
               />
             </div>
           </div>
         </div>
 
         <!-- Right Side: Interactive Login Form -->
-        <div class="nexus-auth-form-side">
-          <div class="mb-4 nexus-animate-item nexus-delay-1">
+        <div class="auth-form-side">
+          <div class="mb-4 animate-item delay-1">
             <h2 class="fw-bold fs-3 text-main mb-0" style="letter-spacing: -0.02em">
               Sign in to Workspace
             </h2>
           </div>
 
           <!-- Quick Demo Accounts Selection Box -->
-          <div class="nexus-demo-box nexus-animate-item nexus-delay-2">
+          <div class="demo-box animate-item delay-2">
             <div
               class="d-flex align-items-center gap-2 mb-2 text-muted fw-bold text-uppercase"
               style="font-size: 0.72rem; letter-spacing: 0.08em"
@@ -111,21 +111,21 @@
             <div class="d-flex flex-wrap gap-2">
               <button
                 type="button"
-                class="nexus-demo-pill demo-pill-director"
+                class="demo-pill demo-pill-director"
                 onclick="fillDemoAccount('director')"
               >
                 <i class="fa-solid fa-user-tie text-primary"></i> Director
               </button>
               <button
                 type="button"
-                class="nexus-demo-pill demo-pill-hr"
+                class="demo-pill demo-pill-hr"
                 onclick="fillDemoAccount('hr')"
               >
                 <i class="fa-solid fa-user-gear text-success"></i> HR Manager
               </button>
               <button
                 type="button"
-                class="nexus-demo-pill demo-pill-employee"
+                class="demo-pill demo-pill-employee"
                 onclick="fillDemoAccount('employee')"
               >
                 <i class="fa-solid fa-user text-info"></i> Employee
@@ -134,10 +134,10 @@
           </div>
 
           <!-- Auth Mode Tab Switcher -->
-          <div class="nexus-auth-tabs nexus-animate-item nexus-delay-3">
+          <div class="auth-tabs animate-item delay-3">
             <button
               type="button"
-              class="nexus-tab-btn active"
+              class="tab-btn active"
               id="tabEmail"
               onclick="switchLoginTab('email')"
             >
@@ -145,13 +145,13 @@
             </button>
             <button
               type="button"
-              class="nexus-tab-btn"
+              class="tab-btn"
               id="tabEmpId"
               onclick="switchLoginTab('empid')"
             >
               <i class="fa-solid fa-id-card me-1"></i> Employee ID
             </button>
-            <button type="button" class="nexus-tab-btn" id="tabSso" onclick="switchLoginTab('sso')">
+            <button type="button" class="tab-btn" id="tabSso" onclick="switchLoginTab('sso')">
               <i class="fa-solid fa-key me-1"></i> SSO
             </button>
           </div>
@@ -159,37 +159,37 @@
           <!-- Login Form -->
           <form id="loginForm" onsubmit="handleLoginSubmit(event)" novalidate>
             <!-- Email / ID Input -->
-            <div class="nexus-field">
-              <label for="userIdentifier" class="nexus-label" id="identifierLabel"
+            <div class="form-field">
+              <label for="userIdentifier" class="form-label-custom" id="identifierLabel"
                 >Work Email</label
               >
-              <div class="nexus-input-wrapper">
+              <div class="form-input-wrapper">
                 <input
                   type="email"
                   id="userIdentifier"
-                  class="nexus-input"
+                  class="form-input-custom"
                   placeholder="name@nexusost.com"
                   required
                 />
-                <i class="fa-regular fa-envelope nexus-input-icon" id="identifierIcon"></i>
+                <i class="fa-regular fa-envelope form-input-icon" id="identifierIcon"></i>
               </div>
             </div>
 
             <!-- Password Input -->
-            <div class="nexus-field" id="passwordGroup">
-              <label for="userPassword" class="nexus-label">Password</label>
-              <div class="nexus-input-wrapper">
+            <div class="form-field" id="passwordGroup">
+              <label for="userPassword" class="form-label-custom">Password</label>
+              <div class="form-input-wrapper">
                 <input
                   type="password"
                   id="userPassword"
-                  class="nexus-input"
+                  class="form-input-custom"
                   placeholder="••••••••••••"
                   required
                 />
-                <i class="fa-solid fa-lock nexus-input-icon"></i>
+                <i class="fa-solid fa-lock form-input-icon"></i>
                 <button
                   type="button"
-                  class="nexus-toggle-pwd"
+                  class="toggle-pwd"
                   onclick="togglePasswordVisibility('userPassword', 'pwdEyeIcon')"
                   title="Toggle Password Visibility"
                 >
@@ -228,19 +228,19 @@
           </form>
 
           <!-- SSO Divider -->
-          <div class="nexus-divider">
+          <div class="auth-divider">
             <span>or sign in with</span>
           </div>
 
           <!-- Social / Enterprise SSO Grid -->
-          <div class="nexus-sso-grid">
-            <button type="button" class="nexus-sso-btn" onclick="simulateSSOLogin('Microsoft 365')">
+          <div class="sso-grid">
+            <button type="button" class="sso-btn" onclick="simulateSSOLogin('Microsoft 365')">
               <i class="fa-brands fa-microsoft text-primary"></i>
               <span>Microsoft</span>
             </button>
             <button
               type="button"
-              class="nexus-sso-btn"
+              class="sso-btn"
               onclick="simulateSSOLogin('Google Workspace')"
             >
               <i class="fa-brands fa-google text-danger"></i>
@@ -381,19 +381,19 @@
                   <label for="newResetPassword" class="form-label small fw-bold"
                     >New Password</label
                   >
-                  <div class="nexus-input-wrapper">
+                  <div class="form-input-wrapper">
                     <input
                       type="password"
                       id="newResetPassword"
-                      class="nexus-input"
+                      class="form-input-custom"
                       placeholder="••••••••••••"
                       oninput="onPasswordInput(this.value)"
                       required
                     />
-                    <i class="fa-solid fa-lock nexus-input-icon"></i>
+                    <i class="fa-solid fa-lock form-input-icon"></i>
                     <button
                       type="button"
-                      class="nexus-toggle-pwd"
+                      class="toggle-pwd"
                       onclick="togglePasswordVisibility('newResetPassword', 'toggleNewPwdIcon')"
                     >
                       <i class="fa-regular fa-eye" id="toggleNewPwdIcon"></i>
@@ -414,15 +414,15 @@
                   <label for="confirmResetPassword" class="form-label small fw-bold"
                     >Confirm Password</label
                   >
-                  <div class="nexus-input-wrapper">
+                  <div class="form-input-wrapper">
                     <input
                       type="password"
                       id="confirmResetPassword"
-                      class="nexus-input"
+                      class="form-input-custom"
                       placeholder="••••••••••••"
                       required
                     />
-                    <i class="fa-solid fa-shield-halved nexus-input-icon"></i>
+                    <i class="fa-solid fa-shield-halved form-input-icon"></i>
                   </div>
                   <div class="text-danger small mt-1 d-none" id="pwdMismatchAlert">
                     <i class="fa-solid fa-circle-exclamation me-1"></i>Passwords do not match!
@@ -537,19 +537,19 @@
           identifierLabel.textContent = "Employee ID";
           identifierInput.placeholder = "e.g. NEX-1001";
           identifierInput.type = "text";
-          identifierIcon.className = "fa-solid fa-id-card nexus-input-icon";
+          identifierIcon.className = "fa-solid fa-id-card form-input-icon";
           pwdGroup.style.display = "block";
         } else if (tab === "sso") {
           identifierLabel.textContent = "Corporate SSO Email";
           identifierInput.placeholder = "username@company-sso.com";
           identifierInput.type = "email";
-          identifierIcon.className = "fa-solid fa-key nexus-input-icon";
+          identifierIcon.className = "fa-solid fa-key form-input-icon";
           pwdGroup.style.display = "none";
         } else {
           identifierLabel.textContent = "Work Email";
           identifierInput.placeholder = "name@nexusost.com";
           identifierInput.type = "email";
-          identifierIcon.className = "fa-regular fa-envelope nexus-input-icon";
+          identifierIcon.className = "fa-regular fa-envelope form-input-icon";
           pwdGroup.style.display = "block";
         }
       }
