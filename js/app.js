@@ -232,10 +232,7 @@ function initTopbarScrollEffect() {
 
 /* 5. Interactive Topbar Controls (Search, Language, Notifications) */
 function initTopbarInteractiveControls() {
-  const langBtn = document.getElementById("langTranslateBtn");
-  if (langBtn) {
-    initLanguageDropdown(langBtn);
-  }
+  initLanguageDropdown();
 
   const notifBtn = document.getElementById("notifBellBtn");
   if (notifBtn) {
@@ -243,373 +240,68 @@ function initTopbarInteractiveControls() {
   }
 }
 
-function initLanguageDropdown(langBtn) {
-  if (!langBtn || langBtn.dataset.langDropdownInit === "true") return;
-  langBtn.dataset.langDropdownInit = "true";
-
-  // Ensure relative wrapper for precise dropdown positioning
-  let wrapper = langBtn.closest(".lang-wrapper");
-  if (!wrapper) {
-    wrapper = document.createElement("div");
-    wrapper.className = "lang-wrapper position-relative d-inline-flex align-items-center";
-    langBtn.parentNode.insertBefore(wrapper, langBtn);
-    wrapper.appendChild(langBtn);
-  }
-
-  const currentPath = window.location.pathname;
-  const assetsPrefix = currentPath.includes("/pages/") ? "../assets/" : "assets/";
+function initLanguageDropdown() {
   const savedLang = localStorage.getItem("nexus_lang") || "vi";
+  document.documentElement.setAttribute("lang", savedLang);
 
-  // Create dropdown menu
-  const dropdown = document.createElement("div");
-  dropdown.id = "nexusLangDropdownMenu";
-  dropdown.className = "lang-dropdown";
+  const langItems = document.querySelectorAll(".lang-dropdown-menu .dropdown-item[data-lang]");
+  if (!langItems.length) return;
 
-  const languages = [
-    { code: "en", name: "English", short: "Anh", flag: "flag-us.png" },
-    { code: "vi", name: "Tiếng Việt", short: "Việt", flag: "flag-vn.png" },
-    { code: "jp", name: "日本語", short: "Nhật", flag: "flag-jp.png" },
-    { code: "cn", name: "中文", short: "Trung", flag: "flag-cn.png" },
-    { code: "fr", name: "Français", short: "Pháp", flag: "flag-fr.png" },
-  ];
-
-  let itemsHtml = `
-    <div class="lang-header">
-      <i class="fa-solid fa-globe me-1"></i> Ngôn ngữ / Language
-    </div>
-    <ul class="lang-list">
-  `;
-
-  languages.forEach((lang) => {
-    const isActive = savedLang === lang.code ? "active" : "";
-    itemsHtml += `
-      <li class="lang-item ${isActive}" data-lang="${lang.code}">
-        <img src="${assetsPrefix}${lang.flag}" alt="${lang.name}" class="lang-flag" />
-        <div class="lang-info">
-          <span class="lang-name">${lang.name}</span>
-          <span class="lang-short">${lang.short}</span>
-        </div>
-        <i class="fa-solid fa-check lang-check"></i>
-      </li>
-    `;
-  });
-
-  itemsHtml += `</ul>`;
-  dropdown.innerHTML = itemsHtml;
-  wrapper.appendChild(dropdown);
-
-  // Toggle dropdown menu on button click
-  langBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle("show");
-  });
-
-  // Close dropdown menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!wrapper.contains(e.target)) {
-      dropdown.classList.remove("show");
+  langItems.forEach((item) => {
+    const code = item.getAttribute("data-lang");
+    if (code === savedLang) {
+      item.classList.add("active");
+    } else {
+      item.classList.remove("active");
     }
-  });
 
-  // Handle language selection click
-  const items = dropdown.querySelectorAll(".lang-item");
-  items.forEach((item) => {
     item.addEventListener("click", (e) => {
-      e.stopPropagation();
+      e.preventDefault();
       const selectedCode = item.getAttribute("data-lang");
-      const selectedLangObj = languages.find((l) => l.code === selectedCode);
 
-      items.forEach((el) => el.classList.remove("active"));
+      langItems.forEach((el) => el.classList.remove("active"));
       item.classList.add("active");
 
       localStorage.setItem("nexus_lang", selectedCode);
       document.documentElement.setAttribute("lang", selectedCode);
 
+      const langName = item.querySelector(".lang-name")?.textContent || selectedCode;
       if (typeof showToast === "function") {
         showToast({
           title: "Ngôn ngữ đã thay đổi",
-          message: `Hệ thống đã chuyển sang ${selectedLangObj.name} (${selectedLangObj.short})`,
+          message: `Hệ thống đã chuyển sang ${langName}`,
           type: "info",
         });
       }
-
-      dropdown.classList.remove("show");
     });
   });
-
-  // Apply active language code to HTML tag
-  document.documentElement.setAttribute("lang", savedLang);
 }
 
 /* ==========================================================================
    NexusOST Enterprise Notification Dropdown & Modal Manager
    ========================================================================== */
-let nexusNotificationsData = [
-  {
-    id: 1,
-    title: "Đơn xin nghỉ phép mới",
-    desc: "Nguyễn Văn An đã gửi đơn nghỉ phép 3 ngày (từ 25/08 đến 28/08).",
-    time: "5 phút trước",
-    type: "leave",
-    category: "work",
-    icon: "fa-solid fa-calendar-check",
-    bgClass: "bg-primary-subtle text-primary",
-    unread: true,
-  },
-  {
-    id: 2,
-    title: "Cập nhật danh mục Quốc gia",
-    desc: "Hệ thống vừa thêm mới quốc gia 'Nhật Bản (JPN)' vào cơ sở dữ liệu.",
-    time: "15 phút trước",
-    type: "system",
-    category: "system",
-    icon: "fa-solid fa-earth-americas",
-    bgClass: "bg-info-subtle text-info",
-    unread: true,
-  },
-  {
-    id: 3,
-    title: "Ứng viên ứng tuyển vị trí Senior Frontend",
-    desc: "Trần Thị Bích đã nộp hồ sơ ứng tuyển vị trí Senior Frontend Engineer.",
-    time: "45 phút trước",
-    type: "recruitment",
-    category: "work",
-    icon: "fa-solid fa-user-plus",
-    bgClass: "bg-success-subtle text-success",
-    unread: true,
-  },
-  {
-    id: 4,
-    title: "Cảnh báo bảo mật hệ thống",
-    desc: "Phát hiện đăng nhập mới từ IP 113.161.xx.xx (Thành phố Hồ Chí Minh).",
-    time: "2 giờ trước",
-    type: "security",
-    category: "system",
-    icon: "fa-solid fa-shield-halved",
-    bgClass: "bg-warning-subtle text-warning",
-    unread: false,
-  },
-  {
-    id: 5,
-    title: "Phê duyệt bảng lương tháng 8",
-    desc: "Bảng lương phòng Công nghệ thông tin đã được Ban giám đốc duyệt.",
-    time: "3 giờ trước",
-    type: "payroll",
-    category: "work",
-    icon: "fa-solid fa-file-invoice-dollar",
-    bgClass: "bg-primary-subtle text-primary",
-    unread: false,
-  },
-  {
-    id: 6,
-    title: "Nhắc nhở đánh giá nhân sự Q3",
-    desc: "Thời hạn hoàn thành kỳ đánh giá hiệu suất công việc Q3 sắp kết thúc.",
-    time: "5 giờ trước",
-    type: "review",
-    category: "work",
-    icon: "fa-solid fa-clock-rotate-left",
-    bgClass: "bg-danger-subtle text-danger",
-    unread: false,
-  },
-  {
-    id: 7,
-    title: "Thêm mới Tỉnh/Thành phố",
-    desc: "Dữ liệu Tỉnh 'Đà Nẵng' đã được đồng bộ hóa thành công.",
-    time: "1 ngày trước",
-    type: "system",
-    category: "system",
-    icon: "fa-solid fa-map-location-dot",
-    bgClass: "bg-primary-subtle text-primary",
-    unread: false,
-  },
-  {
-    id: 8,
-    title: "Yêu cầu tuyển dụng được duyệt",
-    desc: "Đề xuất tuyển 2 vị trí Business Analyst đã được phê duyệt.",
-    time: "1 ngày trước",
-    type: "recruitment",
-    category: "work",
-    icon: "fa-solid fa-briefcase",
-    bgClass: "bg-success-subtle text-success",
-    unread: false,
-  },
-  {
-    id: 9,
-    title: "Bảo trì máy chủ định kỳ",
-    desc: "Hệ thống sẽ tiến hành nâng cấp hạ tầng vào 00:00 ngày 25/08.",
-    time: "2 ngày trước",
-    type: "system",
-    category: "system",
-    icon: "fa-solid fa-server",
-    bgClass: "bg-secondary-subtle text-secondary",
-    unread: false,
-  },
-  {
-    id: 10,
-    title: "Cập nhật chính sách nhân sự 2026",
-    desc: "Vui lòng kiểm tra các điều khoản nghỉ phép và phúc lợi mới.",
-    time: "3 ngày trước",
-    type: "policy",
-    category: "system",
-    icon: "fa-solid fa-scroll",
-    bgClass: "bg-info-subtle text-info",
-    unread: false,
-  },
-  {
-    id: 11,
-    title: "Phường/Xã mới được thêm",
-    desc: "Dữ liệu Phường Bến Nghé (Quận 1, TPHCM) đã cập nhật xong.",
-    time: "4 ngày trước",
-    type: "system",
-    category: "system",
-    icon: "fa-solid fa-city",
-    bgClass: "bg-teal-subtle text-teal",
-    unread: false,
-  },
-  {
-    id: 12,
-    title: "Sinh nhật nhân viên trong tháng",
-    desc: "Hôm nay là sinh nhật của 3 cán bộ nhân viên thuộc khối Công nghệ.",
-    time: "5 ngày trước",
-    type: "event",
-    category: "work",
-    icon: "fa-solid fa-cake-candles",
-    bgClass: "bg-warning-subtle text-warning",
-    unread: false,
-  }
-];
 
 function initNotificationDropdown(notifBtn) {
+  if (!notifBtn) notifBtn = document.getElementById("notifBellBtn");
   if (!notifBtn || notifBtn.dataset.notifDropdownInit === "true") return;
   notifBtn.dataset.notifDropdownInit = "true";
 
-  // Ensure relative wrapper for precise dropdown positioning
-  let wrapper = notifBtn.closest(".notif-wrapper");
-  if (!wrapper) {
-    wrapper = document.createElement("div");
-    wrapper.className = "notif-wrapper position-relative d-inline-flex align-items-center";
-    notifBtn.parentNode.insertBefore(wrapper, notifBtn);
-    wrapper.appendChild(notifBtn);
-  }
-
-  // Update badge count initial state
-  updateNotifBellBadge(notifBtn);
-
-  // Build Dropdown DOM
-  const dropdown = document.createElement("div");
-  dropdown.id = "nexusNotifDropdownMenu";
-  dropdown.className = "notif-dropdown";
-
-  wrapper.appendChild(dropdown);
-
-  // Render contents
-  renderNotifDropdownContent(dropdown, notifBtn);
-
-  // Toggle dropdown menu
-  notifBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    // Close other dropdowns if open
-    const langDropdown = document.getElementById("nexusLangDropdownMenu");
-    if (langDropdown) langDropdown.classList.remove("show");
-
-    dropdown.classList.toggle("show");
-  });
-
-  // Close dropdown on click outside
-  document.addEventListener("click", (e) => {
-    if (!wrapper.contains(e.target)) {
-      dropdown.classList.remove("show");
-    }
-  });
-
-  // Ensure Modal is created in DOM
-  ensureNotifModalCreated();
-}
-
-function updateNotifBellBadge(notifBtn) {
-  if (!notifBtn) notifBtn = document.getElementById("notifBellBtn");
-  if (!notifBtn) return;
-
-  const unreadCount = nexusNotificationsData.filter((n) => n.unread).length;
-  let badge = notifBtn.querySelector(".badge-dot");
-
-  if (unreadCount > 0) {
-    if (!badge) {
-      badge = document.createElement("span");
-      badge.className = "badge-dot";
-      notifBtn.appendChild(badge);
-    }
-    badge.innerText = unreadCount;
-    badge.style.display = "inline-flex";
-  } else {
-    if (badge) {
-      badge.style.display = "none";
-    }
-  }
-}
-
-function renderNotifDropdownContent(dropdown, notifBtn) {
-  if (!dropdown) dropdown = document.getElementById("nexusNotifDropdownMenu");
-  if (!dropdown) return;
-  if (!notifBtn) notifBtn = document.getElementById("notifBellBtn");
-
-  const unreadCount = nexusNotificationsData.filter((n) => n.unread).length;
-  const latest10 = nexusNotificationsData.slice(0, 10);
-
-  let itemsHtml = "";
-  if (latest10.length === 0) {
-    itemsHtml = `<div class="notif-empty-state py-4"><i class="fa-regular fa-bell-slash d-block mb-2 fs-3 text-muted"></i><span>Không có thông báo nào</span></div>`;
-  } else {
-    latest10.forEach((item) => {
-      itemsHtml += `
-        <div class="notif-item ${item.unread ? "unread" : ""}" data-notif-id="${item.id}">
-          <div class="notif-icon ${item.bgClass || "bg-primary-subtle text-primary"}">
-            <i class="${item.icon}"></i>
-          </div>
-          <div class="notif-content">
-            <div class="notif-item-title">
-              <span>${item.title}</span>
-              ${item.unread ? '<span class="unread-dot"></span>' : ""}
-            </div>
-            <div class="notif-item-desc">${item.desc}</div>
-            <div class="notif-time">
-              <i class="fa-regular fa-clock me-1"></i>${item.time}
-            </div>
-          </div>
-        </div>
-      `;
-    });
-  }
-
-  dropdown.innerHTML = `
-    <div class="notif-header">
-      <div class="notif-title">
-        <i class="fa-solid fa-bell text-primary"></i> Thông báo
-        <span class="notif-count-badge" id="dropdownUnreadBadge">${unreadCount} chưa đọc</span>
-      </div>
-      <button type="button" class="notif-action-btn" id="dropdownMarkAllReadBtn">
-        <i class="fa-solid fa-check-double me-1"></i> Đánh dấu đã đọc
-      </button>
-    </div>
-    <div class="notif-body">
-      ${itemsHtml}
-    </div>
-    <div class="notif-footer">
-      <button type="button" class="notif-show-more" id="openNotifModalBtn">
-        <span>Xem tất cả thông báo</span>
-        <i class="fa-solid fa-chevron-right fs-xs"></i>
-      </button>
-    </div>
-  `;
-
-  // Handle Mark All Read in Dropdown
-  const markAllBtn = dropdown.querySelector("#dropdownMarkAllReadBtn");
-  if (markAllBtn) {
+  // Handle Mark All Read in static HTML Dropdown
+  const markAllBtn = document.getElementById("dropdownMarkAllReadBtn");
+  if (markAllBtn && !markAllBtn.dataset.bound) {
+    markAllBtn.dataset.bound = "true";
     markAllBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      nexusNotificationsData.forEach((n) => (n.unread = false));
-      updateNotifBellBadge(notifBtn);
-      renderNotifDropdownContent(dropdown, notifBtn);
+      document.querySelectorAll(".notif-dropdown .notif-item").forEach((el) => {
+        el.classList.remove("unread");
+        const dot = el.querySelector(".unread-dot");
+        if (dot) dot.remove();
+      });
+      const badgeText = document.getElementById("dropdownUnreadBadge");
+      if (badgeText) badgeText.innerText = "0 chưa đọc";
+      const bellBadge = notifBtn.querySelector(".badge-dot");
+      if (bellBadge) bellBadge.style.display = "none";
+
       if (typeof showToast === "function") {
         showToast({
           title: "Thông báo",
@@ -620,283 +312,159 @@ function renderNotifDropdownContent(dropdown, notifBtn) {
     });
   }
 
-  // Handle click on item in dropdown
-  const itemEls = dropdown.querySelectorAll(".notif-item");
+  // Handle click on item in static HTML dropdown
+  const itemEls = document.querySelectorAll(".notif-dropdown .notif-item");
   itemEls.forEach((el) => {
-    el.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const id = parseInt(el.getAttribute("data-notif-id"), 10);
-      const notif = nexusNotificationsData.find((n) => n.id === id);
-      if (notif && notif.unread) {
-        notif.unread = false;
+    if (!el.dataset.bound) {
+      el.dataset.bound = "true";
+      el.addEventListener("click", (e) => {
+        e.stopPropagation();
+        el.classList.remove("unread");
+        const dot = el.querySelector(".unread-dot");
+        if (dot) dot.remove();
         updateNotifBellBadge(notifBtn);
-        renderNotifDropdownContent(dropdown, notifBtn);
-      }
-    });
+      });
+    }
   });
 
-  // Handle Show More / View All Modal button click
-  const showMoreBtn = dropdown.querySelector("#openNotifModalBtn");
-  if (showMoreBtn) {
-    showMoreBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      dropdown.classList.remove("show");
-      openNotificationModal();
-    });
-  }
-}
-
-/* Modal View All Notifications Logic */
-function ensureNotifModalCreated() {
-  if (document.getElementById("nexusAllNotifModal")) return;
-
-  const modalHtml = `
-    <div class="modal fade custom-modal" id="nexusAllNotifModal" tabindex="-1" aria-labelledby="nexusAllNotifModalTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 shadow-2xl rounded-5 overflow-hidden">
-          <!-- Ambient Radial Glow Backdrop & Top Accent Bar -->
-          <div class="modal-bg-glow"></div>
-          <div class="modal-top-accent-bar"></div>
-
-          <!-- Modal Header -->
-          <div class="modal-header border-0 px-4 pt-4 pb-3 position-relative d-flex align-items-start justify-content-between z-1">
-            <div class="d-flex align-items-center gap-3">
-              <div class="modal-icon-badge">
-                <i class="fa-solid fa-bell text-primary"></i>
-              </div>
-              <div>
-                <div class="modal-eyebrow-tag mb-1">
-                  <span class="eyebrow-dot"></span> SYSTEM NOTIFICATION CENTER
-                </div>
-                <h5 class="modal-title fw-bold text-dark mb-0 d-flex align-items-center gap-2" id="nexusAllNotifModalTitle">
-                  <i class="fa-solid fa-inbox text-primary"></i>
-                  <span>Tất cả thông báo</span>
-                  <span class="badge bg-primary-subtle text-primary fs-xs rounded-pill px-2 py-1" id="modalTotalNotifBadge">0</span>
-                </h5>
-              </div>
-            </div>
-            <button type="button" class="custom-btn-close ms-1" data-bs-dismiss="modal" aria-label="Close">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-
-          <!-- Modal Subheader Tools (Filter Tabs & Search) -->
-          <div class="px-4 pt-3 pb-2 z-1">
-            <div class="row g-3 align-items-center mt-1 mb-3">
-              <div class="col-md-7">
-                <div class="notif-modal-filter-tabs">
-                  <button type="button" class="notif-filter-btn active" data-filter="all">Tất cả</button>
-                  <button type="button" class="notif-filter-btn" data-filter="unread">Chưa đọc</button>
-                  <button type="button" class="notif-filter-btn" data-filter="work">Công việc</button>
-                </div>
-              </div>
-              <div class="col-md-5">
-                <div class="notif-modal-search-box">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                  <input type="text" id="modalNotifSearchInput" placeholder="Tìm kiếm thông báo...">
-                </div>
-              </div>
-            </div>
-
-            <div class="d-flex align-items-center justify-content-between pt-3 pb-1 border-top border-light-subtle">
-              <div class="text-muted fs-xs" id="modalNotifStatusSummary">
-                Hiển thị danh sách thông báo
-              </div>
-              <div class="d-flex align-items-center gap-3">
-                <button type="button" class="btn btn-link btn-xs text-decoration-none text-primary fw-semibold p-0" id="modalMarkAllReadBtn">
-                  <i class="fa-solid fa-check-double me-1"></i>Đánh dấu tất cả đã đọc
-                </button>
-                <span class="text-muted opacity-40">|</span>
-                <button type="button" class="btn btn-link btn-xs text-decoration-none text-danger fw-semibold p-0" id="modalClearReadBtn">
-                  <i class="fa-solid fa-trash-can me-1"></i>Xóa đã đọc
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Modal Body List -->
-          <div class="modal-body px-4 pt-2 pb-4 z-1">
-            <div class="notif-modal-list" id="modalNotifListContainer">
-              <!-- Dynamically populated -->
-            </div>
-          </div>
-
-          <!-- Modal Footer -->
-          <div class="modal-footer modal-footer-custom px-4 py-3 border-0 position-relative z-1 d-flex align-items-center justify-content-between">
-            <div class="modal-footer-info d-flex align-items-center gap-2 text-muted fs-xs">
-              <i class="fa-solid fa-shield-halved text-primary opacity-75"></i>
-              <span>Enterprise Live Sync</span>
-              <span class="modal-footer-divider"></span>
-              <span class="d-inline-flex align-items-center gap-1"><kbd class="kbd-badge">ESC</kbd> Đóng</span>
-            </div>
-            <button type="button" class="btn btn-sm btn-pastel-slate px-4 py-2 rounded-3" data-bs-dismiss="modal">
-              <i class="fa-solid fa-xmark me-1"></i> Đóng
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-
-  const div = document.createElement("div");
-  div.innerHTML = modalHtml;
-  document.body.appendChild(div.firstElementChild);
-
+  // Bind static Modal events if Modal exists
   bindNotifModalEvents();
 }
 
-let activeModalFilter = "all";
+function updateNotifBellBadge(notifBtn) {
+  if (!notifBtn) notifBtn = document.getElementById("notifBellBtn");
+
+  const modalEl = document.getElementById("nexusAllNotifModal");
+  let unreadCount = 0;
+  if (modalEl) {
+    unreadCount = modalEl.querySelectorAll(".notif-modal-item.unread").length;
+  } else {
+    unreadCount = document.querySelectorAll(".notif-dropdown .notif-item.unread").length;
+  }
+
+  if (notifBtn) {
+    let badge = notifBtn.querySelector(".badge-dot");
+
+    if (unreadCount > 0) {
+      if (!badge) {
+        badge = document.createElement("span");
+        badge.className = "badge-dot";
+        notifBtn.appendChild(badge);
+      }
+      badge.innerText = unreadCount;
+      badge.style.display = "inline-flex";
+    } else {
+      if (badge) {
+        badge.style.display = "none";
+      }
+    }
+  }
+
+  const badgeText = document.getElementById("dropdownUnreadBadge");
+  if (badgeText) badgeText.innerText = `${unreadCount} chưa đọc`;
+
+  updateNotifModalCounts();
+}
+
+function updateNotifModalCounts() {
+  const modalEl = document.getElementById("nexusAllNotifModal");
+  if (!modalEl) return;
+
+  const allItems = modalEl.querySelectorAll(".notif-modal-item");
+  const unreadItems = modalEl.querySelectorAll(".notif-modal-item.unread");
+  const totalCount = allItems.length;
+  const unreadCount = unreadItems.length;
+  const readCount = totalCount - unreadCount;
+
+  const totalBadge = modalEl.querySelector("#modalTotalNotifBadge");
+  if (totalBadge) totalBadge.innerText = totalCount;
+
+  const totalText = modalEl.querySelector("#modalTotalCountText");
+  if (totalText) totalText.innerText = totalCount;
+
+  const unreadText = modalEl.querySelector("#modalUnreadCountText");
+  if (unreadText) unreadText.innerText = unreadCount;
+
+  const readText = modalEl.querySelector("#modalReadCountText");
+  if (readText) readText.innerText = readCount;
+}
+
+function ensureNotifModalCreated() {
+  // Modal is defined directly in static HTML
+  bindNotifModalEvents();
+}
 
 function bindNotifModalEvents() {
   const modalEl = document.getElementById("nexusAllNotifModal");
   if (!modalEl) return;
 
-  // Filter tab buttons click
-  const filterBtns = modalEl.querySelectorAll(".notif-filter-btn");
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      filterBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      activeModalFilter = btn.getAttribute("data-filter");
-      renderModalNotifications();
-    });
-  });
+  updateNotifModalCounts();
 
-  // Mark all read in modal
+  if (modalEl.dataset.eventsBound === "true") return;
+  modalEl.dataset.eventsBound = "true";
+
+  // Mark all read in static HTML modal
   const markAllBtn = modalEl.querySelector("#modalMarkAllReadBtn");
   if (markAllBtn) {
     markAllBtn.addEventListener("click", () => {
-      nexusNotificationsData.forEach((n) => (n.unread = false));
+      modalEl.querySelectorAll(".notif-modal-item").forEach((item) => {
+        item.classList.remove("unread");
+        const badge = item.querySelector(".badge");
+        if (badge) badge.remove();
+        const markBtn = item.querySelector(".mark-read-item-btn");
+        if (markBtn) markBtn.remove();
+      });
       updateNotifBellBadge();
-      const dropdown = document.getElementById("nexusNotifDropdownMenu");
-      if (dropdown) renderNotifDropdownContent(dropdown);
-      renderModalNotifications();
       if (typeof showToast === "function") {
         showToast({ title: "Thông báo", message: "Đã đánh dấu tất cả là đã đọc", type: "info" });
       }
     });
   }
 
-  // Clear read notifications in modal
+  // Clear read notifications in static HTML modal
   const clearReadBtn = modalEl.querySelector("#modalClearReadBtn");
   if (clearReadBtn) {
     clearReadBtn.addEventListener("click", () => {
-      nexusNotificationsData = nexusNotificationsData.filter((n) => n.unread);
+      modalEl.querySelectorAll(".notif-modal-item:not(.unread)").forEach((item) => {
+        item.remove();
+      });
       updateNotifBellBadge();
-      const dropdown = document.getElementById("nexusNotifDropdownMenu");
-      if (dropdown) renderNotifDropdownContent(dropdown);
-      renderModalNotifications();
       if (typeof showToast === "function") {
         showToast({ title: "Thông báo", message: "Đã xóa các thông báo đã đọc", type: "warning" });
       }
     });
   }
-}
-
-function renderModalNotifications() {
-  const modalEl = document.getElementById("nexusAllNotifModal");
-  if (!modalEl) return;
-
-  const container = modalEl.querySelector("#modalNotifListContainer");
-  const totalBadge = modalEl.querySelector("#modalTotalNotifBadge");
-  const summaryEl = modalEl.querySelector("#modalNotifStatusSummary");
-  if (!container) return;
-
-  // Filter data by category tabs only
-  let filtered = nexusNotificationsData.filter((n) => {
-    if (activeModalFilter === "unread" && !n.unread) return false;
-    if (activeModalFilter === "work" && n.category !== "work") return false;
-    if (activeModalFilter === "system" && n.category !== "system") return false;
-    return true;
-  });
-
-  if (totalBadge) totalBadge.innerText = nexusNotificationsData.length;
-  if (summaryEl) {
-    const unreadCount = nexusNotificationsData.filter((n) => n.unread).length;
-    summaryEl.innerHTML = `Đang hiển thị <strong>${filtered.length}</strong> / <strong>${nexusNotificationsData.length}</strong> thông báo (${unreadCount} chưa đọc)`;
-  }
-
-  if (filtered.length === 0) {
-    container.innerHTML = `
-      <div class="notif-empty-state">
-        <i class="fa-regular fa-folder-open d-block mb-2 text-muted fs-2"></i>
-        <h6>Không tìm thấy thông báo phù hợp</h6>
-        <p class="fs-xs text-muted mb-0">Thử thay đổi từ khóa tìm kiếm hoặc chọn bộ lọc khác.</p>
-      </div>
-    `;
-    return;
-  }
-
-  let html = "";
-  filtered.forEach((item) => {
-    html += `
-      <div class="notif-modal-item ${item.unread ? "unread" : ""}" data-id="${item.id}">
-        <div class="notif-icon ${item.bgClass || "bg-primary-subtle text-primary"} flex-shrink-0">
-          <i class="${item.icon}"></i>
-        </div>
-        <div class="flex-grow-1 min-w-0">
-          <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-            <h6 class="fw-bold mb-0 text-dark fs-sm d-flex align-items-center gap-2 min-w-0">
-              <span class="text-truncate">${item.title}</span>
-              ${item.unread ? '<span class="badge bg-indigo text-white fs-xs px-2 py-0.5 rounded-pill flex-shrink-0">Mới</span>' : ""}
-            </h6>
-            <div class="d-flex align-items-center gap-2 flex-shrink-0">
-              <span class="notif-time text-muted fs-xs"><i class="fa-regular fa-clock me-1"></i>${item.time}</span>
-              <div class="notif-modal-actions ms-1">
-                ${
-                  item.unread
-                    ? `<button type="button" class="notif-item-action-icon mark-read-item-btn" title="Đánh dấu đã đọc" data-id="${item.id}">
-                        <i class="fa-solid fa-check"></i>
-                      </button>`
-                    : ""
-                }
-                <button type="button" class="notif-item-action-icon delete delete-item-btn" title="Xóa thông báo" data-id="${item.id}">
-                  <i class="fa-solid fa-trash-can"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <p class="text-secondary fs-xs mb-0 leading-relaxed text-truncate">${item.desc}</p>
-        </div>
-      </div>
-    `;
-  });
-
-  container.innerHTML = html;
 
   // Item mark read action inside modal
-  container.querySelectorAll(".mark-read-item-btn").forEach((btn) => {
+  modalEl.querySelectorAll(".mark-read-item-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
-      const id = parseInt(btn.getAttribute("data-id"), 10);
-      const notif = nexusNotificationsData.find((n) => n.id === id);
-      if (notif) {
-        notif.unread = false;
+      const item = btn.closest(".notif-modal-item");
+      if (item) {
+        item.classList.remove("unread");
+        const badge = item.querySelector(".badge");
+        if (badge) badge.remove();
+        btn.remove();
         updateNotifBellBadge();
-        const dropdown = document.getElementById("nexusNotifDropdownMenu");
-        if (dropdown) renderNotifDropdownContent(dropdown);
-        renderModalNotifications();
       }
     });
   });
 
   // Item delete action inside modal
-  container.querySelectorAll(".delete-item-btn").forEach((btn) => {
+  modalEl.querySelectorAll(".delete-item-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
-      const id = parseInt(btn.getAttribute("data-id"), 10);
-      nexusNotificationsData = nexusNotificationsData.filter((n) => n.id !== id);
-      updateNotifBellBadge();
-      const dropdown = document.getElementById("nexusNotifDropdownMenu");
-      if (dropdown) renderNotifDropdownContent(dropdown);
-      renderModalNotifications();
+      const item = btn.closest(".notif-modal-item");
+      if (item) {
+        item.remove();
+        updateNotifBellBadge();
+      }
     });
   });
 }
 
 function openNotificationModal() {
-  ensureNotifModalCreated();
-  renderModalNotifications();
+  bindNotifModalEvents();
   const modalEl = document.getElementById("nexusAllNotifModal");
   if (modalEl) {
     const modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
@@ -933,7 +501,7 @@ function showToast({
   const toastIcon = icon || iconMap[toastType];
 
   const toastEl = document.createElement("div");
-  toastEl.className = `toast-item toast-item-${toastType}`;
+  toastEl.className = `toast-item toast-${toastType}`;
   toastEl.setAttribute("role", "alert");
 
   toastEl.innerHTML = `
@@ -1408,7 +976,7 @@ window.initCountryExportModal = initCountryExportModal;
 /* ======================================================
    10. EMPLOYEE DIRECTORY — DATA & CONTROLLER LOGIC
    ====================================================== */
-const EMP_DATA = {
+var EMP_DATA = {
   EMP001: {
     name: "Linh Tran",
     role: "Senior UX Designer",
@@ -2205,7 +1773,7 @@ const EMP_DATA = {
 };
 
 // Status icon map
-const STATUS_ICON = {
+var STATUS_ICON = {
   Active: "fa-circle",
   Remote: "fa-laptop-house",
   Probation: "fa-hourglass-half",
@@ -2406,7 +1974,7 @@ window.initEmployeesPage = initEmployeesPage;
    RECRUITMENT PIPELINE PAGE LOGIC
    ========================================================================== */
 
-let RECRUITMENT_DATA = [
+var RECRUITMENT_DATA = [
   // Applied Column (Stage: applied)
   {
     id: "cand-1",
@@ -2904,7 +2472,7 @@ let RECRUITMENT_DATA = [
   },
 ];
 
-let activeCandidateIdForModal = null;
+var activeCandidateIdForModal = null;
 
 function initRecruitmentPage() {
   renderPipelineBoard();
@@ -2936,7 +2504,7 @@ function initViewToggle() {
   }
 }
 
-let activeStageForModal = "";
+var activeStageForModal = "";
 
 function openStageCandidatesModal(stage) {
   const modalEl = document.getElementById("stageCandidatesModal");
@@ -3255,7 +2823,7 @@ function attachCardEvents() {
 }
 
 // Drag & Drop Implementation
-let draggedCandidateId = null;
+var draggedCandidateId = null;
 
 function handleDragStart(e) {
   draggedCandidateId = this.getAttribute("data-id");

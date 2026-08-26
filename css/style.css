@@ -1,6 +1,821 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
-@import url("./keyframes.css");
-@import url("./components.css");
+
+/* ==========================================================================
+   KEYFRAMES & ANIMATIONS LIBRARY - NexusOST (Merged into style.css)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BADGE & STATUS ANIMATIONS
+   -------------------------------------------------------------------------- */
+@keyframes badgePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes pulseDotAnimation {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sparkleGlow {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.15) rotate(12deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.6));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. ICON & HEADER MICRO-INTERACTIONS
+   -------------------------------------------------------------------------- */
+@keyframes waveAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(14deg);
+  }
+  30% {
+    transform: rotate(-8deg);
+  }
+  45% {
+    transform: rotate(14deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes bellRing {
+  0% {
+    transform: rotate(0deg);
+  }
+  5% {
+    transform: rotate(14deg);
+  }
+  10% {
+    transform: rotate(-12deg);
+  }
+  15% {
+    transform: rotate(10deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  25% {
+    transform: rotate(6deg);
+  }
+  30% {
+    transform: rotate(-4deg);
+  }
+  35% {
+    transform: rotate(2deg);
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. THEME TOGGLE ANIMATIONS (SUN & MOON)
+   -------------------------------------------------------------------------- */
+@keyframes sunGlow {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(255, 200, 50, 0.3));
+    transform: rotate(0deg);
+  }
+  25% {
+    filter: drop-shadow(0 0 8px rgba(255, 200, 50, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(255, 200, 50, 0.8));
+    transform: rotate(180deg);
+  }
+  75% {
+    filter: drop-shadow(0 0 8px rgba(255, 200, 50, 0.6));
+  }
+  100% {
+    filter: drop-shadow(0 0 2px rgba(255, 200, 50, 0.3));
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moonSwing {
+  0% {
+    transform: rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 3px rgba(160, 180, 255, 0.4));
+  }
+  10% {
+    transform: rotate(12deg) scale(1.05);
+    filter: drop-shadow(0 0 8px rgba(160, 180, 255, 0.7));
+  }
+  20% {
+    transform: rotate(-10deg) scale(1);
+    filter: drop-shadow(0 0 10px rgba(160, 180, 255, 0.8));
+  }
+  30% {
+    transform: rotate(8deg) scale(1.03);
+    filter: drop-shadow(0 0 12px rgba(160, 180, 255, 0.9));
+  }
+  40% {
+    transform: rotate(-5deg) scale(1);
+    filter: drop-shadow(0 0 8px rgba(160, 180, 255, 0.7));
+  }
+  50% {
+    transform: rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 4px rgba(160, 180, 255, 0.5));
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 3px rgba(160, 180, 255, 0.4));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. TOAST SLIDE IN ANIMATION
+   -------------------------------------------------------------------------- */
+@keyframes nexusToastSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(40px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. TAB & NAVIGATION ANIMATIONS
+   -------------------------------------------------------------------------- */
+@keyframes tabLinePulse {
+  0% {
+    transform: scaleX(0);
+    opacity: 0.5;
+  }
+  60% {
+    transform: scaleX(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes tabIconBounce {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.32) rotate(-8deg);
+  }
+  100% {
+    transform: scale(1.22) rotate(0deg);
+  }
+}
+
+@keyframes tabPaneEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  65% {
+    opacity: 0.9;
+    transform: translateY(-2px) scale(1.002);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. AUTHENTICATION ANIMATIONS & KINETIC MOTION SYSTEM
+   -------------------------------------------------------------------------- */
+@keyframes orbFloat1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, 40px) scale(1.1);
+  }
+}
+
+@keyframes orbFloat2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-35px, -25px) scale(1.08);
+  }
+}
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes imageLevitate {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(200%) rotate(25deg);
+  }
+}
+
+/* ==========================================================================
+   UI COMPONENTS LIBRARY - NexusOST (Merged into style.css)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BASE BADGE & LABEL SHAPES
+   -------------------------------------------------------------------------- */
+.badge-soft {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  padding: 0.25rem 0.65rem !important;
+  border-radius: 9999px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+}
+
+.priority-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.25rem 0.65rem !important;
+  border-radius: 9999px !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: capitalize !important;
+  line-height: 1 !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. REUSABLE COLOR THEME BADGES (POWERED BY THEME VARIABLES)
+   -------------------------------------------------------------------------- */
+.badge-purple {
+  background-color: var(--badge-purple-bg) !important;
+  color: var(--badge-purple-text) !important;
+  border: 1px solid var(--badge-purple-border) !important;
+}
+
+.badge-orange {
+  background-color: var(--badge-orange-bg) !important;
+  color: var(--badge-orange-text) !important;
+  border: 1px solid var(--badge-orange-border) !important;
+}
+
+.badge-amber {
+  background-color: var(--badge-amber-bg) !important;
+  color: var(--badge-amber-text) !important;
+  border: 1px solid var(--badge-amber-border) !important;
+}
+
+.badge-cyan {
+  background-color: var(--badge-cyan-bg) !important;
+  color: var(--badge-cyan-text) !important;
+  border: 1px solid var(--badge-cyan-border) !important;
+}
+
+.badge-rose {
+  background-color: var(--badge-rose-bg) !important;
+  color: var(--badge-rose-text) !important;
+  border: 1px solid var(--badge-rose-border) !important;
+}
+
+.badge-red {
+  background-color: var(--badge-red-bg) !important;
+  color: var(--badge-red-text) !important;
+  border: 1px solid var(--badge-red-border) !important;
+}
+
+.badge-green {
+  background-color: var(--badge-green-bg) !important;
+  color: var(--badge-green-text) !important;
+  border: 1px solid var(--badge-green-border) !important;
+}
+
+.badge-blue {
+  background-color: var(--badge-blue-bg) !important;
+  color: var(--badge-blue-text) !important;
+  border: 1px solid var(--badge-blue-border) !important;
+}
+
+.badge-slate {
+  background-color: var(--badge-slate-bg) !important;
+  color: var(--badge-slate-text) !important;
+  border: 1px solid var(--badge-slate-border) !important;
+}
+
+.badge-indigo {
+  background-color: var(--badge-indigo-bg) !important;
+  color: var(--badge-indigo-text) !important;
+  border: 1px solid var(--badge-indigo-border) !important;
+}
+
+.badge-teal {
+  background-color: var(--badge-teal-bg) !important;
+  color: var(--badge-teal-text) !important;
+  border: 1px solid var(--badge-teal-border) !important;
+}
+
+/* Custom Color Subtle Utilities for Notifications & Badges */
+.bg-teal-subtle {
+  background-color: rgba(45, 212, 191, 0.12) !important;
+}
+.text-teal {
+  color: #0d9488 !important;
+}
+.bg-purple-subtle {
+  background-color: rgba(168, 85, 247, 0.12) !important;
+}
+.text-purple {
+  color: #7e22ce !important;
+}
+.bg-rose-subtle {
+  background-color: rgba(244, 63, 94, 0.12) !important;
+}
+.text-rose {
+  color: #e11d48 !important;
+}
+.bg-indigo-subtle {
+  background-color: rgba(79, 70, 229, 0.12) !important;
+}
+.text-indigo {
+  color: #4f46e5 !important;
+}
+.bg-amber-subtle {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+}
+.text-amber {
+  color: #d97706 !important;
+}
+
+[data-theme="dark"] .text-teal {
+  color: #2dd4bf !important;
+}
+[data-theme="dark"] .text-purple {
+  color: #c084fc !important;
+}
+[data-theme="dark"] .text-rose {
+  color: #fb7185 !important;
+}
+[data-theme="dark"] .text-indigo {
+  color: #818cf8 !important;
+}
+[data-theme="dark"] .text-amber {
+  color: #fbbf24 !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. SOFT PASTEL CARDS & METRIC COMPONENTS
+   -------------------------------------------------------------------------- */
+.metric-card-pastel {
+  border-radius: var(--radius-xl);
+  padding: 0.95rem 1.1rem;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  min-height: 105px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.metric-card-pastel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* Card Pastel Color Fills */
+.card-pastel-blue {
+  background: var(--grad-card-blue);
+  border: 1px solid var(--badge-blue-border);
+}
+.card-pastel-purple {
+  background: var(--grad-card-purple);
+  border: 1px solid var(--badge-purple-border);
+}
+.card-pastel-mint {
+  background: var(--grad-card-mint);
+  border: 1px solid var(--badge-green-border);
+}
+.card-pastel-rose {
+  background: var(--grad-card-rose);
+  border: 1px solid var(--badge-rose-border);
+}
+.card-pastel-amber {
+  background: var(--grad-card-amber);
+  border: 1px solid var(--badge-amber-border);
+}
+.card-pastel-orange {
+  background: var(--grad-card-orange);
+  border: 1px solid var(--badge-orange-border);
+}
+.card-pastel-teal {
+  background: var(--grad-card-teal);
+  border: 1px solid var(--badge-teal-border);
+}
+.card-pastel-slate {
+  background: var(--grad-card-slate);
+  border: 1px solid var(--badge-slate-border);
+}
+.card-pastel-indigo {
+  background: var(--grad-card-indigo, var(--soft-indigo-grad));
+  border: 1px solid var(--badge-indigo-border);
+}
+.card-pastel-red {
+  background: var(--grad-card-red, var(--soft-red-grad));
+  border: 1px solid var(--badge-red-border);
+}
+
+/* Card Pastel Typography & Elements */
+.metric-pastel-title {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.metric-pastel-val {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.metric-pastel-sub {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.metric-pastel-icon-floating {
+  width: 38px;
+  height: 38px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
+  flex-shrink: 0;
+}
+
+/* Card Floating Icons & Badge Accents */
+.card-pastel-blue .metric-pastel-icon-floating {
+  color: var(--badge-blue-text);
+}
+.card-pastel-purple .metric-pastel-icon-floating {
+  color: var(--badge-purple-text);
+}
+.card-pastel-mint .metric-pastel-icon-floating {
+  color: var(--badge-green-text);
+}
+.card-pastel-amber .metric-pastel-icon-floating {
+  color: var(--badge-amber-text);
+}
+.card-pastel-rose .metric-pastel-icon-floating {
+  color: var(--badge-rose-text);
+}
+.card-pastel-orange .metric-pastel-icon-floating {
+  color: var(--badge-orange-text);
+}
+.card-pastel-teal .metric-pastel-icon-floating {
+  color: var(--badge-teal-text);
+}
+.card-pastel-indigo .metric-pastel-icon-floating {
+  color: var(--badge-indigo-text);
+}
+.card-pastel-red .metric-pastel-icon-floating {
+  color: var(--badge-red-text);
+}
+
+/* Card Tag Pills */
+.card-pastel-blue .metric-tag-pill {
+  background: var(--badge-blue-bg);
+  color: var(--badge-blue-text);
+  border: 1px solid var(--badge-blue-border);
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.1);
+}
+.card-pastel-mint .metric-tag-pill {
+  background: var(--badge-green-bg);
+  color: var(--badge-green-text);
+  border: 1px solid var(--badge-green-border);
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.1);
+}
+.card-pastel-purple .metric-tag-pill {
+  background: var(--badge-purple-bg);
+  color: var(--badge-purple-text);
+  border: 1px solid var(--badge-purple-border);
+  box-shadow: 0 1px 3px rgba(139, 92, 246, 0.1);
+}
+.card-pastel-rose .metric-tag-pill {
+  background: var(--badge-rose-bg);
+  color: var(--badge-rose-text);
+  border: 1px solid var(--badge-rose-border);
+  box-shadow: 0 1px 3px rgba(225, 29, 72, 0.1);
+}
+.card-pastel-amber .metric-tag-pill {
+  background: var(--badge-amber-bg);
+  color: var(--badge-amber-text);
+  border: 1px solid var(--badge-amber-border);
+  box-shadow: 0 1px 3px rgba(217, 119, 6, 0.1);
+}
+.card-pastel-teal .metric-tag-pill {
+  background: var(--badge-teal-bg);
+  color: var(--badge-teal-text);
+  border: 1px solid var(--badge-teal-border);
+  box-shadow: 0 1px 3px rgba(45, 212, 191, 0.1);
+}
+.card-pastel-orange .metric-tag-pill {
+  background: var(--badge-orange-bg);
+  color: var(--badge-orange-text);
+  border: 1px solid var(--badge-orange-border);
+  box-shadow: 0 1px 3px rgba(249, 115, 22, 0.1);
+}
+.card-pastel-indigo .metric-tag-pill {
+  background: var(--badge-indigo-bg);
+  color: var(--badge-indigo-text);
+  border: 1px solid var(--badge-indigo-border);
+  box-shadow: 0 1px 3px rgba(79, 70, 229, 0.1);
+}
+.card-pastel-red .metric-tag-pill {
+  background: var(--badge-red-bg);
+  color: var(--badge-red-text);
+  border: 1px solid var(--badge-red-border);
+  box-shadow: 0 1px 3px rgba(220, 38, 38, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   4. TIMELINE ICON BOX & COLOR VARIANTS
+   -------------------------------------------------------------------------- */
+.timeline-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.timeline-icon-blue {
+  background-color: var(--badge-blue-bg);
+  color: var(--badge-blue-text);
+  border: 1px solid var(--badge-blue-border);
+}
+.timeline-icon-green {
+  background-color: var(--badge-green-bg);
+  color: var(--badge-green-text);
+  border: 1px solid var(--badge-green-border);
+}
+.timeline-icon-purple {
+  background-color: var(--badge-purple-bg);
+  color: var(--badge-purple-text);
+  border: 1px solid var(--badge-purple-border);
+}
+.timeline-icon-orange {
+  background-color: var(--badge-orange-bg);
+  color: var(--badge-orange-text);
+  border: 1px solid var(--badge-orange-border);
+}
+.timeline-icon-pink {
+  background-color: var(--badge-rose-bg);
+  color: var(--badge-rose-text);
+  border: 1px solid var(--badge-rose-border);
+}
+
+/* --------------------------------------------------------------------------
+   5. NEXUS ENTERPRISE TOAST NOTIFICATION SYSTEM
+   -------------------------------------------------------------------------- */
+.toast-container-custom {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1090;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 400px;
+  width: calc(100vw - 3rem);
+  pointer-events: none;
+}
+
+.toast-item {
+  pointer-events: auto;
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: var(--radius-lg, 14px);
+  box-shadow:
+    0 14px 35px -5px rgba(15, 23, 42, 0.12),
+    0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  padding: 0.85rem 1rem 0.85rem 1.15rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  position: relative;
+  overflow: hidden;
+  animation: nexusToastSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s ease;
+}
+
+.toast-item.toast-hiding {
+  opacity: 0;
+  transform: translateX(100%) scale(0.92);
+}
+
+.toast-accent-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+
+.toast-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+/* Status Color Mapping with Theme Color Tokens */
+.toast-primary .toast-accent-bar {
+  background-color: var(--color-primary, #4f46e5) !important;
+}
+.toast-primary .toast-icon-box {
+  background-color: rgba(79, 70, 229, 0.12) !important;
+  color: var(--color-primary, #4f46e5) !important;
+}
+
+.toast-info .toast-accent-bar {
+  background-color: var(--color-info, #0284c7) !important;
+}
+.toast-info .toast-icon-box {
+  background-color: rgba(2, 132, 199, 0.12) !important;
+  color: var(--color-info, #0284c7) !important;
+}
+
+.toast-success .toast-accent-bar {
+  background-color: var(--color-success, #10b981) !important;
+}
+.toast-success .toast-icon-box {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  color: var(--color-success, #10b981) !important;
+}
+
+.toast-warning .toast-accent-bar {
+  background-color: var(--color-warning, #f59e0b) !important;
+}
+.toast-warning .toast-icon-box {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  color: var(--color-warning, #f59e0b) !important;
+}
+
+.toast-danger .toast-accent-bar {
+  background-color: var(--color-danger, #ef4444) !important;
+}
+.toast-danger .toast-icon-box {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+  color: var(--color-danger, #ef4444) !important;
+}
+
+.toast-content {
+  flex: 1;
+  min-width: 0;
+  padding-right: 0.25rem;
+}
+
+.toast-title {
+  font-weight: 700;
+  font-size: 0.865rem;
+  color: var(--text-main, #0f172a);
+  margin: 0 0 0.2rem 0;
+  line-height: 1.25;
+}
+
+.toast-message {
+  font-size: 0.775rem;
+  color: var(--text-muted, #64748b);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.toast-close {
+  background: transparent;
+  border: none;
+  color: var(--text-light, #94a3b8);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s ease;
+  line-height: 1;
+  margin-top: -2px;
+}
+
+.toast-close:hover {
+  background-color: var(--bg-hover, #f1f5f9);
+  color: var(--text-main, #0f172a);
+}
+
+[data-theme="dark"] .toast-item {
+  background: var(--bg-surface, #1e1e24);
+  border-color: var(--border-color, #27272a);
+  box-shadow:
+    0 20px 40px -10px rgba(0, 0, 0, 0.65),
+    0 0 1px rgba(255, 255, 255, 0.08);
+}
 
 :root {
   --font-primary:
@@ -1521,6 +2336,123 @@ a {
   visibility: visible !important;
   pointer-events: auto !important;
   transform: translateY(0) scale(1) !important;
+}
+
+/* Language Dropdown Menu Styling (Minimalist 1-Line) */
+.lang-dropdown-menu {
+  min-width: 200px !important;
+  padding: 0.5rem !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(226, 232, 240, 0.95) !important;
+  box-shadow:
+    0 12px 30px -5px rgba(15, 23, 42, 0.12),
+    0 4px 10px -2px rgba(15, 23, 42, 0.04) !important;
+}
+
+.lang-dropdown-menu .dropdown-header {
+  font-size: 0.725rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: #64748b !important;
+  padding: 0.4rem 0.65rem 0.3rem 0.65rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  background: transparent !important;
+}
+
+.lang-dropdown-menu .dropdown-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0.55rem 0.75rem !important;
+  border-radius: 9px !important;
+  margin-bottom: 2px !important;
+  cursor: pointer !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  transition: all 0.15s ease !important;
+  text-decoration: none !important;
+}
+
+.lang-dropdown-menu .dropdown-item:hover {
+  background-color: #f8fafc !important;
+  transform: translateX(2px) !important;
+}
+
+.lang-dropdown-menu .dropdown-item:last-child {
+  margin-bottom: 0 !important;
+}
+
+.lang-dropdown-menu .lang-flag {
+  width: 20px !important;
+  height: 14px !important;
+  object-fit: cover !important;
+  border-radius: 3px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+  flex-shrink: 0 !important;
+}
+
+.lang-dropdown-menu .lang-name {
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  color: #1e293b !important;
+  line-height: 1 !important;
+}
+
+.lang-dropdown-menu .lang-check {
+  font-size: 0.8rem !important;
+  color: #4f46e5 !important;
+  opacity: 0 !important;
+  transition: opacity 0.15s ease !important;
+  margin-left: 0.75rem !important;
+}
+
+.lang-dropdown-menu .dropdown-item.active {
+  background-color: rgba(79, 70, 229, 0.08) !important;
+}
+
+.lang-dropdown-menu .dropdown-item.active .lang-name {
+  color: #4f46e5 !important;
+  font-weight: 600 !important;
+}
+
+.lang-dropdown-menu .dropdown-item.active .lang-check {
+  opacity: 1 !important;
+  color: #4f46e5 !important;
+}
+
+/* Dark theme overrides for language dropdown */
+[data-theme="dark"] .lang-dropdown-menu {
+  background-color: #1e1e24 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.65) !important;
+}
+
+[data-theme="dark"] .lang-dropdown-menu .dropdown-header {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .lang-dropdown-menu .dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme="dark"] .lang-dropdown-menu .lang-name {
+  color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .lang-dropdown-menu .dropdown-item.active {
+  background-color: rgba(99, 102, 241, 0.2) !important;
+}
+
+[data-theme="dark"] .lang-dropdown-menu .dropdown-item.active .lang-name {
+  color: #818cf8 !important;
+}
+
+[data-theme="dark"] .lang-dropdown-menu .dropdown-item.active .lang-check {
+  color: #818cf8 !important;
 }
 
 /* User Header Block inside Dropdown */
@@ -3487,12 +4419,12 @@ svg g.apextree-selected .apextree-sleek-card {
   color: var(--text-muted, #64748b);
 }
 
-/* Modal Footer Custom Bar & Separator */
 .modal-footer-custom {
-  background: var(--bg-app, #f5f7fc) !important;
+  background: var(--bg-app, #f8fafc) !important;
   border-top: 1px solid var(--border-color, #e2e8f0) !important;
-  border-bottom-left-radius: 24px;
-  border-bottom-right-radius: 24px;
+  border-bottom-left-radius: inherit !important;
+  border-bottom-right-radius: inherit !important;
+  padding: 0.875rem 1.5rem !important;
   position: relative;
   z-index: 1;
 }
@@ -5638,9 +6570,13 @@ tr:hover td.col-pin,
   font-size: 0.82rem;
 }
 
-/* Custom Nexus Modal Body Scrollbar (Single Clean Scrollbar) */
 .custom-modal .modal-body::-webkit-scrollbar {
   width: 6px;
+}
+.custom-modal .modal-body::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 .custom-modal .modal-body::-webkit-scrollbar-track {
   background: transparent;
@@ -6666,13 +7602,6 @@ tr:hover td.col-pin,
   display: flex;
 }
 
-/* Glass Toast Notification */
-.toast-item {
-  transform: translateY(100px);
-  color: var(--primary-color);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
 .pwd-strength-fill {
   height: 100%;
   width: 0%;
@@ -7399,7 +8328,9 @@ tr:hover td.col-pin,
 
 .notif-modal-search-box input:focus {
   border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15), 0 2px 8px rgba(15, 23, 42, 0.05);
+  box-shadow:
+    0 0 0 3px rgba(99, 102, 241, 0.15),
+    0 2px 8px rgba(15, 23, 42, 0.05);
 }
 
 .notif-modal-search-box i {
@@ -7459,9 +8390,20 @@ tr:hover td.col-pin,
 .notif-modal-list::-webkit-scrollbar {
   width: 6px;
 }
+.notif-modal-list::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.notif-modal-list::-webkit-scrollbar-track {
+  background: transparent;
+}
 .notif-modal-list::-webkit-scrollbar-thumb {
   background: rgba(148, 163, 184, 0.35);
   border-radius: 10px;
+}
+.notif-modal-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
 }
 
 .notif-modal-item {
@@ -7673,4 +8615,3 @@ tr:hover td.col-pin,
   background: rgba(239, 68, 68, 0.2);
   color: #f87171;
 }
-

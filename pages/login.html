@@ -38,9 +38,71 @@
 
     <!-- Fixed Top Control Actions (Theme Toggle & Language Switcher) -->
     <div class="auth-topbar topbar-action-group">
-      <button class="btn-icon-action" id="langTranslateBtn" title="Language / Ngôn ngữ">
-        <i class="fa-solid fa-language"></i>
-      </button>
+      <div class="dropdown d-inline-block">
+        <button
+          class="btn-icon-action"
+          id="langTranslateBtn"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          title="Language / Ngôn ngữ"
+        >
+          <i class="fa-solid fa-language"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end lang-dropdown-menu">
+          <li>
+            <div class="dropdown-header">
+              <i class="fa-solid fa-globe me-1"></i> Ngôn ngữ / Language
+            </div>
+          </li>
+          <li><hr class="dropdown-divider my-1" /></li>
+          <li>
+            <a class="dropdown-item active" href="javascript:void(0)" data-lang="vi">
+              <div class="d-flex align-items-center gap-2">
+                <img src="../assets/flag-vn.png" alt="Tiếng Việt" class="lang-flag" />
+                <span class="lang-name">Tiếng Việt</span>
+              </div>
+              <i class="fa-solid fa-check lang-check"></i>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="javascript:void(0)" data-lang="en">
+              <div class="d-flex align-items-center gap-2">
+                <img src="../assets/flag-us.png" alt="English" class="lang-flag" />
+                <span class="lang-name">English</span>
+              </div>
+              <i class="fa-solid fa-check lang-check"></i>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="javascript:void(0)" data-lang="jp">
+              <div class="d-flex align-items-center gap-2">
+                <img src="../assets/flag-jp.png" alt="日本語" class="lang-flag" />
+                <span class="lang-name">日本語</span>
+              </div>
+              <i class="fa-solid fa-check lang-check"></i>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="javascript:void(0)" data-lang="cn">
+              <div class="d-flex align-items-center gap-2">
+                <img src="../assets/flag-cn.png" alt="中文" class="lang-flag" />
+                <span class="lang-name">中文</span>
+              </div>
+              <i class="fa-solid fa-check lang-check"></i>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="javascript:void(0)" data-lang="fr">
+              <div class="d-flex align-items-center gap-2">
+                <img src="../assets/flag-fr.png" alt="Français" class="lang-flag" />
+                <span class="lang-name">Français</span>
+              </div>
+              <i class="fa-solid fa-check lang-check"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
 
       <button class="btn-icon-action" id="themeToggleBtn" title="Toggle Light/Dark Theme">
         <i class="fa-regular fa-moon" id="themeToggleIcon"></i>

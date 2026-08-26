@@ -6,7 +6,10 @@
     <script>
       (function () {
         try {
-          if (localStorage.getItem("nexus_sidebar_collapsed") === "true" && window.innerWidth >= 992) {
+          if (
+            localStorage.getItem("nexus_sidebar_collapsed") === "true" &&
+            window.innerWidth >= 992
+          ) {
             document.documentElement.classList.add("sidebar-collapsed");
           }
           var theme = localStorage.getItem("nexus_theme");
@@ -39,6 +42,7 @@
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/apexcharts@3.45.1/dist/apexcharts.css"
+    />
   </head>
   <body>
     <div class="app-wrapper">
@@ -148,16 +152,193 @@
 
           <div class="topbar-actions">
             <div class="topbar-action-group">
-              <button class="btn-icon-action" id="langTranslateBtn" title="Language / Ngôn ngữ">
-                <i class="fa-solid fa-language"></i>
-              </button>
+              <div class="dropdown d-inline-block">
+                <button
+                  class="btn-icon-action"
+                  id="langTranslateBtn"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  title="Language / Ngôn ngữ"
+                >
+                  <i class="fa-solid fa-language"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end lang-dropdown-menu">
+                  <li>
+                    <div class="dropdown-header">
+                      <i class="fa-solid fa-globe me-1"></i> Ngôn ngữ / Language
+                    </div>
+                  </li>
+                  <li><hr class="dropdown-divider my-1" /></li>
+                  <li>
+                    <a class="dropdown-item active" href="javascript:void(0)" data-lang="vi">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="../assets/flag-vn.png" alt="Tiếng Việt" class="lang-flag" />
+                        <span class="lang-name">Tiếng Việt</span>
+                      </div>
+                      <i class="fa-solid fa-check lang-check"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0)" data-lang="en">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="../assets/flag-us.png" alt="English" class="lang-flag" />
+                        <span class="lang-name">English</span>
+                      </div>
+                      <i class="fa-solid fa-check lang-check"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0)" data-lang="jp">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="../assets/flag-jp.png" alt="日本語" class="lang-flag" />
+                        <span class="lang-name">日本語</span>
+                      </div>
+                      <i class="fa-solid fa-check lang-check"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0)" data-lang="cn">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="../assets/flag-cn.png" alt="中文" class="lang-flag" />
+                        <span class="lang-name">中文</span>
+                      </div>
+                      <i class="fa-solid fa-check lang-check"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0)" data-lang="fr">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="../assets/flag-fr.png" alt="Français" class="lang-flag" />
+                        <span class="lang-name">Français</span>
+                      </div>
+                      <i class="fa-solid fa-check lang-check"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
               <button class="btn-icon-action" id="themeToggleBtn" title="Switch to Dark Mode">
                 <i class="fa-regular fa-moon"></i>
               </button>
-              <button class="btn-icon-action" id="notifBellBtn" title="Notifications">
-                <i class="fa-regular fa-bell"></i>
-                <span class="badge-dot">3</span>
-              </button>
+              <!-- Notifications Bell Dropdown -->
+              <div class="dropdown d-inline-block notif-wrapper">
+                <button
+                  class="btn-icon-action"
+                  id="notifBellBtn"
+                  data-bs-toggle="dropdown"
+                  data-bs-auto-close="outside"
+                  aria-expanded="false"
+                  title="Notifications"
+                >
+                  <i class="fa-regular fa-bell"></i>
+                  <span class="badge-dot">3</span>
+                </button>
+
+                <div
+                  class="dropdown-menu dropdown-menu-end notif-dropdown p-0"
+                  aria-labelledby="notifBellBtn"
+                  id="nexusNotifDropdownMenu"
+                >
+                  <div class="notif-header">
+                    <div class="notif-title">
+                      <i class="fa-solid fa-bell text-primary"></i> Thông báo
+                      <span class="notif-count-badge" id="dropdownUnreadBadge">3 chưa đọc</span>
+                    </div>
+                    <button type="button" class="notif-action-btn" id="dropdownMarkAllReadBtn">
+                      <i class="fa-solid fa-check-double me-1"></i> Đánh dấu đã đọc
+                    </button>
+                  </div>
+                  <div class="notif-body">
+                    <div class="notif-item unread" data-notif-id="1">
+                      <div class="notif-icon bg-primary-subtle text-primary">
+                        <i class="fa-solid fa-user-plus"></i>
+                      </div>
+                      <div class="notif-content">
+                        <div class="notif-item-title">
+                          <span>Nhân viên mới nhập học</span>
+                          <span class="unread-dot"></span>
+                        </div>
+                        <div class="notif-item-desc">Nguyễn Văn A đã hoàn tất hồ sơ nhân sự.</div>
+                        <div class="notif-time">
+                          <i class="fa-regular fa-clock me-1"></i>10 phút trước
+                        </div>
+                      </div>
+                    </div>
+                    <div class="notif-item unread" data-notif-id="2">
+                      <div class="notif-icon bg-warning-subtle text-warning">
+                        <i class="fa-solid fa-calendar-check"></i>
+                      </div>
+                      <div class="notif-content">
+                        <div class="notif-item-title">
+                          <span>Đơn xin nghỉ phép mới</span>
+                          <span class="unread-dot"></span>
+                        </div>
+                        <div class="notif-item-desc">Trần Thị B nộp đơn xin nghỉ phép 2 ngày.</div>
+                        <div class="notif-time">
+                          <i class="fa-regular fa-clock me-1"></i>30 phút trước
+                        </div>
+                      </div>
+                    </div>
+                    <div class="notif-item unread" data-notif-id="3">
+                      <div class="notif-icon bg-danger-subtle text-danger">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                      </div>
+                      <div class="notif-content">
+                        <div class="notif-item-title">
+                          <span>Hợp đồng sắp hết hạn</span>
+                          <span class="unread-dot"></span>
+                        </div>
+                        <div class="notif-item-desc">
+                          5 hợp đồng nhân sự sẽ hết hạn trong 7 ngày tới.
+                        </div>
+                        <div class="notif-time">
+                          <i class="fa-regular fa-clock me-1"></i>1 giờ trước
+                        </div>
+                      </div>
+                    </div>
+                    <div class="notif-item" data-notif-id="4">
+                      <div class="notif-icon bg-success-subtle text-success">
+                        <i class="fa-solid fa-circle-check"></i>
+                      </div>
+                      <div class="notif-content">
+                        <div class="notif-item-title">
+                          <span>Duyệt tăng lương</span>
+                        </div>
+                        <div class="notif-item-desc">Đề xuất tăng lương Q3 đã được phê duyệt.</div>
+                        <div class="notif-time">
+                          <i class="fa-regular fa-clock me-1"></i>3 giờ trước
+                        </div>
+                      </div>
+                    </div>
+                    <div class="notif-item" data-notif-id="5">
+                      <div class="notif-icon bg-info-subtle text-info">
+                        <i class="fa-solid fa-bullhorn"></i>
+                      </div>
+                      <div class="notif-content">
+                        <div class="notif-item-title">
+                          <span>Thông báo từ BQT</span>
+                        </div>
+                        <div class="notif-item-desc">Lịch nghỉ lễ Quốc Khánh 2/9 chính thức.</div>
+                        <div class="notif-time">
+                          <i class="fa-regular fa-clock me-1"></i>5 giờ trước
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="notif-footer">
+                    <button
+                      type="button"
+                      class="notif-show-more"
+                      data-bs-toggle="modal"
+                      data-bs-target="#nexusAllNotifModal"
+                      id="openNotifModalBtn"
+                    >
+                      <span>Xem tất cả thông báo</span>
+                      <i class="fa-solid fa-chevron-right fs-xs"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="dropdown">
@@ -242,7 +423,9 @@
                     <i class="fa-solid fa-layer-group me-1 text-primary"></i>Toàn bộ nhân viên
                   </div>
                 </div>
-                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                <div
+                  class="d-flex flex-column justify-content-between align-items-end flex-shrink-0"
+                >
                   <span class="metric-tag-pill">100% Headcount</span>
                   <div class="metric-pastel-icon-floating">
                     <i class="fa-solid fa-users"></i>
@@ -261,7 +444,9 @@
                     <i class="fa-solid fa-shield-halved me-1 text-success"></i>Đang hoạt động
                   </div>
                 </div>
-                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                <div
+                  class="d-flex flex-column justify-content-between align-items-end flex-shrink-0"
+                >
                   <span class="metric-tag-pill">81.0% Active</span>
                   <div class="metric-pastel-icon-floating">
                     <i class="fa-solid fa-circle-check"></i>
@@ -280,7 +465,9 @@
                     <i class="fa-solid fa-chart-line me-1 text-purple"></i>Đang thử việc
                   </div>
                 </div>
-                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                <div
+                  class="d-flex flex-column justify-content-between align-items-end flex-shrink-0"
+                >
                   <span class="metric-tag-pill">7.3% Rate</span>
                   <div class="metric-pastel-icon-floating">
                     <i class="fa-solid fa-hourglass-half"></i>
@@ -299,7 +486,9 @@
                     <i class="fa-solid fa-fire me-1 text-danger"></i>Tỷ lệ nghỉ việc
                   </div>
                 </div>
-                <div class="d-flex flex-column justify-content-between align-items-end flex-shrink-0">
+                <div
+                  class="d-flex flex-column justify-content-between align-items-end flex-shrink-0"
+                >
                   <span class="metric-tag-pill">4.8% Turnover</span>
                   <div class="metric-pastel-icon-floating">
                     <i class="fa-solid fa-circle-xmark"></i>
@@ -538,8 +727,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Linh Tran" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP001');">
+                    <span class="badge-soft badge-green"
+                      ><i class="fa-solid fa-circle"></i> Active</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP001');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -588,8 +786,17 @@
                     aria-label="Select Minh Nguyen"
                   />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-purple"><i class="fa-solid fa-laptop-house"></i> Remote</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP002');">
+                    <span class="badge-soft badge-purple"
+                      ><i class="fa-solid fa-laptop-house"></i> Remote</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP002');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -634,8 +841,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Thu Pham" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-cyan"><i class="fa-solid fa-baby"></i> Mat. Leave</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP003');">
+                    <span class="badge-soft badge-cyan"
+                      ><i class="fa-solid fa-baby"></i> Mat. Leave</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP003');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -656,7 +872,9 @@
                   <div class="emp-card-role">HR Manager</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="badge-soft badge-teal"><i class="fa-solid fa-people-roof"></i> HR</span>
+                  <span class="badge-soft badge-teal"
+                    ><i class="fa-solid fa-people-roof"></i> HR</span
+                  >
                   <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
@@ -683,8 +901,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Duc Le" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-amber"><i class="fa-solid fa-hourglass-half"></i> Probation</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP004');">
+                    <span class="badge-soft badge-amber"
+                      ><i class="fa-solid fa-hourglass-half"></i> Probation</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP004');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -729,8 +956,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Hoa Vo" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP005');">
+                    <span class="badge-soft badge-green"
+                      ><i class="fa-solid fa-circle"></i> Active</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP005');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -775,8 +1011,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Khoa Dinh" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP006');">
+                    <span class="badge-soft badge-green"
+                      ><i class="fa-solid fa-circle"></i> Active</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP006');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -826,8 +1071,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select An Nguyen" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP007');">
+                    <span class="badge-soft badge-green"
+                      ><i class="fa-solid fa-circle"></i> Active</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP007');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -872,8 +1126,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Bao Tran" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-amber"><i class="fa-solid fa-hourglass-half"></i> Probation</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP008');">
+                    <span class="badge-soft badge-amber"
+                      ><i class="fa-solid fa-hourglass-half"></i> Probation</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP008');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -923,8 +1186,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Lan Hoang" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP009');">
+                    <span class="badge-soft badge-green"
+                      ><i class="fa-solid fa-circle"></i> Active</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP009');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -969,8 +1241,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Tuan Bui" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP010');">
+                    <span class="badge-soft badge-green"
+                      ><i class="fa-solid fa-circle"></i> Active</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP010');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -1015,8 +1296,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Mai Nguyen" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-red"><i class="fa-solid fa-circle-xmark"></i> Resigned</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP011');">
+                    <span class="badge-soft badge-red"
+                      ><i class="fa-solid fa-circle-xmark"></i> Resigned</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP011');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -1066,8 +1356,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Phat Do" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-purple"><i class="fa-solid fa-laptop-house"></i> Remote</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP012');">
+                    <span class="badge-soft badge-purple"
+                      ><i class="fa-solid fa-laptop-house"></i> Remote</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP012');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -1112,8 +1411,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Hoang Vu" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP013');">
+                    <span class="badge-soft badge-green"
+                      ><i class="fa-solid fa-circle"></i> Active</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP013');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -1158,8 +1466,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Nhung Dang" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP014');">
+                    <span class="badge-soft badge-green"
+                      ><i class="fa-solid fa-circle"></i> Active</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP014');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -1204,8 +1521,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Thanh Bui" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-purple"><i class="fa-solid fa-laptop-house"></i> Remote</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP015');">
+                    <span class="badge-soft badge-purple"
+                      ><i class="fa-solid fa-laptop-house"></i> Remote</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP015');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -1250,8 +1576,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Vy Ngo" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP016');">
+                    <span class="badge-soft badge-green"
+                      ><i class="fa-solid fa-circle"></i> Active</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP016');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -1272,7 +1607,9 @@
                   <div class="emp-card-role">Talent Acquisition Lead</div>
                 </div>
                 <div class="emp-card-badges">
-                  <span class="badge-soft badge-teal"><i class="fa-solid fa-people-roof"></i> HR</span>
+                  <span class="badge-soft badge-teal"
+                    ><i class="fa-solid fa-people-roof"></i> HR</span
+                  >
                   <span class="badge-soft badge-blue"
                     ><i class="fa-solid fa-file-contract"></i> Full-time</span
                   >
@@ -1303,8 +1640,17 @@
                     aria-label="Select Long Truong"
                   />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP017');">
+                    <span class="badge-soft badge-green"
+                      ><i class="fa-solid fa-circle"></i> Active</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP017');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -1353,8 +1699,17 @@
                     aria-label="Select Quynh Nguyen"
                   />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-amber"><i class="fa-solid fa-hourglass-half"></i> Probation</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP018');">
+                    <span class="badge-soft badge-amber"
+                      ><i class="fa-solid fa-hourglass-half"></i> Probation</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP018');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -1399,8 +1754,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Kien Pham" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP019');">
+                    <span class="badge-soft badge-green"
+                      ><i class="fa-solid fa-circle"></i> Active</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP019');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -1450,8 +1814,17 @@
                 <div class="emp-card-top-bar">
                   <input type="checkbox" class="emp-card-checkbox" aria-label="Select Trinh Do" />
                   <div class="d-flex align-items-center gap-2">
-                    <span class="badge-soft badge-green"><i class="fa-solid fa-circle"></i> Active</span>
-                    <button class="emp-card-view-btn" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP020');">
+                    <span class="badge-soft badge-green"
+                      ><i class="fa-solid fa-circle"></i> Active</span
+                    >
+                    <button
+                      class="emp-card-view-btn"
+                      title="View Profile"
+                      onclick="
+                        event.stopPropagation();
+                        openEmpModal('EMP020');
+                      "
+                    >
                       <i class="fa-regular fa-eye"></i>
                     </button>
                   </div>
@@ -1508,23 +1881,32 @@
                       <th>Code</th>
                       <th>Employee</th>
                       <th>Department</th>
-                      <th style="min-width: 170px;">Position</th>
+                      <th style="min-width: 170px">Position</th>
                       <th>Contract</th>
                       <th>Status</th>
                       <th>Location</th>
-                      <th style="min-width: 140px;">Joined</th>
-                      <th style="min-width: 150px;">Created By</th>
+                      <th style="min-width: 140px">Joined</th>
+                      <th style="min-width: 150px">Created By</th>
                       <th>Created At</th>
-                      <th style="min-width: 150px;">Updated By</th>
+                      <th style="min-width: 150px">Updated By</th>
                       <th>Updated At</th>
-                      <th style="min-width: 220px;">Note</th>
+                      <th style="min-width: 220px">Note</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Linh Tran" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Linh Tran" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP001');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP001');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -1563,16 +1945,37 @@
                         >
                       </td>
                       <td><span class="text-muted small">Jan 2022</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Admin User</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2022-01-15</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2025-01-10</span></td>
-                      <td><span class="text-muted small fst-italic">Senior UX Specialist candidate</span></td>
+                      <td>
+                        <span class="text-muted small fst-italic"
+                          >Senior UX Specialist candidate</span
+                        >
+                      </td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Minh Nguyen" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Minh Nguyen" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP002');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP002');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -1611,16 +2014,35 @@
                         >
                       </td>
                       <td><span class="text-muted small">Mar 2021</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>System Bot</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2021-03-01</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Thu Pham</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-11-20</span></td>
-                      <td><span class="text-muted small fst-italic">Remote engineering squad</span></td>
+                      <td>
+                        <span class="text-muted small fst-italic">Remote engineering squad</span>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Thu Pham" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Thu Pham" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP003');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP003');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -1660,16 +2082,33 @@
                         >
                       </td>
                       <td><span class="text-muted small">Jul 2020</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Admin User</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2020-07-01</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2025-02-01</span></td>
-                      <td><span class="text-muted small fst-italic">Maternity leave scheduled</span></td>
+                      <td>
+                        <span class="text-muted small fst-italic">Maternity leave scheduled</span>
+                      </td>
                     </tr>
                     <tr>
                       <td class="col-pin"><input type="checkbox" aria-label="Select Duc Le" /></td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP004');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP004');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -1708,16 +2147,31 @@
                         >
                       </td>
                       <td><span class="text-muted small">Oct 2024</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Thu Pham</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-10-15</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>System Bot</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-12-05</span></td>
                       <td><span class="text-muted small fst-italic">On 60-day probation</span></td>
                     </tr>
                     <tr>
                       <td class="col-pin"><input type="checkbox" aria-label="Select Hoa Vo" /></td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP005');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP005');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -1756,16 +2210,33 @@
                         >
                       </td>
                       <td><span class="text-muted small">Apr 2019</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Admin User</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2019-04-10</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-10-01</span></td>
                       <td><span class="text-muted small fst-italic">Brand strategy lead</span></td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Khoa Dinh" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Khoa Dinh" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP006');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP006');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -1805,16 +2276,35 @@
                         >
                       </td>
                       <td><span class="text-muted small">Jun 2023</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>System Bot</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2023-06-12</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Alex Rivera</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Alex Rivera</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2025-01-15</span></td>
-                      <td><span class="text-muted small fst-italic">Quarterly audit completed</span></td>
+                      <td>
+                        <span class="text-muted small fst-italic">Quarterly audit completed</span>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select An Nguyen" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select An Nguyen" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP007');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP007');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -1853,16 +2343,35 @@
                         >
                       </td>
                       <td><span class="text-muted small">Feb 2023</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Thu Pham</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2023-02-20</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>System Bot</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-09-18</span></td>
-                      <td><span class="text-muted small fst-italic">Da Nang hub coordinator</span></td>
+                      <td>
+                        <span class="text-muted small fst-italic">Da Nang hub coordinator</span>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Bao Tran" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Bao Tran" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP008');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP008');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -1902,16 +2411,33 @@
                         >
                       </td>
                       <td><span class="text-muted small">Sep 2024</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-09-01</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Thu Pham</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-11-10</span></td>
                       <td><span class="text-muted small fst-italic">Undergraduate intern</span></td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Lan Hoang" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Lan Hoang" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP009');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP009');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -1950,16 +2476,35 @@
                         >
                       </td>
                       <td><span class="text-muted small">Nov 2018</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Admin User</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2018-11-05</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2025-01-08</span></td>
-                      <td><span class="text-muted small fst-italic">CMO executive committee</span></td>
+                      <td>
+                        <span class="text-muted small fst-italic">CMO executive committee</span>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Tuan Bui" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Tuan Bui" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP010');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP010');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -1998,16 +2543,35 @@
                         >
                       </td>
                       <td><span class="text-muted small">Aug 2022</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>System Bot</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2022-08-14</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Alex Rivera</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Alex Rivera</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-12-19</span></td>
-                      <td><span class="text-muted small fst-italic">Freelance project contract</span></td>
+                      <td>
+                        <span class="text-muted small fst-italic">Freelance project contract</span>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Mai Nguyen" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Mai Nguyen" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP011');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP011');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -2047,16 +2611,33 @@
                         >
                       </td>
                       <td><span class="text-muted small">Dec 2024</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Thu Pham</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-12-01</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>System Bot</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2025-01-02</span></td>
-                      <td><span class="text-muted small fst-italic">Resignation handover done</span></td>
+                      <td>
+                        <span class="text-muted small fst-italic">Resignation handover done</span>
+                      </td>
                     </tr>
                     <tr>
                       <td class="col-pin"><input type="checkbox" aria-label="Select Phat Do" /></td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP012');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP012');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -2095,16 +2676,35 @@
                         >
                       </td>
                       <td><span class="text-muted small">May 2021</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Admin User</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2021-05-18</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-10-12</span></td>
-                      <td><span class="text-muted small fst-italic">Cloud infrastructure lead</span></td>
+                      <td>
+                        <span class="text-muted small fst-italic">Cloud infrastructure lead</span>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Hoang Vu" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Hoang Vu" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP013');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP013');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -2143,16 +2743,33 @@
                         >
                       </td>
                       <td><span class="text-muted small">Aug 2020</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2020-08-22</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Thu Pham</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-11-25</span></td>
                       <td><span class="text-muted small fst-italic">ERP module PM</span></td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Nhung Dang" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Nhung Dang" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP014');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP014');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -2191,16 +2808,35 @@
                         >
                       </td>
                       <td><span class="text-muted small">Feb 2021</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>System Bot</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2021-02-10</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Alex Rivera</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Alex Rivera</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2025-01-20</span></td>
-                      <td><span class="text-muted small fst-italic">Automation suite owner</span></td>
+                      <td>
+                        <span class="text-muted small fst-italic">Automation suite owner</span>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Thanh Bui" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Thanh Bui" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP015');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP015');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -2239,16 +2875,33 @@
                         >
                       </td>
                       <td><span class="text-muted small">Nov 2023</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Thu Pham</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2023-11-05</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>System Bot</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-10-30</span></td>
-                      <td><span class="text-muted small fst-italic">Content campaign lead</span></td>
+                      <td>
+                        <span class="text-muted small fst-italic">Content campaign lead</span>
+                      </td>
                     </tr>
                     <tr>
                       <td class="col-pin"><input type="checkbox" aria-label="Select Vy Ngo" /></td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP016');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP016');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -2288,16 +2941,35 @@
                         >
                       </td>
                       <td><span class="text-muted small">May 2022</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Admin User</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2022-05-12</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2025-01-14</span></td>
-                      <td><span class="text-muted small fst-italic">Tech talent recruiter</span></td>
+                      <td>
+                        <span class="text-muted small fst-italic">Tech talent recruiter</span>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Long Truong" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Long Truong" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP017');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP017');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -2336,16 +3008,35 @@
                         >
                       </td>
                       <td><span class="text-muted small">Jan 2019</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Sarah Jenkins</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2019-01-08</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Thu Pham</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-12-28</span></td>
-                      <td><span class="text-muted small fst-italic">Financial controller lead</span></td>
+                      <td>
+                        <span class="text-muted small fst-italic">Financial controller lead</span>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Quynh Nguyen" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Quynh Nguyen" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP018');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP018');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -2384,16 +3075,33 @@
                         >
                       </td>
                       <td><span class="text-muted small">Jan 2025</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Thu Pham</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Thu Pham</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2025-01-05</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>System Bot</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>System Bot</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2025-01-25</span></td>
                       <td><span class="text-muted small fst-italic">UI design intern</span></td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Kien Pham" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Kien Pham" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP019');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP019');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -2433,16 +3141,33 @@
                         >
                       </td>
                       <td><span class="text-muted small">Oct 2023</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Admin User</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2023-10-18</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Alex Rivera</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Alex Rivera</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2024-11-08</span></td>
                       <td><span class="text-muted small fst-italic">Part-time sysadmin</span></td>
                     </tr>
                     <tr>
-                      <td class="col-pin"><input type="checkbox" aria-label="Select Trinh Do" /></td>
+                      <td class="col-pin">
+                        <input type="checkbox" aria-label="Select Trinh Do" />
+                      </td>
                       <td class="text-center" onclick="event.stopPropagation()">
-                        <button class="btn-action-eye" title="View Profile" onclick="event.stopPropagation(); openEmpModal('EMP020');">
+                        <button
+                          class="btn-action-eye"
+                          title="View Profile"
+                          onclick="
+                            event.stopPropagation();
+                            openEmpModal('EMP020');
+                          "
+                        >
                           <i class="fa-regular fa-eye"></i>
                         </button>
                       </td>
@@ -2481,9 +3206,17 @@
                         >
                       </td>
                       <td><span class="text-muted small">Mar 2017</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Admin User</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Admin User</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2017-03-15</span></td>
-                      <td><span class="text-muted small"><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span></td>
+                      <td>
+                        <span class="text-muted small"
+                          ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                        >
+                      </td>
                       <td><span class="text-muted small">2025-01-11</span></td>
                       <td><span class="text-muted small fst-italic">Sales director board</span></td>
                     </tr>
@@ -2517,9 +3250,7 @@
 
               <!-- Center Zone: Quick Jump Widget -->
               <div class="app-footer-center">
-                <span class="app-jump-label"
-                  >Go to page:</span
-                >
+                <span class="app-jump-label">Go to page:</span>
                 <form id="empPageJumpForm" class="app-jump-form" onsubmit="return false;">
                   <input
                     type="number"
@@ -2600,10 +3331,6 @@
     <!-- Apex Custom Modules -->
     <script src="../js/apex-chart.js"></script>
     <script src="../js/apex-tree.js"></script>
-
-    <!-- Main Application JS -->
-    <script src="../js/app.js"></script>
-
 
     <!-- ══════════════════════════
          EMPLOYEE DETAIL MODAL (Nexus Enterprise Specification)
@@ -2890,6 +3617,358 @@
       </div>
     </div>
 
+    <!-- All Notifications Modal -->
+    <div
+      class="modal fade custom-modal"
+      id="nexusAllNotifModal"
+      tabindex="-1"
+      aria-labelledby="nexusAllNotifModalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-2xl rounded-5 overflow-hidden">
+          <!-- Ambient Radial Glow Backdrop & Top Accent Line -->
+          <div class="modal-bg-glow"></div>
+          <div class="modal-top-accent-bar"></div>
+
+          <!-- Modal Header -->
+          <div
+            class="modal-header border-0 px-4 pt-4 pb-3 position-relative d-flex align-items-start justify-content-between z-1"
+          >
+            <div class="d-flex align-items-center gap-3">
+              <div class="modal-icon-badge">
+                <i class="fa-solid fa-bell text-primary"></i>
+              </div>
+              <div>
+                <div class="modal-eyebrow-tag mb-1">
+                  <span class="eyebrow-dot"></span> SYSTEM NOTIFICATION CENTER
+                </div>
+                <h5
+                  class="modal-title fw-bold text-dark mb-0 d-flex align-items-center gap-2"
+                  id="nexusAllNotifModalTitle"
+                >
+                  <i class="fa-solid fa-inbox text-primary"></i>
+                  <span>Tất cả thông báo</span>
+                  <span
+                    class="badge bg-primary-subtle text-primary fs-xs rounded-pill px-2 py-1"
+                    id="modalTotalNotifBadge"
+                    >5</span
+                  >
+                </h5>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="custom-btn-close ms-1"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <!-- Modal Body -->
+          <div class="modal-body px-4 py-3 position-relative z-1">
+            <div class="row g-3 align-items-center mt-1 mb-3">
+              <div class="col-md-7">
+                <div class="notif-modal-filter-tabs">
+                  <button type="button" class="notif-filter-btn active" data-filter="all">
+                    Tất cả
+                  </button>
+                  <button type="button" class="notif-filter-btn" data-filter="unread">
+                    Chưa đọc
+                  </button>
+                  <button type="button" class="notif-filter-btn" data-filter="work">
+                    Công việc
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="notif-modal-search-box">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <input
+                    type="text"
+                    id="modalNotifSearchInput"
+                    placeholder="Tìm kiếm thông báo..."
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="d-flex align-items-center justify-content-between pt-3 pb-2 border-top border-light-subtle"
+            >
+              <div
+                class="text-muted fs-xs d-inline-flex align-items-center gap-2 flex-wrap"
+                id="modalNotifStatusSummary"
+              >
+                <span
+                  class="badge bg-primary-subtle text-primary rounded-pill px-2 py-0.5"
+                  id="modalUnreadBadge"
+                >
+                  <i class="fa-solid fa-circle-dot me-1 fs-xs"></i
+                  ><span id="modalUnreadCountText">3</span> chưa đọc
+                </span>
+                <span
+                  class="badge bg-secondary-subtle text-secondary rounded-pill px-2 py-0.5"
+                  id="modalReadBadge"
+                >
+                  <i class="fa-solid fa-check me-1 fs-xs"></i
+                  ><span id="modalReadCountText">2</span> đã đọc
+                </span>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                <button
+                  type="button"
+                  class="btn btn-link btn-xs text-decoration-none text-primary fw-semibold p-0"
+                  id="modalMarkAllReadBtn"
+                >
+                  <i class="fa-solid fa-check-double me-1"></i>Đánh dấu tất cả đã đọc
+                </button>
+                <span class="text-muted opacity-40">|</span>
+                <button
+                  type="button"
+                  class="btn btn-link btn-xs text-decoration-none text-danger fw-semibold p-0"
+                  id="modalClearReadBtn"
+                >
+                  <i class="fa-solid fa-trash-can me-1"></i>Xóa đã đọc
+                </button>
+              </div>
+            </div>
+
+            <div class="notif-modal-list" id="modalNotifListContainer">
+              <div class="notif-modal-item unread" data-id="1">
+                <div class="notif-icon bg-primary-subtle text-primary flex-shrink-0">
+                  <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <div class="flex-grow-1 min-w-0">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <h6
+                      class="fw-bold mb-0 text-dark fs-sm d-flex align-items-center gap-2 min-w-0"
+                    >
+                      <span class="text-truncate">Nhân viên mới nhập học</span>
+                      <span
+                        class="badge bg-indigo text-white fs-xs px-2 py-0.5 rounded-pill flex-shrink-0"
+                        >Mới</span
+                      >
+                    </h6>
+                    <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                      <span class="notif-time text-muted fs-xs"
+                        ><i class="fa-regular fa-clock me-1"></i>10 phút trước</span
+                      >
+                      <div class="notif-modal-actions ms-1">
+                        <button
+                          type="button"
+                          class="notif-item-action-icon mark-read-item-btn"
+                          title="Đánh dấu đã đọc"
+                          data-id="1"
+                        >
+                          <i class="fa-solid fa-check"></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="notif-item-action-icon delete delete-item-btn"
+                          title="Xóa thông báo"
+                          data-id="1"
+                        >
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-secondary fs-xs mb-0 leading-relaxed text-truncate">
+                    Nguyễn Văn A đã hoàn tất hồ sơ nhân sự.
+                  </p>
+                </div>
+              </div>
+
+              <div class="notif-modal-item unread" data-id="2">
+                <div class="notif-icon bg-warning-subtle text-warning flex-shrink-0">
+                  <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <div class="flex-grow-1 min-w-0">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <h6
+                      class="fw-bold mb-0 text-dark fs-sm d-flex align-items-center gap-2 min-w-0"
+                    >
+                      <span class="text-truncate">Đơn xin nghỉ phép mới</span>
+                      <span
+                        class="badge bg-indigo text-white fs-xs px-2 py-0.5 rounded-pill flex-shrink-0"
+                        >Mới</span
+                      >
+                    </h6>
+                    <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                      <span class="notif-time text-muted fs-xs"
+                        ><i class="fa-regular fa-clock me-1"></i>30 phút trước</span
+                      >
+                      <div class="notif-modal-actions ms-1">
+                        <button
+                          type="button"
+                          class="notif-item-action-icon mark-read-item-btn"
+                          title="Đánh dấu đã đọc"
+                          data-id="2"
+                        >
+                          <i class="fa-solid fa-check"></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="notif-item-action-icon delete delete-item-btn"
+                          title="Xóa thông báo"
+                          data-id="2"
+                        >
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-secondary fs-xs mb-0 leading-relaxed text-truncate">
+                    Trần Thị B nộp đơn xin nghỉ phép 2 ngày.
+                  </p>
+                </div>
+              </div>
+
+              <div class="notif-modal-item unread" data-id="3">
+                <div class="notif-icon bg-danger-subtle text-danger flex-shrink-0">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="flex-grow-1 min-w-0">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <h6
+                      class="fw-bold mb-0 text-dark fs-sm d-flex align-items-center gap-2 min-w-0"
+                    >
+                      <span class="text-truncate">Hợp đồng sắp hết hạn</span>
+                      <span
+                        class="badge bg-indigo text-white fs-xs px-2 py-0.5 rounded-pill flex-shrink-0"
+                        >Mới</span
+                      >
+                    </h6>
+                    <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                      <span class="notif-time text-muted fs-xs"
+                        ><i class="fa-regular fa-clock me-1"></i>1 giờ trước</span
+                      >
+                      <div class="notif-modal-actions ms-1">
+                        <button
+                          type="button"
+                          class="notif-item-action-icon mark-read-item-btn"
+                          title="Đánh dấu đã đọc"
+                          data-id="3"
+                        >
+                          <i class="fa-solid fa-check"></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="notif-item-action-icon delete delete-item-btn"
+                          title="Xóa thông báo"
+                          data-id="3"
+                        >
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-secondary fs-xs mb-0 leading-relaxed text-truncate">
+                    5 hợp đồng nhân sự sẽ hết hạn trong 7 ngày tới.
+                  </p>
+                </div>
+              </div>
+
+              <div class="notif-modal-item" data-id="4">
+                <div class="notif-icon bg-success-subtle text-success flex-shrink-0">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div class="flex-grow-1 min-w-0">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <h6
+                      class="fw-bold mb-0 text-dark fs-sm d-flex align-items-center gap-2 min-w-0"
+                    >
+                      <span class="text-truncate">Duyệt tăng lương</span>
+                    </h6>
+                    <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                      <span class="notif-time text-muted fs-xs"
+                        ><i class="fa-regular fa-clock me-1"></i>3 giờ trước</span
+                      >
+                      <div class="notif-modal-actions ms-1">
+                        <button
+                          type="button"
+                          class="notif-item-action-icon delete delete-item-btn"
+                          title="Xóa thông báo"
+                          data-id="4"
+                        >
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-secondary fs-xs mb-0 leading-relaxed text-truncate">
+                    Đề xuất tăng lương Q3 đã được phê duyệt.
+                  </p>
+                </div>
+              </div>
+
+              <div class="notif-modal-item" data-id="5">
+                <div class="notif-icon bg-info-subtle text-info flex-shrink-0">
+                  <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <div class="flex-grow-1 min-w-0">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <h6
+                      class="fw-bold mb-0 text-dark fs-sm d-flex align-items-center gap-2 min-w-0"
+                    >
+                      <span class="text-truncate">Thông báo từ BQT</span>
+                    </h6>
+                    <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                      <span class="notif-time text-muted fs-xs"
+                        ><i class="fa-regular fa-clock me-1"></i>5 giờ trước</span
+                      >
+                      <div class="notif-modal-actions ms-1">
+                        <button
+                          type="button"
+                          class="notif-item-action-icon delete delete-item-btn"
+                          title="Xóa thông báo"
+                          data-id="5"
+                        >
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-secondary fs-xs mb-0 leading-relaxed text-truncate">
+                    Lịch nghỉ lễ Quốc Khánh 2/9 chính thức.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Footer -->
+          <div
+            class="modal-footer px-4 py-3 border-top-0 d-flex align-items-center justify-content-between modal-footer-custom z-1"
+          >
+            <div class="d-none d-md-flex align-items-center gap-2 text-muted small">
+              <i class="fa-solid fa-shield-halved text-primary opacity-75"></i>
+              <span>Enterprise Live Sync</span>
+              <span class="modal-footer-divider"></span>
+              <span class="d-inline-flex align-items-center gap-1"
+                ><kbd class="kbd-badge">ESC</kbd> Đóng</span
+              >
+            </div>
+            <div class="d-flex align-items-center gap-2 ms-auto">
+              <button
+                type="button"
+                class="btn btn-sm btn-pastel-slate px-3 py-2 rounded-3"
+                data-bs-dismiss="modal"
+              >
+                <i class="fa-solid fa-xmark me-1"></i> Đóng
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Main Application JS -->
+    <script src="../js/app.js"></script>
   </body>
 </html>
-

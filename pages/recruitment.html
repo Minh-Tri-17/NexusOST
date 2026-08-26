@@ -150,13 +150,71 @@
 
           <div class="topbar-actions">
             <div class="topbar-action-group">
-              <button
-                class="btn-icon-action"
-                id="langTranslateBtn"
-                title="Language / Ngôn ngữ"
-              >
-                <i class="fa-solid fa-language"></i>
-              </button>
+              <div class="dropdown d-inline-block">
+                <button
+                  class="btn-icon-action"
+                  id="langTranslateBtn"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  title="Language / Ngôn ngữ"
+                >
+                  <i class="fa-solid fa-language"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end lang-dropdown-menu">
+                  <li>
+                    <div class="dropdown-header">
+                      <i class="fa-solid fa-globe me-1"></i> Ngôn ngữ / Language
+                    </div>
+                  </li>
+                  <li><hr class="dropdown-divider my-1" /></li>
+                  <li>
+                    <a class="dropdown-item active" href="javascript:void(0)" data-lang="vi">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="../assets/flag-vn.png" alt="Tiếng Việt" class="lang-flag" />
+                        <span class="lang-name">Tiếng Việt</span>
+                      </div>
+                      <i class="fa-solid fa-check lang-check"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0)" data-lang="en">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="../assets/flag-us.png" alt="English" class="lang-flag" />
+                        <span class="lang-name">English</span>
+                      </div>
+                      <i class="fa-solid fa-check lang-check"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0)" data-lang="jp">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="../assets/flag-jp.png" alt="日本語" class="lang-flag" />
+                        <span class="lang-name">日本語</span>
+                      </div>
+                      <i class="fa-solid fa-check lang-check"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0)" data-lang="cn">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="../assets/flag-cn.png" alt="中文" class="lang-flag" />
+                        <span class="lang-name">中文</span>
+                      </div>
+                      <i class="fa-solid fa-check lang-check"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0)" data-lang="fr">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="../assets/flag-fr.png" alt="Français" class="lang-flag" />
+                        <span class="lang-name">Français</span>
+                      </div>
+                      <i class="fa-solid fa-check lang-check"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
               <button
                 class="btn-icon-action"
@@ -166,14 +224,113 @@
                 <i class="fa-regular fa-moon"></i>
               </button>
 
-              <button
-                class="btn-icon-action"
-                id="notifBellBtn"
-                title="Notifications"
-              >
-                <i class="fa-regular fa-bell"></i>
-                <span class="badge-dot">3</span>
-              </button>
+              <!-- Notifications Bell Dropdown -->
+              <div class="dropdown d-inline-block notif-wrapper">
+                <button
+                  class="btn-icon-action"
+                  id="notifBellBtn"
+                  data-bs-toggle="dropdown"
+                  data-bs-auto-close="outside"
+                  aria-expanded="false"
+                  title="Notifications"
+                >
+                  <i class="fa-regular fa-bell"></i>
+                  <span class="badge-dot">3</span>
+                </button>
+
+                <div
+                  class="dropdown-menu dropdown-menu-end notif-dropdown p-0"
+                  aria-labelledby="notifBellBtn"
+                  id="nexusNotifDropdownMenu"
+                >
+                  <div class="notif-header">
+                    <div class="notif-title">
+                      <i class="fa-solid fa-bell text-primary"></i> Thông báo
+                      <span class="notif-count-badge" id="dropdownUnreadBadge">3 chưa đọc</span>
+                    </div>
+                    <button type="button" class="notif-action-btn" id="dropdownMarkAllReadBtn">
+                      <i class="fa-solid fa-check-double me-1"></i> Đánh dấu đã đọc
+                    </button>
+                  </div>
+                  <div class="notif-body">
+                    <div class="notif-item unread" data-notif-id="1">
+                      <div class="notif-icon bg-primary-subtle text-primary">
+                        <i class="fa-solid fa-user-plus"></i>
+                      </div>
+                      <div class="notif-content">
+                        <div class="notif-item-title">
+                          <span>Nhân viên mới nhập học</span>
+                          <span class="unread-dot"></span>
+                        </div>
+                        <div class="notif-item-desc">Nguyễn Văn A đã hoàn tất hồ sơ nhân sự.</div>
+                        <div class="notif-time"><i class="fa-regular fa-clock me-1"></i>10 phút trước</div>
+                      </div>
+                    </div>
+                    <div class="notif-item unread" data-notif-id="2">
+                      <div class="notif-icon bg-warning-subtle text-warning">
+                        <i class="fa-solid fa-calendar-check"></i>
+                      </div>
+                      <div class="notif-content">
+                        <div class="notif-item-title">
+                          <span>Đơn xin nghỉ phép mới</span>
+                          <span class="unread-dot"></span>
+                        </div>
+                        <div class="notif-item-desc">Trần Thị B nộp đơn xin nghỉ phép 2 ngày.</div>
+                        <div class="notif-time"><i class="fa-regular fa-clock me-1"></i>30 phút trước</div>
+                      </div>
+                    </div>
+                    <div class="notif-item unread" data-notif-id="3">
+                      <div class="notif-icon bg-danger-subtle text-danger">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                      </div>
+                      <div class="notif-content">
+                        <div class="notif-item-title">
+                          <span>Hợp đồng sắp hết hạn</span>
+                          <span class="unread-dot"></span>
+                        </div>
+                        <div class="notif-item-desc">5 hợp đồng nhân sự sẽ hết hạn trong 7 ngày tới.</div>
+                        <div class="notif-time"><i class="fa-regular fa-clock me-1"></i>1 giờ trước</div>
+                      </div>
+                    </div>
+                    <div class="notif-item" data-notif-id="4">
+                      <div class="notif-icon bg-success-subtle text-success">
+                        <i class="fa-solid fa-circle-check"></i>
+                      </div>
+                      <div class="notif-content">
+                        <div class="notif-item-title">
+                          <span>Duyệt tăng lương</span>
+                        </div>
+                        <div class="notif-item-desc">Đề xuất tăng lương Q3 đã được phê duyệt.</div>
+                        <div class="notif-time"><i class="fa-regular fa-clock me-1"></i>3 giờ trước</div>
+                      </div>
+                    </div>
+                    <div class="notif-item" data-notif-id="5">
+                      <div class="notif-icon bg-info-subtle text-info">
+                        <i class="fa-solid fa-bullhorn"></i>
+                      </div>
+                      <div class="notif-content">
+                        <div class="notif-item-title">
+                          <span>Thông báo từ BQT</span>
+                        </div>
+                        <div class="notif-item-desc">Lịch nghỉ lễ Quốc Khánh 2/9 chính thức.</div>
+                        <div class="notif-time"><i class="fa-regular fa-clock me-1"></i>5 giờ trước</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="notif-footer">
+                    <button
+                      type="button"
+                      class="notif-show-more"
+                      data-bs-toggle="modal"
+                      data-bs-target="#nexusAllNotifModal"
+                      id="openNotifModalBtn"
+                    >
+                      <span>Xem tất cả thông báo</span>
+                      <i class="fa-solid fa-chevron-right fs-xs"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="dropdown">
@@ -1413,6 +1570,225 @@
       </div>
       </div>
     </main>
+    </div>
+
+    <!-- All Notifications Modal -->
+    <div class="modal fade custom-modal" id="nexusAllNotifModal" tabindex="-1" aria-labelledby="nexusAllNotifModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-2xl rounded-5 overflow-hidden">
+          <!-- Ambient Radial Glow Backdrop & Top Accent Line -->
+          <div class="modal-bg-glow"></div>
+          <div class="modal-top-accent-bar"></div>
+
+          <!-- Modal Header -->
+          <div class="modal-header border-0 px-4 pt-4 pb-3 position-relative d-flex align-items-start justify-content-between z-1">
+            <div class="d-flex align-items-center gap-3">
+              <div class="modal-icon-badge">
+                <i class="fa-solid fa-bell text-primary"></i>
+              </div>
+              <div>
+                <div class="modal-eyebrow-tag mb-1">
+                  <span class="eyebrow-dot"></span> SYSTEM NOTIFICATION CENTER
+                </div>
+                <h5 class="modal-title fw-bold text-dark mb-0 d-flex align-items-center gap-2" id="nexusAllNotifModalTitle">
+                  <i class="fa-solid fa-inbox text-primary"></i>
+                  <span>Tất cả thông báo</span>
+                  <span class="badge bg-primary-subtle text-primary fs-xs rounded-pill px-2 py-1" id="modalTotalNotifBadge">5</span>
+                </h5>
+              </div>
+            </div>
+            <button type="button" class="custom-btn-close ms-1" data-bs-dismiss="modal" aria-label="Close">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <!-- Modal Body -->
+          <div class="modal-body px-4 py-3 position-relative z-1">
+            <div class="row g-3 align-items-center mt-1 mb-3">
+              <div class="col-md-7">
+                <div class="notif-modal-filter-tabs">
+                  <button type="button" class="notif-filter-btn active" data-filter="all">Tất cả</button>
+                  <button type="button" class="notif-filter-btn" data-filter="unread">Chưa đọc</button>
+                  <button type="button" class="notif-filter-btn" data-filter="work">Công việc</button>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="notif-modal-search-box">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <input type="text" id="modalNotifSearchInput" placeholder="Tìm kiếm thông báo...">
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between pt-3 pb-2 border-top border-light-subtle">
+              <div class="text-muted fs-xs d-inline-flex align-items-center gap-2 flex-wrap" id="modalNotifStatusSummary">
+                <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-0.5" id="modalUnreadBadge">
+                  <i class="fa-solid fa-circle-dot me-1 fs-xs"></i><span id="modalUnreadCountText">3</span> chưa đọc
+                </span>
+                <span class="badge bg-secondary-subtle text-secondary rounded-pill px-2 py-0.5" id="modalReadBadge">
+                  <i class="fa-solid fa-check me-1 fs-xs"></i><span id="modalReadCountText">2</span> đã đọc
+                </span>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-link btn-xs text-decoration-none text-primary fw-semibold p-0" id="modalMarkAllReadBtn">
+                  <i class="fa-solid fa-check-double me-1"></i>Đánh dấu tất cả đã đọc
+                </button>
+                <span class="text-muted opacity-40">|</span>
+                <button type="button" class="btn btn-link btn-xs text-decoration-none text-danger fw-semibold p-0" id="modalClearReadBtn">
+                  <i class="fa-solid fa-trash-can me-1"></i>Xóa đã đọc
+                </button>
+              </div>
+            </div>
+
+            <div class="notif-modal-list" id="modalNotifListContainer">
+              <div class="notif-modal-item unread" data-id="1">
+                <div class="notif-icon bg-primary-subtle text-primary flex-shrink-0">
+                  <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <div class="flex-grow-1 min-w-0">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <h6 class="fw-bold mb-0 text-dark fs-sm d-flex align-items-center gap-2 min-w-0">
+                      <span class="text-truncate">Nhân viên mới nhập học</span>
+                      <span class="badge bg-indigo text-white fs-xs px-2 py-0.5 rounded-pill flex-shrink-0">Mới</span>
+                    </h6>
+                    <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                      <span class="notif-time text-muted fs-xs"><i class="fa-regular fa-clock me-1"></i>10 phút trước</span>
+                      <div class="notif-modal-actions ms-1">
+                        <button type="button" class="notif-item-action-icon mark-read-item-btn" title="Đánh dấu đã đọc" data-id="1">
+                          <i class="fa-solid fa-check"></i>
+                        </button>
+                        <button type="button" class="notif-item-action-icon delete delete-item-btn" title="Xóa thông báo" data-id="1">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-secondary fs-xs mb-0 leading-relaxed text-truncate">Nguyễn Văn A đã hoàn tất hồ sơ nhân sự.</p>
+                </div>
+              </div>
+
+              <div class="notif-modal-item unread" data-id="2">
+                <div class="notif-icon bg-warning-subtle text-warning flex-shrink-0">
+                  <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <div class="flex-grow-1 min-w-0">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <h6 class="fw-bold mb-0 text-dark fs-sm d-flex align-items-center gap-2 min-w-0">
+                      <span class="text-truncate">Đơn xin nghỉ phép mới</span>
+                      <span class="badge bg-indigo text-white fs-xs px-2 py-0.5 rounded-pill flex-shrink-0">Mới</span>
+                    </h6>
+                    <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                      <span class="notif-time text-muted fs-xs"><i class="fa-regular fa-clock me-1"></i>30 phút trước</span>
+                      <div class="notif-modal-actions ms-1">
+                        <button type="button" class="notif-item-action-icon mark-read-item-btn" title="Đánh dấu đã đọc" data-id="2">
+                          <i class="fa-solid fa-check"></i>
+                        </button>
+                        <button type="button" class="notif-item-action-icon delete delete-item-btn" title="Xóa thông báo" data-id="2">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-secondary fs-xs mb-0 leading-relaxed text-truncate">Trần Thị B nộp đơn xin nghỉ phép 2 ngày.</p>
+                </div>
+              </div>
+
+              <div class="notif-modal-item unread" data-id="3">
+                <div class="notif-icon bg-danger-subtle text-danger flex-shrink-0">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="flex-grow-1 min-w-0">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <h6 class="fw-bold mb-0 text-dark fs-sm d-flex align-items-center gap-2 min-w-0">
+                      <span class="text-truncate">Hợp đồng sắp hết hạn</span>
+                      <span class="badge bg-indigo text-white fs-xs px-2 py-0.5 rounded-pill flex-shrink-0">Mới</span>
+                    </h6>
+                    <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                      <span class="notif-time text-muted fs-xs"><i class="fa-regular fa-clock me-1"></i>1 giờ trước</span>
+                      <div class="notif-modal-actions ms-1">
+                        <button type="button" class="notif-item-action-icon mark-read-item-btn" title="Đánh dấu đã đọc" data-id="3">
+                          <i class="fa-solid fa-check"></i>
+                        </button>
+                        <button type="button" class="notif-item-action-icon delete delete-item-btn" title="Xóa thông báo" data-id="3">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-secondary fs-xs mb-0 leading-relaxed text-truncate">5 hợp đồng nhân sự sẽ hết hạn trong 7 ngày tới.</p>
+                </div>
+              </div>
+
+              <div class="notif-modal-item" data-id="4">
+                <div class="notif-icon bg-success-subtle text-success flex-shrink-0">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div class="flex-grow-1 min-w-0">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <h6 class="fw-bold mb-0 text-dark fs-sm d-flex align-items-center gap-2 min-w-0">
+                      <span class="text-truncate">Duyệt tăng lương</span>
+                    </h6>
+                    <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                      <span class="notif-time text-muted fs-xs"><i class="fa-regular fa-clock me-1"></i>3 giờ trước</span>
+                      <div class="notif-modal-actions ms-1">
+                        <button type="button" class="notif-item-action-icon delete delete-item-btn" title="Xóa thông báo" data-id="4">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-secondary fs-xs mb-0 leading-relaxed text-truncate">Đề xuất tăng lương Q3 đã được phê duyệt.</p>
+                </div>
+              </div>
+
+              <div class="notif-modal-item" data-id="5">
+                <div class="notif-icon bg-info-subtle text-info flex-shrink-0">
+                  <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <div class="flex-grow-1 min-w-0">
+                  <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+                    <h6 class="fw-bold mb-0 text-dark fs-sm d-flex align-items-center gap-2 min-w-0">
+                      <span class="text-truncate">Thông báo từ BQT</span>
+                    </h6>
+                    <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                      <span class="notif-time text-muted fs-xs"><i class="fa-regular fa-clock me-1"></i>5 giờ trước</span>
+                      <div class="notif-modal-actions ms-1">
+                        <button type="button" class="notif-item-action-icon delete delete-item-btn" title="Xóa thông báo" data-id="5">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-secondary fs-xs mb-0 leading-relaxed text-truncate">Lịch nghỉ lễ Quốc Khánh 2/9 chính thức.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Footer -->
+          <div
+            class="modal-footer px-4 py-3 border-top-0 d-flex align-items-center justify-content-between modal-footer-custom z-1"
+          >
+            <div class="d-none d-md-flex align-items-center gap-2 text-muted small">
+              <i class="fa-solid fa-shield-halved text-primary opacity-75"></i>
+              <span>Enterprise Live Sync</span>
+              <span class="modal-footer-divider"></span>
+              <span class="d-inline-flex align-items-center gap-1"
+                ><kbd class="kbd-badge">ESC</kbd> Đóng</span
+              >
+            </div>
+            <div class="d-flex align-items-center gap-2 ms-auto">
+              <button
+                type="button"
+                class="btn btn-sm btn-pastel-slate px-3 py-2 rounded-3"
+                data-bs-dismiss="modal"
+              >
+                <i class="fa-solid fa-xmark me-1"></i> Đóng
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Bootstrap 5 JS Bundle -->
