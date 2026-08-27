@@ -1899,14 +1899,15 @@ a {
 
 .collapse-toggle .toggle-chevron {
   font-size: 0.75rem;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: var(--text-light);
   transition: color 0.25s ease;
+  font-style: normal !important;
 }
 
 .collapse-toggle:hover .toggle-chevron,
@@ -1914,43 +1915,46 @@ a {
   color: var(--text-sidebar-hover);
 }
 
-/* Base styles for both icon states */
-.collapse-toggle .toggle-chevron::before,
-.collapse-toggle .toggle-chevron::after {
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  line-height: 1;
-}
-
-/* Plus Icon (Default / Collapsed state) */
+/* Pure CSS Plus & Minus Morph Icon (Bulletproof across VS Code, Live Server & all environments) */
 .collapse-toggle .toggle-chevron::before {
-  content: "\f067";
+  content: "" !important;
+  position: absolute;
+  top: 6px;
+  left: 2px;
+  width: 10px;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+  transform: none;
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Minus Icon (Expanded state) */
 .collapse-toggle .toggle-chevron::after {
-  content: "\f068";
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.4) rotate(-90deg);
+  content: "" !important;
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 2px;
+  height: 10px;
+  background-color: currentColor;
+  border-radius: 1px;
+  transform: none;
+  opacity: 1;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease;
 }
 
-/* When expanded: Plus fades out & shrinks, Minus gradually fades in & scales up */
+/* When expanded: Vertical line rotates & shrinks to turn Plus into Minus */
 .collapse-toggle[aria-expanded="true"] .toggle-chevron::before {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.4) rotate(90deg);
+  transform: rotate(180deg);
+  opacity: 1;
 }
 
 .collapse-toggle[aria-expanded="true"] .toggle-chevron::after {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  transform: rotate(90deg) scale(0);
+  opacity: 0;
 }
 
 .submenu-list {
@@ -3419,7 +3423,7 @@ a {
   color: #ffffff !important;
 }
 
-[data-theme="dark"] [data-theme="dark"] .sidebar-footer-graphic {
+[data-theme="dark"] .sidebar-footer-graphic {
   background: linear-gradient(180deg, rgba(14, 14, 16, 0) 0%, var(--bg-sidebar) 100%);
   border-top-color: var(--border-color);
 }
