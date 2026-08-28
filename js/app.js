@@ -103,7 +103,6 @@ function initSidebarActiveState() {
 function initMobileSidebarToggle() {
   const toggleBtn = document.getElementById("sidebarToggleBtn");
   const sidebar = document.querySelector(".app-sidebar");
-  const appWrapper = document.querySelector(".app-wrapper");
 
   // Create or select mobile backdrop overlay
   let backdrop = document.querySelector(".sidebar-backdrop");
@@ -128,10 +127,8 @@ function initMobileSidebarToggle() {
   // Apply saved collapsed preference on desktop
   const isCollapsed = localStorage.getItem("nexus_sidebar_collapsed") === "true";
   if (isCollapsed && window.innerWidth >= 992) {
-    if (appWrapper) appWrapper.classList.add("sidebar-collapsed");
     document.documentElement.classList.add("sidebar-collapsed");
   } else if (window.innerWidth >= 992) {
-    if (appWrapper) appWrapper.classList.remove("sidebar-collapsed");
     document.documentElement.classList.remove("sidebar-collapsed");
   }
 
@@ -146,12 +143,9 @@ function initMobileSidebarToggle() {
           openMobileSidebar();
         }
       } else {
-        if (appWrapper) {
-          appWrapper.classList.toggle("sidebar-collapsed");
-          document.documentElement.classList.toggle("sidebar-collapsed");
-          const nowCollapsed = appWrapper.classList.contains("sidebar-collapsed");
-          localStorage.setItem("nexus_sidebar_collapsed", nowCollapsed);
-        }
+        document.documentElement.classList.toggle("sidebar-collapsed");
+        const nowCollapsed = document.documentElement.classList.contains("sidebar-collapsed");
+        localStorage.setItem("nexus_sidebar_collapsed", nowCollapsed);
       }
     });
   }

@@ -947,10 +947,15 @@
   --text-sidebar-active: var(--palette-blue-600);
   --border-sidebar-indicator: var(--palette-blue-600);
   --sidebar-width: 260px;
+  --sidebar-collapsed-width: 76px;
   --topbar-height: 76px;
   --radius-xl: 18px;
   --radius-lg: 14px;
   --radius-md: 10px;
+
+  /* Custom Scrollbar Tokens */
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
 
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.02);
@@ -1235,6 +1240,10 @@
   --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
   --shadow-focus: 0 0 0 4px rgba(129, 140, 248, 0.25);
 
+  /* Custom Scrollbar Tokens */
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+
   /* UNIFIED SOFT COLOR FAMILY TOKENS (DARK MODE SEMANTIC TOKENS) */
   --soft-purple-bg: rgba(126, 34, 206, 0.25);
   --soft-purple-border: rgba(168, 85, 247, 0.4);
@@ -1492,16 +1501,6 @@
    NexusOST Unified Design System - Global Custom Scrollbar Specification
    ========================================================================== */
 
-:root {
-  --scrollbar-thumb: #cbd5e1;
-  --scrollbar-thumb-hover: #94a3b8;
-}
-
-[data-theme="dark"] {
-  --scrollbar-thumb: #334155;
-  --scrollbar-thumb-hover: #475569;
-}
-
 /* W3C Firefox Standard */
 * {
   scrollbar-width: thin;
@@ -1570,10 +1569,6 @@ a {
 }
 
 /* Sidebar Styling */
-:root {
-  --sidebar-collapsed-width: 76px;
-}
-
 .app-sidebar {
   width: var(--sidebar-width);
   background: var(--bg-sidebar);
@@ -2307,8 +2302,7 @@ a {
 }
 
 /* Elevated Modern Dropdown Menu */
-.topbar-actions .dropdown-menu,
-.user-dropdown-menu {
+.topbar-actions .dropdown-menu {
   display: block !important;
   opacity: 0;
   visibility: hidden;
@@ -2334,8 +2328,7 @@ a {
     visibility 0.2s ease;
 }
 
-.topbar-actions .dropdown-menu.show,
-.user-dropdown-menu.show {
+.topbar-actions .dropdown-menu.show {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
@@ -2494,8 +2487,7 @@ a {
 }
 
 /* Dropdown Items */
-.topbar-actions .dropdown-menu .dropdown-item,
-.user-dropdown-menu .dropdown-item {
+.topbar-actions .dropdown-menu .dropdown-item {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -2507,15 +2499,13 @@ a {
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.topbar-actions .dropdown-menu .dropdown-item:hover,
-.user-dropdown-menu .dropdown-item:hover {
+.topbar-actions .dropdown-menu .dropdown-item:hover {
   background-color: var(--bg-dropdown-hover);
   color: var(--text-main);
   transform: translateX(3px);
 }
 
-.topbar-actions .dropdown-menu .dropdown-item i,
-.user-dropdown-menu .dropdown-item i {
+.topbar-actions .dropdown-menu .dropdown-item i {
   font-size: 0.95rem;
   width: 1.25rem;
   text-align: center;
@@ -2524,8 +2514,7 @@ a {
     color 0.2s ease;
 }
 
-.topbar-actions .dropdown-menu .dropdown-item:hover i,
-.user-dropdown-menu .dropdown-item:hover i {
+.topbar-actions .dropdown-menu .dropdown-item:hover i {
   transform: scale(1.15);
   color: var(--primary-600, #4f46e5);
 }
@@ -2562,21 +2551,18 @@ a {
 
 /* Danger / Logout Item styling (Powered by Theme Variables) */
 .topbar-actions .dropdown-menu .dropdown-item.text-danger,
-.topbar-actions .dropdown-menu .dropdown-item-danger,
-.user-dropdown-menu .dropdown-item-danger {
+.topbar-actions .dropdown-menu .dropdown-item-danger {
   color: var(--badge-red-text) !important;
 }
 
 .topbar-actions .dropdown-menu .dropdown-item.text-danger:hover,
-.topbar-actions .dropdown-menu .dropdown-item-danger:hover,
-.user-dropdown-menu .dropdown-item-danger:hover {
+.topbar-actions .dropdown-menu .dropdown-item-danger:hover {
   background-color: var(--badge-red-bg) !important;
   color: var(--badge-red-text) !important;
 }
 
 .topbar-actions .dropdown-menu .dropdown-item.text-danger:hover i,
-.topbar-actions .dropdown-menu .dropdown-item-danger:hover i,
-.user-dropdown-menu .dropdown-item-danger:hover i {
+.topbar-actions .dropdown-menu .dropdown-item-danger:hover i {
   color: var(--badge-red-text) !important;
 }
 
