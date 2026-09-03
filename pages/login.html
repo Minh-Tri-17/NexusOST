@@ -660,6 +660,7 @@
 
       /* 3-Step Password Reset Logic */
       function openForgotPasswordModal() {
+        clearInterval(countdownTimer);
         goToResetStep(1);
         const resetEmailInput = document.getElementById("resetEmail");
         const userEmailInput = document.getElementById("userIdentifier");
@@ -745,15 +746,26 @@
         clearInterval(countdownTimer);
         countdownSeconds = 45;
         const resendBtn = document.getElementById("resendOtpBtn");
-        resendBtn.disabled = true;
+        if (resendBtn) {
+          resendBtn.disabled = true;
+          resendBtn.innerHTML = 'Resend in <span id="otpCountdown">45</span>s';
+        }
 
         countdownTimer = setInterval(() => {
           countdownSeconds--;
-          document.getElementById("otpCountdown").textContent = countdownSeconds;
+          const currentCountdownEl = document.getElementById("otpCountdown");
+          if (!currentCountdownEl) {
+            clearInterval(countdownTimer);
+            return;
+          }
+          currentCountdownEl.textContent = countdownSeconds;
           if (countdownSeconds <= 0) {
             clearInterval(countdownTimer);
-            resendBtn.disabled = false;
-            resendBtn.innerHTML = '<i class="fa-solid fa-rotate-right me-1"></i>Resend Code Now';
+            const currentResendBtn = document.getElementById("resendOtpBtn");
+            if (currentResendBtn) {
+              currentResendBtn.disabled = false;
+              currentResendBtn.innerHTML = '<i class="fa-solid fa-rotate-right me-1"></i>Resend Code Now';
+            }
           }
         }, 1000);
       }
