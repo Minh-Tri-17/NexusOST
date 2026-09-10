@@ -521,7 +521,6 @@
                   id="recruitmentFilterToggleBtn"
                 >
                   <i class="fa-solid fa-sliders text-primary"></i> Filter
-                  <span class="badge-soft badge-blue ms-1" id="recruitmentActiveFilterCount">3</span>
                 </button>
               </div>
 
@@ -670,15 +669,9 @@
                       <option selected value="all">All Match Levels</option>
                       <option value="high">High (>80%)</option>
                       <option value="medium">Medium (70-79%)</option>
-                      <option value="fair">Fair (<70%)</option>
+                      <option value="fair">Fair (&lt;70%)</option>
                     </select>
                   </div>
-                </div>
-
-                <div class="d-flex align-items-center justify-content-end gap-2 mt-3 pt-2 border-top">
-                  <button class="btn btn-sm btn-pastel-cyan px-4 rounded-3" type="button" id="applyRecruitmentFilterBtn">
-                    <i class="fa-solid fa-check me-1"></i> Apply Filter
-                  </button>
                 </div>
               </div>
             </div>
@@ -695,7 +688,7 @@
                       <span class="column-dot dot-applied"></span>
                       <h3 class="column-title text-applied">Applied</h3>
                     </div>
-                    <span class="column-count-badge badge-applied" id="count-applied">126</span>
+                    <span class="column-count-badge badge-blue" id="count-applied">126</span>
                   </div>
                 </div>
                 <div class="column-body" id="col-applied-list">
@@ -716,7 +709,7 @@
                       <span class="column-dot dot-screening"></span>
                       <h3 class="column-title text-screening">Screening</h3>
                     </div>
-                    <span class="column-count-badge badge-screening" id="count-screening">84</span>
+                    <span class="column-count-badge badge-cyan" id="count-screening">84</span>
                   </div>
                 </div>
                 <div class="column-body" id="col-screening-list">
@@ -737,7 +730,7 @@
                       <span class="column-dot dot-interview"></span>
                       <h3 class="column-title text-interview">Interview</h3>
                     </div>
-                    <span class="column-count-badge badge-interview" id="count-interview">52</span>
+                    <span class="column-count-badge badge-purple" id="count-interview">52</span>
                   </div>
                 </div>
                 <div class="column-body" id="col-interview-list">
@@ -758,7 +751,7 @@
                       <span class="column-dot dot-offer"></span>
                       <h3 class="column-title text-offer">Offer</h3>
                     </div>
-                    <span class="column-count-badge badge-offer" id="count-offer">28</span>
+                    <span class="column-count-badge badge-amber" id="count-offer">28</span>
                   </div>
                 </div>
                 <div class="column-body" id="col-offer-list">
@@ -779,7 +772,7 @@
                       <span class="column-dot dot-hired"></span>
                       <h3 class="column-title text-hired">Hired</h3>
                     </div>
-                    <span class="column-count-badge badge-hired" id="count-hired">16</span>
+                    <span class="column-count-badge badge-green" id="count-hired">16</span>
                   </div>
                 </div>
                 <div class="column-body" id="col-hired-list">
@@ -800,7 +793,7 @@
                       <span class="column-dot dot-rejected"></span>
                       <h3 class="column-title text-rejected">Rejected</h3>
                     </div>
-                    <span class="column-count-badge badge-rejected" id="count-rejected">42</span>
+                    <span class="column-count-badge badge-red" id="count-rejected">42</span>
                   </div>
                 </div>
                 <div class="column-body" id="col-rejected-list">

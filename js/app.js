@@ -617,18 +617,6 @@ function initCountryPageModal() {
     });
   }
 
-  const applyCountryFilterBtn = document.getElementById("applyCountryFilterBtn");
-  if (applyCountryFilterBtn) {
-    applyCountryFilterBtn.addEventListener("click", () => {
-      showToast({
-        title: "Filters Applied",
-        message: "Country dataset refined based on selected region, priority, and status criteria.",
-        type: "success",
-        duration: 3500,
-      });
-    });
-  }
-
   if (modalForm) {
     modalForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -672,7 +660,6 @@ function initCountryImportModal() {
 
   const dropzone = document.getElementById("importDropzone");
   const fileInput = document.getElementById("importFileInput");
-  const browseBtn = document.getElementById("browseFileBtn");
   const previewCard = document.getElementById("importFilePreview");
   const fileNameText = document.getElementById("fileNameText");
   const fileSizeText = document.getElementById("fileSizeText");
@@ -725,13 +712,6 @@ function initCountryImportModal() {
     if (fileNameText) fileNameText.textContent = "";
     if (fileSizeText) fileSizeText.textContent = "";
     resetProgressBar();
-  }
-
-  if (browseBtn && fileInput) {
-    browseBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      fileInput.click();
-    });
   }
 
   if (dropzone && fileInput) {
