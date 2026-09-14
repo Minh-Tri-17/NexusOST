@@ -504,7 +504,7 @@
             <div
               class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3 pb-3 filter-toolbar-border"
             >
-              <!-- Left Controls: Global Search, Filter Matrix Toggle & Reset -->
+              <!-- Left Controls: Global Search, Filter Matrix Toggle & IsDelete Switch -->
               <div class="d-flex flex-wrap align-items-center gap-2">
                 <!-- Search Input Box -->
                 <div class="position-relative" style="min-width: 240px">
@@ -530,6 +530,21 @@
                 >
                   <i class="fa-solid fa-sliders text-primary"></i> Filter
                 </button>
+
+                <!-- Custom Toggle Switch (Soft Delete Filter) -->
+                <label
+                  class="d-inline-flex align-items-center gap-2 ms-md-1 px-3 py-1 bg-light border rounded-3 text-nowrap user-select-none shadow-xs"
+                  style="cursor: pointer; height: 31px;"
+                  for="chkIsDelete"
+                >
+                  <span class="nexus-toggle-switch">
+                    <input type="checkbox" id="chkIsDelete" class="nexus-toggle-input" />
+                    <span class="nexus-toggle-slider"></span>
+                  </span>
+                  <span class="small fw-semibold text-secondary mb-0">
+                    <i class="fa-solid fa-trash-arrow-up text-danger me-1"></i> Show Deleted
+                  </span>
+                </label>
               </div>
 
               <!-- Right: Quick Action Buttons (CRUD & Data IO) -->
@@ -599,6 +614,12 @@
                 <i class="fa-solid fa-xmark chip-remove-btn"></i>
               </span>
 
+              <span class="filter-chip chip-is-delete d-none" id="chipIsDelete">
+                <i class="fa-solid fa-trash-arrow-up chip-icon text-danger"></i> Filter:
+                <strong class="text-danger">Show Deleted</strong>
+                <i class="fa-solid fa-xmark chip-remove-btn" id="removeChipIsDelete"></i>
+              </span>
+
               <button class="btn btn-link text-muted p-0 border-0 btn-clear-all-chips ms-auto">
                 <i class="fa-solid fa-trash-can me-1"></i> Clear All
               </button>
@@ -617,7 +638,7 @@
                 </div>
                 <div class="row g-3">
                   <!-- Region Filter Select -->
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <label class="form-label small fw-semibold text-muted"
                       >Region / Continent</label
                     >
@@ -631,7 +652,7 @@
                   </div>
 
                   <!-- Priority Filter Select -->
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <label class="form-label small fw-semibold text-muted">Priority Level</label>
                     <select class="form-select form-select-sm rounded-3 filter-select w-100">
                       <option selected value="">All Priorities</option>
@@ -642,7 +663,7 @@
                   </div>
 
                   <!-- Status Filter Select -->
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <label class="form-label small fw-semibold text-muted"
                       >Operational Status</label
                     >
@@ -651,6 +672,23 @@
                       <option value="Active">Active</option>
                       <option value="Inactive">Inactive</option>
                     </select>
+                  </div>
+
+                  <!-- Soft Delete Filter Switch -->
+                  <div class="col-md-3 d-flex align-items-end">
+                    <label
+                      class="d-flex align-items-center gap-2 px-3 py-1 bg-light border rounded-3 text-nowrap user-select-none w-100"
+                      style="height: 31px; cursor: pointer;"
+                      for="matrixChkIsDelete"
+                    >
+                      <span class="nexus-toggle-switch">
+                        <input type="checkbox" id="matrixChkIsDelete" class="nexus-toggle-input" />
+                        <span class="nexus-toggle-slider"></span>
+                      </span>
+                      <span class="small fw-semibold text-secondary mb-0">
+                        <i class="fa-solid fa-trash-can text-danger me-1"></i> Show Deleted Records
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -694,23 +732,7 @@
                     <td><span class="badge-soft badge-blue">#VN</span></td>
                     <td>
                       <div class="d-flex align-items-center gap-2">
-                        <div
-                          style="
-                            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-                            width: 32px;
-                            height: 32px;
-                            border-radius: 50%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 0.75rem;
-                            font-weight: 700;
-                            color: #fff;
-                            flex-shrink: 0;
-                          "
-                        >
-                          VN
-                        </div>
+                        <div class="country-avatar-badge avatar-blue">VN</div>
                         <div>
                           <div class="fw-semibold text-main">Vietnam</div>
                         </div>
@@ -772,23 +794,7 @@
                     <td><span class="badge-soft badge-blue">#US</span></td>
                     <td>
                       <div class="d-flex align-items-center gap-2">
-                        <div
-                          style="
-                            background: linear-gradient(135deg, #10b981, #047857);
-                            width: 32px;
-                            height: 32px;
-                            border-radius: 50%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 0.75rem;
-                            font-weight: 700;
-                            color: #fff;
-                            flex-shrink: 0;
-                          "
-                        >
-                          US
-                        </div>
+                        <div class="country-avatar-badge avatar-green">US</div>
                         <div>
                           <div class="fw-semibold text-main">United States</div>
                         </div>
@@ -845,23 +851,7 @@
                     <td><span class="badge-soft badge-blue">#JP</span></td>
                     <td>
                       <div class="d-flex align-items-center gap-2">
-                        <div
-                          style="
-                            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-                            width: 32px;
-                            height: 32px;
-                            border-radius: 50%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 0.75rem;
-                            font-weight: 700;
-                            color: #fff;
-                            flex-shrink: 0;
-                          "
-                        >
-                          JP
-                        </div>
+                        <div class="country-avatar-badge avatar-purple">JP</div>
                         <div>
                           <div class="fw-semibold text-main">Japan</div>
                         </div>
@@ -917,23 +907,7 @@
                     <td><span class="badge-soft badge-blue">#DE</span></td>
                     <td>
                       <div class="d-flex align-items-center gap-2">
-                        <div
-                          style="
-                            background: linear-gradient(135deg, #f59e0b, #b45309);
-                            width: 32px;
-                            height: 32px;
-                            border-radius: 50%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 0.75rem;
-                            font-weight: 700;
-                            color: #fff;
-                            flex-shrink: 0;
-                          "
-                        >
-                          DE
-                        </div>
+                        <div class="country-avatar-badge avatar-amber">DE</div>
                         <div>
                           <div class="fw-semibold text-main">Germany</div>
                         </div>
@@ -981,6 +955,67 @@
                     </td>
                   </tr>
 
+                  <!-- Row 5 (Soft Deleted Sample Data): Singapore -->
+                  <tr class="deleted-row d-none">
+                    <td class="col-pin">
+                      <input type="checkbox" class="country-row-cb" aria-label="Select Singapore" />
+                    </td>
+                    <td><span class="badge-soft badge-red">#SG</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="country-avatar-badge avatar-deleted">SG</div>
+                        <div>
+                          <div class="fw-semibold text-main text-decoration-line-through">Singapore</div>
+                          <span class="badge bg-danger-subtle text-danger border border-danger-subtle fs-xs rounded-pill px-2 py-0.5 mt-1">
+                            <i class="fa-solid fa-trash-can me-1"></i>Soft Deleted
+                          </span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="text-muted small text-decoration-line-through"
+                        ><i class="fa-solid fa-location-dot text-danger me-1"></i>Singapore</span
+                      >
+                    </td>
+                    <td>
+                      <span class="badge-soft badge-blue"
+                        ><i class="fa-solid fa-globe-asia me-1"></i>Asia</span
+                      >
+                    </td>
+                    <td>
+                      <span class="fw-semibold text-main text-muted"
+                        ><i class="fa-solid fa-users text-muted me-1 small"></i>5,637,000</span
+                      >
+                    </td>
+                    <td>
+                      <span class="badge-soft badge-red"
+                        ><i class="fa-solid fa-fire me-1"></i>High Priority</span
+                      >
+                    </td>
+                    <td>
+                      <span class="badge bg-danger-subtle text-danger rounded-pill px-2 py-1 fs-xs"
+                        ><i class="fa-solid fa-ban me-1"></i>IsDelete: True</span
+                      >
+                    </td>
+                    <td>
+                      <span class="text-muted small"
+                        ><i class="fa-regular fa-user me-1"></i>System Admin</span
+                      >
+                    </td>
+                    <td><span class="text-muted small">2023-11-10</span></td>
+                    <td>
+                      <span class="text-muted small"
+                        ><i class="fa-regular fa-user me-1"></i>Tristan Nguyen</span
+                      >
+                    </td>
+                    <td><span class="text-muted small">2026-05-12</span></td>
+                    <td>
+                      <span class="text-danger small fst-italic"
+                        ><i class="fa-solid fa-triangle-exclamation me-1"></i>Archived soft-deleted record</span
+                      >
+                    </td>
+                  </tr>
+
                   <!-- Row 5: Singapore -->
                   <tr>
                     <td class="col-pin">
@@ -989,23 +1024,7 @@
                     <td><span class="badge-soft badge-blue">#SG</span></td>
                     <td>
                       <div class="d-flex align-items-center gap-2">
-                        <div
-                          style="
-                            background: linear-gradient(135deg, #ec4899, #be185d);
-                            width: 32px;
-                            height: 32px;
-                            border-radius: 50%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 0.75rem;
-                            font-weight: 700;
-                            color: #fff;
-                            flex-shrink: 0;
-                          "
-                        >
-                          SG
-                        </div>
+                        <div class="country-avatar-badge avatar-pink">SG</div>
                         <div>
                           <div class="fw-semibold text-main">Singapore</div>
                         </div>

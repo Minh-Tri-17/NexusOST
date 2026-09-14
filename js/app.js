@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initEmployeeOrgChart();
   }
 
-  // Country Page Modal Handler
+  // Country Page & Soft Delete Filter Handler
+  initIsDeleteFilter();
   if (document.getElementById("countryFormModal")) {
     initCountryPageModal();
   }
@@ -3043,3 +3044,65 @@ function initLeaveManagementPage() {
 }
 
 window.initLeaveManagementPage = initLeaveManagementPage;
+
+/* ==========================================================================
+   ISDELETE (SOFT DELETE) FILTER SYSTEM
+   ========================================================================== */
+function initIsDeleteFilter() {
+  const chkIsDelete = document.getElementById("chkIsDelete");
+  const matrixChkIsDelete = document.getElementById("matrixChkIsDelete");
+  const chipIsDelete = document.getElementById("chipIsDelete");
+  const removeChipIsDelete = document.getElementById("removeChipIsDelete");
+
+  if (!chkIsDelete && !matrixChkIsDelete) return;
+
+  const handleIsDeleteToggle = (isValChecked) => {
+    // Sync both toolbar and matrix checkboxes
+    if (chkIsDelete) chkIsDelete.checked = isValChecked;
+    if (matrixChkIsDelete) matrixChkIsDelete.checked = isValChecked;
+
+    // Toggle chip visibility
+    if (chipIsDelete) {
+      if (isValChecked) {
+        chipIsDelete.classList.remove("d-none");
+        chipIsDelete.classList.add("d-inline-flex");
+      } else {
+        chipIsDelete.classList.add("d-none");
+        chipIsDelete.classList.remove("d-inline-flex");
+      }
+    }
+
+    // Toggle deleted rows in data grid
+    const deletedRows = document.querySelectorAll(".deleted-row");
+    deletedRows.forEach((row) => {
+      if (isValChecked) {
+        row.classList.remove("d-none");
+      } else {
+        row.classList.add("d-none");
+      }
+    });
+
+    if (typeof showToast === "function") {
+      showToast({
+        title: isValChecked ? "Show Deleted Active" : "Show Deleted Inactive",
+        message: isValChecked
+          ? "Displaying grid dataset including soft-deleted records (IsDelete = True)"
+          : "Hiding soft-deleted records from data grid",
+        type: isValChecked ? "warning" : "info",
+      });
+    }
+  };
+
+  if (chkIsDelete) {
+    chkIsDelete.addEventListener("change", (e) => handleIsDeleteToggle(e.target.checked));
+  }
+  if (matrixChkIsDelete) {
+    matrixChkIsDelete.addEventListener("change", (e) => handleIsDeleteToggle(e.target.checked));
+  }
+  if (removeChipIsDelete) {
+    removeChipIsDelete.addEventListener("click", () => handleIsDeleteToggle(false));
+  }
+}
+
+window.initIsDeleteFilter = initIsDeleteFilter;
+
