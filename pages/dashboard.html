@@ -918,7 +918,41 @@
             </div>
           </div>
 
-          <!-- Full Width Bottom Row: Top Performing Outlets & Stores Table (Col 12) -->
+          <!-- Row: ApexMaps Global Distribution Map -->
+          <div class="row g-3 mb-4">
+            <div class="col-12">
+              <div class="erp-card">
+                <div
+                  class="card-header-flex align-items-center justify-content-between flex-wrap gap-3 pb-3"
+                >
+                  <div>
+                    <div class="d-flex align-items-center flex-wrap gap-2 mb-1">
+                      <span
+                        class="badge badge-indigo fw-semibold px-2.5 py-1 rounded-pill"
+                        style="font-size: 0.75rem"
+                      >
+                        <i class="fa-solid fa-earth-americas me-1"></i> ApexMaps Geo Engine
+                      </span>
+                      <span
+                        class="badge badge-teal fw-semibold px-2.5 py-1 rounded-pill"
+                        style="font-size: 0.75rem"
+                      >
+                        <i class="fa-solid fa-globe me-1"></i> Global Coverage
+                      </span>
+                    </div>
+                    <h3 class="card-title-main mb-0 d-flex align-items-center gap-2">
+                      <span>Global Workforce & Location Distribution Map</span>
+                    </h3>
+                  </div>
+                </div>
+
+                <!-- ApexMaps Canvas Wrapper -->
+                <div class="position-relative mt-3">
+                  <div id="map" style="width: 100%; min-height: 560px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row g-3">
             <div class="col-12">
               <div class="erp-card">
@@ -1359,9 +1393,11 @@
     <!-- Apex CDN Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.45.1/dist/apexcharts.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apextree@1.14.0/apextree.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexmaps/dist/apexmaps.min.js"></script>
     <!-- Apex Custom Modules -->
     <script src="../js/apex-chart.js"></script>
     <script src="../js/apex-tree.js"></script>
+    <script src="../js/apex-map.js"></script>
 
     <!-- Main Application JS -->
     <script src="../js/app.js"></script>

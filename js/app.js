@@ -25,6 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
   ) {
     initEmployeeOrgChart();
   }
+  if (
+    (document.getElementById("map") || document.getElementById("chartApexMap")) &&
+    typeof initApexMap === "function"
+  ) {
+    initApexMap();
+  }
 
   // Country Page & Soft Delete Filter Handler
   initIsDeleteFilter();

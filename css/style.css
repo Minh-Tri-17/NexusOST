@@ -8339,5 +8339,30 @@ tr:hover td.col-pin,
   background-color: rgba(239, 68, 68, 0.18) !important;
 }
 
+/* ApexMaps Global Map Component & Legend Fix */
+#map {
+  width: 100%;
+  min-height: 560px;
+  position: relative;
+}
+
+#map svg {
+  overflow: visible;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+}
+
+/* Fix overlapping legend numbers/ticks in gradient mode */
+#map svg text {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+}
+
+#map svg g[class*="legend"] text,
+#map svg text[class*="tick"],
+#map svg text {
+  font-size: 10px !important;
+  font-weight: 500 !important;
+}
+
+
 
 
