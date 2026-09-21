@@ -537,9 +537,9 @@
                   style="cursor: pointer; height: 31px;"
                   for="chkIsDelete"
                 >
-                  <span class="nexus-toggle-switch">
-                    <input type="checkbox" id="chkIsDelete" class="nexus-toggle-input" />
-                    <span class="nexus-toggle-slider"></span>
+                  <span class="toggle-switch">
+                    <input type="checkbox" id="chkIsDelete" class="toggle-input" />
+                    <span class="toggle-slider"></span>
                   </span>
                   <span class="small fw-semibold text-secondary mb-0">
                     <i class="fa-solid fa-trash-arrow-up text-danger me-1"></i> Show Deleted
@@ -681,9 +681,9 @@
                       style="height: 31px; cursor: pointer;"
                       for="matrixChkIsDelete"
                     >
-                      <span class="nexus-toggle-switch">
-                        <input type="checkbox" id="matrixChkIsDelete" class="nexus-toggle-input" />
-                        <span class="nexus-toggle-slider"></span>
+                      <span class="toggle-switch">
+                        <input type="checkbox" id="matrixChkIsDelete" class="toggle-input" />
+                        <span class="toggle-slider"></span>
                       </span>
                       <span class="small fw-semibold text-secondary mb-0">
                         <i class="fa-solid fa-trash-can text-danger me-1"></i> Show Deleted Records
@@ -1500,6 +1500,14 @@
               <div class="app-footer-right" role="navigation" aria-label="Pagination Navigation">
                 <button
                   class="app-page-btn"
+                  id="reloadCountryTableBtn"
+                  title="Tải lại dữ liệu (Bootstrap Placeholders)"
+                  aria-label="Reload table data"
+                >
+                  <i class="fa-solid fa-rotate-right"></i>
+                </button>
+                <button
+                  class="app-page-btn"
                   id="countryFirstBtn"
                   disabled
                   title="First page"
@@ -1610,7 +1618,7 @@
                     <span class="fw-bold">GEOGRAPHIC IDENTIFICATION</span>
                   </div>
                   <span class="badge-soft badge-indigo">
-                    <i class="fa-solid fa-list-check"></i> 4 fields
+                    <i class="fa-solid fa-list-check"></i> 5 fields
                   </span>
                 </div>
                 <div class="row g-3">
@@ -1679,22 +1687,41 @@
                     </div>
                   </div>
 
-                  <!-- Dialing Code -->
+                  <!-- Capital -->
                   <div class="col-md-6">
-                    <label for="modalDialCode" class="form-label custom-form-label">
-                      Phone Dialing Code
+                    <label for="modalCountryCapital" class="form-label custom-form-label">
+                      Capital
                     </label>
                     <div class="input-group custom-input-group">
-                      <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                      <span class="input-group-text"><i class="fa-solid fa-city"></i></span>
                       <input
                         type="text"
                         class="form-control custom-form-control"
-                        id="modalDialCode"
-                        placeholder="e.g. +84, +1, +81"
+                        id="modalCountryCapital"
+                        placeholder="e.g. Hanoi, Washington D.C., Tokyo"
                       />
                     </div>
                     <div class="form-text-hint">
-                      <i class="fa-solid fa-circle-info"></i> International phone prefix (E.164)
+                      <i class="fa-solid fa-circle-info"></i> Primary capital city of the country
+                    </div>
+                  </div>
+
+                  <!-- Description -->
+                  <div class="col-12">
+                    <label for="modalCountryDescription" class="form-label custom-form-label">
+                      Description
+                    </label>
+                    <div class="input-group custom-input-group">
+                      <span class="input-group-text"><i class="fa-solid fa-align-left"></i></span>
+                      <textarea
+                        class="form-control custom-form-control"
+                        id="modalCountryDescription"
+                        rows="3"
+                        placeholder="Enter country description..."
+                      ></textarea>
+                    </div>
+                    <div class="form-text-hint">
+                      <i class="fa-solid fa-circle-info"></i> Brief description or operational notes for this country
                     </div>
                   </div>
                 </div>

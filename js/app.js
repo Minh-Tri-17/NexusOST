@@ -646,6 +646,8 @@ function initCountryPageModal() {
   initCountryImportModal();
   // Initialize Export Modal handler
   initCountryExportModal();
+  // Initialize Country Table Loading Skeleton (Bootstrap Placeholders)
+  initCountryTableSkeleton();
 }
 
 /* 8. Country Import Modal Handler & Dropzone Logic */
@@ -948,11 +950,142 @@ function initCountryExportModal() {
   }
 }
 
+/* ==========================================================================
+   BOOTSTRAP PLACEHOLDERS TABLE SKELETON CONTROLLER
+   ========================================================================== */
+function renderCountrySkeletonRows(count = 6) {
+  let rowsHtml = "";
+  for (let i = 0; i < count; i++) {
+    const nameWidth = [60, 75, 50, 65, 70, 80][i % 6];
+    const capitalWidth = [50, 70, 60, 45, 65, 55][i % 6];
+    const popWidth = [65, 55, 75, 60, 50, 70][i % 6];
+    const userWidth = [70, 55, 65, 80, 60, 75][i % 6];
+    const noteWidth = [85, 65, 90, 75, 80, 70][i % 6];
+
+    rowsHtml += `
+      <tr class="skeleton-row placeholder-glow">
+        <td class="col-pin">
+          <span class="placeholder col-12 rounded opacity-25" style="height: 18px;"></span>
+        </td>
+        <td>
+          <span class="placeholder col-9 rounded-pill bg-secondary opacity-50" style="height: 22px;"></span>
+        </td>
+        <td>
+          <div class="d-flex align-items-center gap-2">
+            <span class="placeholder rounded-circle bg-secondary opacity-50" style="width: 32px; height: 32px; flex-shrink: 0;"></span>
+            <div class="flex-grow-1">
+              <span class="placeholder col-${nameWidth} rounded bg-secondary opacity-50" style="height: 16px;"></span>
+            </div>
+          </div>
+        </td>
+        <td>
+          <span class="placeholder col-${capitalWidth} rounded bg-secondary opacity-50" style="height: 16px;"></span>
+        </td>
+        <td>
+          <span class="placeholder col-8 rounded-pill bg-primary opacity-25" style="height: 22px;"></span>
+        </td>
+        <td>
+          <span class="placeholder col-${popWidth} rounded bg-secondary opacity-50" style="height: 16px;"></span>
+        </td>
+        <td>
+          <span class="placeholder col-9 rounded-pill bg-danger opacity-25" style="height: 22px;"></span>
+        </td>
+        <td>
+          <span class="placeholder col-8 rounded-pill bg-success opacity-25" style="height: 22px;"></span>
+        </td>
+        <td>
+          <span class="placeholder col-${userWidth} rounded bg-secondary opacity-50" style="height: 16px;"></span>
+        </td>
+        <td>
+          <span class="placeholder col-7 rounded bg-secondary opacity-50" style="height: 16px;"></span>
+        </td>
+        <td>
+          <span class="placeholder col-${userWidth} rounded bg-secondary opacity-50" style="height: 16px;"></span>
+        </td>
+        <td>
+          <span class="placeholder col-7 rounded bg-secondary opacity-50" style="height: 16px;"></span>
+        </td>
+        <td>
+          <span class="placeholder col-${noteWidth} rounded bg-secondary opacity-50" style="height: 16px;"></span>
+        </td>
+      </tr>
+    `;
+  }
+  return rowsHtml;
+}
+
+function loadCountryTableData(showToastNotice = false, delayMs = 1200) {
+  const tableBody = document.getElementById("countryTableBody");
+  if (!tableBody) return;
+
+  // Cache original HTML content if not cached
+  if (!window._cachedCountryRowsHtml) {
+    window._cachedCountryRowsHtml = tableBody.innerHTML;
+  }
+
+  // Render Bootstrap Placeholders Skeleton
+  tableBody.innerHTML = renderCountrySkeletonRows(6);
+
+  const reloadBtn = document.getElementById("reloadCountryTableBtn");
+  if (reloadBtn) {
+    reloadBtn.disabled = true;
+    reloadBtn.classList.add("disabled");
+    const icon = reloadBtn.querySelector("i");
+    if (icon) icon.className = "fa-solid fa-rotate-right fa-spin";
+  }
+
+  setTimeout(() => {
+    tableBody.innerHTML = window._cachedCountryRowsHtml;
+
+    // Preserve IsDelete filter state
+    const chkIsDelete = document.getElementById("chkIsDelete");
+    if (chkIsDelete && chkIsDelete.checked) {
+      const deletedRows = tableBody.querySelectorAll(".deleted-row");
+      deletedRows.forEach((r) => r.classList.remove("d-none"));
+    }
+
+    if (reloadBtn) {
+      reloadBtn.disabled = false;
+      reloadBtn.classList.remove("disabled");
+      const icon = reloadBtn.querySelector("i");
+      if (icon) icon.className = "fa-solid fa-rotate-right";
+    }
+
+    if (showToastNotice && typeof showToast === "function") {
+      showToast({
+        title: "Tải dữ liệu thành công",
+        message: "Dữ liệu bảng Quốc Gia đã được tải thành công với hiệu ứng Bootstrap Placeholders!",
+        type: "success",
+        duration: 3500,
+      });
+    }
+  }, delayMs);
+}
+
+function initCountryTableSkeleton() {
+  const reloadBtn = document.getElementById("reloadCountryTableBtn");
+  if (reloadBtn && !reloadBtn.dataset.bound) {
+    reloadBtn.dataset.bound = "true";
+    reloadBtn.addEventListener("click", () => {
+      loadCountryTableData(true, 1200);
+    });
+  }
+
+  // Run skeleton loading simulation on initial page load once
+  if (!window._countrySkeletonLoaded) {
+    window._countrySkeletonLoaded = true;
+    loadCountryTableData(false, 1000);
+  }
+}
+
 // Expose globally
 window.showToast = showToast;
 window.initCountryPageModal = initCountryPageModal;
 window.initCountryImportModal = initCountryImportModal;
 window.initCountryExportModal = initCountryExportModal;
+window.renderCountrySkeletonRows = renderCountrySkeletonRows;
+window.loadCountryTableData = loadCountryTableData;
+window.initCountryTableSkeleton = initCountryTableSkeleton;
 
 /* ======================================================
    10. EMPLOYEE DIRECTORY — DATA & CONTROLLER LOGIC
