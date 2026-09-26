@@ -601,26 +601,227 @@ function initCountryPageModal() {
       const elPriority = document.getElementById("modalCountryPriority");
       const elStatus = document.getElementById("modalCountryStatus");
 
-      if (elCode) elCode.value = "VN";
-      if (elName) elName.value = "Vietnam";
-      if (elRegion) elRegion.value = "Asia";
-      if (elDial) elDial.value = "+84";
-      if (elPriority) elPriority.value = "High";
-      if (elStatus) elStatus.value = "Active";
+      const checkedBoxes = Array.from(document.querySelectorAll(".country-row-cb:checked"));
+      if (checkedBoxes.length > 0) {
+        const row = checkedBoxes[0].closest("tr");
+        const name = row?.querySelector(".fw-semibold.text-main")?.innerText?.trim() || "Vietnam";
+        const code = row?.querySelector(".badge-soft")?.innerText?.replace("#", "").trim() || "VN";
+        const region =
+          row?.querySelector(".fa-globe-asia, .fa-earth-americas, .fa-earth-europe")
+            ?.parentElement?.innerText?.trim() || "Asia";
+        if (elCode) elCode.value = code;
+        if (elName) elName.value = name;
+        if (elRegion) elRegion.value = region;
+        if (elDial) elDial.value = "+84";
+        if (elPriority) elPriority.value = "High";
+        if (elStatus) elStatus.value = "Active";
+      } else {
+        if (elCode) elCode.value = "VN";
+        if (elName) elName.value = "Vietnam";
+        if (elRegion) elRegion.value = "Asia";
+        if (elDial) elDial.value = "+84";
+        if (elPriority) elPriority.value = "High";
+        if (elStatus) elStatus.value = "Active";
+      }
 
       countryModal.show();
     });
   }
 
+  // Country Delete Confirmation Dialog Handler
   const deleteBtn = document.getElementById("deleteCountryBtn");
-  if (deleteBtn) {
-    deleteBtn.addEventListener("click", () => {
-      showToast({
-        title: "Record Deleted",
-        message: "Selected country record has been removed from system database.",
-        type: "danger",
-        duration: 4000,
+  const deleteModalEl = document.getElementById("countryDeleteConfirmModal");
+  const confirmDeleteBtn = document.getElementById("confirmDeleteCountryBtn");
+
+  const deleteModal =
+    deleteModalEl && typeof bootstrap !== "undefined"
+      ? bootstrap.Modal.getInstance(deleteModalEl) || new bootstrap.Modal(deleteModalEl)
+      : null;
+
+  let pendingDeleteRows = [];
+
+  // Table Row Selection & Select All Sync
+  const selectAllCb = document.getElementById("selectAllList");
+  const rowCheckboxes = document.querySelectorAll(".country-row-cb");
+
+  function updateSelectedExportCount() {
+    const checkedCount = Array.from(document.querySelectorAll(".country-row-cb:checked")).length;
+    const badge = document.getElementById("exportSelectedItemCountBadge");
+    if (badge) {
+      badge.textContent = `${checkedCount} Item${checkedCount !== 1 ? "s" : ""} Selected`;
+    }
+    const exportRadioSelected = document.getElementById("exportScopeSelected");
+    if (exportRadioSelected) {
+      exportRadioSelected.disabled = checkedCount === 0;
+      const card = exportRadioSelected.closest(".custom-radio-card");
+      if (card) {
+        if (checkedCount === 0) {
+          card.classList.add("disabled");
+        } else {
+          card.classList.remove("disabled");
+        }
+      }
+    }
+  }
+
+  if (selectAllCb) {
+    selectAllCb.addEventListener("change", (e) => {
+      const isChecked = e.target.checked;
+      rowCheckboxes.forEach((cb) => {
+        const row = cb.closest("tr");
+        if (row && !row.classList.contains("d-none")) {
+          cb.checked = isChecked;
+          if (isChecked) {
+            row.classList.add("table-active-row");
+          } else {
+            row.classList.remove("table-active-row");
+          }
+        }
       });
+      updateSelectedExportCount();
+    });
+  }
+
+  rowCheckboxes.forEach((cb) => {
+    cb.addEventListener("change", () => {
+      const row = cb.closest("tr");
+      if (row) {
+        if (cb.checked) {
+          row.classList.add("table-active-row");
+        } else {
+          row.classList.remove("table-active-row");
+        }
+      }
+      if (selectAllCb) {
+        const visibleCbs = Array.from(rowCheckboxes).filter((c) => {
+          const r = c.closest("tr");
+          return r && !r.classList.contains("d-none");
+        });
+        const checkedCount = visibleCbs.filter((c) => c.checked).length;
+        selectAllCb.checked = checkedCount > 0 && checkedCount === visibleCbs.length;
+        selectAllCb.indeterminate = checkedCount > 0 && checkedCount < visibleCbs.length;
+      }
+      updateSelectedExportCount();
+    });
+  });
+
+  if (deleteBtn && deleteModal) {
+    deleteBtn.addEventListener("click", () => {
+      const checkedBoxes = Array.from(document.querySelectorAll(".country-row-cb:checked"));
+
+      const targetDesc = document.getElementById("deleteModalDesc");
+
+      if (checkedBoxes.length > 0) {
+        pendingDeleteRows = checkedBoxes.map((cb) => cb.closest("tr")).filter(Boolean);
+
+        if (pendingDeleteRows.length === 1) {
+          const row = pendingDeleteRows[0];
+          const name = row.querySelector(".fw-semibold.text-main")?.innerText?.trim() || "Vietnam";
+          const code = row.querySelector(".badge-soft")?.innerText?.trim() || "#VN";
+
+          if (targetDesc) {
+            targetDesc.innerHTML = `Bạn có chắc chắn muốn xóa quốc gia <strong>${name} (${code})</strong> không?`;
+          }
+        } else {
+          if (targetDesc) {
+            targetDesc.innerHTML = `Bạn có chắc chắn muốn xóa <strong>${pendingDeleteRows.length} quốc gia đã chọn</strong> không?`;
+          }
+        }
+      } else {
+        // If no row is checked, select the first visible non-deleted row as current target
+        const firstRow = document.querySelector("#countryTableBody tr:not(.deleted-row)");
+        if (firstRow) {
+          pendingDeleteRows = [firstRow];
+          const name =
+            firstRow.querySelector(".fw-semibold.text-main")?.innerText?.trim() || "Vietnam";
+          const code = firstRow.querySelector(".badge-soft")?.innerText?.trim() || "#VN";
+
+          if (targetDesc) {
+            targetDesc.innerHTML = `Bạn có chắc chắn muốn xóa quốc gia <strong>${name} (${code})</strong> không?`;
+          }
+        } else {
+          showToast({
+            title: "Không có dữ liệu",
+            message: "Không tìm thấy bản ghi quốc gia phù hợp để xóa.",
+            type: "warning",
+            duration: 3500,
+          });
+          return;
+        }
+      }
+
+      deleteModal.show();
+    });
+  }
+
+  if (confirmDeleteBtn) {
+    confirmDeleteBtn.addEventListener("click", () => {
+      if (deleteModal) deleteModal.hide();
+
+      if (pendingDeleteRows && pendingDeleteRows.length > 0) {
+        const chkIsDelete = document.getElementById("chkIsDelete");
+        const isShowDeletedActive = chkIsDelete && chkIsDelete.checked;
+        const deletedCount = pendingDeleteRows.length;
+        const deletedFirstName =
+          pendingDeleteRows[0].querySelector(".fw-semibold.text-main")?.innerText?.trim() ||
+          "Bản ghi";
+
+        pendingDeleteRows.forEach((row) => {
+          row.classList.add("deleted-row");
+          if (!isShowDeletedActive) {
+            row.classList.add("d-none");
+          } else {
+            row.classList.add("table-danger-subtle");
+          }
+
+          const cb = row.querySelector(".country-row-cb");
+          if (cb) cb.checked = false;
+          row.classList.remove("table-active-row");
+
+          // Add strikethrough and soft delete badge if not already added
+          const nameCol = row.children[2];
+          if (nameCol && !nameCol.querySelector(".badge-deleted-tag")) {
+            const nameEl = nameCol.querySelector(".fw-semibold.text-main");
+            if (nameEl) nameEl.classList.add("text-decoration-line-through");
+            const avatarEl = nameCol.querySelector(".country-avatar-badge");
+            if (avatarEl) avatarEl.className = "country-avatar-badge avatar-deleted";
+
+            const badgeSpan = document.createElement("span");
+            badgeSpan.className =
+              "badge bg-danger-subtle text-danger border border-danger-subtle fs-xs rounded-pill px-2 py-0.5 mt-1 badge-deleted-tag d-inline-flex align-items-center gap-1";
+            badgeSpan.innerHTML = `<i class="fa-solid fa-trash-can"></i> Soft Deleted`;
+            nameEl?.parentElement?.appendChild(badgeSpan);
+          }
+        });
+
+        if (selectAllCb) {
+          selectAllCb.checked = false;
+          selectAllCb.indeterminate = false;
+        }
+
+        updateSelectedExportCount();
+
+        // Update active stats counter
+        const activeStatEl = document.getElementById("statActiveMarkets");
+        if (activeStatEl) {
+          const currentVal = parseInt(activeStatEl.innerText.replace(/,/g, ""), 10);
+          if (!isNaN(currentVal) && currentVal >= deletedCount) {
+            activeStatEl.innerText = (currentVal - deletedCount).toString();
+          }
+        }
+
+        showToast({
+          title: "Đã xóa bản ghi / Record Deleted",
+          message:
+            deletedCount === 1
+              ? `Quốc gia "${deletedFirstName}" đã được chuyển sang trạng thái đã xóa (Soft Delete).`
+              : `${deletedCount} quốc gia đã được chuyển sang trạng thái đã xóa (Soft Delete).`,
+          type: "danger",
+          duration: 4000,
+        });
+
+        pendingDeleteRows = [];
+      }
     });
   }
 
